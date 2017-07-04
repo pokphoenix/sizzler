@@ -78,3 +78,7 @@ Route::get('/progressbars', function() {
 Route::get('/collapse', function() {
     return View::make('admin.collapse');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
