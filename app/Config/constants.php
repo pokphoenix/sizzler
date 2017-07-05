@@ -1,7 +1,7 @@
 <?php
 
 define('UPLOAD_PATH',  'public/upload/');
-define('ADMIN_DASHBOARD',  '/category');
+define('ADMIN_DASHBOARD',  'admin/home');
 define('GUEST_DASHBOARD',  '/home');
 
 return [

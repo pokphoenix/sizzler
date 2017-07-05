@@ -82,3 +82,11 @@ Route::get('/collapse', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('admin/home', 'AdminController@index');
+$this->get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
+$this->post('admin', 'Admin\LoginController@login')->name('admin.login');
+$this->post('admin-logout', 'Admin\LoginController@logout')->name('logout');
+$this->post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+$this->get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+$this->post('admin-password/reset', 'Admin\ResetPasswordController@reset');
+$this->get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
