@@ -90,3 +90,9 @@ $this->post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLin
 $this->get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 $this->post('admin-password/reset', 'Admin\ResetPasswordController@reset');
 $this->get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+
+Route::group(['middleware' => ['web','auth:admin']], function () {
+    Route::get('category/position', 'CategoryController@position')->name('category-position');
+    Route::post('category/position', 'CategoryController@positionStore');
+    Route::resource('category', 'CategoryController');
+});

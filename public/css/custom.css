@@ -1,0 +1,58 @@
+.btn-gray {
+  color: #fff;
+  background-color: #AAA;
+  border-color: #CCC;
+}
+
+.btn-gray:focus,
+.btn-gray.focus {
+  color: #fff;
+  background-color: #999;
+  border-color: #666;
+}
+
+.btn-gray:hover {
+  color: #fff;
+  background-color: #999;
+  border-color: #666;
+}
+
+.btn-gray:active,
+.btn-gray.active,
+.open > .btn-gray.dropdown-toggle {
+  color: #fff;
+  background-color: #999;
+  border-color: #666;
+}
+
+.error-keyup{ font: bold 1rem Tahoma; color :#D9534F; }
+.require-field { border-left: 5px solid #bf5329; }
+
+
+.input-group-addon.primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(50, 118, 177);
+    border-color: rgb(40, 94, 142);
+}
+.input-group-addon.success {
+    color: rgb(255, 255, 255);
+    background-color: rgb(92, 184, 92);
+    border-color: rgb(76, 174, 76);
+}
+.input-group-addon.info {
+    color: rgb(255, 255, 255);
+    background-color: rgb(57, 179, 215);
+    border-color: rgb(38, 154, 188);
+}
+.input-group-addon.warning {
+    color: rgb(255, 255, 255);
+    background-color: rgb(240, 173, 78);
+    border-color: rgb(238, 162, 54);
+}
+.input-group-addon.danger {
+    color: rgb(255, 255, 255);
+    background-color: rgb(217, 83, 79);
+    border-color: rgb(212, 63, 58);
+}
+
+    

@@ -27,5 +27,22 @@ class UserTableSeeder extends Seeder
 			),
 			//
 		));
+
+		\DB::table('admins')->delete();
+        
+		\DB::table('admins')->insert(array (
+			0 => 
+			array (
+				'id' => 1,
+				'name' => "Admin",
+				'lastname' => "Sizzler",
+				'email' => "admin@sizzler.com",
+				'password' => '$2y$10$AuzyLYNtw4pRU3upDScxrOmfA7jRSBQQknipBw9oK9dAwegxWrmYi',
+				'remember_token' => '',
+				'created_at' => "2017-07-05 12:13:13",
+				'updated_at' => "2017-07-05 12:13:13"
+			),
+			//
+		));
     }
 }

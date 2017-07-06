@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Sizzler') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -20,7 +22,7 @@
     </script>
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -38,6 +40,7 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
+
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                    
                     <ul class="nav navbar-nav">
@@ -77,7 +80,11 @@
         </nav>
 
         @yield('content')
-    </div>
+    </div> -->
 
-<script src="{{ asset("js/app.js") }}"></script>
+@yield('body')
+<script src="{{ asset('plugin/bootstrap/bootstrap.min.js') }}"></script>
+<!-- <script src="{{ asset("js/app.js") }}"></script> -->
+<!-- <script src="{{ asset("js/Chart.js") }}"></script> -->
+<script src="{{ asset("js/admin.js") }}"></script>
 </body>
