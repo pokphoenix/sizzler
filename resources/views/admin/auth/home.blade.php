@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('content')
+@section('page_heading','admin home')
+
+@section('section')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

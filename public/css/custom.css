@@ -1,58 +1,80 @@
-.btn-gray {
-  color: #fff;
-  background-color: #AAA;
-  border-color: #CCC;
+
+.phoinikas--header-row-2{
+  position: initial;
 }
 
-.btn-gray:focus,
-.btn-gray.focus {
-  color: #fff;
-  background-color: #999;
-  border-color: #666;
+.phoinikas--subnav-1{
+  width: 680px;
 }
 
-.btn-gray:hover {
-  color: #fff;
-  background-color: #999;
-  border-color: #666;
+.phoinikas--subnav-1 .phoinikas--row-1 {
+  width: 25%;
+  float: left;
 }
 
-.btn-gray:active,
-.btn-gray.active,
-.open > .btn-gray.dropdown-toggle {
-  color: #fff;
-  background-color: #999;
-  border-color: #666;
+.phoinikas--subnav-1 .phoinikas--row-3 {
+  width: 45%;
+  float: left;
 }
 
-.error-keyup{ font: bold 1rem Tahoma; color :#D9534F; }
-.require-field { border-left: 5px solid #bf5329; }
-
-
-.input-group-addon.primary {
-    color: rgb(255, 255, 255);
-    background-color: rgb(50, 118, 177);
-    border-color: rgb(40, 94, 142);
-}
-.input-group-addon.success {
-    color: rgb(255, 255, 255);
-    background-color: rgb(92, 184, 92);
-    border-color: rgb(76, 174, 76);
-}
-.input-group-addon.info {
-    color: rgb(255, 255, 255);
-    background-color: rgb(57, 179, 215);
-    border-color: rgb(38, 154, 188);
-}
-.input-group-addon.warning {
-    color: rgb(255, 255, 255);
-    background-color: rgb(240, 173, 78);
-    border-color: rgb(238, 162, 54);
-}
-.input-group-addon.danger {
-    color: rgb(255, 255, 255);
-    background-color: rgb(217, 83, 79);
-    border-color: rgb(212, 63, 58);
+.phoinikas--row-2{
+  border-left: thick solid #898584;
+  border-left-width: 1px;
+  padding-left: 10px;
+  margin-right: 20px;
+  height: 235px;
 }
 
-    
+.phoinikas--row-2 dd{
+  font-size: 0.7em;
+  text-indent: 10px;
+}
+
+.phoinikas--row-3{
+  border-left: thick solid #898584;
+  border-left-width: 1px;
+  padding-left: 10px;
+  height: 235px;
+}
+
+#div-international-link{
+  position: fixed;
+  top: 32px;
+  background-color: #124f31;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .phoinikas--home-banner-3 figure img{
+    width: 555px;
+  }
+
+  .phoinikas--subnav-1{
+    width: 100%;
+  }
+
+  .phoinikas--row-2 {
+    padding-left: initial;
+  }
+
+  .phoinikas--subnav-1 .phoinikas--row-1 {
+    width: 100%;
+    float: initial;
+  }
+
+  .phoinikas--subnav-1 .phoinikas--row-2 {
+    width: 100%;
+    float: initial;
+  }
+
+  .phoinikas--subnav-1 .phoinikas--row-3 {
+    width: 100%;
+    float: initial;
+    padding-left: 0;
+  }
+
+}
+

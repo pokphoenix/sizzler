@@ -10,89 +10,175 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'HomeController@index');
 
-Route::get('/', function () {
-    return view('admin.home');
-});
+// Route::get('/sbadmin', function () {
+//     return view('admin.home');
+// });
 
-Route::get('/admin', function () {
-    return view('admin.home');
-});
+// // Route::get('/admin', function () {
+// //     return view('admin.home');
+// // });
 
-Route::get('/login', function () {
-    return view('admin.auth.login');
-});
+// Route::get('/login', function () {
+//     return view('admin.auth.login');
+// });
 
-Route::get('/charts', function () {
-    return View::make('admin.charts');
-});
+// Route::get('/charts', function () {
+//     return View::make('admin.charts');
+// });
 
-Route::get('/tables', function () {
-    return View::make('admin.table');
-});
+// Route::get('/tables', function () {
+//     return View::make('admin.table');
+// });
 
-Route::get('/forms', function () {
-    return View::make('admin.form');
-});
+// Route::get('/forms', function () {
+//     return View::make('admin.form');
+// });
 
-Route::get('/grid', function () {
-    return View::make('admin.grid');
-});
+// Route::get('/grid', function () {
+//     return View::make('admin.grid');
+// });
 
-Route::get('/buttons', function () {
-    return View::make('admin.buttons');
-});
+// Route::get('/buttons', function () {
+//     return View::make('admin.buttons');
+// });
 
-Route::get('/icons', function () {
-    return View::make('admin.icons');
-});
+// Route::get('/icons', function () {
+//     return View::make('admin.icons');
+// });
 
-Route::get('/panels', function () {
-    return View::make('admin.panel');
-});
+// Route::get('/panels', function () {
+//     return View::make('admin.panel');
+// });
 
-Route::get('/typography', function () {
-    return View::make('admin.typography');
-});
+// Route::get('/typography', function () {
+//     return View::make('admin.typography');
+// });
 
-Route::get('/notifications', function () {
-    return View::make('admin.notifications');
-});
+// Route::get('/notifications', function () {
+//     return View::make('admin.notifications');
+// });
 
-Route::get('/blank', function () {
-    return View::make('admin.blank');
-});
+// Route::get('/blank', function () {
+//     return View::make('admin.blank');
+// });
 
-Route::get('/documentation', function () {
-    return View::make('admin.documentation');
-});
+// Route::get('/documentation', function () {
+//     return View::make('admin.documentation');
+// });
 
-Route::get('/stats', function() {
-   return View::make('admin.stats');
-});
+// Route::get('/stats', function() {
+//    return View::make('admin.stats');
+// });
 
-Route::get('/progressbars', function() {
-    return View::make('admin.progressbars');
-});
+// Route::get('/progressbars', function() {
+//     return View::make('admin.progressbars');
+// });
 
-Route::get('/collapse', function() {
-    return View::make('admin.collapse');
-});
+// Route::get('/collapse', function() {
+//     return View::make('admin.collapse');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('admin/home', 'AdminController@index');
-$this->get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
-$this->post('admin', 'Admin\LoginController@login')->name('admin.login');
-$this->post('admin-logout', 'Admin\LoginController@logout')->name('logout');
-$this->post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-$this->get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-$this->post('admin-password/reset', 'Admin\ResetPasswordController@reset');
-$this->get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
-Route::group(['middleware' => ['web','auth:admin']], function () {
+Route::get('/menu/{id}', 'HomeController@menu');
+Route::get('/category/{id}', 'HomeController@category');
+
+Route::get('/career', 'HomeController@career');
+Route::get('/location', 'HomeController@location');
+Route::get('/promotion', 'HomeController@promotion');
+Route::get('/media', 'HomeController@media');
+Route::get('/about', 'HomeController@about');
+Route::get('/career', 'HomeController@career');
+Route::get('/contact', 'HomeController@contact');
+Route::get('/international', 'HomeController@international');
+
+
+
+Route::get('/beef', 'HomeController@beef');
+Route::get('/burger', 'HomeController@burger');
+Route::get('/chicken', 'HomeController@chicken');
+Route::get('/com-beef', 'HomeController@comBeef');
+Route::get('/com-platter', 'HomeController@comPlatter');
+Route::get('/com-suprem', 'HomeController@comSuprem');
+Route::get('/kidmenu', 'HomeController@kidmenu');
+Route::get('/pork', 'HomeController@pork');
+Route::get('/seafood', 'HomeController@seafood');
+Route::get('/healthtip/{id}', 'HomeController@healthtip');
+
+// Route::get('/career', 'HomeController@career');
+// Route::get('/career', 'HomeController@career');
+// Route::get('/category/{id}', 'HomeController@category');
+// Route::get('/category/{id}', 'HomeController@category');
+// Route::get('/category/{id}', 'HomeController@category');
+
+
+Route::get('admin/home', 'AdminController@index');
+Route::get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
+Route::post('admin', 'Admin\LoginController@login')->name('admin.login');
+Route::post('admin-logout', 'Admin\LoginController@logout')->name('logout');
+Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+Route::get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');
+Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+
+Route::group(['middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
     Route::get('category/position', 'CategoryController@position')->name('category-position');
     Route::post('category/position', 'CategoryController@positionStore');
     Route::resource('category', 'CategoryController');
+
+    Route::resource('location', 'LocationController');
+
+    Route::get('menu/position', 'MenusController@position')->name('menu-position');
+    Route::post('menu/position', 'MenusController@positionStore');
+    Route::resource('menu', 'MenusController');
+
+    Route::get('media-category/position', 'MediaCategoryController@position')->name('media-category-position');
+    Route::post('media-category/position', 'MediaCategoryController@positionStore');
+    Route::resource('media-category', 'MediaCategoryController');
+
+    Route::get('media/position', 'MediaController@position')->name('media-position');
+    Route::post('media/position', 'MediaController@positionStore');
+    Route::resource('media', 'MediaController');
+
+    Route::get('slider/position', 'SliderController@position')->name('slider-position');
+    Route::post('slider/position', 'SliderController@positionStore');
+    Route::resource('slider', 'SliderController'); 
+
+    Route::get('slider-sub/position', 'SliderSubController@position')->name('slider-sub-position');
+    Route::post('slider-sub/position', 'SliderSubController@positionStore');
+    Route::resource('slider-sub', 'SliderSubController'); 
+
+    Route::get('promotion-slider/position', 'PromotionSliderController@position')->name('promotion-slider-position');
+    Route::post('promotion-slider/position', 'PromotionSliderController@positionStore');
+    Route::resource('promotion-slider', 'PromotionSliderController');
+
+    Route::get('banner/position', 'BannerController@position')->name('banner-position');
+    Route::post('banner/position', 'BannerController@positionStore');
+    Route::resource('banner', 'BannerController'); 
+
+    Route::get('promotion-banner/position', 'PromotionBannerController@position')->name('promotion-banner-position');
+    Route::post('promotion-banner/position', 'PromotionBannerController@positionStore');
+    Route::resource('promotion-banner', 'PromotionBannerController');
+
+    Route::get('healthtip/position', 'HealthTipController@position')->name('healthtip-position');
+    Route::post('healthtip/position', 'HealthTipController@positionStore');
+    Route::resource('healthtip', 'HealthTipController');
+
+    Route::get('homeview/position', 'HomeViewController@position')->name('homeview-position');
+    Route::post('homeview/position', 'HomeViewController@positionStore');
+    Route::resource('homeview', 'HomeViewController');
+
+    Route::resource('beef', 'BeefController');
+    Route::resource('burger', 'BurgerController');
+    Route::resource('chicken', 'ChickenController');
+    Route::resource('com-beef', 'ComBeefController');
+    Route::resource('com-platter', 'ComPlatterController');
+    Route::resource('com-suprem', 'ComSupremController');
+    Route::resource('kid', 'KidMenuController');
+    Route::resource('pork', 'PorkController');
+    Route::resource('seafood', 'SeafoodController');
+
 });

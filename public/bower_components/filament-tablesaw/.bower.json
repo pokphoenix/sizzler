@@ -1,0 +1,14 @@
+{
+  "name": "filament-tablesaw",
+  "homepage": "https://github.com/filamentgroup/tablesaw",
+  "version": "3.0.1",
+  "_release": "3.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.1",
+    "commit": "93ba7a8bad18449361dae0e59fb8a109d6140887"
+  },
+  "_source": "https://github.com/filamentgroup/tablesaw.git",
+  "_target": "^3.0.1",
+  "_originalSource": "filament-tablesaw"
+}

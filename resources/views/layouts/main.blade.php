@@ -16,211 +16,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('/admin') }}">{{ config('app.name', 'Laravel') }}</a>
+                <a class="navbar-brand" href="{{ url ('/admin') }}"><img  style="height:100%;" src="{{ asset('/img/global/logo-sizzler-footer.png') }}" alt="Sizzler Logo"></a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-tasks">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
-                                    </p>
-
-                                    <div>
-                                        @include('admin.widgets.progress', array('animated'=> true, 'class'=>'success', 'value'=>'40'))
-                                        <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span>
-                                    </p>
-
-                                    <div>
-                                        @include('admin.widgets.progress', array('animated'=> true, 'class'=>'info', 'value'=>'20'))
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span>
-                                    </p>
-
-                                    <div>
-                                        @include('admin.widgets.progress', array('animated'=> true, 'class'=>'warning', 'value'=>'60'))
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span>
-                                    </p>
-
-                                    <div>
-                                        @include('admin.widgets.progress', array('animated'=> true,'class'=>'danger', 'value'=>'80'))
-                                        <span class="sr-only">80% Complete (danger)</span>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Tasks</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-tasks -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>  {{ Auth::user()->name.' '.Auth::user()->lastname }} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
@@ -234,12 +39,12 @@
                             <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
+                                            Logout
+                                        </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -267,40 +72,92 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-sitemap fa-fw"></i> Ourmenu<span class="fa arrow"></span>
+                                <i class="fa fa-bars fa-fw"></i> Ourmenu<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*category') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('category') }}">หมวดหมู่เมนู</a>
+                                    <a href="{{ url ('admin/category') }}">หมวดหมู่เมนู</a>
                                 </li>
-                                 <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('menu') }}">เมนูอาหาร</a>
+                               <!--   <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/menu') }}">เมนูอาหาร</a>
+                                </li> -->
+                                <li {{ (Request::is('*beef') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/beef') }}">beef (เนื้อ)</a>
+                                </li>
+                                <li {{ (Request::is('*pork') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/pork') }}">pork (หมู)</a>
+                                </li>
+                                <li {{ (Request::is('*seafood') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/seafood') }}">seafood (อาหารทะเล)</a>
+                                </li>
+                                <li {{ (Request::is('*chicken') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/chicken') }}">chicken (ไก่)</a>
+                                </li>
+                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/burger') }}">burger (เบอเกอร์)</a>
+                                </li>
+                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/kid') }}">kid-menu (เมนูสำหรับเด็ก)</a>
+                                </li>
+                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/com-beef') }}">com-beef (เมนูผสมเนื้อ)</a>
+                                </li>
+                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/com-suprem') }}">com-suprem (เมนูผสม)</a>
+                                </li>
+                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/com-platter') }}">com-platter (เมนูจานใหญ่)</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-sitemap fa-fw"></i> Promotion<span class="fa arrow"></span>
+                                <i class="fa fa-money fa-fw"></i> Promotion<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*promotion') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('promotion') }}">โปรโมชั่น</a>
+                                    <a href="{{ url ('admin/promotion') }}">โปรโมชั่น</a>
                                 </li>
-                                 <li {{ (Request::is('*promotionshow') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('promotionshow') }}">สับเปลี่ยนการแสดงผล</a>
+                                <li {{ (Request::is('*promotion-slider') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/promotion-slider') }}">โปรโมชั่น สไลด์เดอร์</a>
+                                </li>
+                                <li {{ (Request::is('*promotion-banner') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/promotion-banner') }}">โปรโมชั่น แบนเนอร์</a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li>
+                            <a href="#">
+                                <i class="fa fa-money fa-fw"></i> Home<span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*slider') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/slider') }}">Slider Main</a>
+                                </li>
+                                <li {{ (Request::is('*slider-sub') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/slider-sub') }}">Slider Sub</a>
+                                </li>
+                                <li {{ (Request::is('*view') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/view') }}">view</a>
+                                </li>
+                                <li {{ (Request::is('*banner') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/banner') }}">banner</a>
                                 </li>
                             </ul>
                         </li>
                         <li {{ (Request::is('*location') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('location') }}"><i class="fa fa-dashboard fa-fw"></i> Location</a>
+                            <a href="{{ url ('admin/location') }}"><i class="fa fa-map-o fa-fw"></i> Location</a>
+                        </li>
+                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/healthtip') }}"><i class="fa fa-dashboard fa-fw"></i> Health Tip</a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-sitemap fa-fw"></i> Media<span class="fa arrow"></span>
+                                <i class="fa fa-caret-square-o-right fa-fw"></i> Media<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('ads') }}">หมวดหมู่ มีเดีย</a>
+                                    <a href="{{ url ('admin/media-category') }}">หมวดหมู่ มีเดีย</a>
                                 </li>
                                 <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('ads') }}">print ads</a>
@@ -335,4 +192,5 @@
     </div>
 
 <script src="{{ asset('plugin/fancybox/jquery.fancybox.min.js') }}"></script>
+<script src="{{ asset('plugin/jquery-validation/jquery.validate.min.js') }}"></script>
 @endsection

@@ -7,7 +7,7 @@ img {
 }
 </style>
 <div class="col-sm-12">
-	<form id="logout-form" action="{{ $action }}" method="POST" enctype="multipart/form-data" >
+	<form id="submitform" action="{{ $action }}" method="POST" enctype="multipart/form-data" >
              {{ csrf_field() }}	
 			@if ($method == 'PUT' )
 				{{ method_field('PUT') }}
@@ -15,7 +15,17 @@ img {
 		<div class="row">
 			<div class="col-sm-6">
 			 	@include('layouts.partials.error')
-				
+	
+				@if (isset($url))
+				<div class="form-group">
+                    <label for="ex">Url</label>
+                    <input id="url" name="url" placeholder="url" class="form-control require-field" value="{{ isset($url) ? $url : '' }}">
+                    <p class="help-block"></p>
+                </div>
+                @endif
+	
+				{{ isset($panelHeadBody)? $panelHeadBody : '' }}
+
 				 <div class="layout-th">
 				 	 {{ $panelBodyTH }}	
 				 </div>
@@ -31,30 +41,34 @@ img {
 		            @slot('collapseIn', true)
 		            @slot('body')
 		                <div class="btn-group" role="group" aria-label="...">
-						  <button type="button" class="btn btn-info  btn-language">TH</button>
-						  <button type="button" class="btn btn-default  btn-language">EN</button>
+						  <button type="button" class="btn btn-info  btn-language btn-th">TH</button>
+						  <button type="button" class="btn btn-default  btn-language btn-en">EN</button>
 						</div>
 		            @endslot
 		        @endcomponent
 				
+				@if (isset($editStatus))
+					@component('admin.widgets.collapse')
+			            @slot('header', 'Status')
+			            @slot('id', '2')
+			            @slot('collapseIn', true)
+			            @slot('body')
+			            		@include('layouts.widgets.buttonOnOff',['editStatus'=> $editStatus,'nameItem'=>'status'])
+			            @endslot
+			        @endcomponent
+ 				@endif
 
-				@component('admin.widgets.collapse')
-		            @slot('header', 'Status')
-		            @slot('id', '2')
-		            @slot('collapseIn', true)
-		            @slot('body')
-		            		@include('layouts.widgets.buttonOnOff',['editStatus'=> $editStatus,'nameItem'=>'status'])
-		            @endslot
-		        @endcomponent
-	
-				@component('admin.widgets.collapse')
-		            @slot('header', 'Show Position')
-		            @slot('id', '3')
-		            @slot('collapseIn', true)
-		            @slot('body')
-		            		@include('layouts.widgets.buttonOnOff',['editStatus'=> $editPosition,'nameItem'=>'position'])
-		            @endslot
-		        @endcomponent
+				@if (isset($editPosition))
+					@component('admin.widgets.collapse')
+			            @slot('header', 'Show Position')
+			            @slot('id', '3')
+			            @slot('collapseIn', true)
+			            @slot('body')
+			            		@include('layouts.widgets.buttonOnOff',['editStatus'=> $editPosition,'nameItem'=>'position'])
+			            @endslot
+			        @endcomponent
+				@endif
+				{{  isset($panelSubBody) ?  $panelSubBody : '' }}	
 
 			</div>
 		</div>	
@@ -89,10 +103,11 @@ img {
 			$(this).closest('.btn-on-off-widget').find('.btn-value').val($(this).attr('value'));
 			$(this).next('.btn-on-off').removeClass('btn-primary btn-gray').addClass('btn-default');
 			$(this).prev('.btn-on-off').removeClass('btn-primary btn-gray').addClass('btn-default');
-			if($(this).attr('value')==1){
-				$(this).removeClass('btn-default').addClass('btn-primary')
-			}else{
+			if($(this).attr('value')==0){
 				$(this).removeClass('btn-default').addClass('btn-gray');
+				
+			}else{
+				$(this).removeClass('btn-default').addClass('btn-primary');
 			}
 		})
 

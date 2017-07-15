@@ -3,7 +3,7 @@
 <div class="btn-group" role="group" aria-label="...">
 
 	<button type="button" class="btn btn-{{ ($editStatus=="0") ? 'gray' : 'default'  }} btn-on-off btn-circle" value="0">OFF</button>
-	<button type="button" id="statusOn" class="btn btn-{{ ($editStatus=="1") ? 'primary' : 'default'  }} btn-on-off btn-circle" value="1">ON</button>
+	<button type="button" id="statusOn" class="btn btn-{{ isset($editStatus) ? 'primary' : 'default'  }} btn-on-off btn-circle" value="{{ isset($editStatus) ? $editStatus : 1  }}">ON</button>
 </div>
 </div>
 

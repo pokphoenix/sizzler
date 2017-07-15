@@ -6,10 +6,10 @@ use DB;
 use App\Http\Requests\FormValidate;
 use App\Models\category;
 use Route;
-
+use stdClass ;
 class CategoryController extends Controller
 {
-    public $route = 'category' ;
+    public $route = 'admin/category' ;
     public $controllerName = 'หมวดหมู่เมนูอาหาร' ;
 
     /**
@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $data['title'] = $this->controllerName ;
-
+        $data['route'] = $this->route ;
         // $url = $request->fullUrl();
         $sortBy = $request->input('sortby', 'created_at');
         $sortType = $request->input('type', 'desc'); 
@@ -51,6 +51,11 @@ class CategoryController extends Controller
     public function create()
     {
         $data['title'] = 'สร้าง '.$this->controllerName ;
+        $data['route'] = $this->route ;
+
+        $o = new stdClass();
+        $o->position =  999 ;
+        $data['data'] =  $o ;
         return view($this->route.'.create',$data);
     }
 
@@ -63,9 +68,6 @@ class CategoryController extends Controller
     public function store(FormValidate $request)
     {
         $post = self::fileUpload($request);
-        if ($post['position']==1){
-            $post['position'] = 999;
-        }
         category::create($post);
         return redirect($this->route);
     }
@@ -79,9 +81,8 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $data['title'] = $this->controllerName.' : '.$category->name_th ;
-
         $data['data'] = $category;
-        
+        $data['route'] = $this->route;
        return view($this->route.'.show',$data);
     }
 
@@ -94,6 +95,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $data['title'] = 'แก้ไข '.$this->controllerName ;
+         $data['route'] = $this->route ;
         $data['data'] = $category ;
         $data['edit'] = true ;
 
@@ -110,9 +112,9 @@ class CategoryController extends Controller
     public function update(FormValidate $request, $id)
     {
         $post = self::fileUpload($request,true);
-        if ($post['position']==1){
-            $post['position'] = 999;
-        }
+        // if ($post['position']==1){
+        //     // $post['position'] = 999;
+        // }
         $db = category::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -138,7 +140,7 @@ class CategoryController extends Controller
         $tables = category::where('position','<>',0)->orderBy('position','asc')->paginate(20) ;
         $data['tables'] = $tables;
         $data['baseRoute'] = $this->route;
-        return view($this->route.'.position',$data);
+        return view('admin.category.position',$data);
     }
 
     public function positionStore(Request $request)

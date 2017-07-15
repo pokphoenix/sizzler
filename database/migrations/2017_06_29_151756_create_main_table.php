@@ -19,8 +19,37 @@ class CreateMainTable extends Migration
             $table->string('name_en');
             $table->string('thumbnail_th')->nullable();
             $table->string('thumbnail_en')->nullable();
+
+            // $table->string('name_img_th_1');
+            // $table->string('name_img_th_2');
+            // $table->string('name_img_th_3');
+            // $table->string('name_img_th_4');
+            // $table->string('name_img_th_5');
+            // $table->string('name_img_th_6');
+
+            // $table->string('name_img_en_1');
+            // $table->string('name_img_en_2');
+            // $table->string('name_img_en_3');
+            // $table->string('name_img_en_4');
+            // $table->string('name_img_en_5');
+            // $table->string('name_img_en_6');
+
+            // $table->string('img_th_1')->nullable();
+            // $table->string('img_th_2')->nullable();
+            // $table->string('img_th_3')->nullable();
+            // $table->string('img_th_4')->nullable();
+            // $table->string('img_th_5')->nullable();
+            // $table->string('img_th_6')->nullable();
+
+            // $table->string('img_en_1')->nullable();
+            // $table->string('img_en_2')->nullable();
+            // $table->string('img_en_3')->nullable();
+            // $table->string('img_en_4')->nullable();
+            // $table->string('img_en_5')->nullable();
+            // $table->string('img_en_6')->nullable();
+
+
             $table->integer('status')->unsigned();
-            $table->integer('position')->unsigned()->default(0);
             $table->timestamps();
         });
 
@@ -80,9 +109,9 @@ class CreateMainTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categorys');
-        Schema::dropIfExists('menus');
-        Schema::dropIfExists('promotions');
-        Schema::dropIfExists('medias_groups');
-        Schema::dropIfExists('medias');
+        // Schema::dropIfExists('menus');
+        // Schema::dropIfExists('promotions');
+        // Schema::dropIfExists('medias_groups');
+        // Schema::dropIfExists('medias');
     }
 }
