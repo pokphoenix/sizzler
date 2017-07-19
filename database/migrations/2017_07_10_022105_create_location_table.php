@@ -21,6 +21,8 @@ class CreateLocationTable extends Migration
             $table->string('address_en');
             $table->string('lat');
             $table->string('lng');
+            $table->string('tel');
+            $table->integer('province_id')->unsigned();  
             $table->integer('status')->unsigned();  
             $table->timestamps();
         });

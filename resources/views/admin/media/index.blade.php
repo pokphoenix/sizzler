@@ -148,7 +148,7 @@
 									<a href="{{ asset($route.'/'.$t->id.'/edit') }}" class="btn btn-warning btn-circle" title="edit item"><i class="fa fa-edit"></i></a>
 								</div>
 								<div class="col-sm-2">
-									<a href="{{ asset($route.'/'.$t->id) }}" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
+									<a href="{{ asset('media/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
 								<div class="col-sm-2">
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">

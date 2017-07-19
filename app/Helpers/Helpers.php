@@ -34,25 +34,45 @@ if (! function_exists('urlSortBy')) {
 if (! function_exists('uploadfile')) {
     function uploadfile($request,$name)
     {
-         $result = ['result'=>true,'error'=>''];
-
+        $result = ['result'=>true,'error'=>''];
         if ($request->hasFile($name)) {
-            $file = $request->file($name) ;
-            $fileArray = array('image' => $file);
-            $rules = array(
-              'image' => 'mimes:jpeg,jpg,png|max:1024' // max 10000kb
-            );
-            $validator = Validator::make($fileArray, $rules);
-            if ($validator->fails())
-            {
-                $result['result'] = false;
-                $result['error'] = $validator->errors()->getMessages() ;
+            $file = $request->file($name);
+            if(is_array($file)){ 
+                foreach ($request->file($name) as $key => $file) {
+                    $fileArray = array('image' => $file);
+                    $rules = array(
+                      'image' => 'mimes:jpeg,jpg,png|max:1024' // max 10000kb
+                    );
+                    $validator = Validator::make($fileArray, $rules);
+                    if ($validator->fails())
+                    {
+                        $result['result'] = false;
+                        $result['error'] = $validator->errors()->getMessages() ;
+                    }else{
+                        $folderName = UPLOAD_PATH.date('Ym') ;
+                        $fileName = time().'_'.$file->getClientOriginalName();
+                        $path = $file->storeAs($folderName,$fileName);
+                        $imageName = str_replace(UPLOAD_PATH,'',$path) ;
+                        $result['imagePath'][$key] = $imageName ;
+                    }
+                }
             }else{
-                $folderName = UPLOAD_PATH.date('Ym') ;
-            	$fileName = time().'_'.$request->$name->getClientOriginalName();
-                $path = $request->$name->storeAs($folderName,$fileName);
-                $imageName = str_replace(UPLOAD_PATH,'',$path) ;
-                $result['imagePath'] = $imageName ;
+                $fileArray = array('image' => $file);
+                $rules = array(
+                  'image' => 'mimes:jpeg,jpg,png|max:1024' // max 10000kb
+                );
+                $validator = Validator::make($fileArray, $rules);
+                if ($validator->fails())
+                {
+                    $result['result'] = false;
+                    $result['error'] = $validator->errors()->getMessages() ;
+                }else{
+                    $folderName = UPLOAD_PATH.date('Ym') ;
+                    $fileName = time().'_'.$request->$name->getClientOriginalName();
+                    $path = $file->storeAs($folderName,$fileName);
+                    $imageName = str_replace(UPLOAD_PATH,'',$path) ;
+                    $result['imagePath'] = $imageName ;
+                }
             }
         }else{
             $result['result'] = false;

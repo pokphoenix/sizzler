@@ -23,8 +23,13 @@ class HealthTipValidate extends FormRequest
      */
     public function rules()
     {
+        $imgAside = count($this->input('img_aside'));
+        foreach(range(0, $imgAside) as $index) {
+            $rules['img_aside.' . $index] = 'image|mimes:jpeg,jpg,png|max:1024';
+        }
+
         return [
-            //
+            $rules
         ];
     }
 }

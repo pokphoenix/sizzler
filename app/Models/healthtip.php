@@ -12,4 +12,8 @@ class healthtip extends Model
     protected $dates = ['created_at', 'updated_at'];
 
     protected $hidden = ['hid_thumbnail_th','hid_thumbnail_en'] ;
+
+    public function images(){
+        return $this->hasMany(images::class);
+    }
 }

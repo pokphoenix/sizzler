@@ -16,6 +16,11 @@
                 <input id="lng" name="lng" placeholder="ลองจิจูด" class="form-control require-field" value="{{ isset($data->lng) ? $data->lng : '' }}">
                 <p class="help-block"></p>
             </div>
+            <div class="form-group">
+                <label for="ex">Telephone</label>
+                <input id="tel" name="tel" placeholder="เบอร์โทรศัพท์" class="form-control require-field" value="{{ isset($data->tel) ? $data->tel : '' }}">
+                <p class="help-block"></p>
+            </div>
             @endslot
             @slot('panelBodyTH')   
             <div class="form-group">
@@ -27,6 +32,7 @@
                 <label for="ex">Address TH</label>
                 <textarea rows="5" id="address_th"  name="address_th" class="form-control require-field" placeholder="Address TH">{{ isset($data->address_th) ? $data->address_th : '' }}</textarea>
             </div>
+          
 
 
             
@@ -43,7 +49,26 @@
             </div>
             @endslot
 
-           
+            @slot('panelSubBody')  
+                @component('admin.widgets.collapse')
+                    @slot('header', 'Show Position')
+                    @slot('id', '3')
+                    @slot('collapseIn', true)
+                    @slot('body')
+                          
+                        <div class="form-group">
+                            <label for="sel">Selects</label>
+                            <select id="province_id" name="province_id"  class="form-control">
+                                 <option value="">กรุณาเลือกจังหวัด</option>
+                                @foreach ($categorys  as $category ) 
+                                    <option value="{{ $category->id }}" {{ (isset($data->province_id)&&($data->province_id ==  $category->id)) ? 'selected' : '' }}  >{{ $category->province_name_th." | ".$category->province_name_en }}</option>
+                               @endforeach
+                            </select>
+                        </div>
+
+                    @endslot
+                @endcomponent
+            @endslot
 
     @endcomponent
 

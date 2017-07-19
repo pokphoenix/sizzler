@@ -84,12 +84,15 @@ Auth::routes();
 
 
 Route::get('/menu/{id}', 'HomeController@menu');
+Route::get('/language/{type}', 'HomeController@language');
 Route::get('/category/{id}', 'HomeController@category');
 
 Route::get('/career', 'HomeController@career');
 Route::get('/location', 'HomeController@location');
 Route::get('/promotion', 'HomeController@promotion');
+Route::get('/promotion/{id}', 'HomeController@promotionView');
 Route::get('/media', 'HomeController@media');
+Route::get('/media/{id}', 'HomeController@mediaView') ;
 Route::get('/about', 'HomeController@about');
 Route::get('/career', 'HomeController@career');
 Route::get('/contact', 'HomeController@contact');
@@ -106,7 +109,18 @@ Route::get('/com-suprem', 'HomeController@comSuprem');
 Route::get('/kidmenu', 'HomeController@kidmenu');
 Route::get('/pork', 'HomeController@pork');
 Route::get('/seafood', 'HomeController@seafood');
-Route::get('/healthtip/{id}', 'HomeController@healthtip');
+Route::get('/combination', 'HomeController@combination');
+
+Route::get('/healthtip/', 'HomeController@healthtip');
+Route::get('/healthtip/{id}', 'HomeController@healthtipView');
+Route::get('/healthtip-preview/{id}', 'HomeController@healthtipPreview');
+
+Route::get('/release/', 'HomeController@release');
+Route::get('/release/{id}', 'HomeController@releaseView');
+Route::get('/release-preview/{id}', 'HomeController@releasePreview');
+
+Route::get('/location-data', 'HomeController@locationData');
+
 
 // Route::get('/career', 'HomeController@career');
 // Route::get('/career', 'HomeController@career');
@@ -153,7 +167,15 @@ Route::group(['middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], funct
 
     Route::get('promotion-slider/position', 'PromotionSliderController@position')->name('promotion-slider-position');
     Route::post('promotion-slider/position', 'PromotionSliderController@positionStore');
-    Route::resource('promotion-slider', 'PromotionSliderController');
+    Route::resource('promotion-slider', 'PromotionSliderController'); 
+
+    Route::get('promotion-slider-sub/position', 'PromotionSliderSubController@position')->name('promotion-slider-position');
+    Route::post('promotion-slider-sub/position', 'PromotionSliderSubController@positionStore');
+    Route::resource('promotion-slider-sub', 'PromotionSliderSubController');
+
+    Route::get('promotion/position', 'PromotionController@position')->name('promotion-position');
+    Route::post('promotion/position', 'PromotionController@positionStore');
+    Route::resource('promotion', 'PromotionController');
 
     Route::get('banner/position', 'BannerController@position')->name('banner-position');
     Route::post('banner/position', 'BannerController@positionStore');
@@ -165,7 +187,13 @@ Route::group(['middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], funct
 
     Route::get('healthtip/position', 'HealthTipController@position')->name('healthtip-position');
     Route::post('healthtip/position', 'HealthTipController@positionStore');
-    Route::resource('healthtip', 'HealthTipController');
+    Route::delete('healthtip/image/{id}', 'HealthTipController@deleteimage');
+    Route::resource('healthtip', 'HealthTipController');   
+
+    Route::get('release/position', 'ReleaseController@position')->name('release-position');
+    Route::post('release/position', 'ReleaseController@positionStore');
+    Route::delete('release/image/{id}', 'ReleaseController@deleteimage');
+    Route::resource('release', 'ReleaseController');
 
     Route::get('homeview/position', 'HomeViewController@position')->name('homeview-position');
     Route::post('homeview/position', 'HomeViewController@positionStore');

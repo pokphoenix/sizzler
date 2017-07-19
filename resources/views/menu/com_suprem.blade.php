@@ -2,22 +2,35 @@
 
 @section('content')
 
- 	<main class="phoinikas--body-main phoinikas--page-menu">
+ 	<main class="phoinikas--body-main phoinikas--page-menu -combination">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
-			<section class="phoinikas--menu-maincourse -beef">
-				<img src="{{ asset('storage/upload/'.$data[0]->img_th) }}" style="width: 459px; height:314px; " alt="">
-				<img src="{{ asset('storage/upload/'.$data[1]->img_th) }}" style="width: 520px; height:260px; "  alt="">
-				<img src="{{ asset('storage/upload/'.$data[2]->img_th) }}" style="width: 260px; height:265px; "  alt="">	
-				<img src="{{ asset('/img/menu/img-beef-1.png') }}" alt="">
-				
-				<img src="{{ asset('storage/upload/'.$data[3]->img_th) }}" style="width: 458px; height:210px; "  alt="">
-			</section>
+			<header class="phoinikas--header-com-supreme">
+				<h2><img src="{{ asset('/img/menu/txt-com-supreme-h2.png')}}" alt="Combination Supreme 499.-"></h2>
+			</header>
+			<section class="phoinikas--content-com-supreme">
+				<img src="{{ asset('/img/menu/img-com-supreme-1.jpg')}}" alt="">
+				<div class="phoinikas--flex-row">
+					<figure>
+						<img src="{{ asset('/img/menu/img-com-supreme-2.jpg')}}" alt="">
+						<figcaption>
+							ซี่โครงหมูบาร์บิคิว <br> และไก่ย่างสไปซี่ <br> Barbecue Pork Spare Ribs <br> &amp; Spicy Grilled Chicken
+						</figcaption>
+					</figure>
 
-			<section class="phoinikas--menu-sidedish">
-				<img src="/img/menu/img-sidedish-1.jpg" alt="เสิร์ฟฟรีกับทุกเมนูจานหลัก">
-				<img src="/img/menu/img-sidedish-2.jpg" alt="Complementary Side  Dishes">
-				<img src="/img/menu/img-sidedish-3.jpg" alt="Side Dishes photos">
-				<img src="/img/menu/img-sidedish-4.jpg" alt="Signature Cheese Toast">
+					<figure>
+						<img src="{{ asset('/img/menu/img-com-supreme-3.jpg')}}" alt="">
+						<figcaption>
+							ปลาบาชาย่าง <br> และพอร์คลอยน์ <br> Grilled Basa <br> &amp; Pork Loin
+						</figcaption>
+					</figure>
+
+					<figure class="phoinikas--badge-new">
+						<img src="{{ asset('/img/menu/img-com-supreme-4.jpg')}}" alt="">
+						<figcaption>
+							ไก่ย่างเซาท์เวสต์ <br> และซี่โครงหมูบาร์บิคิว <br> Southwest Grilled Chicken <br> &amp; Barbecue Pork Spare Ribs
+						</figcaption>
+					</figure>
+				</div>
 			</section>
 		</div>
 

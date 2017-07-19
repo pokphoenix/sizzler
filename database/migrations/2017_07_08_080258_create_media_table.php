@@ -27,6 +27,8 @@ class CreateMediaTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('name_th');
+            $table->string('short_desc_th');
+            $table->string('short_desc_en');
             $table->string('name_en');
             $table->string('thumbnail_th')->nullable();
             $table->string('thumbnail_en')->nullable();

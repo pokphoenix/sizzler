@@ -2,22 +2,57 @@
 
 @section('content')
 
- 	<main class="phoinikas--body-main phoinikas--page-menu">
+ 	<main class="phoinikas--body-main phoinikas--page-menu -platter">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
-			<section class="phoinikas--menu-maincourse -beef">
-				<img src="{{ asset('storage/upload/'.$data[0]->img_th) }}" style="width: 459px; height:314px; " alt="">
-				<img src="{{ asset('storage/upload/'.$data[1]->img_th) }}" style="width: 520px; height:260px; "  alt="">
-				<img src="{{ asset('storage/upload/'.$data[2]->img_th) }}" style="width: 260px; height:265px; "  alt="">	
-				<img src="{{ asset('/img/menu/img-beef-1.png') }}" alt="">
-				
-				<img src="{{ asset('storage/upload/'.$data[3]->img_th) }}" style="width: 458px; height:210px; "  alt="">
+			<section class="phoinikas--section-platter-1">
+				<img src="{{ asset('/img/menu/img-com-platter-1.jpg')}}" alt="" class="phoinikas--platter-img-big">
+
+				<img src="{{ asset('/img/menu/txt-com-platter-header.png')}}" alt="" class="phoinikas--platter-header">
+
+				<div class="phoinikas--platter-figcaption">
+					พอร์คลอยน์ <br>
+					และไส้กรอกหมู
+					<em>
+						Pork Loin <br>
+						&amp; Smoked Pork sausage
+					</em>
+				</div>
+
+				<img src="{{ asset('/img/menu/img-com-platter-2.jpg')}}" alt="" class="phoinikas--platter-img-small">
+				<div class="phoinikas--platter-figcaption -bottom">
+					ไก่ย่างสไปซี<br>
+					และพอร์คลอยน์
+					<em>
+						Spicy Grilled Chicken<br>
+						&amp; Pork Loin
+					</em>
+				</div>
 			</section>
 
-			<section class="phoinikas--menu-sidedish">
-				<img src="/img/menu/img-sidedish-1.jpg" alt="เสิร์ฟฟรีกับทุกเมนูจานหลัก">
-				<img src="/img/menu/img-sidedish-2.jpg" alt="Complementary Side  Dishes">
-				<img src="/img/menu/img-sidedish-3.jpg" alt="Side Dishes photos">
-				<img src="/img/menu/img-sidedish-4.jpg" alt="Signature Cheese Toast">
+			<section class="phoinikas--section-platter-2">
+				<img src="{{ asset('/img/menu/img-com-platter-3.jpg')}}" alt="" class="phoinikas--platter-img-big">
+
+				<img src="{{ asset('/img/menu/img-com-platter-4.jpg')}}" alt="" class="phoinikas--platter-img-small">
+
+				<div class="phoinikas--platter-figcaption">
+          ไก่ย่างสไปซี่
+          และไส้กรอกหมู
+
+					<em>
+            Spicy Grilled Chicken <br>
+            &amp; Smoked Pork
+            Sausage
+					</em>
+				</div>
+
+				<div class="phoinikas--platter-figcaption -bottom">
+					ไก่ย่างสไปซีบาร์บีคิว<br>
+					และกุ้งเล็กเทมปุระ
+					<em>
+						Hot &amp; Spicy BBQ Chicken <br>
+						&amp; Tempura Shrimps
+					</em>
+				</div>
 			</section>
 		</div>
 

@@ -90,7 +90,7 @@
                         <!-- Slides -->
                         @foreach ($sliderMains as $s)
                         <div class="swiper-slide phoinikas--swiper-slide">
-                            <a href="{{ asset($s->url)  }}" class="phoinikas--img-link"><img src="{{ asset('storage/upload/'.$s->img_th) }}" alt=""></a>
+                            <a href="{{ url($s->url)  }}" class="phoinikas--img-link"><img src="{{ asset('storage/upload/'.$s->img_th) }}" alt=""></a>
                         </div>
                         @endforeach
                       
@@ -101,7 +101,7 @@
 
             <section class="phoinikas--banner-2 phoinikas--section-space">
                 <a href="#" class="phoinikas--img-link">
-                    <img src="/img/home/banner-member.jpg" alt="ชวนคุณสมัครสมาชิก รับสิทธิพิเศษมากมาย">
+                    <img src="{{ asset('/img/home/banner-member.jpg') }}" alt="ชวนคุณสมัครสมาชิก รับสิทธิพิเศษมากมาย">
                 </a>
             </section>
             <!-- .phoinikas--banner-salad -->
@@ -109,38 +109,16 @@
             <section class="phoinikas--home-banner-3">
                 <h2 class="phoinikas--home-h2">Health &nbsp;Tips</h2>
                 <div class="phoinikas--flex-row">
+                    @foreach ($healthtip as $h )
                     <figure>
-                        <a href="health_tips-detail.html">
-                            <img src="/img/home/img-tips-1.jpg" alt="">
+                        <a href="{{  url('healthtip/'.$h->id) }}">
+                            <img src="{{ asset('storage/upload/'.$h->thumbnail_th ) }}" alt="">
                         </a>
                         <figcaption>
-                            50 อย่าง บำรุงร่างกาย
+                            {{ $h->title_th }}
                         </figcaption>
                     </figure>
-                    <figure>
-                        <a href="health_tips-detail.html">
-                            <img src="/img/home/img-tips-2.jpg" alt="">
-                        </a>
-                        <figcaption>
-                            แอปเปิ้ล ช่วยดูแลสุขภาพ
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <a href="health_tips-detail.html">
-                            <img src="/img/home/img-tips-3.jpg" alt="">
-                        </a>
-                        <figcaption>
-                            กินอย่างไรให้สุขภาพดี
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <a href="health_tips-detail.html">
-                            <img src="/img/home/img-tips-4.jpg" alt="">
-                        </a>
-                        <figcaption>
-                            ผักสดปลอดโรค
-                        </figcaption>
-                    </figure>
+                    @endforeach
                 </div>
             </section>
             <!-- .phoinikas--banner-salad -->
@@ -148,51 +126,24 @@
             <section class="phoinikas--home-foodmenu-slider">
                 <div class="swiper-container">
                     <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="div-everyday-slide">
                         <!-- Slides -->
-    
+
                         @foreach ($sliderSub as $sub)
-                        <div class="swiper-slide">
-                            <a href="{{ url('/menu/'.$sub->url) }}" class="phoinikas--img-link">
-                                <img src="{{ asset('storage/upload/'.$sub->img_th) }}" alt="">
-                            </a>
+                         <div class="" style="width: 100%;">
+                            <a href="{{ asset('/menu/'.$sub->url) }}" class="phoinikas--img-link">
+                            <img src="{{ asset('storage/upload/'.$sub->img_th) }}" alt="" style="width: 100%;">
+                        </a>
                         </div>
                         @endforeach
-
-
-                       <!--  <div class="swiper-slide">
-                            <a href="javascript:void(0);" class="phoinikas--img-link">
-                            <img src="/img/home/slide-1.jpg" alt="">
-                        </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0);" class="phoinikas--img-link">
-                            <img src="/img/home/slide-2.jpg" alt="">
-                        </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0);" class="phoinikas--img-link">
-                            <img src="/img/home/slide-3.jpg" alt="">
-                        </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0);" class="phoinikas--img-link">
-                            <img src="/img/home/slide-2.jpg" alt="">
-                        </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0);" class="phoinikas--img-link">
-                            <img src="/img/home/slide-3.jpg" alt="">
-                        </a>
-                        </div> -->
                     </div>
 
-                    <!-- If we need navigation buttons -->
-                    <button class="swiper-button-prev phoinikas--button-prev"></button>
-                    <button class="swiper-button-next phoinikas--button-next"></button>
+        
                 </div>
             </section>
-            <!-- .phoinikas--home-foodmenu-slider -->
+
+
+            
 
             <section class="phoinikas--banner-wednesday">
 
@@ -205,17 +156,44 @@
                
             </section>
             <!-- .phoinikas--banner-wednesday -->
+            <section class="phoinikas--banner-location">
+                <a href="#" class="phoinikas--banner">
+                    <img src="{{asset('img/menu/img-lunch-5.jpg')}}" alt="#">
+                </a>
+            </section>
 
             <section class="phoinikas--banner-location">
                 <a href=" {{ asset('location') }}" class="phoinikas--banner">
-                    <img src="/img/home/banner-map.png" alt="ค้นหา Sizzler ใกล้คุณ">
+                    <img src="{{asset('/img/home/banner-map.png')}}" alt="ค้นหา Sizzler ใกล้คุณ">
                 </a>
             </section>
             <!-- .phoinikas--banner-location -->
         </div>
 
     </main>
+<script src="{{ asset('js/home.js') }}"></script>
+  <script>
+    (function($) {
+        var $window = $(window),
+            $html = $('#div-flex-data');
+            $everyday = $('#div-everyday-slide');
 
+        function resize() {
+            if ($window.width() > 514) {
+                $html.addClass('phoinikas--flex-row');
+                $everyday.addClass('swiper-wrapper');
+                return true;
+            }
+
+            $html.removeClass('phoinikas--flex-row');
+            $everyday.removeClass('swiper-wrapper');
+        }
+
+        $window
+            .resize(resize)
+            .trigger('resize');
+    })(jQuery);
+  </script>
 <!-- <script type="text/javascript">jssor_1_slider_init();</script> -->
     <!-- #endregion Jssor Slider End -->
 @endsection

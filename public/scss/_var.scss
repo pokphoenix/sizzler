@@ -33,6 +33,10 @@ $britishRacingGreen: rgba(4, 67, 38, 1.0);
 $caleste: rgba(211, 212, 197, 1.0);
 $kangaroo: rgba(198, 195, 178, 1.0);
 $sangria: rgba(151, 4, 12, 1.0);
+$Creole: rgba(31, 17, 8, 1);
+$Woodsmoke: rgba(24, 24, 25, 1);
+$Silver: rgba(188, 187, 186, 1);
+$FaluRed: rgba(137, 17, 23, 1);
 /*----------  Font Family  ----------*/
 $f-header: 'db_ozone', sans-serif;
 $f-text: 'db_ozone', sans-serif;
@@ -92,6 +96,13 @@ $register-max-width: 430px; // DB Ozone X Regular
     font-family: 'en_header';
     src: url('/fonts/cerabasic-bold-webfont.eot');
     src: url('/fonts/cerabasic-bold-webfont.eot?#iefix') format('embedded-opentype'), url('/fonts/cerabasic-bold-webfont.woff2') format('woff2'), url('/fonts/cerabasic-bold-webfont.woff') format('woff'), url('/fonts/cerabasic-bold-webfont.ttf') format('truetype'), url('/fonts/cerabasic-bold-webfont.svg#cera_basicbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'price';
+    src: url('/fonts/chunkfive-webfont.eot');
+    src: url('/fonts/chunkfive-webfont.eot?#iefix') format('embedded-opentype'), url('/fonts/chunkfive-webfont.woff2') format('woff2'), url('/fonts/chunkfive-webfont.woff') format('woff'), url('/fonts/chunkfive-webfont.ttf') format('truetype'), url('/fonts/chunkfive-webfont.svg#chunkfiveroman') format('svg');
     font-weight: 700;
     font-style: normal;
 }

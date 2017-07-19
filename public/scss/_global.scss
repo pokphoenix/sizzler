@@ -3,14 +3,19 @@ body {
 	color: $text-read;
 	background-color: $green01;
 }
+
 a {
 	color: $text-link;
 	text-decoration: none;
 
-	&:hover, &.active, .touchevents &:active ,.no-touchevents &:hover {
+	&.active,
+	&:hover,
+	.no-touchevents &:hover,
+	.touchevents &:active {
 		color: $text-link-hover;
 	}
 }
+
 strong {
 	color: $red01;
 }
@@ -20,7 +25,6 @@ strong {
 	margin: 0;
 	padding: 0;
 }
-
 // Politespace CSS
 .politespace-proxy {
 	max-width: $register-max-width;
@@ -28,14 +32,17 @@ strong {
 	margin-right: auto;
 	position: relative;
 }
+
 .politespace-proxy-val {
 	color: #103130;
 	position: absolute;
 	line-height: 46px!important;
 }
+
 .politespace-proxy-val {
 	display: none;
 }
+
 .politespace-proxy.active.notempty > .politespace-proxy-val {
 	display: block;
 	position: absolute;
@@ -60,7 +67,6 @@ strong {
 	-webkit-text-fill-color: transparent;
 	color: transparent;
 }
-
 // Content
 .phoinikas-- {
 	/*==============================
@@ -76,24 +82,19 @@ strong {
 		top: 0;
 		left: 0;
 		right: 0;
-
 		@include mq($rwd-desktop) {
 			background-size: auto 640px;
 			padding-top: 0;
 			height: 640px;
-    }
+		}
 	}
 
-
-	&header-logo, &header-promotion {
+	&header-logo,
+	&header-promotion {
 		visibility: hidden;
 		position: absolute;
 	}
-
-
 	/*=====  End of Header  ======*/
-
-
 	/*==============================
 	=            Footer            =
 	==============================*/
@@ -107,7 +108,6 @@ strong {
 		img {
 			display: none;
 		}
-
 		@include mq($rwd-tablet) {
 			padding-top: 80px;
 			padding-bottom: 80px;
@@ -120,29 +120,29 @@ strong {
 		span {
 			display: inline-block;
 		}
+
 		img {
 			width: auto;
 			height: 72px;
 			margin-bottom: 4%;
 		}
+
 		a {
-			display: inline-block;
+			display: block;
 			color: #3b81c4;
 			text-decoration: underline;
-			padding: 1.2em;
 			font-size: em(12);
 			font-weight: 700;
-
 			@include mq($rwd-tablet) {
 				font-size: em(20);
 				font-weight: 400;
 			}
 		}
+
 		p {
 			margin-top: 3%;
 			font-size: 7px;
 			font-weight: 700;
-
 			@include mq($rwd-tablet) {
 				font-weight: 400;
 				font-size: em(15);
@@ -151,10 +151,13 @@ strong {
 
 		section:first-child {
 			@include mq($rwd-tablet) {
-				@include col(2);
+				 @include col(2);
 				max-width: 640px;
 			}
 		}
+	}
+	&btn-policy {
+		padding: 1.2em;
 	}
 	&footer-social {
 		list-style: none;
@@ -185,19 +188,21 @@ strong {
 				background-position: 50% 50%;
 			}
 		}
-
 		@include mq($rwd-tablet) {
 			text-align: right;
+
 			> li {
 				width: 25%;
 			}
 		}
 	}
+
 	&social-fb > a {
-		@include retina-image('../img/global/social-fb', auto 100%);
+		@include retina-image( '../img/global/social-fb', auto 100%);
 	}
+
 	&social-email > a {
-		@include retina-image('../img/global/social-email', auto 100%);
+		@include retina-image( '../img/global/social-email', auto 100%);
 	}
 
 	&privacy_policy {
@@ -210,50 +215,49 @@ strong {
 			font-size: em(60);
 			margin-bottom: 24px;
 		}
+
 		dl {
 			font-size: em(20);
 		}
+
 		dt {
 			font-weight: 700;
 		}
+
 		p {
 			margin-bottom: 20px;
 			line-height: 1.2;
 		}
 	}
-
 	/*=====  End of Footer  ======*/
-
 	&wrapper {
 		padding-left: 8px;
 		padding-right: 8px;
 		margin-left: auto;
 		margin-right: auto;
-
 		@include mq($rwd-tablet) {
 			padding-left: 22px;
 			padding-right: 22px;
-    }
-    @include mq($rwd-widescreen) {
-    	max-width: 1170px;
-    	padding-left: 0;
+		}
+		@include mq($rwd-widescreen) {
+			max-width: 1170px;
+			padding-left: 0;
 			padding-right: 0;
-    }
+		}
 	}
 
 	&wrapper-global {
 		@include mq($rwd-widescreen) {
-    	max-width: 980px;
-    }
+			max-width: 980px;
+		}
 	}
+
 	&body-main {
 		.phoinikas--wrapper {
 			padding-top: 50%;
-
-
 			@include mq($rwd-desktop) {
 				padding-top: 580px;
-    	}
+			}
 		}
 
 		hr {
@@ -284,7 +288,6 @@ strong {
 		color: $cream;
 		padding-bottom: 24px;
 		padding-top: 16%;
-
 		@include mq($rwd-desktop) {
 			padding-top: 64px;
 		}
@@ -294,21 +297,23 @@ strong {
 			line-height: 0.9;
 			margin-bottom: 32px;
 		}
+
 		p {
 			font-size: em(20);
 			font-weight: 500;
 			line-height: 1.1;
 		}
-
 		@include mq($rwd-tablet) {
 			h3 {
 				font-size: em(50);
 			}
+
 			p {
 				font-size: em(40);
 			}
 		}
 	}
+
 	&btn-submit {
 		background-color: $red02;
 		color: #fff;
@@ -326,6 +331,7 @@ strong {
 			font-size: em(40);
 		}
 	}
+
 	&label-highlight {
 		display: block;
 		text-align: center;
@@ -352,6 +358,7 @@ strong {
 			}
 		}
 	}
+
 	&register-input {
 		display: block;
 		border: 2px solid #63786d;
@@ -379,19 +386,20 @@ strong {
 			margin-bottom: 0;
 			position: relative;
 			z-index: 2;
-
 			@include mq($rwd-tablet) {
 				max-width: 95%;
 			}
 		}
 	}
+
 	&section-register-1 {
 		padding: em(8) 0 em(5);
 	}
-	&section-register-2 {
 
-	}
-	&row-dropdown, &row-checkbox {
+	&section-register-2 {}
+
+	&row-checkbox,
+	&row-dropdown {
 		max-width: $register-max-width;
 		margin-left: auto;
 		margin-right: auto;
@@ -403,6 +411,7 @@ strong {
 			position: absolute;
 		}
 	}
+
 	&row-dob {
 		@include col((2), $margin: 8px);
 		max-width: $register-max-width;
@@ -411,6 +420,7 @@ strong {
 			width: 100%;
 		}
 	}
+
 	&select-custom {
 		position: relative;
 		display: inline-block;
@@ -444,23 +454,27 @@ strong {
 				display: block;
 				margin-top: -15px;
 				right: 8px;
-
 				@include mq($rwd-desktop) {
 					background-size: auto 30px;
-    		}
+				}
 			}
 		}
 	}
+
 	&select-branch {
 		width: 100%;
+
 		select {
 			width: 100%;
 		}
 	}
+
 	&row-checkbox {
 		margin-bottom: em(58);
 	}
-	&label-checkbox, &label-radio {
+
+	&label-checkbox,
+	&label-radio {
 		font-weight: 700;
 		font-size: em(25);
 		cursor: pointer;
@@ -475,6 +489,7 @@ strong {
 			top: 6px;
 			margin-right: 12px;
 		}
+
 		&:after {
 			content: '';
 			position: absolute;
@@ -482,48 +497,42 @@ strong {
 			top: 50%;
 			margin-top: -9px;
 			@include size(20px 16px);
-			@include retina-image('../img/global/icon-checkbox', 20px auto);
+			@include retina-image( '../img/global/icon-checkbox', 20px auto);
 			opacity: 0;
 			@include transition(opacity 0.25s ease-out);
 		}
 	}
 
-
-	input:checked + &label-checkbox, input:checked + &label-radio {
+	input:checked + &label-checkbox,
+	input:checked + &label-radio {
 		&:after {
-			opacity:1;
+			opacity: 1;
 		}
 	}
-
 	/*====================================
 	=            eCoupon Page            =
 	====================================*/
-
-	&select-custom{
+	&select-custom {
 		width: 100%;
+
 		select {
 			width: 100%;
 		}
 	}
+
 	&section-profile {
 		text-align: center;
 		line-height: 1;
 		background-color: $green03;
 		padding: 25% 5% 10%;
-		margin-top: -10%;
-		margin-left: -8px;
-		margin-right: -8px;
-		margin-bottom: 24px;
-
+		margin: -10% -8px 24px;
 
 		.phoinikas--btn-round {
 			max-width: 270px;
 		}
-
 		@include mq($rwd-tablet) {
 			margin-top: -5%;
 			padding: 17% 5% 5%;
-
 			@include col((7,5));
 			max-width: 1170px;
 
@@ -536,11 +545,11 @@ strong {
 				max-width: 270px;
 			}
 		}
-
 		@include mq($rwd-desktop) {
 			padding: 8.5% 5% 4.5%;
 		}
 	}
+
 	&profile-avatar {
 		@include size(132px);
 		border-radius: 50%;
@@ -548,12 +557,12 @@ strong {
 		display: block;
 		border: solid 5px #fff;
 		box-shadow: 0 1px 3px rgba(8, 8, 8, 0.28);
-
 		@include mq($rwd-tablet) {
 			float: left;
 			margin-right: 20px;
 		}
 	}
+
 	&profile-fullname {
 		color: #fff;
 		font-weight: 700;
@@ -566,11 +575,11 @@ strong {
 			margin-bottom: em(16);
 			display: block;
 		}
-
 		@include mq($rwd-tablet) {
 			margin-top: em(18);
 		}
 	}
+
 	&profile-point {
 		font-size: em(30);
 		font-weight: 700;
@@ -581,7 +590,6 @@ strong {
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: em(8);
-
 		@include mq($rwd-tablet) {
 			margin-top: em(16);
 		}
@@ -596,6 +604,7 @@ strong {
 			font-style: normal;
 		}
 	}
+
 	&btn-round {
 		@extend .phoinikas--btn-submit;
 		font-size: em(30);
@@ -608,7 +617,6 @@ strong {
 		font-size: em(28);
 		line-height: 1;
 		margin-bottom: 24px;
-
 		@include mq($rwd-tablet) {
 			font-size: em(45);
 		}
@@ -620,11 +628,11 @@ strong {
 		margin-top: em(8);
 		margin-bottom: em(4);
 		text-align: center;
-
 		@include mq($rwd-tablet) {
 			font-size: em(72);
 		}
 	}
+
 	&table-caption {
 		font-size: em(18);
 		font-weight: 700;
@@ -636,42 +644,44 @@ strong {
 			color: $red03;
 			font-size: em(28);
 		}
-
 		@include mq($rwd-tablet) {
 			font-size: em(35);
-  	}
+		}
 	}
+
 	&table-ecoupon {
 		width: 100%;
 		border-collapse: collapse;
 		margin-bottom: 5%;
 
-		th, td {
+		td,
+		th {
 			font-size: em(24);
 			border-bottom: solid 2px $green01;
 			text-align: center;
-
 			@include mq($rwd-desktop) {
 				font-size: em(30);
 			}
 		}
+
 		th {
 			padding: em(4);
 			font-size: em(28);
 			font-weight: 500;
 			background-color: $red01;
+
 			&:first-child {
 				border-top-left-radius: 8px;
 			}
+
 			&:last-child {
 				border-top-right-radius: 8px;
 			}
-
 			@include mq($rwd-desktop) {
 				font-size: em(36);
 			}
-
 		}
+
 		td {
 			padding: em(6) em(4);
 			background-color: $green08;
@@ -681,12 +691,14 @@ strong {
 			}
 		}
 	}
+
 	&ecoupon-used {
 		td {
 			color: $green06;
 			background-color: $green09;
 		}
 	}
+
 	&section-ecoupon {
 		margin: 2% auto em(32);
 		text-align: center;
@@ -695,11 +707,11 @@ strong {
 			margin-top: 54px;
 		}
 	}
+
 	&text-h5 {
 		font-size: em(42);
 		line-height: 1;
 		color: $red01;
-
 		@include mq($rwd-tablet) {
 			font-size: em(54);
 		}
@@ -707,12 +719,12 @@ strong {
 			font-size: em(60);
 		}
 	}
+
 	&text-intro_ecoupon {
 		font-size: em(28);
 		line-height: 1.1;
 		font-weight: 700;
 		margin-bottom: 3%;
-
 		@include mq($rwd-tablet) {
 			font-size: em(30);
 		}
@@ -720,6 +732,7 @@ strong {
 			font-size: em(40);
 		}
 	}
+
 	&ecoupon-img {
 		display: block;
 		width: 100%;
@@ -727,45 +740,47 @@ strong {
 		margin-left: auto;
 		margin-right: auto;
 	}
+
 	&ecoupon-select_branch {
 		max-width: $register-max-width;
 		// display: none;
-
 		.phoinikas--select-custom {
 			margin-bottom: 24px;
+
 			.customSelectInner {
 				font-size: em(20);
 				font-weight: 500;
 			}
 		}
 	}
+
 	&ecoupon-barcode {
 		background-color: #fff;
 		border-radius: 20px;
 		overflow: hidden;
 		text-align: center;
 		@extend .phoinikas--ecoupon-img;
-
 		@include mq($rwd-tablet) {
 			border-radius: 44px;
-    }
+		}
 	}
+
 	&barcode {
 		padding: 16px 8px 8px;
 	}
+
 	&ecoupon-condition {
 		background-color: $green05;
 		padding: 8px 8px 16px;
 		font-size: 8px;
 		line-height: 1;
-
 		@include mq($rwd-tablet) {
 			font-size: 12px;
 			padding-top: 24px;
-    }
-    @include mq($rwd-desktop) {
-    	font-style: 16px;
-    }
+		}
+		@include mq($rwd-desktop) {
+			font-style: 16px;
+		}
 
 		em {
 			font-style: normal;
@@ -773,6 +788,7 @@ strong {
 			color: $green06;
 			display: block;
 		}
+
 		strong {
 			font-size: em(52);
 		}
@@ -783,12 +799,10 @@ strong {
 		color: $green07;
 		margin-left: auto;
 		margin-right: auto;
-
 		@include mq($rwd-tablet) {
 			padding-left: 16px;
 			padding-right: 16px;
 		}
-
 		@include mq($rwd-desktop) {
 			max-width: 970px;
 			padding-left: 0;
@@ -800,30 +814,28 @@ strong {
 			font-weight: 700;
 			margin-bottom: 8px;
 		}
+
 		dd {
 			font-size: em(20);
 			font-weight: 500;
+
 			ol {
 				padding-left: 20px;
 				margin-top: 6px;
 				line-height: 1.45;
-
 				@include mq($rwd-tablet) {
 					padding-left: 35px;
-    		}
+				}
 			}
 		}
 	}
-
 	/*=====  End of eCoupon Page  ======*/
-
 	/*==================================
 	=            Login Page            =
 	==================================*/
-
-	&page-member > .phoinikas--wrapper{
+	&page-member > .phoinikas--wrapper {
 		@include mq($rwd-desktop) {
-			@include col((5.6,6.4));
+			 @include col((5.6,6.4));
 			max-width: 970px;
 			padding-left: 0;
 			padding-right: 0;
@@ -839,7 +851,6 @@ strong {
 		padding-right: 8px;
 		margin-left: auto;
 		margin-right: auto;
-
 		@include mq($rwd-desktop) {
 			padding-left: 32px;
 			padding-right: 32px;
@@ -852,19 +863,21 @@ strong {
 		.phoinikas--row-checkbox {
 			float: left;
 		}
+
 		.phoinikas--label-checkbox {
 			font-size: em(20);
 		}
 	}
+
 	&header-login {
 		font-size: em(36);
 		text-align: center;
 		margin-bottom: 24px;
-
 		@include mq($rwd-desktop) {
 			font-size: em(45);
 		}
 	}
+
 	&btn-forgot_password {
 		display: inline-block;
 		position: relative;
@@ -889,12 +902,14 @@ strong {
 			right: 0;
 			@include transition(opacity .25s ease-in-out);
 		}
+
 		&:hover {
 			&:after {
 				opacity: 0;
 			}
 		}
 	}
+
 	&btn-submit {
 		&.phoinikas--cream {
 			background-color: $cream;
@@ -903,23 +918,25 @@ strong {
 			margin-bottom: 24px;
 		}
 	}
+
 	&row-float {
 		@include clear-fix;
 		max-width: $register-max-width;
 		margin-left: auto;
 		margin-right: auto;
 	}
+
 	&btn-facebook {
 		@extend .phoinikas--btn-submit;
 		background-color: #1e455e;
 		text-indent: -1000em;
-		@include retina-image('../img/login/bg-fb', auto 24px);
+		@include retina-image( '../img/login/bg-fb', auto 24px);
 		background-size: auto 24px;
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		@include mq($rwd-tablet) {
 			background-size: auto 34px;
-    }
+		}
 	}
 
 	&section-register {
@@ -927,7 +944,6 @@ strong {
 		@extend .phoinikas--section-login;
 		background-color: transparent;
 		color: $cream;
-
 		@include mq($rwd-desktop) {
 			padding-left: 8px;
 			padding-right: 8px;
@@ -941,7 +957,6 @@ strong {
 
 		h3 {
 			font-size: em(24);
-
 			@include mq($rwd-desktop) {
 				font-size: em(30);
 			}
@@ -950,9 +965,8 @@ strong {
 		button {
 			@extend .phoinikas--btn-submit;
 			margin-top: 16%;
-
 			@include mq($rwd-desktop) {
-				margin-top: 182px
+				margin-top: 182px;
 			}
 		}
 	}
@@ -960,38 +974,37 @@ strong {
 	&popup-inline {
 		font-family: $f-header;
 		position: relative;
-	  background: #fff;
-	  color: #000;
-	  padding: 48px 16px;
-	  width: auto;
-	  max-width: 970px;
-	  margin: 16px auto;
-	  text-align: center;
+		background: #fff;
+		color: #000;
+		padding: 48px 16px;
+		width: auto;
+		max-width: 970px;
+		margin: 16px auto;
+		text-align: center;
 
-	  h2 {
-	  	font-size: em(60);
-	  	margin-bottom: 24px;
-	  }
-	  p {
-	  	font-size: em(30);
-	  	margin-bottom: 24px;
-	  }
+		h2 {
+			font-size: em(60);
+			margin-bottom: 24px;
+		}
 
-	  @include mq($rwd-desktop) {
-	  	padding: 64px 16px 120px;
-	  }
+		p {
+			font-size: em(30);
+			margin-bottom: 24px;
+		}
+		@include mq($rwd-desktop) {
+			padding: 64px 16px 120px;
+		}
 
-	  .phoinikas--label-highlight {
-	  	font-weight: 500;
-	  }
-	  .phoinikas--register-input {
-	  	background-color: rgb(254, 247, 236);
-	  	border-color: rgba(163, 162, 162, 0.5);
-	  }
+		.phoinikas--label-highlight {
+			font-weight: 500;
+		}
+
+		.phoinikas--register-input {
+			background-color: rgb(254, 247, 236);
+			border-color: rgba(163, 162, 162, 0.5);
+		}
 	}
-
 	/*=====  End of Login Page  ======*/
-
 	/*==================================
 	=            My Profile            =
 	==================================*/
@@ -1000,16 +1013,17 @@ strong {
 		color: $red01;
 		font-weight: 700;
 	}
+
 	&text-profile_intro {
 		font-size: em(22);
 		line-height: 1.5;
 		margin-bottom: 3%;
 		font-weight: 500;
-
 		@include mq($rwd-desktop) {
 			font-size: em(25);
 		}
 	}
+
 	&profile-share {
 		background-color: $green10;
 		padding: em(32) em(16);
@@ -1028,9 +1042,8 @@ strong {
 			padding: 0;
 			@include col((2), $margin: 8px);
 			text-align: center;
-
 			@include mq($rwd-tablet) {
-				@include col((5), $margin: 8px);
+				 @include col((5), $margin: 8px);
 			}
 
 			li {
@@ -1044,6 +1057,7 @@ strong {
 					width: 100%;
 					margin: 0 auto em(8);
 				}
+
 				a {
 					color: #fff;
 					text-align: center;
@@ -1052,6 +1066,7 @@ strong {
 			}
 		}
 	}
+
 	&button-copy_url {
 		position: absolute;
 		z-index: 1;
@@ -1059,15 +1074,16 @@ strong {
 		left: 50%;
 		@include transform(translateX(-50%));
 	}
+
 	&copy-url {
 		position: relative;
 	}
+
 	&table-coupon {
 		td {
 			vertical-align: middle;
 			font-size: em(24);
 			font-weight: 500;
-
 			@include mq($rwd-widescreen) {
 				font-size: em(28);
 			}
@@ -1080,16 +1096,17 @@ strong {
 				text-align: left;
 			}
 		}
+
 		span {
 			@include mq($rwd-tablet) {
 				white-space: nowrap;
 			}
 		}
+
 		img {
 			max-height: 92px;
 			display: none;
 			float: right;
-
 			@include mq($rwd-tablet) {
 				display: block;
 			}
@@ -1109,20 +1126,20 @@ strong {
 			td {
 				color: #fff;
 			}
+
 			button {
 				background-color: rgb(6, 52, 31);
 			}
 		}
 	}
-
 	/*=====  End of My Profile  ======*/
+}
+//end of prefix
 
-
-} //end of prefix
 .mfp-close-btn-in .mfp-close {
 	@include size(44px 48px);
 	text-indent: -1000em;
-	@include retina-image('/img/global/btn-close', 100% auto);
+	@include retina-image( '/img/global/btn-close', 100% auto);
 	background-size: 100% auto;
 	opacity: 1;
 	top: 10px;
@@ -1133,12 +1150,9 @@ strong {
 	background-color: #fff;
 	max-width: 970px;
 	padding: 80px 16px 32px;
-
 	@include mq($rwd-desktop) {
 		padding-left: 32px;
 		padding-right: 32px;
 	}
 }
-
-
 @import "_global-phase2";

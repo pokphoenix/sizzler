@@ -3,12 +3,17 @@
 @section('page_heading',$title)
 
 @section('section')
-	@component('layouts.widgets.submitForm', ['id'=>'createForm','method'=> isset($edit) ? 'PUT' : 'POST' ,'action'=> isset($data->id) ? asset($route.'/'.$data->id) : asset($route),'backUrl'=>asset($route),'errors'=> isset($errors) ? $errors : '', 'editStatus'=>isset($data->status) ? $data->status : 1 , 'editPosition'=> isset($data->position) ? $data->position : 0    ] )
+	@component('layouts.widgets.submitForm', ['id'=>'createForm','method'=> isset($edit) ? 'PUT' : 'POST' ,'action'=> isset($data->id) ? asset($route.'/'.$data->id) : asset($route),'backUrl'=>asset($route),'errors'=> isset($errors) ? $errors : '', 'editStatus'=>isset($data->status) ? $data->status : 1 , 'editPosition'=> isset($data->position) ? $data->position : 0  , 'url' => isset($data->url) ? $data->url : ''   ] )
         @slot('panelTitle', 'Regular Table')
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Name TH</label>
+                <label for="ex">ชื่อ (ภาษาไทย)</label>
                 <input id="name_th" name="name_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
+                <p class="help-block"></p>
+            </div> 
+            <div class="form-group">
+                <label for="ex">รายละเอียดสั้นๆ (ภาษาไทย)</label>
+                <input id="short_desc_th" name="short_desc_th" placeholder="รายละเอียดสั้นๆ ภาษาไทย" class="form-control require-field" value="{{ isset($data->short_desc_th) ? $data->short_desc_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
@@ -28,11 +33,15 @@
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
+                <label for="ex">ชื่อ ภาษาอังกฤษ</label>
                 <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
-           
+            <div class="form-group">
+                <label for="ex">รายละเอียดสั้นๆ (ภาษาอังกฤษ)</label>
+                <input id="short_desc_en" name="short_desc_en" placeholder="รายละเอียดสั้นๆ ภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->short_desc_en) ? $data->short_desc_en : '' }}">
+                <p class="help-block"></p>
+            </div>
             <div class="form-group">
                 <div class="media">
                   <div class="media-left">

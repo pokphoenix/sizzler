@@ -11,9 +11,9 @@
     <title>{{ config('app.name', 'Sizzler') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url('css/app.css') }}">
+    <link rel="stylesheet" href="{{ url('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url('css/timeline.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
     
  
@@ -56,8 +56,8 @@
                     </ul>
 
 @yield('body')
-<script src="{{ asset('plugin/bootstrap/bootstrap.min.js') }}"></script>
+<script src="{{ url('plugin/bootstrap/bootstrap.min.js') }}"></script>
 <!-- <script src="{{ asset("js/app.js") }}"></script> -->
 <!-- <script src="{{ asset("js/Chart.js") }}"></script> -->
-<script src="{{ asset("js/admin.js") }}"></script>
+<script src="{{ url('js/admin.js') }}"></script>
 </body>

@@ -29,7 +29,7 @@
 
 			<section class="phoinikas--banner-location">
 				<a href="location.html" class="phoinikas--banner">
-					<img src="/img/home/banner-map.png" alt="ค้นหา Sizzler ใกล้คุณ">
+					<img src="{{ asset('/img/home/banner-map.png') }}" alt="ค้นหา Sizzler ใกล้คุณ">
 				</a>
 			</section> <!-- .phoinikas--banner-location -->
 		</div>

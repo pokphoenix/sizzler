@@ -95,6 +95,10 @@
 
 	&flex-row {
 		display: flex;
+		flex-direction: column;
+		@include mq($rwd-tablet) {
+			flex-direction: row;
+		}
 	}
 
 	&inline-row {
@@ -478,7 +482,7 @@
 	}
 	/*----------- Combination Menu -----------*/
 	&wrapper-combination {
-		background-color: #1f1108;
+		background-color: $Creole;
 	}
 
 	&section-combination {
@@ -516,6 +520,565 @@
 		img {
 			width: 80%;
 			max-width: 100%;
+		}
+	}
+	/*----------- Combination Menu -----------*/
+	&page-menu {
+		&.-combination {
+			.phoinikas--wrapper.phoinikas--wrapper-global {
+				background-color: $Creole;
+			}
+			@include mq($rwd-tablet) {
+				.phoinikas--wrapper.phoinikas--wrapper-global {
+					padding-top: 0;
+					background-color: $Creole;
+				}
+			}
+		}
+	}
+
+	&section-com-beef-1 {
+		img {
+			display: block;
+		}
+	}
+
+	&section-com-beef-2 {
+		text-align: center;
+		background: url('/img/menu/bg-combination-1.jpg');
+		background-size: cover;
+		background-position: center center;
+		padding: 2em 0;
+		@include clearfix;
+
+		div {
+			display: block;
+			margin: 0 auto 1em;
+			align-items: center;
+
+			&:first-child {
+				display: flex;
+				justify-content: center;
+
+				img {
+					width: 80%;
+					max-width: 100%;
+				}
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		@include mq($rwd-tablet) {
+			padding: 2.5em 0;
+
+			div {
+				&:last-child {
+					padding-right: 1%;
+				}
+			}
+		}
+		@include mq($rwd-desktop) {
+			div {
+				&:first-child {
+					img {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+
+	&section-com-beef-3 {
+		figure {
+			padding: 0 8px;
+		}
+
+		figcaption {
+			text-align: center;
+			font-weight: 700;
+			font-size: em(21);
+			line-height: 1;
+			padding: 1.5em 0;
+		}
+		@include mq($rwd-tablet) {
+			figure {
+				padding-left: 0;
+				padding-right: 5px;
+
+				&:nth-child(2n) {
+					padding-left: 5px;
+					padding-right: 0;
+				}
+			}
+		}
+		@include mq($rwd-desktop) {
+			padding: 0 8px;
+		}
+	}
+
+	&header-com-supreme {
+		padding: 2em 1em;
+
+		img {
+			max-width: 100%;
+			margin: 0 auto;
+			display: block;
+		}
+		@include mq($rwd-tablet) {
+			padding-top: 150px;
+		}
+	}
+
+	&content-com-supreme {
+		padding: 0 8px;
+
+		figure {
+			padding-right: 8px;
+		}
+
+		figcaption {
+			text-align: center;
+			font-weight: 700;
+			line-height: 1;
+			padding: 1em;
+		}
+
+		img {
+			display: block;
+			margin-bottom: 8px;
+		}
+	}
+
+	&badge-new {
+		figcaption {
+			position: relative;
+
+			&:after {
+				content: '';
+				@include size(86px 35px);
+				background: url('/img/menu/badge-new.png') no-repeat;
+				background-size: 100%;
+				position: absolute;
+				top: 0;
+				margin-top: -26px;
+				left: 10px;
+			}
+		}
+	}
+
+	&page-menu {
+		&.-wednesday {
+			.phoinikas--wrapper.phoinikas--wrapper-global {
+				background-color: $Woodsmoke;
+				padding: 4px 0;
+				@include mq($rwd-tablet) {
+					padding-top: 150px;
+					padding-left: 24px;
+					padding-right: 24px;
+				}
+				@include mq($rwd-desktop) {
+					padding-left: 4px;
+					padding-right: 4px;
+					padding-bottom: 0;
+				}
+			}
+		}
+	}
+
+	&section-wed-1 {
+		$w-size: 49.8%;
+		@include clearfix;
+
+		img {
+			float: left;
+			height: auto;
+			margin-bottom: 4px;
+
+			&:nth-child(1) {
+				width: 100%;
+			}
+
+			&:nth-child(2),
+			&:nth-child(4) {
+				width: calc(#{$w-size} - 2px);
+				margin-right: 4px;
+			}
+
+			&:nth-child(3),
+			&:nth-child(5) {
+				width: calc(100% - #{$w-size} - 2px);
+			}
+		}
+	}
+
+	&txt-header {
+		text-align: center;
+		padding: 1.5em 1em;
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	&section-wed-3 {
+		@include clearfix;
+
+		img {
+			margin-bottom: 4px;
+			float: left;
+			display: block;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	@include mq($rwd-tablet) {
+		&section-wed-1 {
+			$w-size: 24.9%;
+
+			img {
+				&:nth-child(1) {
+					width: calc(50% - 2px);
+					margin-right: 4px;
+				}
+
+				&:nth-child(2),
+				&:nth-child(4) {
+					width: calc(#{$w-size} - 3px);
+					margin-right: 4px;
+				}
+
+				&:nth-child(3),
+				&:nth-child(5) {
+					width: calc(50% - #{$w-size} - 3px);
+				}
+			}
+		}
+
+		&txt-header {
+			padding: 2em 3em;
+		}
+
+		&section-wed-3 {
+			img {
+				width: calc(50% - 2px);
+
+				&:nth-child(2n) {
+					margin-left: 4px;
+				}
+			}
+		}
+	}
+
+	&page-menu {
+		&.-everyday {
+			.phoinikas--wrapper.phoinikas--wrapper-global {
+				background-color: $Silver;
+				@include mq($rwd-tablet) {
+					padding-left: 0;
+					padding-right: 0;
+					padding-top: 0;
+				}
+			}
+		}
+	}
+
+	&section-everyday-3 {
+		@include clearfix;
+		@include mq($rwd-tablet) {
+			padding-left: 4px;
+			padding-right: 4px;
+
+			figure {
+				$width: 57.65%;
+				width: calc(100% - #{$width} - 4px);
+				margin-bottom: 8px;
+				float: left;
+
+				figcaption {
+					background-color: #7a7778;
+				}
+
+				img {
+					width: 100%;
+				}
+
+				&:nth-child(1) {
+					width: calc(#{$width} - 4px);
+					margin-right: 8px;
+				}
+			}
+		}
+	}
+
+	&caption-price {
+		@include clearfix;
+		padding: 1em;
+
+		em {
+			font-style: normal;
+			font-weight: 700;
+			float: left;
+			font-size: em(24);
+			line-height: 0.9;
+			display: inline-block;
+			width: 75%;
+
+			span {
+				font-size: em(14);
+				display: block;
+			}
+		}
+
+		strong {
+			float: right;
+			color: #fff;
+			width: 20%;
+			text-align: right;
+			font-family: 'price';
+			font-weight: 700;
+			font-size: em(20);
+			line-height: 1;
+		}
+	}
+
+	&remark {
+		position: relative;
+		padding-left: 12px;
+
+		&:before {
+			content::  '*';
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	}
+
+	&section-everyday-4 {
+		img {
+			display: block;
+		}
+		@include mq($rwd-tablet) {
+			margin-bottom: -24px;
+
+			img {
+				position: relative;
+				top: -24px;
+			}
+		}
+	}
+
+	&page-menu {
+		&.-lunch {
+			.phoinikas--wrapper.phoinikas--wrapper-global {
+				background-color: $Woodsmoke;
+				@include mq($rwd-tablet) {
+					padding-top: 0;
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+	}
+
+	&section-lunch-1 {
+		background-color: $FaluRed;
+		@include mq($rwd-tablet) {
+			padding-top: 180px;
+		}
+	}
+
+	&lunch-condition {
+		background-color: #000;
+		font-weight: 500;
+		text-align: center;
+		font-size: em(24);
+		padding: 8px;
+		line-height: 1;
+	}
+
+	&section-lunch-2 {
+		position: relative;
+
+		figcaption {
+			font-size: em(19);
+			text-align: center;
+			padding: 16px;
+		}
+		@include mq($rwd-tablet) {
+			figcaption {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: auto;
+				text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+			}
+		}
+	}
+
+	&section-lunch-3 {
+		figure {
+			display: flex;
+			flex-direction: column;
+			flex: 0 0 33.33%;
+
+			img {
+				width: 100%;
+			}
+		}
+
+		figcaption {
+			background-color: #000;
+			height: 100%;
+		}
+		@include mq($rwd-tablet) {
+			padding: 8px 4px;
+
+			figure {
+				padding: 0 4px;
+			}
+		}
+	}
+
+	&section-lunch-4 {
+		img {
+			display: block;
+			width: 100%;
+		}
+		@include mq($rwd-tablet) {
+			padding: 2px;
+		}
+	}
+	/*----------- Combination: Platter -----------*/
+	&page-menu {
+		&.-platter {
+			.phoinikas--wrapper.phoinikas--wrapper-global {
+				background: url('/img/menu/bg-wood.jpg') no-repeat;
+				background-position: center center;
+				background-size: cover;
+				padding: 16px;
+
+				img {
+					display: block;
+					margin-bottom: 12px;
+				}
+				@include mq($rwd-tablet) {
+					padding-top: 150px;
+					padding-left: 10px;
+					padding-right: 10px;
+				}
+			}
+		}
+	}
+
+	&section-platter-1, &section-platter-2 {
+		@include clearfix;
+		@include mq($rwd-tablet-max, max) {
+			display: flex;
+			flex-direction: column;
+
+			.phoinikas--platter-header {
+				order: -2;
+			}
+		}
+	}
+	@include mq($rwd-tablet) {
+		&platter-img-big {
+			width: calc(50% - 6px);
+		}
+		&platter-img-small {
+			width: calc(25% - 6px);
+		}
+	}
+
+
+	&section-platter-1 {
+
+		@include mq($rwd-tablet) {
+			.phoinikas--platter-img-big {
+				margin-right: 12px;
+			}
+
+
+			.phoinikas--platter-img-small {
+				margin-right: 16px;
+			}
+
+			.phoinikas--platter-figcaption,
+			img {
+				float: left;
+			}
+
+			.phoinikas--platter-header {
+				width: 36%;
+				@include mq($rwd-desktop) {
+					width: 38%;
+				}
+			}
+
+			.phoinikas--platter-figcaption:nth-child(3) {
+				width: calc(50% - 8px);
+			}
+		}
+	}
+
+	&section-platter-2 {
+		@include mq($rwd-tablet) {
+			.phoinikas--platter-figcaption,
+			img {
+				float: right;
+			}
+			.phoinikas--platter-figcaption {
+				text-align: right;
+				width: calc(25% - 12px);
+
+				&:nth-child(4) {
+					width: calc(50% - 12px);
+				}
+			}
+			.phoinikas--platter-img-big, .phoinikas--platter-img-small {
+				margin-left: 12px;
+			}
+		}
+		@include mq($rwd-tablet-max, max) {
+			.phoinikas--platter-img-big {
+				order: -2;
+			}
+			.phoinikas--platter-figcaption:nth-child(3) {
+				order: -1;
+			}
+		}
+	}
+
+	&platter-figcaption {
+		font-weight: 700;
+		font-size: em(20);
+		line-height: 0.9;
+		margin-bottom: 16px;
+
+		em {
+			font-style: normal;
+			display: block;
+			font-size: em(14);
+		}
+		@include mq($rwd-tablet) {
+			&.-bottom {
+				margin-top: 15%;
+			}
+		}
+		@include mq($rwd-desktop) {
+			font-size: em(28);
+		}
+		@include mq($rwd-tablet-max, max) {
+			text-align: center;
+
+			br {
+				display: none;
+			}
 		}
 	}
 	/*=====  End of Page: Menu  ======*/
@@ -679,7 +1242,6 @@
 		}
 
 		.phoinikas--flex-row {
-			display: flex;
 			flex-direction: column;
 			padding: 5% 16px;
 			color: #4b4b4b;
@@ -930,4 +1492,351 @@
 	}
 	/*= End of Page: location =*/
 	/*=============================================<<<<<*/
+	/*=============================================>>>>>
+	= Page: Helath Tips =
+	===============================================>>>>>*/
+	&page-tips {
+		.phoinikas--wrapper.phoinikas--wrapper-global {
+			background-color: #fff;
+			color: #222;
+		}
+	}
+
+	&tips-header {
+		font-family: 'hand_writing';
+		text-align: center;
+		background: url('/img/tips/bg-header.jpg') no-repeat;
+		background-size: cover;
+		padding-top: 32%;
+		position: relative;
+
+		h2 {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			@include transform(translateY(-60%));
+			font-size: em(64);
+			font-weight: 400;
+			font-style: italic;
+			color: #fff;
+			@include mq($rwd-tablet) {
+				 @include transform(translateY(10%));
+				font-size: em(80);
+			}
+		}
+	}
+
+	&tips-list {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 32px 0;
+		@include mq($rwd-tablet) {
+			padding-left: 64px;
+			padding-right: 64px;
+		}
+		@include mq($rwd-desktop) {
+			padding-left: 128px;
+			padding-right: 128px;
+		}
+
+		.phoinikas--tips-item {
+			display: flex;
+			flex-direction: column;
+			flex: 0 0 50%;
+		}
+		@include mq($rwd-tablet) {
+			.phoinikas--tips-item {
+				flex: 0 0 25%;
+			}
+		}
+	}
+
+	&tips-item {
+		margin: 32px 0 0;
+		padding: 0 8px;
+
+		a {
+			display: block;
+		}
+
+		&.swiper-slide {
+			padding: 0;
+		}
+
+		img {
+			width: 100%;
+			display: block;
+			margin-bottom: 16px;
+		}
+
+		figcaption {
+			height: 100%;
+
+			p {
+				height: calc(100% - 17px);
+			}
+
+			a {
+				color: $sangria;
+				text-transform: uppercase;
+				font-weight: 700;
+				font-size: em(14);
+
+				&:before {
+					content: '...';
+				}
+			}
+		}
+	}
+
+	&pagination {
+		text-align: center;
+		padding-bottom: 10%;
+	}
+
+	&pagination-circle {
+		display: inline-block;
+		border: solid 1px #777;
+		text-indent: -1000em;
+		@include size(10px);
+		border-radius: 50%;
+
+		&.-active {
+			background-color: #777;
+		}
+	}
+	/*----------- Page: Tips Detail -----------*/
+	&detail-aside,
+	&detail-content {
+		padding: 16px;
+		font-size: em(22);
+
+		img {
+			max-width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		h3 {
+			font-weight: 400;
+			font-size: em(40);
+		}
+
+		p {
+			margin-bottom: 1em;
+			line-height: 1.4;
+		}
+	}
+
+	&detail-aside {
+		flex: 0 0 40%;
+	}
+	@include mq($rwd-tablet) {
+		&detail-row {
+			margin-top: 4em;
+			padding: 0 2em;
+		}
+	}
+
+	&detail-swiper {
+		padding: 0 54px 64px;
+		@include mq($rwd-tablet) {
+			padding: 0 64px 64px;
+			margin-left: 32px;
+			margin-right: 32px;
+		}
+	}
+
+	&swiper-content {
+		position: relative;
+		padding: 0 60px 48px;
+
+		.swiper-button-next,
+		.swiper-button-prev {
+			background-color: transparent;
+			width: 30px;
+			height: 85px;
+			background-size: auto 120%;
+			margin-top: -40px;
+		}
+
+		.swiper-button-prev {
+			background-image: url('/img/global/arrow-left.png');
+		}
+
+		.swiper-button-next {
+			background-image: url('/img/global/arrow-right.png');
+		}
+
+		.swiper-pagination {
+			text-align: center;
+			left: 50%;
+			bottom: 0;
+			@include transform(translateX(-50%));
+		}
+
+		.swiper-pagination-bullet {
+			background-color: #fff;
+			border: solid 1px #777;
+			margin: 0 4px;
+			opacity: 1;
+		}
+
+		.swiper-pagination-bullet-active {
+			background-color: #777;
+		}
+	}
+	/*= End of Page: Helath = Tips*/
+	/*=============================================<<<<<*/
+	/*=============================================>>>>>
+	= Page: Media =
+	===============================================>>>>>*/
+	&page-media {
+		color: #222;
+
+		.phoinikas--wrapper.phoinikas--wrapper-global {
+			background-color: #fff;
+			@include mq($rwd-tablet) {
+				padding-top: 150px;
+			}
+		}
+	}
+
+	&txt-h2 {
+		color: #222;
+		text-transform: uppercase;
+		font-size: em(31);
+		font-weight: 700;
+		text-align: center;
+		padding: 24px 0;
+		letter-spacing: 1.5px;
+	}
+
+	&media-tvc {
+		padding-bottom: 100px;
+
+		.swiper-pagination {
+			bottom: 30px;
+		}
+
+		.swiper-button-next,
+		.swiper-button-prev {
+			margin-top: -80px;
+		}
+
+		&:after {
+			content: '';
+			height: 2px;
+			background-color: #5e656d;
+			width: calc(100% - 120px);
+			position: absolute;
+			left: 50%;
+			@include transform(translateX(-50%));
+			bottom: 0;
+		}
+
+		.swiper-slide {
+			a {
+				display: block;
+				position: relative;
+
+				img {
+					width: 100%;
+				}
+
+				&:before {
+					content: '';
+					display: block;
+					position: absolute;
+					@include size(72px);
+					background-image: url('/img/media/icon-play.png');
+					z-index: 1;
+					top: 50%;
+					left: 50%;
+					margin: -36px 0 0 -36px;
+				}
+			}
+		}
+	}
+
+	&media-press {
+		padding-bottom: 60px;
+
+		.phoinikas--tips-item {
+			margin-top: 0;
+		}
+
+		.swiper-pagination {
+			bottom: 20px;
+		}
+		@include mq($rwd-tablet) {
+			/*padding-left: 80px;*/
+		}
+	}
+	@include mq($rwd-tablet) {
+		&media-press,
+		&media-tvc {
+			margin: 0 24px;
+		}
+
+		&media-press {
+			padding-left: 80px;
+			padding-right: 80px;
+		}
+	}
+
+	&page-media.-detail {
+		.phoinikas--wrapper.phoinikas--wrapper-global {
+			background-color: #cdcdcd;
+		}
+	}
+
+	&media-detail {
+		@include mq($rwd-tablet) {
+			padding: 0 24px;
+		}
+		@include mq($rwd-desktop) {
+			padding: 0;
+		}
+	}
+
+	&detail-youtube {
+		height: 0;
+		padding-top: 46.65%;
+		/*padding-top: 62.5%;*/
+		position: relative;
+		margin: 0 auto 16px;
+		max-width: 812px;
+
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%!important;
+			height: 100%!important;
+		}
+	}
+
+	&media-footer {
+		background-color: #fff;
+	}
+
+	&caption-youtube {
+		font-weight: 700;
+		text-align: center;
+		font-size: em(26);
+		padding: 24px;
+		margin: 0 auto;
+		max-width: 812px;
+		line-height: 1;
+	}
+	/*= End of Page: Media =*/
+	/*=============================================<<<<<*/
+}
+
+footer.phoinikas--media-tvc {
+	&:after {
+		display: none;
+	}
 }

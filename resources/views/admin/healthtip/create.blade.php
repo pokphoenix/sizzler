@@ -73,6 +73,56 @@
             </div>
             @endslot
 
+
+
+            @slot('panelSubBody')
+                @component('admin.widgets.collapse')
+                    @slot('header', 'Upload Image')
+                    @slot('id', '4')
+                    @slot('collapseIn', true)
+                    @slot('body')
+                    
+                    @if (isset($aside))
+
+                        @foreach ( $aside as $a )
+                        <div class="form-group">
+                            <div class="media">
+                              <div class="media-left">
+                                 <a class="showImage" data-fancybox="gallery" href="{{ isset($a) ? asset('storage/upload/'.$a->image ) : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
+                                  <img class="media-object displayImage"  src="{{ isset($a) ? asset('storage/upload/'.$a->image ) : asset('/img/resource/thumbnail-default.jpg') }}"  alt="...">
+
+                                </a>
+                              </div>
+
+                              <div class="media-body">
+                                 <button  class="del-img btn btn-danger" data-href="{{ asset('admin/healthtip/image/'.$a->id) }}"  type="button" ><i class="fa fa-minus"></i></button>
+                              </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    @endif
+                        <div class="form-group">
+                            <div class="media">
+                              <div class="media-left">
+                                <a class="showImage" data-fancybox="gallery" href="{{ asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
+                                  <img class="media-object displayImage"  src="{{ asset('/img/resource/thumbnail-default.jpg') }}"  alt="...">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <input type="file" id="img-aside" name="img_aside[]" class="form-control" >
+                              </div>
+                            </div>
+                            <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                        </div>
+
+                        <div id="append-img"  ></div>
+                        <div class="form-group">
+                            <button class="btn btn-info" type="button" id="add-img-upload" > <i class="fa fa-plus"></i> </button>
+                        </div>
+                    @endslot
+                @endcomponent
+            @endslot
+
     @endcomponent
 <script src="{{ asset('/plugin/ckeditor/ckeditor.js') }} "></script>
 
@@ -81,6 +131,31 @@
     $(function() {
         CKEDITOR.replace( 'text_th' );
         CKEDITOR.replace( 'text_en' );
+
+        $("#add-img-upload").on('click',function(){
+            $("#append-img").append("<div class=\"form-group\"><div class=\"media\"><div class=\"media-left\"><a class=\"showImage\" data-fancybox=\"gallery\" href=\"{{ asset('/img/resource/thumbnail-default.jpg') }}\" target=\"_blank\"><img class=\"media-object displayImage\" src=\"{{ asset('/img/resource/thumbnail-default.jpg') }}\"></a></div><div class=\"media-body\"><input type=\"file\"  name=\"img_aside[]\" class=\"form-control\"><BR><button  class=\"del-append-img btn btn-danger\" type=\"button\" ><i class=\"fa fa-minus\"></i></button></div></div><p class=\"help-block\">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p></div>");
+        });
+
+        $('#append-img').on('click', '.del-append-img', function(){
+            $(this).closest('.form-group').remove();
+        });
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $('.del-img').on('click',function(){
+            var ele = $(this).closest('.form-group') ;
+            $.ajax({
+                method:'DELETE',
+                url: $(this).data('href') ,
+                data: { _token: CSRF_TOKEN }
+               
+            })
+            .done(function(html) {
+                ele.remove();
+            })
+            .fail(function() {
+                alert('cannot delete this image');
+            })
+        });
+
      // var editor=CKEDITOR.instances.editor1.getData();
     });
 

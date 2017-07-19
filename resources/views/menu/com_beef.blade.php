@@ -1,26 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-
- 	<main class="phoinikas--body-main phoinikas--page-menu">
+	<main class="phoinikas--body-main phoinikas--page-menu -combination">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
-			<section class="phoinikas--menu-maincourse -beef">
-				<img src="{{ asset('storage/upload/'.$data[0]->img_th) }}" style="width: 459px; height:314px; " alt="">
-				<img src="{{ asset('storage/upload/'.$data[1]->img_th) }}" style="width: 520px; height:260px; "  alt="">
-				<img src="{{ asset('storage/upload/'.$data[2]->img_th) }}" style="width: 260px; height:265px; "  alt="">	
-				<img src="{{ asset('/img/menu/img-chicken-4.jpg') }}" alt="">
-				
-				<img src="{{ asset('storage/upload/'.$data[3]->img_th) }}" style="width: 458px; height:210px; "  alt="">
+			<section class="phoinikas--section-com-beef-1">
+				<img src="{{ asset('/img/menu/img-com-beef-1.jpg')}}" alt="">
 			</section>
 
-			<section class="phoinikas--menu-sidedish">
-				<img src="/img/menu/img-sidedish-1.jpg" alt="เสิร์ฟฟรีกับทุกเมนูจานหลัก">
-				<img src="/img/menu/img-sidedish-2.jpg" alt="Complementary Side  Dishes">
-				<img src="/img/menu/img-sidedish-3.jpg" alt="Side Dishes photos">
-				<img src="/img/menu/img-sidedish-4.jpg" alt="Signature Cheese Toast">
+			<section class="phoinikas--section-com-beef-2 phoinikas--flex-row">
+				<div>
+					<img src="{{ asset('/img/menu/txt-combination-beef.png')}}" alt="">
+				</div>
+				<div>
+					<img src="{{ asset('/img/menu/badge-com-beef.png')}}" alt="">
+				</div>
+			</section>
+
+			<section class="phoinikas--section-com-beef-3 phoinikas--flex-row">
+				<figure>
+					<img src="{{ asset('/img/menu/img-com-beef-2.jpg')}}" alt="">
+					<figcaption>
+						บีฟลอยน์ และไก่ย่างสไปซี่ <br>
+						Chargrilled Beef Loin <br>
+						&amp; Spicy Griiled <br>
+						Chicken
+					</figcaption>
+				</figure>
+
+				<figure>
+					<img src="{{ asset('/img/menu/img-com-beef-3.jpg')}}" alt="">
+					<figcaption>
+						บีฟลอยน์ และกุ้งเล็กเทมปุระ <br>
+						Chargrilled Beef Loin <br>
+						&amp; Tempura Shrimps
+					</figcaption>
+				</figure>
 			</section>
 		</div>
 
 	</main>
 
+ 	
 @endsection

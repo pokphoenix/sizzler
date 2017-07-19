@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests\HealthTipValidate;
 use App\Models\healthtip;
+use App\Models\images;
 use Route;
 use stdClass ;
 class HealthTipController extends Controller
@@ -69,7 +70,18 @@ class HealthTipController extends Controller
     public function store(HealthTipValidate $request)
     {
         $post = self::fileUpload($request);
-        healthtip::create($post);
+        $h = healthtip::create($post);
+        if(is_array($post['img_aside'])){
+            foreach ($post['img_aside'] as $key => $v) {
+                $img['healthtip_id']  =  $h->id ;
+                $img['image'] = $v;
+                images::create($img);
+            }
+        }else{
+            $img['healthtip_id']  = $id ;
+            $img['image'] = $post['img_aside'] ;
+            images::create($img);
+        }
         return redirect($this->route);
     }
 
@@ -93,12 +105,14 @@ class HealthTipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(healthtip $healthtip)
+    public function edit($id)
     {
         $data['title'] = 'แก้ไข '.$this->controllerName ;
         $data['route'] = $this->route ;
+        $healthtip =  healthtip::find($id) ;
         $data['data'] = $healthtip ;
         $data['edit'] = true ;
+        $data['aside'] = healthtip::find($id)->images ;
 
         return view($this->view.'.create',$data);
     }
@@ -113,10 +127,19 @@ class HealthTipController extends Controller
     public function update(HealthTipValidate $request, $id)
     {
         $post = self::fileUpload($request,true);
-        // if ($post['position']==1){
-        //     // $post['position'] = 999;
-        // }
         $db = healthtip::find($id)->update($post) ;
+        if(is_array($post['img_aside'])){
+            foreach ($post['img_aside'] as $key => $v) {
+                $img['healthtip_id']  =  $id ;
+                $img['image'] = $v;
+                images::create($img);
+            }
+        }else{
+            $img['healthtip_id']  = $id ;
+            $img['image'] = $post['img_aside'] ;
+            images::create($img);
+        }
+
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
     }
@@ -132,6 +155,11 @@ class HealthTipController extends Controller
         healthtip::find($id)->delete();
         session()->flash('message','Delete Successfully');
         return redirect($this->route);
+    } 
+    public function deleteimage($id)
+    {
+        images::find($id)->delete();
+        return json_encode(['result'=>true]);
     }
 
 
@@ -157,6 +185,11 @@ class HealthTipController extends Controller
 
     private function fileUpload($request,$update=false){
         $post = $request->all();
+        $upload = uploadfile($request,'img_aside') ;
+        if($upload['result']){
+            $post['img_aside'] = $upload['imagePath'] ;
+        }
+
         if(!isset($post['thumbnail_th'])){
             $post['thumbnail_th'] = null;
         }

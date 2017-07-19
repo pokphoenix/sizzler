@@ -2,7 +2,7 @@
 
 @section('body')
 <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+<link rel="stylesheet" href="{{ asset('css/custom-backend.css') }}">
 <link rel="stylesheet" href="{{ asset('plugin/fancybox/jquery.fancybox.min.css') }}">
 <script src="{{ asset('js/jquery-1.12.4.min.js') }}"></script>
 
@@ -121,6 +121,9 @@
                                 <li {{ (Request::is('*promotion-slider') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/promotion-slider') }}">โปรโมชั่น สไลด์เดอร์</a>
                                 </li>
+                                <li {{ (Request::is('*promotion-slider-sub') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/promotion-slider-sub') }}">โปรโมชั่น สไลด์เดอร์ (บล็อคล่าง)</a>
+                                </li>
                                 <li {{ (Request::is('*promotion-banner') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/promotion-banner') }}">โปรโมชั่น แบนเนอร์</a>
                                 </li>
@@ -137,9 +140,7 @@
                                 <li {{ (Request::is('*slider-sub') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/slider-sub') }}">Slider Sub</a>
                                 </li>
-                                <li {{ (Request::is('*view') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('admin/view') }}">view</a>
-                                </li>
+                           
                                 <li {{ (Request::is('*banner') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/banner') }}">banner</a>
                                 </li>
@@ -159,7 +160,13 @@
                                 <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/media-category') }}">หมวดหมู่ มีเดีย</a>
                                 </li>
-                                <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
+                                <li {{ (Request::is('*media') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/media') }}">มีเดีย</a>
+                                </li>
+                                <li {{ (Request::is('*release') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/release') }}">release</a>
+                                </li>
+                                <!-- <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('ads') }}">print ads</a>
                                 </li>
                                 <li {{ (Request::is('*tvc') ? 'class="active"' : '') }}>
@@ -167,7 +174,7 @@
                                 </li>
                                 <li {{ (Request::is('*video') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('video') }}">video clip</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                     </ul>

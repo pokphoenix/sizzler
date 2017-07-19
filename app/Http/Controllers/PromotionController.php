@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests\FormValidate;
-use App\Models\menu;
+use App\Models\promotion;
 use App\Models\category;
 use Route;
 use stdClass;
 
-class MenusController extends Controller
+class PromotionController extends Controller
 {
-    public $route = 'admin/menu' ;
+    public $route = 'admin/promotion' ;
     public $controllerName = 'รายการเมนูอาหาร' ;
-
+    public $view = 'admin.promotion' ;
     /**
      * Display a listing of the resource.
      *
@@ -29,12 +29,12 @@ class MenusController extends Controller
         $search = $request->input('search');
         $sortNextType = ($sortType=='desc') ? 'asc' : 'desc' ;
         if(isset($search)){
-            $tables = menu::where('name_th', 'like', '%'.$search.'%')
+            $tables = promotion::where('name_th', 'like', '%'.$search.'%')
                 ->orWhere('name_en', 'like', '%'.$search.'%')
                 ->orderBy($sortBy,$sortType)
                 ->paginate(PAGINATE);
         }else{
-            $tables =  menu::orderBy($sortBy,$sortType)->paginate(PAGINATE) ;
+            $tables =  promotion::orderBy($sortBy,$sortType)->paginate(PAGINATE) ;
         }
         $data['tables'] = $tables;
         $data['search'] = $search;
@@ -42,7 +42,7 @@ class MenusController extends Controller
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
        
-        return view($this->route.'.index',$data);
+        return view($this->view.'.index',$data);
     }
 
     /**
@@ -55,13 +55,13 @@ class MenusController extends Controller
         $data['title'] = 'สร้าง '.$this->controllerName ;
         $data['route'] = $this->route ;
 
-        $category = category::all();
+        $category = promotion::all();
         $data['categorys'] = $category ;
 
         $o = new stdClass();
         $o->position =  999 ;
         $data['data'] =  $o ;
-        return view($this->route.'.create',$data);
+        return view($this->view.'.create',$data);
     }
 
     /**
@@ -73,7 +73,7 @@ class MenusController extends Controller
     public function store(FormValidate $request)
     {
         $post = self::fileUpload($request);
-        menu::create($post);
+        promotion::create($post);
         return redirect($this->route);
     }
 
@@ -83,13 +83,13 @@ class MenusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Menu $menu)
+    public function show(Promotion $promotion)
     {
-        $data['title'] = $this->controllerName.' : '.$menu->name_th ;
+        $data['title'] = $this->controllerName.' : '.$promotion->name_th ;
         $data['route'] = $this->route ;
-        $data['data'] = $menu;
+        $data['data'] = $promotion;
         
-       return view($this->route.'.show',$data);
+       return view($this->view.'.show',$data);
     }
 
     /**
@@ -98,17 +98,13 @@ class MenusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit(Promotion $promotion)
     {
         $data['title'] = 'แก้ไข '.$this->controllerName ;
         $data['route'] = $this->route ;
-        $data['data'] = $menu ;
+        $data['data'] = $promotion ;
         $data['edit'] = true ;
-
-        $category = category::all();
-        $data['categorys'] = $category ;
-
-        return view($this->route.'.create',$data);
+        return view($this->view.'.create',$data);
     }
 
     /**
@@ -124,7 +120,7 @@ class MenusController extends Controller
         // if ($post['position']==1){
         //     // $post['position'] = 999;
         // }
-        $db = menu::find($id)->update($post) ;
+        $db = promotion::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
     }
@@ -137,7 +133,7 @@ class MenusController extends Controller
      */
     public function destroy($id)
     {
-        menu::find($id)->delete();
+        promotion::find($id)->delete();
         session()->flash('message','Delete Successfully');
         return redirect($this->route);
     }
@@ -146,17 +142,17 @@ class MenusController extends Controller
     public function position(Request $request)
     {   
         $data['title'] = 'จัดเรียง '.$this->controllerName ;
-        $tables = menu::where('position','<>',0)->orderBy('position','asc')->paginate(20) ;
+        $tables = promotion::where('position','<>',0)->orderBy('position','asc')->paginate(20) ;
         $data['tables'] = $tables;
         $data['baseRoute'] = $this->route;
-        return view('admin.category.position',$data);
+        return view('admin.slider.position',$data);
     }
 
     public function positionStore(Request $request)
     {   
         $post = $request->all();
         foreach($post['fromdata'] as $f){
-            $db = menu::find($f['id'])->update(['position'=>$f['position']]) ;
+            $db = promotion::find($f['id'])->update(['position'=>$f['position']]) ;
         }
         $result['result']= true;
         session()->flash('message','Updated Successfully');
@@ -165,7 +161,30 @@ class MenusController extends Controller
 
     private function fileUpload($request,$update=false){
         $post = $request->all();
-        if(!isset($post['thumbnail_th'])){
+        if(!isset($post['img_th'])){
+            $post['img_th'] = null;
+        }
+        if(!isset($post['img_en'])){
+            $post['img_en'] = null;
+        }
+        if($update){
+            if (isset($post['hid_img_th'])){
+                $post['img_th'] = $post['hid_img_th'] ;
+            }
+            if (isset($post['hid_img_en'])){
+                $post['img_en'] = $post['hid_img_en'] ;
+            }
+        }
+        $upload = uploadfile($request,'img_th') ;
+        if($upload['result']){
+            $post['img_th'] = $upload['imagePath'] ;
+        }
+        $upload = uploadfile($request,'img_en') ;
+        if($upload['result']){
+            $post['img_en'] = $upload['imagePath'] ;
+        }
+
+         if(!isset($post['thumbnail_th'])){
             $post['thumbnail_th'] = null;
         }
         if(!isset($post['thumbnail_en'])){

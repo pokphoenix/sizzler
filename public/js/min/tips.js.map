@@ -1,0 +1,1 @@
+{"version":3,"sources":["../tips.js"],"names":["jQuery","document","ready","$","swiper","slidesPerView","spaceBetween","nextButton","prevButton","breakpoints","767","399"],"mappings":"AAAAA,OAAOC,UAAUC,MAAM,SAASC,GAE9BA,EAAE,+CAA+CC,QAChDC,cAAe,EACdC,aAAc,GACfC,WAAY,gDACXC,WAAY,gDACZC,aAECC,KACEL,cAAe,GAGjBM,KACEN,cAAe","file":"tips.js"}

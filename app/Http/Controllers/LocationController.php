@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests\LocationValidate;
 use App\Models\location;
+use App\Models\province;
 
 use Route;
 use stdClass;
@@ -55,6 +56,10 @@ class LocationController extends Controller
     {
         $data['title'] = 'สร้าง '.$this->controllerName ;
         $data['route'] = $this->route ;
+
+        $category = province::all();
+        $data['categorys'] = $category ;
+
         return view($this->view.'.create',$data);
     }
 
@@ -97,8 +102,9 @@ class LocationController extends Controller
         $data['title'] = 'แก้ไข '.$this->controllerName ;
         $data['route'] = $this->route ;
         $data['data'] = $location ;
+        $category = province::all();
+        $data['categorys'] = $category ;
         $data['edit'] = true ;
-        $data['notUsePosition'] = true ;
         return view($this->view.'.create',$data);
     }
 
