@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index');
+
 
 // Route::get('/sbadmin', function () {
 //     return view('admin.home');
@@ -82,42 +82,56 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+Route::group(['middleware' => ['web','language'] ], function () {
+    Route::get('/', 'HomeController@index');
+    Route::get('/menu/{id}', 'HomeController@menu');
+    // Route::get('/language/{type}', 'HomeController@language');
+    Route::get('/category/{id}', 'HomeController@category');
 
-Route::get('/menu/{id}', 'HomeController@menu');
-Route::get('/language/{type}', 'HomeController@language');
-Route::get('/category/{id}', 'HomeController@category');
-
-Route::get('/career', 'HomeController@career');
-Route::get('/location', 'HomeController@location');
-Route::get('/promotion', 'HomeController@promotion');
-Route::get('/promotion/{id}', 'HomeController@promotionView');
-Route::get('/media', 'HomeController@media');
-Route::get('/media/{id}', 'HomeController@mediaView') ;
-Route::get('/about', 'HomeController@about');
-Route::get('/career', 'HomeController@career');
-Route::get('/contact', 'HomeController@contact');
-Route::get('/international', 'HomeController@international');
+    Route::get('/career', 'HomeController@career');
+    Route::get('/location', 'HomeController@location');
+    Route::get('/promotion', 'HomeController@promotion');
+    Route::get('/promotion/{id}', 'HomeController@promotionView');
+    Route::get('/media', 'HomeController@media');
+    Route::get('/media/{id}', 'HomeController@mediaView') ;
+    Route::get('/story', 'HomeController@story');
+    Route::get('/about', 'HomeController@about');
+    Route::get('/career', 'HomeController@career');
+    Route::get('/contact', 'HomeController@contact');
+    Route::get('/international', 'HomeController@international');
 
 
+    Route::get('/menu', 'HomeController@mainMenu');
+    Route::get('/beef', 'HomeController@beef');
+    Route::get('/burger', 'HomeController@burger');
+    Route::get('/chicken', 'HomeController@chicken');
+    Route::get('/com-beef', 'HomeController@comBeef');
+    Route::get('/com-platter', 'HomeController@comPlatter');
+    Route::get('/com-suprem', 'HomeController@comSuprem');
+    Route::get('/kidmenu', 'HomeController@kidmenu');
+    Route::get('/pork', 'HomeController@pork');
+    Route::get('/seafood', 'HomeController@seafood');
+    Route::get('/combination', 'HomeController@combination');
+    Route::get('/wednesday', 'HomeController@wednesday');
+    Route::get('/everyday', 'HomeController@everyday');
+    Route::get('/lunch', 'HomeController@lunch');
 
-Route::get('/beef', 'HomeController@beef');
-Route::get('/burger', 'HomeController@burger');
-Route::get('/chicken', 'HomeController@chicken');
-Route::get('/com-beef', 'HomeController@comBeef');
-Route::get('/com-platter', 'HomeController@comPlatter');
-Route::get('/com-suprem', 'HomeController@comSuprem');
-Route::get('/kidmenu', 'HomeController@kidmenu');
-Route::get('/pork', 'HomeController@pork');
-Route::get('/seafood', 'HomeController@seafood');
-Route::get('/combination', 'HomeController@combination');
 
-Route::get('/healthtip/', 'HomeController@healthtip');
-Route::get('/healthtip/{id}', 'HomeController@healthtipView');
-Route::get('/healthtip-preview/{id}', 'HomeController@healthtipPreview');
+    Route::get('/healthtip/', 'HomeController@healthtip');
+    Route::get('/healthtip/{id}', 'HomeController@healthtipView');
+    Route::get('/healthtip-preview/{id}', 'HomeController@healthtipPreview');
 
-Route::get('/release/', 'HomeController@release');
-Route::get('/release/{id}', 'HomeController@releaseView');
-Route::get('/release-preview/{id}', 'HomeController@releasePreview');
+    Route::get('/release/', 'HomeController@release');
+    Route::get('/release/{id}', 'HomeController@releaseView');
+    Route::get('/release-preview/{id}', 'HomeController@releasePreview');
+
+
+});
+
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'HomeController@switchLang']);
+
+
+
 
 Route::get('/location-data', 'HomeController@locationData');
 
@@ -138,7 +152,7 @@ Route::get('admin-password/reset','Admin\ForgotPasswordController@showLinkReques
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
-Route::group(['middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
+Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
     Route::get('category/position', 'CategoryController@position')->name('category-position');
     Route::post('category/position', 'CategoryController@positionStore');
     Route::resource('category', 'CategoryController');

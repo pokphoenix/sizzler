@@ -27,7 +27,7 @@ class FormValidate extends FormRequest
             'name_th'=>'bail|required',
             'name_en'=>'bail|required',
             'status'=>'bail|required',
-            'thumbnail' => 'bail|image|mimes:jpeg,png,jpg|max:1024'
+            'thumbnail' => 'bail|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 
@@ -38,7 +38,7 @@ class FormValidate extends FormRequest
                 'name_en.required'=>'กรุณาระบุ Name EN ',
                 'status.required'=>'กรุณาเลือกสถานะ ',
                 'thumbnail.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'thumbnail.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ '
+                'thumbnail.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ '
         ];
     }
 }

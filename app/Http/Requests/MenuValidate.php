@@ -26,12 +26,12 @@ class MenuValidate extends FormRequest
         return [
             'name_img_th_1'=>'bail|required',
             'name_img_en_1'=>'bail|required',
-            'img_th_1' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
-            'img_th_2' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
-            'img_th_3' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
-            'img_th_4' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
-            'img_th_5' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
-            'img_th_6' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
+            'img_th_1' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_th_2' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_th_3' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_th_4' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_th_5' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_th_6' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -41,17 +41,17 @@ class MenuValidate extends FormRequest
                 'name_img_th_1.required'=>'กรุณาระบุ ชื่อรูปภาษาไทย ',
                 'name_img_en_1.required'=>'กรุณาระบุ ชื่อรูปภาษาอังกฤษ ',
                 'img_th_1.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th_1.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th_1.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_2.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th_2.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th_2.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_3.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th_3.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th_3.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_4.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th_4.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th_4.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_5.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th_5.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th_5.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_6.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th_6.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th_6.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
         ];
     }
 }

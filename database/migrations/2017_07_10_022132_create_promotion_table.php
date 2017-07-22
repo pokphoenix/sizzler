@@ -17,6 +17,8 @@ class CreatePromotionTable extends Migration
             $table->increments('id');
             $table->string('name_th');
             $table->string('name_en');
+            $table->string('thumbnail_th')->nullable();
+            $table->string('thumbnail_en')->nullable();
             $table->string('img_th')->nullable();
             $table->string('img_en')->nullable();
             $table->integer('status')->unsigned();

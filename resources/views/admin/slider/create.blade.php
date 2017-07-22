@@ -22,11 +22,10 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="img_th" name="img_th" class="form-control" >
-                    <input type="hidden" id="hid_img_th" name="hid_img_th" value="{{isset($data->img_th) ? $data->img_th : ''}} " >
+                    <input type="file" id="img_th" name="img_th" class="form-control" ><br> <span class="span-field">(ขนาดที่เหมาะสม 980 x 457 px)</span>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
              @endslot
             @slot('panelBodyEN')  
@@ -44,11 +43,10 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="img_en" name="img_en" class="form-control" >
-                    <input type="hidden" id="hid_img_en" name="hid_img_en" value="{{ isset($data->img_en) ? $data->img_en : '' }}" >
+                    <input type="file" id="img_en" name="img_en" class="form-control" > <br><span class="span-field">(ขนาดที่เหมาะสม 980 x 457 px)</span>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB </p>
             </div>  
             @endslot
 

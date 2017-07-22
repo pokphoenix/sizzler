@@ -154,7 +154,7 @@
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
 											 {{ csrf_field() }}
 											{{ method_field('DELETE') }}
-											<button type="submit" class="btn btn-danger btn-circle" title="delete item">
+											<button type="button" onclick="if (confirm('คุณต้องการลบใช่หรือไม่?')) { $(this).closest('form').submit(); }"  class="btn btn-danger btn-circle" title="delete item">
 											 	<i class="fa fa-trash-o"></i>
 											</button>
 									</form> 

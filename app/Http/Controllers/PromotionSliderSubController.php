@@ -68,7 +68,12 @@ class PromotionSliderSubController extends Controller
      */
     public function store(BannerValidate $request)
     {
-        $post = self::fileUpload($request);
+         $post = self::fileUpload($request);
+        if(!$post['result']){
+            return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors($post['error'], $this->errorBag() );
+        }
         promotionSliderSub::create($post);
         return redirect($this->route);
     }
@@ -111,7 +116,12 @@ class PromotionSliderSubController extends Controller
      */
     public function update(BannerValidate $request, $id)
     {
-        $post = self::fileUpload($request,true);
+         $post = self::fileUpload($request);
+        if(!$post['result']){
+            return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors($post['error'], $this->errorBag() );
+        }
         $db = promotionSliderSub::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -152,28 +162,20 @@ class PromotionSliderSubController extends Controller
         return $result ;
     }
 
-    private function fileUpload($request,$update=false){
+    private function fileUpload($request){
         $post = $request->all();
-        if(!isset($post['img_th'])){
-            $post['img_th'] = null;
-        }
-        if(!isset($post['img_en'])){
-            $post['img_en'] = null;
-        }
-        if($update){
-            if (isset($post['hid_img_th'])){
-                $post['img_th'] = $post['hid_img_th'] ;
-            }
-            if (isset($post['hid_img_en'])){
-                $post['img_en'] = $post['hid_img_en'] ;
-            }
-        }
         $upload = uploadfile($request,'img_th') ;
-        if($upload['result']){
+        if(!$upload['result']){
+           return $upload ;
+        }
+        if(isset($upload['imagePath'])){
             $post['img_th'] = $upload['imagePath'] ;
         }
         $upload = uploadfile($request,'img_en') ;
-        if($upload['result']){
+        if(!$upload['result']){
+           return $upload ;
+        }
+        if(isset($upload['imagePath'])){
             $post['img_en'] = $upload['imagePath'] ;
         }
         return $post ;

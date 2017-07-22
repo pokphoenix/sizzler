@@ -24,7 +24,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th_1" name="img_th_1" class="form-control" >
-                    <input type="hidden" id="hid_img_th_1" name="hid_img_th_1" value="{{ isset( $data->img_th_1 ) ? $data->img_th_1 : '' }}" >
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
@@ -43,7 +42,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th_2" name="img_th_2" class="form-control" >
-                    <input type="hidden" id="hid_img_th_2" name="hid_img_th_2" value="{{ isset( $data->img_th_2 ) ? $data->img_th_2 : '' }}" >
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
@@ -67,7 +65,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en_1" name="img_en_1" class="form-control" >
-                    <input type="hidden" id="hid_img_en_1" name="hid_img_en_1" value="{{ isset( $data->img_en_1 ) ? $data->img_en_1 : '' }}" >
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
@@ -86,7 +83,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en_2" name="img_en_2" class="form-control" >
-                    <input type="hidden" id="hid_img_en_2" name="hid_img_en_2" value="{{ isset( $data->img_en_2 ) ? $data->img_en_2 : '' }}" >
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>

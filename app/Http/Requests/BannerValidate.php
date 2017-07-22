@@ -27,8 +27,8 @@ class BannerValidate extends FormRequest
             'name_th'=>'bail|required',
             'name_en'=>'bail|required',
             'status'=>'bail|required',
-            'img_th' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
-            'img_en' => 'bail|image|mimes:jpeg,png,jpg|max:1024',
+            'img_th' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_en' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
         
         ];
     }
@@ -40,9 +40,9 @@ class BannerValidate extends FormRequest
                 'name_en.required'=>'กรุณาระบุ ชื่อรูปภาษาอังกฤษ ',
                 'status.required'=>'กรุณาเลือกสถานะ ',
                 'img_th.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_th.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_th.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_en.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'img_en.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'img_en.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 
         ];
     }

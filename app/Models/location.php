@@ -13,7 +13,7 @@ class location extends Model
 
 
     public function province(){
-        return $this->belongsTo(province::class);
+        return $this->hasOne(province::class);
     }
 
 }

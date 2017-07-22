@@ -41,7 +41,7 @@ if (! function_exists('uploadfile')) {
                 foreach ($request->file($name) as $key => $file) {
                     $fileArray = array('image' => $file);
                     $rules = array(
-                      'image' => 'mimes:jpeg,jpg,png|max:1024' // max 10000kb
+                      'image' => 'mimes:jpeg,jpg,png|max:2048' // max 10000kb
                     );
                     $validator = Validator::make($fileArray, $rules);
                     if ($validator->fails())
@@ -59,8 +59,9 @@ if (! function_exists('uploadfile')) {
             }else{
                 $fileArray = array('image' => $file);
                 $rules = array(
-                  'image' => 'mimes:jpeg,jpg,png|max:1024' // max 10000kb
+                  'image' => 'mimes:jpeg,jpg,png|max:2048' // max 10000kb
                 );
+               
                 $validator = Validator::make($fileArray, $rules);
                 if ($validator->fails())
                 {
@@ -73,10 +74,8 @@ if (! function_exists('uploadfile')) {
                     $imageName = str_replace(UPLOAD_PATH,'',$path) ;
                     $result['imagePath'] = $imageName ;
                 }
+               
             }
-        }else{
-            $result['result'] = false;
-            $result['error'] = 'not found image' ;
         }
         return $result;
     }

@@ -17,6 +17,11 @@ use App\Models\promotion;
 use App\Models\healthtip;
 use App\Models\release;
 use DB;
+use Session;
+use App;
+use Cookie;
+use Config;
+use Redirect;
 class HomeController extends Controller
 {
     /**
@@ -40,14 +45,13 @@ class HomeController extends Controller
         $sliderSub = slidersub::where('position','<',3)->get();
         $banner = banner::limit(1)->where('status',1)->get();
         $healthtip = healthtip::where('position','<=',4)->get();
-        // $sliderMains = category::select('thumbnail_th')->get();
-        // $sliderMains = category::select('thumbnail_th')->get();
-        // $sliderMains = category::select('thumbnail_th')->get();
+
         $data['sliderMains'] = $sliderMains  ;
         $data['sliderSub'] = $sliderSub  ;
         $data['banners'] = $banner  ;
         $data['healthtip'] = $healthtip  ;
-        return view('home',$data);
+      
+        return view('front.home',$data);
     } 
 
     public function category($id)
@@ -55,7 +59,7 @@ class HomeController extends Controller
         $data = category::find($id);
         $data['data'] = $data  ;
         dd($data);
-        return view('category',$data);
+        return view('front.category',$data);
     }
 
     public function menu($id)
@@ -63,14 +67,39 @@ class HomeController extends Controller
         $data = menu::find($id);
         $data['data'] = $data  ;
         dd($data);
-        return view('category',$data);
+        return view('front.category',$data);
     }
-    public function language($type)
+
+    public function promotion()
     {   
-        $language = $type ;
-        $cookie = cookie('language', $language , 86400);
-        return json_encode(['result'=>true,'data'=>['language'=>$language ]]);
+        $promotionBanner = promotionBanner::limit(1)->where('status',1)->get();
+
+        $promotionSlider = promotionSlider::where('position','<',3)->get();
+        $promotionSliderSub = promotionSliderSub::where('position','<',3)->get();
+        $promotion = promotion::limit(2)->where('position','<=',2)->where('status',1)->get();
+
+        // $banner = banner::limit(1)->where('status',1)->get();
+        $data['promotionSlider'] = $promotionSlider;
+        $data['promotionSliderSub'] = $promotionSliderSub;
+        $data['banners'] = $promotionBanner;
+        $data['promotion'] = $promotion;
         
+        return view('front.promotion',$data);
+    }
+
+    public function promotionView($id)
+    {   
+        $promotion = promotion::find($id)->where('status',1)->get();
+        $data['data'] = $promotion;
+        return view('front.promotion-view',$data);
+    }
+
+    public function switchLang($lang)
+    {
+        if (array_key_exists($lang, Config::get('languages'))) {
+            Session::put('applocale', $lang);
+        }
+        return Redirect::back();
     }
     public function location()
     {   
@@ -79,9 +108,15 @@ class HomeController extends Controller
                 ->get();
         $response = [];
         foreach ($query as $key => $q) {
-            $response[$key]['province'] = $q->province_name_th ;
-            $response[$key]['name'] = $q->name_th ;
-            $response[$key]['address'] = $q->address_th ;
+            if(App::getLocale()=='th'){
+                $response[$key]['province'] = $q->province_name_th ;
+                $response[$key]['name'] = $q->name_th ;
+                $response[$key]['address'] = $q->address_th ;
+            }else{
+                $response[$key]['province'] = $q->province_name_en ;
+                $response[$key]['name'] = $q->name_en ;
+                $response[$key]['address'] = $q->address_en ;
+            }
             $response[$key]['tel'] = $q->tel ;
             $response[$key]['lat'] = $q->lat ;
             $response[$key]['lng'] = $q->lng ;
@@ -89,7 +124,7 @@ class HomeController extends Controller
         $data['data'] = $response[0] ;
         // dd($data);
         $data['json'] = json_encode( $response , JSON_UNESCAPED_UNICODE);
-        return view('location',$data);
+        return view('front.location',$data);
     }
     public function media()
     {   
@@ -100,21 +135,21 @@ class HomeController extends Controller
         $data['tvcs'] = $tvc;
         $data['release'] = $release;
 
-        return view('media',$data);
+        return view('front.media',$data);
     } 
     public function mediaView($id)
     {   
-        $query = media::find($id)->where('status',1)->get();
+        $query = media::where('id',$id)->where('status',1)->first();
         $other = media::where('status',1)->where('position','<',4)->get();
         $data['data'] = $query;
         $data['others'] = $other;
-        return view('media-view',$data);
+        return view('front.media-view',$data);
     } 
     public function healthtip()
     {   
         $healthtip = healthtip::where('status',1)->get();
         $data['healthtip'] = $healthtip;
-        return view('healthtip',$data);
+        return view('front.healthtip',$data);
     }
     public function healthtipView($id)
     {   
@@ -129,7 +164,7 @@ class HomeController extends Controller
         $other = healthtip::where('position','<>',0)->inRandomOrder()->get();
         $data['other'] = $other;
 
-        return view('healthtipview',$data);
+        return view('front.healthtipview',$data);
     }
     public function healthtipPreview($id)
     {   
@@ -141,54 +176,70 @@ class HomeController extends Controller
         $other = healthtip::where('position','<',5)->get();
         $data['other'] = $other;
 
-        return view('healthtipview',$data);
+        return view('front.healthtipview',$data);
     }
-    public function promotion()
-    {   
-        $promotionSlider = promotionSlider::where('position','<',3)->get();
-        $promotionSliderSub = promotionSliderSub::where('position','<',3)->get();
-        $promotionBanner = banner::limit(1)->where('status',1)->get();
-        $promotion = promotion::limit(1)->where('position',1)->where('status',1)->get();
-
-        // $banner = banner::limit(1)->where('status',1)->get();
-        $data['promotionSlider'] = $promotionSlider;
-        $data['promotionSliderSub'] = $promotionSliderSub;
-        $data['banners'] = $promotionBanner;
-        $data['promotion'] = $promotion;
-        
-        return view('promotion',$data);
-    }
-
-    public function promotionView($id)
-    {   
-        $promotion = promotion::find($id)->where('status',1)->get();
-        $data['data'] = $promotion;
-        return view('promotion-view',$data);
-    }
+    
 
     public function about()
     {   
-        return view('about');
+        return view('front.about');
     }
     public function career()
     {   
-        return view('career');
+        return view('front.career');
     }
     public function contact()
     {   
-        return view('contact');
+        return view('front.contact');
     }
     public function international()
     {   
-        return view('international');
+        return view('front.international');
+    }
+    public function story()
+    {   
+        return view('front.story');
     }
 
 
 
+    public function mainMenu()
+    {   
+        $beefCate = category::find(4);
+        $data['beefCate'] = $beefCate  ;
+        $beef = $beefCate->menu()->get();
+        $data['beef'] = $beef  ;
+
+        $burger = category::find(5)->menu()->get();
+        $data['burger'] = $burger  ;
+
+        $chickenCate = category::find(2);
+        $data['chickenCate'] = $chickenCate ; 
+        $chicken = $chickenCate->menu()->get();
+        $data['chicken'] = $chicken ;
+
+        $kidmenuCate = category::find(6);
+        $data['kidmenuCate'] = $kidmenuCate  ; 
+        $kidmenu = $kidmenuCate->menu()->get();
+        $data['kidmenu'] = $kidmenu  ;
+
+        $porkCate = category::find(1);
+        $data['porkCate'] = $porkCate  ;
+        $pork = $porkCate->menu()->get();
+        $data['pork'] = $pork  ;
+
+        $seafoodCate = category::find(3);
+        $data['seafoodCate'] = $seafoodCate  ;     
+        $seafood = $seafoodCate->menu()->get();
+        $data['seafood'] = $seafood  ;
+        return view('menu.index',$data);
+    } 
     public function beef()
     {   
-        $query = category::find(4)->menu()->get();
-        $data['data'] = $query  ;
+        $beefCate = category::find(4);
+        $data['beefCate'] = $beefCate  ;
+        $beef = $beefCate->menu()->get();
+        $data['data'] = $beef  ;
         return view('menu.beef',$data);
     }
      public function burger()
@@ -199,17 +250,44 @@ class HomeController extends Controller
     }
      public function chicken()
     {   
-        $query = category::find(2)->menu()->get();
-        $data['data'] = $query  ;
+        $chickenCate = category::find(2);
+        $data['chickenCate'] = $chickenCate ; 
+        $chicken = $chickenCate->menu()->get();
+        $data['data'] = $chicken ;
         return view('menu.chicken',$data);
     }
-     public function comBeef()
+    
+     public function kidmenu()
+    {   
+        $kidmenuCate = category::find(6);
+        $data['kidmenuCate'] = $kidmenuCate  ; 
+        $kidmenu = $kidmenuCate->menu()->get();
+        $data['data'] = $kidmenu  ;
+        return view('menu.kidmenu',$data);
+    }
+     public function pork()
+    {   
+        $porkCate = category::find(1);
+        $data['porkCate'] = $porkCate  ;
+        $pork = $porkCate->menu()->get();
+        $data['data'] = $pork  ;
+        return view('menu.pork',$data);
+    }
+     public function seafood()
+    {   
+        $seafoodCate = category::find(3);
+        $data['seafoodCate'] = $seafoodCate  ;     
+        $seafood = $seafoodCate->menu()->get();
+        $data['data'] = $seafood  ;
+        return view('menu.seafood',$data);
+    } 
+    public function comBeef()
     {   
         $query = category::find(7)->menu()->get();
         $data['data'] = $query  ;
         return view('menu.com_beef',$data);
     }
-     public function comPlatter()
+    public function comPlatter()
     {   
         $query = category::find(9)->menu()->get();
         $data['data'] = $query  ;
@@ -221,29 +299,29 @@ class HomeController extends Controller
         $data['data'] = $query  ;
         return view('menu.com_suprem',$data);
     }
-     public function kidmenu()
-    {   
-        $query = category::find(6)->menu()->get();
-        $data['data'] = $query  ;
-        return view('menu.kidmenu',$data);
-    }
-     public function pork()
-    {   
-        $query = category::find(1)->menu()->get();
-        $data['data'] = $query  ;
-        return view('menu.pork',$data);
-    }
-     public function seafood()
-    {   
-        $query = category::find(3)->menu()->get();
-        $data['data'] = $query  ;
-        return view('menu.seafood',$data);
-    } 
     public function combination()
     {   
         // $query = category::find(3)->menu()->get();
         // $data['data'] = $query  ;
         return view('menu.combination');
+    }
+    public function wednesday()
+    {   
+        // $query = category::find(3)->menu()->get();
+        // $data['data'] = $query  ;
+        return view('menu.wednesday');
+    }
+    public function everyday()
+    {   
+        // $query = category::find(3)->menu()->get();
+        // $data['data'] = $query  ;
+        return view('menu.everyday');
+    }
+    public function lunch()
+    {   
+        // $query = category::find(3)->menu()->get();
+        // $data['data'] = $query  ;
+        return view('menu.lunch');
     }
     public function releaseView($id)
     {   
@@ -258,7 +336,7 @@ class HomeController extends Controller
         $other = release::where('position','<>',0)->inRandomOrder()->get();
         $data['other'] = $other;
 
-        return view('releaseview',$data);
+        return view('front.releaseview',$data);
     }
     public function releasePreview($id)
     {   
@@ -270,7 +348,7 @@ class HomeController extends Controller
         $other = release::where('position','<',5)->get();
         $data['other'] = $other;
 
-        return view('releaseview',$data);
+        return view('front.releaseview',$data);
     } 
     public function locationData()
     {   

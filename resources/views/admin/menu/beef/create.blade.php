@@ -22,7 +22,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
-                    <input type="hidden" id="hid_thumbnail_th" name="hid_thumbnail_th" value="{{isset($data->thumbnail_th) ? $data->thumbnail_th : ''}} " >
                   </div>
                 </div>
                 
@@ -44,7 +43,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th_{{$i+1}}" name="img_th_{{$i+1}}" class="form-control" >
-                    <input type="hidden" id="hid_img_th_{{$i+1}}" name="hid_img_th_{{$i+1}}" value="{{ isset($subdata[$i]) ? $subdata[$i]->img_th : ''}} " >
                   </div>
                 </div>
                 
@@ -70,7 +68,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
-                    <input type="hidden" id="hid_thumbnail_en" name="hid_thumbnail_en" value="{{isset($data->thumbnail_en) ? $data->thumbnail_en : ''}} " >
                   </div>
                 </div>
                 
@@ -91,7 +88,6 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en_{{$i+1}}" name="img_en_{{$i+1}}" class="form-control" >
-                    <input type="hidden" id="hid_img_en_{{$i+1}}" name="hid_img_en_{{$i+1}}" value="{{ isset($subdata[$i]) ? $subdata[$i]->img_en : ''}} " >
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>

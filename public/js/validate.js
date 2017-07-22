@@ -17,8 +17,9 @@ $('body').on('change', 'input[type=file]', function(e) {
             fileType = files[0].type;
             iSize = fileSize / 1024 ;
             iSize = (Math.round(iSize * 100) / 100) ; //--- convert to KB   
-        if (iSize > 1024){
-            $(this).val('').css(css_form_error).after('<span class="error-keyup">รูปภาพห้ามมีความจุเกิน 1 MB</span>').focus();return false;
+            console.log(iSize);
+        if (iSize > 2048){
+            $(this).val('').css(css_form_error).after('<span class="error-keyup">รูปภาพห้ามมีความจุเกิน 2 MB</span>').focus();return false;
         }
         var validExtensions = ['image/jpeg','image/png']; 
         if ($.inArray(fileType, validExtensions) == -1){

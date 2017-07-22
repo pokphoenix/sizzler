@@ -115,6 +115,9 @@
                                 <i class="fa fa-money fa-fw"></i> Promotion<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
+                                <li {{ (Request::is('*promotion-banner') ? 'class="active"' : '') }}>
+                                    <a href="{{ url ('admin/promotion-banner') }}">โปรโมชั่น แบนเนอร์ (ส่วนต่อจาก Header)</a>
+                                </li>
                                 <li {{ (Request::is('*promotion') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/promotion') }}">โปรโมชั่น</a>
                                 </li>
@@ -124,14 +127,12 @@
                                 <li {{ (Request::is('*promotion-slider-sub') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('admin/promotion-slider-sub') }}">โปรโมชั่น สไลด์เดอร์ (บล็อคล่าง)</a>
                                 </li>
-                                <li {{ (Request::is('*promotion-banner') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('admin/promotion-banner') }}">โปรโมชั่น แบนเนอร์</a>
-                                </li>
+                                
                             </ul>
                         </li>
                          <li>
                             <a href="#">
-                                <i class="fa fa-money fa-fw"></i> Home<span class="fa arrow"></span>
+                                <i class="fa fa-home fa-fw"></i> Home<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li {{ (Request::is('*slider') ? 'class="active"' : '') }}>
@@ -150,7 +151,7 @@
                             <a href="{{ url ('admin/location') }}"><i class="fa fa-map-o fa-fw"></i> Location</a>
                         </li>
                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('admin/healthtip') }}"><i class="fa fa-dashboard fa-fw"></i> Health Tip</a>
+                            <a href="{{ url ('admin/healthtip') }}"><i class="fa fa-picture-o fa-fw"></i> Health Tip</a>
                         </li>
                         <li>
                             <a href="#">

@@ -30,8 +30,8 @@ class MediaValidate extends FormRequest
             'short_desc_th'=>'bail|required',
             'short_desc_en'=>'bail|required',  
             'status'=>'bail|required',
-            'thumbnail_th' => 'bail|image|mimes:jpeg,png,jpg|max:1024'
-            'thumbnail_en' => 'bail|image|mimes:jpeg,png,jpg|max:1024'
+            'thumbnail_th' => 'bail|image|mimes:jpeg,png,jpg|max:2048'
+            'thumbnail_en' => 'bail|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
      public function messages()
@@ -43,9 +43,9 @@ class MediaValidate extends FormRequest
                 'short_desc_th.required'=>'กรุณาระบุ รายละเอียดอย่างย่อๆ ภาษาไทย',
                 'short_desc_en.required'=>'กรุณาระบุ รายละเอียดอย่างย่อๆ ภาษาอังกฤษ',
                 'thumbnail_th.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'thumbnail_th.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'thumbnail_th.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'thumbnail_en.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
-                'thumbnail_en.max'=>'รูปไม่ควรมีขนาดเกิน 1MB ค่ะ ',
+                'thumbnail_en.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
         ];
     }
 }

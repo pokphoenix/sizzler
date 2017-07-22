@@ -31,7 +31,7 @@
 				        <tr style="vertical-align:middle;">
 				        	<th class="col-sm-1 text-center" >#</th>
 				            <th class="col-sm-4">  
-				            	<div class="col-sm-4" >
+				            	<div class="col-sm-2" >
 				            		item
 				            	</div>
 				            	<div class="col-sm-4">
@@ -58,8 +58,9 @@
 									,'search' => $search
 								])	
 				            	</div>
-				            	
+				          
 				            </th>
+				            <th class="col-sm-2" >จังหวัด</th>
 				            <th class="col-sm-2"> @include('layouts.widgets.tablesort',
 								[ 'title' => 'created' 
 								    ,'sortKey' => 'created_at'
@@ -72,7 +73,7 @@
 								])	
 							</th>
 							
-				            <th class="col-sm-5 text-right">
+				            <th class="col-sm-3 text-right">
 				            	<div class="col-sm-2" >
 				            		@include('layouts.widgets.tablesort',
 									[ 'title' => '' 
@@ -112,9 +113,10 @@
 				        <tr >
 				        	<td  class="text-center" style="vertical-align:middle;">{{$loop->index+1}}</td>
 				            <td style="vertical-align:middle;">
-				            	 <label>TH :</label> {{$t->name_th}}<BR>
-				                    <label>EN :</label> {{$t->name_en}}
+								<label>TH :</label> {{$t->name_th}}<BR>
+				                <label>EN :</label> {{$t->name_en}}
 				            </td>
+				            <td style="vertical-align:middle;">{{$t->province_name_th}}</td>
 				            <td style="vertical-align:middle;">{{$t->created_at->diffForHumans()}}</td>
 				           
 				            <td style="vertical-align:middle;">
@@ -141,7 +143,7 @@
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
 											 {{ csrf_field() }}
 											{{ method_field('DELETE') }}
-											<button type="submit" class="btn btn-danger btn-circle" title="delete item">
+											<button type="button" onclick="if (confirm('คุณต้องการลบใช่หรือไม่?')) { $(this).closest('form').submit(); }"  class="btn btn-danger btn-circle" title="delete item">
 											 	<i class="fa fa-trash-o"></i>
 											</button>
 									</form> 
