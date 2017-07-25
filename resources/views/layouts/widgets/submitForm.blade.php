@@ -13,7 +13,7 @@ img {
 				{{ method_field('PUT') }}
 			@endif
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-8">
 			 	@include('layouts.partials.error')
 	
 				@if (isset($url))
@@ -32,8 +32,11 @@ img {
 				 <div class="layout-en">
 				 	 {{ $panelBodyEN }}	
 				 </div>
+				
+				{{ isset($panelBodyMain)? $panelBodyMain : '' }}
+
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				@component('admin.widgets.collapse')
 		            @slot('header', 'Language')
 		            @slot('class', 'info')
@@ -73,7 +76,7 @@ img {
 			</div>
 		</div>	
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<a href="{{ $backUrl }}" class="btn btn-danger">Back</a>
 				<button type="submit"  class="btn btn-primary" >Save</button>
 			</div>

@@ -8,6 +8,7 @@ use App\Http\Requests\BannerValidate;
 use App\Models\promotionSliderSub;
 use Route;
 use stdClass ;
+use Auth;
 class PromotionSliderSubController extends Controller
 {
     public $route = 'admin/promotion-slider-sub' ;
@@ -41,7 +42,7 @@ class PromotionSliderSubController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

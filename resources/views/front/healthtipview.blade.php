@@ -9,7 +9,7 @@
 		<section class="phoinikas--flex-row phoinikas--detail-row">
 			<aside class="phoinikas--detail-aside">
 				@foreach($aside as $a)
-					<img src="{{ asset('storage/upload/'.$a->image) }}" alt="" style="width: 100%; margin-bottom: 10px;">
+					<img src="{{ isset($a->image) ? asset('storage/upload/'.$a->image) : asset('/img/resource/thumbnail-default.jpg') }}" alt="" style="width: 100%; margin-bottom: 10px;">
 				@endforeach
 			</aside>
 			<article class="phoinikas--detail-content">
@@ -31,18 +31,18 @@
 					<figure class="phoinikas--tips-item swiper-slide">
 						@if (App::getLocale()=='th') 
 							<a href="{{ url('healthtip/'.$o->id) }}">
-								<img src="{{ asset('storage/upload/'.$o->thumbnail_th) }}" alt="{{ $o->title_th }}">
+								<img src="{{  isset($o->thumbnail_th) ? asset('storage/upload/'.$o->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $o->title_th }}">
 							</a>
 							<figcaption>
-								<p>{{ $o->short_description_th }}</p>
+								<p>{!! $o->short_description_th !!}</p>
 								<a href="{{ url('healthtip/'.$o->id) }}">More detail</a>
 							</figcaption>
 						@else
 							<a href="{{ url('healthtip/'.$o->id) }}">
-								<img src="{{ asset('storage/upload/'.$o->thumbnail_en) }}" alt="{{ $o->title_en }}">
+								<img src="{{ isset($o->thumbnail_en) ? asset('storage/upload/'.$o->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $o->title_en }}">
 							</a>
 							<figcaption>
-								<p>{{ $o->short_description_en }}</p>
+								<p>{!! $o->short_description_en !!}</p>
 								<a href="{{ url('healthtip/'.$o->id) }}">More detail</a>
 							</figcaption>
 						@endif

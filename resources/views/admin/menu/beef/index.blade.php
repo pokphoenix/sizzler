@@ -15,13 +15,19 @@
                     </span>
                 </div>
 			</div>
+			
 			<div class="col-sm-6">
+				@if ($auth)
 				<a href="{{ asset($route.'/create') }}" class="btn btn-success" type="button" title="เพิ่มข้อมูล">
 	                <i class="fa fa-plus"></i>
 	            </a>
+	            @endif
 	           <a href="{{ asset($route.'/'.$categoryId.'/edit') }}" class="btn btn-warning" type="button" title="แก้ไขรายการ">
 	                <i class="fa fa-edit"></i>
 	            </a>
+	            <a data-toggle="tooltip" data-placement="bottom" class="btn btn-info" title="<img src='{{ asset('/img/backend/m_1.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/m_1.jpg') }}" target="_blank" >
+			        <i class="fa fa-info-circle"></i>
+			    </a>
 			</div>
 			
 		</div>
@@ -33,11 +39,8 @@
 				    <thead>
 				        <tr style="vertical-align:middle;">
 				        	<th class="col-sm-1 text-center" >#</th>
-				            <th class="col-sm-4">  
-				            	<div class="col-sm-4" >
-				            		item
-				            	</div>
-				            	<div class="col-sm-4">
+				            <th class="col-sm-7">  
+				            	<div class="col-sm-6">
 								@include('layouts.widgets.tablesort',
 								[ 'title' => 'TH' 
 									,'sortKey' => 'name_th'
@@ -49,7 +52,7 @@
 									,'search' => $search
 								])
 				            	</div>
-				            	<div class="col-sm-4">
+				            	<div class="col-sm-6">
 				            	@include('layouts.widgets.tablesort',
 								[ 'title' => 'EN' 
 								    ,'sortKey' => 'name_en'
@@ -75,7 +78,7 @@
 								])	
 							</th>
 							
-				            <th class="col-sm-5 text-right"></th>
+				            <th class="col-sm-2 text-right"></th>
 				        </tr>
 				    </thead>
 
@@ -85,16 +88,28 @@
 				        	<td  class="text-center" style="vertical-align:middle;">{{$loop->index+1}}</td>
 				            <td style="vertical-align:middle;">
 				            	<div class="col-sm-6" >
-				            		<label>TH :</label> {{$t->name_th}}<BR>
-				            		<a data-fancybox="gallery" href="{{ (isset($t->img_th)) ? asset('storage/upload/'.$t->img_th)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
-				                      <img class="media-object" src="{{ (isset($t->img_th)) ? asset('storage/upload/'.$t->img_th)  : asset('/img/resource/thumbnail-default.jpg') }}" width="100" height="100" alt="...">
-				                    </a>
+				            		<div class="media">
+					                  <div class="media-left">
+					                    <a data-fancybox="gallery" href="{{ (isset($t->img_th)) ? asset('storage/upload/'.$t->img_th)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
+					                      <img class="media-object" src="{{ (isset($t->img_th)) ? asset('storage/upload/'.$t->img_th)  : asset('/img/resource/thumbnail-default.jpg') }}" width="100" height="100" alt="...">
+					                    </a>
+					                  </div>
+					                  <div class="media-body">
+					                    <label>TH :</label>{!! $t->name_th !!}<BR>
+					                  </div>
+					                </div>
 				            	</div>
 				            	<div class="col-sm-6" >
-				            		<label>EN :</label> {{$t->name_en}}<BR>
-				            		<a data-fancybox="gallery" href="{{ (isset($t->img_en)) ? asset('storage/upload/'.$t->img_en)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
-				                      <img class="media-object" src="{{ (isset($t->img_en)) ? asset('storage/upload/'.$t->img_en)  : asset('/img/resource/thumbnail-default.jpg') }}" width="100" height="100" alt="...">
-				                    </a>
+				            		<div class="media">
+					                  <div class="media-left">
+					                    <a data-fancybox="gallery" href="{{ (isset($t->img_en)) ? asset('storage/upload/'.$t->img_en)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
+					                      <img class="media-object" src="{{ (isset($t->img_en)) ? asset('storage/upload/'.$t->img_en)  : asset('/img/resource/thumbnail-default.jpg') }}" width="100" height="100" alt="...">
+					                    </a>
+					                  </div>
+					                  <div class="media-body">
+					                    <label>EN :</label>{!! $t->name_en !!}<BR>
+					                  </div>
+					                </div>
 				            	</div>
 				            	
 				            </td>
@@ -115,11 +130,6 @@
         </div>
        
     </div>
-
-
-<script type="text/javascript">
-
-</script>
 @endsection
 
 

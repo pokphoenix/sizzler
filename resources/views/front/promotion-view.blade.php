@@ -8,7 +8,11 @@
 			</header>
 
 			<section class="phoinikas--flex-row phoinikas--detail-row">
-				<img src="{{ asset('storage/upload/'.$data[0]->img_th)  }}" alt="" style="margin: auto;">
+				@if (App::getLocale()=='th') 
+				<img src="{{ isset($data[0]->img_th) ? asset('storage/upload/'.$data[0]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="" style="margin: auto;">
+				@else
+				<img src="{{ isset($data[0]->img_en) ? asset('storage/upload/'.$data[0]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="" style="margin: auto;">
+				@endif
 			</section>
 
 

@@ -1,9 +1,14 @@
 <?php
 
-if (! function_exists('baseUrl')) {
-    function baseUrl($url)
+
+if (! function_exists('set_active')) {
+    function set_active ($route)
     {
-        return Config::get('constants.base_url').$url ;
+        if(is_array($route))
+        {
+            return in_array(Request::path(), $route) ? 'active' : '';
+        }
+        return Request::path() == $route ? 'active' : '';
     }
 }
 
@@ -32,7 +37,7 @@ if (! function_exists('urlSortBy')) {
     }
 }
 if (! function_exists('uploadfile')) {
-    function uploadfile($request,$name)
+    function uploadfile($request,$name,$resize=null)
     {
         $result = ['result'=>true,'error'=>''];
         if ($request->hasFile($name)) {
@@ -51,9 +56,25 @@ if (! function_exists('uploadfile')) {
                     }else{
                         $folderName = UPLOAD_PATH.date('Ym') ;
                         $fileName = time().'_'.$file->getClientOriginalName();
-                        $path = $file->storeAs($folderName,$fileName);
-                        $imageName = str_replace(UPLOAD_PATH,'',$path) ;
-                        $result['imagePath'][$key] = $imageName ;
+
+                        if(isset($resize)){
+
+                            if (!is_dir(public_path('/storage/'.$folderName))) {
+                                File::makeDirectory(public_path('/storage/'.$folderName),0777,true);  
+                            }
+                            // Storage::disk('local')->makeDirectory($folderName);
+                            $image_resize = Image::make($file->getRealPath());            
+                            $image_resize->resize($resize['w'], $resize['h']);
+                            $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                            $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
+                            $result['imagePath'][$key] = $imageName ;
+                        }else{
+                            $path = $file->storeAs($folderName,$fileName);
+                            $imageName = str_replace(UPLOAD_PATH,'',$path) ;
+                            $result['imagePath'][$key] = $imageName ;
+                        }
+
+                      
                     }
                 }
             }else{
@@ -70,9 +91,22 @@ if (! function_exists('uploadfile')) {
                 }else{
                     $folderName = UPLOAD_PATH.date('Ym') ;
                     $fileName = time().'_'.$request->$name->getClientOriginalName();
-                    $path = $file->storeAs($folderName,$fileName);
-                    $imageName = str_replace(UPLOAD_PATH,'',$path) ;
-                    $result['imagePath'] = $imageName ;
+
+                    if(isset($resize)){
+                        if (!is_dir(public_path('/storage/'.$folderName))) {
+                            File::makeDirectory(public_path('/storage/'.$folderName),0777,true);  
+                        }
+                        // Storage::disk('local')->makeDirectory($folderName);
+                        $image_resize = Image::make($file->getRealPath());            
+                        $image_resize->resize($resize['w'], $resize['h']);
+                        $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                        $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
+                        $result['imagePath'] = $imageName ;
+                    }else{
+                        $path = $file->storeAs($folderName,$fileName);
+                        $imageName = str_replace(UPLOAD_PATH,'',$path) ;
+                        $result['imagePath'] = $imageName ;
+                    }
                 }
                
             }

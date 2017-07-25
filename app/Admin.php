@@ -32,4 +32,23 @@ class Admin extends Authenticatable
     {
         $this->notify(new AdminResetPasswordNotification($token));
     }
+
+    public function role(){
+        return $this->belongsToMany(role::class,'role_admins');
+    }
+
+
+    public function isAdmin()
+    {
+        foreach ($this->role()->get() as $role)
+        {
+            if ($role->name == 'admin')
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

@@ -9,6 +9,7 @@ use App\Models\healthtip;
 use App\Models\images;
 use Route;
 use stdClass ;
+use Auth;
 class HealthTipController extends Controller
 {
     public $route = 'admin/healthtip' ;
@@ -42,7 +43,7 @@ class HealthTipController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

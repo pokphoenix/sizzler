@@ -9,6 +9,7 @@ use App\Models\media;
 use App\Models\mediaCategory;
 use Route;
 use stdClass;
+use Auth;
 class MediaController extends Controller
 {
     public $route = 'admin/media' ;
@@ -41,7 +42,7 @@ class MediaController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->route.'.index',$data);
     }
 

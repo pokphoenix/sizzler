@@ -11,7 +11,7 @@
             @slot('panelBodyTH')  
 
             <div class="form-group">
-                <label for="ex">Name TH</label>
+                <label for="ex">รูปซ้าย (ภาษาไทย)</label>
                 <input id="name_img_th_1" name="name_img_th_1" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_img_th_2) ? $data->name_img_th_2 : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -24,12 +24,16 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th_1" name="img_th_1" class="form-control" >
+                    <br>
+                     <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/home006.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/home006.jpg') }}" target="_blank" >
+                        <i class="fa fa-info-circle"></i>
+                    </a>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+               <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>
             <div class="form-group">
-                <label for="ex">Name TH</label>
+                <label for="ex">รูปขวา (ภาษาไทย)</label>
                 <input id="name_img_th_2" name="name_img_th_2" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_img_th_2) ? $data->name_img_th_2 : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -42,9 +46,13 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th_2" name="img_th_2" class="form-control" >
+                    <br>
+                     <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/home007.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/home007.jpg') }}" target="_blank" >
+                        <i class="fa fa-info-circle"></i>
+                    </a>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
            
 
@@ -52,7 +60,7 @@
             @slot('panelBodyEN')  
            
             <div class="form-group">
-                <label for="ex">Name EN</label>
+                <label for="ex">รูปขวา (ภาษาอังกฤษ)</label>
                 <input id="name_img_en_1" name="name_img_en_1" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_img_en_1) ? $data->name_img_en_1 : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -65,12 +73,16 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en_1" name="img_en_1" class="form-control" >
+                    <br>
+                     <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/home006.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/home006.jpg') }}" target="_blank" >
+                        <i class="fa fa-info-circle"></i>
+                    </a>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
             </div> 
             <div class="form-group">
-                <label for="ex">Name EN</label>
+                <label for="ex">รูปขวา (ภาษาอังกฤษ)</label>
                 <input id="name_img_en_2" name="name_img_en_2" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_img_en_2) ? $data->name_img_en_2 : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -83,14 +95,27 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en_2" name="img_en_2" class="form-control" >
+                    <br>
+                     <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/home007.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/home007.jpg') }}" target="_blank" >
+                        <i class="fa fa-info-circle"></i>
+                    </a>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
             </div> 
             @endslot
-
+            @slot('panelBodyMain')
+            <div class="form-group">
+                <label for="ex">ส่วนแสดงผล <h6>(คลิกเพื่อดูขนาดใหญ่)</h6></label>
+                <a class="showImage" data-fancybox="gallery" href="{{ asset('/img/backend/home005.jpg') }}" target="_blank">
+                    <img class="img-responsive" src="{{ asset('/img/backend/home005.jpg') }}" >
+                </a>
+                
+            </div>
+            @endslot
     @endcomponent
 
+<script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
     $(function() {

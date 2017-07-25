@@ -8,6 +8,7 @@ use App\Http\Requests\BannerValidate;
 use App\Models\slider;
 use Route;
 use stdClass ;
+use Auth;
 class SliderController extends Controller
 {
     public $route = 'admin/slider' ;
@@ -41,7 +42,7 @@ class SliderController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

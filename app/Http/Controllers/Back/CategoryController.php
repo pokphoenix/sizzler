@@ -8,6 +8,7 @@ use App\Http\Requests\FormValidate;
 use App\Models\category;
 use Route;
 use stdClass ;
+use Auth;
 class CategoryController extends Controller
 {
     public $route = 'admin/category' ;
@@ -40,7 +41,7 @@ class CategoryController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->route.'.index',$data);
     }
 
@@ -104,7 +105,6 @@ class CategoryController extends Controller
          $data['route'] = $this->route ;
         $data['data'] = $category ;
         $data['edit'] = true ;
-
         return view($this->route.'.create',$data);
     }
 
@@ -168,7 +168,7 @@ class CategoryController extends Controller
     private function fileUpload($request){
         $post = $request->all();
         $upload = uploadfile($request,'thumbnail_th') ;
-        if($upload['result']){
+        if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
@@ -182,6 +182,7 @@ class CategoryController extends Controller
             $post['thumbnail_en'] = $upload['imagePath'] ;
         }
         $post['result'] = true ;
+
         return $post ;
     } 
     

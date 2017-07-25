@@ -14,7 +14,7 @@
 								<img src="{{ asset('storage/upload/'.$r->thumbnail_th ) }}" alt="{{ $r->title_th }}">
 							</a>
 							<figcaption>
-								<p>{{ $r->short_description_th }}</p>
+								<p>{!! $r->short_description_th !!}</p>
 								<a href="{{ url('release/'.$r->id) }}">More detail</a>
 							</figcaption>
 						</figure>
@@ -24,7 +24,7 @@
 								<img src="{{ asset('storage/upload/'.$r->thumbnail_en ) }}" alt="{{ $r->title_en }}">
 							</a>
 							<figcaption>
-								<p>{{ $r->short_description_en }}</p>
+								<p>{!! $r->short_description_en !!}</p>
 								<a href="{{ url('release/'.$r->id) }}">More detail</a>
 							</figcaption>
 						</figure>

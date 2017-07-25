@@ -7,16 +7,15 @@
 				<div class="phoinikas--detail-youtube">
 					<iframe width="560" height="315" src="{{ 'https://www.youtube.com/embed/'.$data->url }}" frameborder="0" allowfullscreen></iframe>
 				</div>
-				<div class="layout-th">
+				@if (App::getLocale()=='th') 
 					<p class="phoinikas--caption-youtube" >
-						{{ $data->short_desc_th }}
+						{!! $data->short_desc_th !!}
 					</p>
-				</div>
-				<div class="layout-en">
+				@else
 					<p class="phoinikas--caption-youtube" >
-						{{ $data->short_desc_en }}
+						{!! $data->short_desc_en !!}
 					</p>
-				</div>
+				@endif
 			</section>
 			<section class="phoinikas--media-footer">
 				<h2 class="phoinikas--txt-h2">Media</h2>
@@ -25,10 +24,13 @@
 						<div class="swiper-wrapper">
 							@foreach ($others as $tvc )
 							<figure class="swiper-slide">
-								<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ asset('storage/upload/'.$tvc->thumbnail_th) }}" alt=""></a>
+								@if (App::getLocale()=='th') 
+								<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_th) ? asset('storage/upload/'.$tvc->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
+								@else
+								<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_en) ? asset('storage/upload/'.$tvc->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
+								@endif
 							</figure>
 							@endforeach
-							
 						</div>
 					</div>
 

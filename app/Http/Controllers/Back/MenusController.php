@@ -9,7 +9,7 @@ use App\Models\menu;
 use App\Models\category;
 use Route;
 use stdClass;
-
+use Auth;
 class MenusController extends Controller
 {
     public $route = 'admin/menu' ;
@@ -42,7 +42,7 @@ class MenusController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->route.'.index',$data);
     }
 

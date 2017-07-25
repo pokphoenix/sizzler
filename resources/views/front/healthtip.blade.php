@@ -11,20 +11,20 @@
 					@if (App::getLocale()=='th') 
 					<figure class="phoinikas--tips-item">
 						<a href="{{ url('healthtip/'.$h->id) }}">
-							<img src="{{ asset('storage/upload/'.$h->thumbnail_th ) }}" alt="{{ $h->title_th }}">
+							<img src="{{ isset($h->thumbnail_th) ? asset('storage/upload/'.$h->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $h->title_th }}">
 						</a>
 						<figcaption>
-							<p>{{ $h->short_description_th }}</p>
+							<p>{!! $h->short_description_th !!}</p>
 							<a href="{{ url('healthtip/'.$h->id) }}">More detail</a>
 						</figcaption>
 					</figure>
 					@else
 					<figure class="phoinikas--tips-item">
 						<a href="{{ url('healthtip/'.$h->id) }}">
-							<img src="{{ asset('storage/upload/'.$h->thumbnail_en ) }}" alt="{{ $h->title_en }}">
+							<img src="{{ isset($h->thumbnail_en) ? asset('storage/upload/'.$h->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $h->title_en }}">
 						</a>
 						<figcaption>
-							<p>{{ $h->short_description_en }}</p>
+							<p>{!! $h->short_description_en !!}</p>
 							<a href="{{ url('healthtip/'.$h->id) }}">More detail</a>
 						</figcaption>
 					</figure>

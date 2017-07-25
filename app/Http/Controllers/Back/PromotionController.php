@@ -9,7 +9,7 @@ use App\Models\promotion;
 use App\Models\category;
 use Route;
 use stdClass;
-
+use Auth;
 class PromotionController extends Controller
 {
     public $route = 'admin/promotion' ;
@@ -42,7 +42,7 @@ class PromotionController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

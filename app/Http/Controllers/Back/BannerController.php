@@ -8,6 +8,7 @@ use App\Http\Requests\FormValidate;
 use App\Models\banner;
 use Route;
 use stdClass ;
+use Auth;
 class bannerController extends Controller
 {
     public $route = 'admin/banner' ;
@@ -42,7 +43,7 @@ class bannerController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

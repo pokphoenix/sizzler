@@ -48,7 +48,15 @@
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
             </div>  
             @endslot
-
+             @slot('panelBodyMain')
+            <div class="form-group">
+                <label for="ex">ส่วนแสดงผล <h6>(คลิกเพื่อดูขนาดใหญ่)</h6></label>
+                <a class="showImage" data-fancybox="gallery" href="{{ asset('/img/backend/p_3_1.jpg') }}" target="_blank">
+                    <img class="img-responsive" src="{{ asset('/img/backend/p_3_1.jpg') }}" >
+                </a>
+                
+            </div>
+            @endslot
     @endcomponent
 
 <script src="{{ asset('js/validate.js') }}"></script>

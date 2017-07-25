@@ -123,8 +123,8 @@
 				                  </div>
 				                  <div class="media-body">
 				                    <h4 class="media-heading"></h4>
-				                    <label>TH :</label> {{$t->name_th}}<BR>
-				                    <label>EN :</label> {{$t->name_en}}
+				                    <label>TH :</label> {!! $t->name_th !!}<BR>
+				                    <label>EN :</label>{!! $t->name_en !!}
 				                  </div>
 				                </div>
 				            </td>

@@ -10,7 +10,7 @@ use App\Models\province;
 
 use Route;
 use stdClass;
-
+use Auth;
 class LocationController extends Controller
 {
     public $route = 'admin/location' ;
@@ -50,7 +50,7 @@ class LocationController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

@@ -9,6 +9,7 @@ use App\Models\release;
 use App\Models\releaseimages;
 use Route;
 use stdClass ;
+use Auth;
 class ReleaseController extends Controller
 {
     public $route = 'admin/release' ;
@@ -42,7 +43,7 @@ class ReleaseController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
     }
 

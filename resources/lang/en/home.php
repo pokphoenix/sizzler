@@ -13,6 +13,7 @@ return [
     'international' => 'International' ,
     'tel' => 'Tel',
     'province' => 'Province',
-    'branch' => 'Branch'
+    'branch' => 'Branch',
+    'policy' => 'Private Policy'
 ];
 ?>

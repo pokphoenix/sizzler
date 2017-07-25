@@ -150,6 +150,7 @@
 								<div class="col-sm-2">
 									<a href="{{ asset($route.'/'.$t->id) }}" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
+								@if ($auth)
 								<div class="col-sm-2">
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
 											 {{ csrf_field() }}
@@ -159,6 +160,7 @@
 											</button>
 									</form> 
 								</div>
+								@endif
 								<div class="col-sm-2">
 									
 								</div>
@@ -181,15 +183,7 @@
     </div>
 
 
-<script type="text/javascript">
-$(function() {
-	$("#search").on('keyup',function(e){
-		var url = $(this).data("href")+"?search="+$(this).val() ;
-		console.log('url',$(this).data("href"),url);
-		$("a#search_btn").attr('href',url);
-	})
-});
-</script>
+<script src="{{ asset('js/custom.js') }}"></script>
 @endsection
 
 

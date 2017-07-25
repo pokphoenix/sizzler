@@ -16,7 +16,7 @@
             <img src="{{ asset('/img/location/img-shop.jpg') }}" alt="">
             <div class="phoinikas--branch-detail" id="branch-info">
                 {{ $data['name'] }}<br><br>
-                {{ $data['address'] }}<br><br>
+                {!! $data['address'] !!}<br><br>
                 {{ trans('home.tel') .' : '. $data['tel'] }}
             </div>
         </aside>

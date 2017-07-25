@@ -10,11 +10,11 @@
                         @foreach ($sliderMains as $s)
                             @if (App::getLocale()=='th') 
                                 <div class="swiper-slide phoinikas--swiper-slide">
-                                    <a href="{{ url($s->url)  }}" class="phoinikas--img-link"><img src="{{ asset('storage/upload/'.$s->img_th) }}" alt="{{ $s->name_th  }}"></a>
+                                    <a href="{{ url($s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_th) ? asset('storage/upload/'.$s->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_th  }}"></a>
                                 </div>
                             @else
                                 <div class="swiper-slide phoinikas--swiper-slide">
-                                    <a href="{{ url($s->url)  }}" class="phoinikas--img-link"><img src="{{ asset('storage/upload/'.$s->img_en) }}" alt="{{ $s->name_en  }}"></a>
+                                    <a href="{{ url($s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_en) ? asset('storage/upload/'.$s->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_en  }}"></a>
                                 </div>
                             @endif
                         @endforeach
@@ -37,14 +37,14 @@
                     <figure>
                         @if (App::getLocale()=='th')
                             <a href="{{  url('healthtip/'.$h->id) }}">
-                                <img src="{{ asset('storage/upload/'.$h->thumbnail_th ) }}" alt="{{ $h->title_th }}">
+                                <img src="{{ isset($h->thumbnail_th) ? asset('storage/upload/'.$h->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $h->title_th }}">
                             </a>
                             <figcaption>
                                 {{ $h->title_th }}
                             </figcaption>
                         @else
                             <a href="{{  url('healthtip/'.$h->id) }}">
-                                <img src="{{ asset('storage/upload/'.$h->thumbnail_en ) }}" alt="{{ $h->title_en }}">
+                                <img src="{{ isset($h->thumbnail_en) ? asset('storage/upload/'.$h->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $h->title_en }}">
                             </a>
                             <figcaption>
                                 {{ $h->title_en }}
@@ -65,9 +65,9 @@
                          <div class="" style="width: 100%;">
                             <a href="{{ url('/'.$sub->url) }}" class="phoinikas--img-link">
                             @if (App::getLocale()=='th')
-                                <img src="{{ asset('storage/upload/'.$sub->img_th) }}" alt="{{ $sub->name_th }}" style="width: 100%;">
+                                <img src="{{ isset($sub->img_th) ? asset('storage/upload/'.$sub->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub->name_th }}" style="width: 100%;">
                             @else
-                                <img src="{{ asset('storage/upload/'.$sub->img_en) }}" alt="{{ $sub->name_en }}" style="width: 100%;">
+                                <img src="{{ isset($sub->name_en) ? asset('storage/upload/'.$sub->name_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub->name_en }}" style="width: 100%;">
                             @endif
                             </a>
                         </div>
@@ -84,11 +84,11 @@
             <section class="phoinikas--banner-wednesday">
                 <a href="{{ url('/'.$banners[0]->url) }}" class="phoinikas--img-link">
                 @if (App::getLocale()=='th') 
-                    <img src="{{ asset('storage/upload/'.$banners[0]->img_th_1) }}" alt="{{ $banners[0]->name_img_th_1 }}">
-                    <img src="{{ asset('storage/upload/'.$banners[0]->img_th_2) }}" alt="{{ $banners[0]->name_img_th_2 }}">
+                    <img src="{{ isset($banners[0]->img_th_1) ? asset('storage/upload/'.$banners[0]->img_th_1) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_th_1 }}">
+                    <img src="{{ isset($banners[0]->img_th_2) ? asset('storage/upload/'.$banners[0]->img_th_2) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_th_2 }}">
                 @else
-                    <img src="{{ asset('storage/upload/'.$banners[0]->img_en_1) }}" alt="{{ $banners[0]->name_img_en_1 }}">
-                    <img src="{{ asset('storage/upload/'.$banners[0]->img_en_2) }}" alt="{{ $banners[0]->name_img_en_2 }}">
+                    <img src="{{ isset($banners[0]->img_en_1) ? asset('storage/upload/'.$banners[0]->img_en_1) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_en_1 }}">
+                    <img src="{{ isset($banners[0]->img_en_2) ? asset('storage/upload/'.$banners[0]->img_en_2) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_en_2 }}">
                 @endif
                 </a>
             </section>

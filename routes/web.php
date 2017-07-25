@@ -82,6 +82,29 @@
 
 Auth::routes();
 
+
+// Route::get('storage/upload/{folder}/{filename}', function ($folder,$filename)
+// {
+//     echo "$folder,$filename" ; die();
+//     $path = storage_path('public/' . $filename);
+//     dd($path);
+//     if (!File::exists($path)) {
+//         abort(404);
+//     }
+
+//     $file = File::get($path);
+//     $type = File::mimeType($path);
+
+//     $response = Response::make($file, 200);
+//     $response->header("Content-Type", $type);
+
+//     return $response;
+// });
+
+ Route::get('/policy/', 'HomeController@policy');
+
+
+Route::get('storage', 'HomeController@storage');
 Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/menu/{id}', 'HomeController@menu');
@@ -211,6 +234,7 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
 
     Route::get('homeview/position', 'HomeViewController@position')->name('homeview-position');
     Route::post('homeview/position', 'HomeViewController@positionStore');
+
     Route::resource('homeview', 'HomeViewController');
 
     Route::resource('beef', 'BeefController');
@@ -222,5 +246,7 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
     Route::resource('kid', 'KidMenuController');
     Route::resource('pork', 'PorkController');
     Route::resource('seafood', 'SeafoodController');
-
+    Route::resource('wednesday', 'WednesdayController');
+    Route::resource('everyday', 'EverydayController');
+    Route::resource('lunch', 'LunchController');
 });

@@ -8,7 +8,8 @@ use App\Http\Requests\FormValidate;
 use App\Models\banner;
 use Route;
 use stdClass ;
-class bannerController extends Controller
+
+class HomeViewController extends Controller
 {
     public $route = 'admin/banner' ;
     public $controllerName = 'แบนเนอ home' ;
@@ -52,13 +53,16 @@ class bannerController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'สร้าง '.$this->controllerName ;
-        $data['route'] = $this->route ;
+        // $data['title'] = 'สร้าง '.$this->controllerName ;
+        // $data['route'] = $this->route ;
 
-        $o = new stdClass();
-        $o->position =  999 ;
-        $data['data'] =  $o ;
-        return view($this->view.'.create',$data);
+        // $o = new stdClass();
+        // $o->position =  999 ;
+        // $data['data'] =  $o ;
+        // return view($this->view.'.create',$data);
+        // $admin = if  ;
+        //   // $admin = Admin::find(1)->role ;
+        //   dd($admin);
     }
 
     /**

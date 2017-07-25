@@ -8,6 +8,7 @@ use App\Http\Requests\FormValidate;
 use App\Models\mediaCategory;
 use Route;
 use stdClass;
+use Auth;
 class MediaCategoryController extends Controller
 {
     public $route = 'admin/media-category' ;
@@ -40,7 +41,7 @@ class MediaCategoryController extends Controller
         $data['sortBy'] = $sortBy;
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->route.'.index',$data);
     }
 

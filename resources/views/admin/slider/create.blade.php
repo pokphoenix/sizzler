@@ -27,7 +27,9 @@
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
+            
              @endslot
+
             @slot('panelBodyEN')  
             <div class="form-group">
                 <label for="ex">Name EN</label>
@@ -47,8 +49,21 @@
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB </p>
+                
             </div>  
+            
             @endslot
+            
+            @slot('panelBodyMain')
+            <div class="form-group">
+                <label for="ex">ส่วนแสดงผล <h6>(คลิกเพื่อดูขนาดใหญ่)</h6></label>
+                <a class="showImage" data-fancybox="gallery" href="{{ asset('/img/backend/home001.jpg') }}" target="_blank">
+                    <img class="img-responsive" src="{{ asset('/img/backend/home001.jpg') }}" >
+                </a>
+                
+            </div>
+            @endslot
+           
 
     @endcomponent
 

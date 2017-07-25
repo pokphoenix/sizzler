@@ -19,6 +19,9 @@
 				<a href="{{ asset($route.'/create') }}" class="btn btn-success" type="button" title="เพิ่มข้อมูล">
 	                <i class="fa fa-plus"></i>
 	            </a>
+	            <a data-toggle="tooltip" data-placement="bottom" class="btn btn-info" title="<img src='{{ asset('/img/backend/p_01.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/p_01.jpg') }}" target="_blank" >
+			        <i class="fa fa-info-circle"></i>
+			    </a>
 			</div>
 			
 		</div>
@@ -160,15 +163,7 @@
     </div>
 
 
-<script type="text/javascript">
-$(function() {
-	$("#search").on('keyup',function(e){
-		var url = $(this).data("href")+"?search="+$(this).val() ;
-		console.log('url',$(this).data("href"),url);
-		$("a#search_btn").attr('href',url);
-	})
-});
-</script>
+<script src="{{ asset('js/custom.js') }}"></script>
 @endsection
 
 

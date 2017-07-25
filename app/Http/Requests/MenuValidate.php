@@ -24,22 +24,19 @@ class MenuValidate extends FormRequest
     public function rules()
     {
         return [
-            'name_img_th_1'=>'bail|required',
-            'name_img_en_1'=>'bail|required',
             'img_th_1' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
             'img_th_2' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
             'img_th_3' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
             'img_th_4' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
             'img_th_5' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
             'img_th_6' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
+            'img_th_7' => 'bail|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
     public function messages()
     {
         return [
-                'name_img_th_1.required'=>'กรุณาระบุ ชื่อรูปภาษาไทย ',
-                'name_img_en_1.required'=>'กรุณาระบุ ชื่อรูปภาษาอังกฤษ ',
                 'img_th_1.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
                 'img_th_1.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_2.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
@@ -52,6 +49,8 @@ class MenuValidate extends FormRequest
                 'img_th_5.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
                 'img_th_6.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
                 'img_th_6.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
+                'img_th_7.mimes'=>'กรุณาเลือกรูปเฉพาะ jpeg , jpg หรือ png เท่านั้นค่ะ ',
+                'img_th_7.max'=>'รูปไม่ควรมีขนาดเกิน 2MB ค่ะ ',
         ];
     }
 }

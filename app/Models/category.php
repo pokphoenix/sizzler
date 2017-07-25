@@ -17,7 +17,7 @@ class category extends Model
     protected $hidden = ['hid_thumbnail_th','hid_thumbnail_en'] ;
  
     public function menu(){
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(menu::class);
     }
 
 }

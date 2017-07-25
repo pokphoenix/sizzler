@@ -9,6 +9,8 @@ use App\Models\category;
 use App\Models\menu;
 use Route;
 use stdClass ;
+use Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 class BeefController extends Controller
 {
     public $route = 'admin/beef' ;
@@ -16,6 +18,16 @@ class BeefController extends Controller
     public $controllerName = 'เมนู beef (เนื้อ) ' ;
     public $categoryId = 4   ;
     public $cntImg = 4 ;
+    public $resize ;
+
+    public function __construct(){
+        $resize[0] = ['w'=>260,'h'=>266]; 
+        $resize[1] = ['w'=>460,'h'=>314]; 
+        $resize[2] = ['w'=>520,'h'=>260]; 
+        $resize[3] = ['w'=>260,'h'=>266]; 
+        $resize[4] = ['w'=>460,'h'=>210];
+        $this->resize = $resize ;
+    }
 
    
     public function index(Request $request)
@@ -43,7 +55,7 @@ class BeefController extends Controller
         $data['sortType'] = $sortType;
         $data['sortNextType'] = $sortNextType;
         $data['categoryId'] = $this->categoryId;
-       
+        $data['auth'] = Auth::user()->isAdmin() ;
         return view($this->view.'.index',$data);
 
     }
@@ -59,6 +71,7 @@ class BeefController extends Controller
         $data['route'] = $this->route ;
         $data['data'] = category::find($this->categoryId) ;
         $data['cntImg'] = $this->cntImg ;
+        $data['resize'] = $this->resize ;
         return view($this->view.'.create',$data);
     }
 
@@ -70,7 +83,7 @@ class BeefController extends Controller
      */
     public function store(MenuValidate $request)
     {
-         $post = self::fileUpload($request);
+        $post = self::fileUpload($request);
         if(!$post['result']){
             return redirect()->to($this->getRedirectUrl())
                     ->withInput($request->input())
@@ -79,16 +92,16 @@ class BeefController extends Controller
         menu::where('category_id',$this->categoryId)->delete();
         for ($i=1 ; $i<= $this->cntImg ; $i++){
             $o['category_id'] = $this->categoryId ;
-            $o['img_th'] =isset($post['img_th_'.$i]) ? $post['img_th_'.$i] : null ;
-            // dd($o['img_th']);
-            $o['img_en'] = isset($post['img_en_'.$i]) ? $post['img_en_'.$i] : null ;
-             // dd($o['img_en']);
-            $o['name_th'] = isset($post['name_img_th_'.$i]) ? $post['name_img_th_'.$i] : null ;
-            $o['name_en'] = isset($post['name_img_en_'.$i]) ? $post['name_img_en_'.$i] : null ;
+            $o['img_th'] = (isset($post['img_th_'.$i])) ? $post['img_th_'.$i] : ((isset($post['hid_img_th_'.$i])) ? $post['hid_img_th_'.$i] : null) ;
+            $o['img_en'] = (isset($post['img_en_'.$i])) ? $post['img_en_'.$i] : ((isset($post['hid_img_en_'.$i])) ? $post['hid_img_en_'.$i] : null)   ;
+            $o['name_th'] = (isset($post['name_img_th_'.$i])) ? $post['name_img_th_'.$i] : null ;
+            $o['name_en'] = (isset($post['name_img_en_'.$i])) ? $post['name_img_en_'.$i] : null ;
             menu::create($o);
         }
-        $c['thumbnail_th'] = isset($post['thumbnail_th']) ? $post['thumbnail_th'] : null ; 
-        $c['thumbnail_en'] = isset($post['thumbnail_en']) ? $post['thumbnail_en'] : null ;
+        $c['thumbnail_th'] = (isset($post['thumbnail_th'])) ? $post['thumbnail_th'] : ((isset($post['hid_thumbnail_th'])) ? $post['hid_thumbnail_th'] : null) ; 
+        $c['thumbnail_en'] = (isset($post['thumbnail_en'])) ? $post['thumbnail_en'] : ((isset($post['hid_thumbnail_en'])) ? $post['hid_thumbnail_en'] : null) ; 
+        $c['name_th'] = isset($post['name_th']) ? $post['name_th'] : null ;
+        $c['name_en'] = isset($post['name_en']) ? $post['name_en'] : null ;
         $c['status'] = 1 ;
         $db = category::find($this->categoryId)->update($c) ;
         return redirect($this->route);
@@ -124,6 +137,7 @@ class BeefController extends Controller
         $data['subdata'] = category::find($this->categoryId)->menu()->orderBy('id','asc')->get() ;
         $data['edit'] = true ;
         $data['cntImg'] = $this->cntImg ;
+        $data['resize'] = $this->resize ;
         return view($this->view.'.create',$data);
     }
 
@@ -145,14 +159,14 @@ class BeefController extends Controller
         menu::where('category_id',$this->categoryId)->delete();
         for ($i=1 ; $i<= $this->cntImg ; $i++){
             $o['category_id'] = $this->categoryId ;
-            $o['img_th'] =isset($post['img_th_'.$i]) ? $post['img_th_'.$i] : null ;
-            $o['img_en'] = isset($post['img_en_'.$i]) ? $post['img_en_'.$i] : null ;
-            $o['name_th'] = isset($post['name_img_th_'.$i]) ? $post['name_img_th_'.$i] : null ;
-            $o['name_en'] = isset($post['name_img_en_'.$i]) ? $post['name_img_en_'.$i] : null ;
+            $o['img_th'] = (isset($post['img_th_'.$i])) ? $post['img_th_'.$i] : ((isset($post['hid_img_th_'.$i])) ? $post['hid_img_th_'.$i] : null) ;
+            $o['img_en'] = (isset($post['img_en_'.$i])) ? $post['img_en_'.$i] : ((isset($post['hid_img_en_'.$i])) ? $post['hid_img_en_'.$i] : null)   ;
+            $o['name_th'] = (isset($post['name_img_th_'.$i])) ? $post['name_img_th_'.$i] : null ;
+            $o['name_en'] = (isset($post['name_img_en_'.$i])) ? $post['name_img_en_'.$i] : null ;
             menu::create($o);
         }
-        $c['thumbnail_th'] = isset($post['thumbnail_th']) ? $post['thumbnail_th'] : null ; 
-        $c['thumbnail_en'] = isset($post['thumbnail_en']) ? $post['thumbnail_en'] : null ;
+        $c['thumbnail_th'] = (isset($post['thumbnail_th'])) ? $post['thumbnail_th'] : ((isset($post['hid_thumbnail_th'])) ? $post['hid_thumbnail_th'] : null) ; 
+        $c['thumbnail_en'] = (isset($post['thumbnail_en'])) ? $post['thumbnail_en'] : ((isset($post['hid_thumbnail_en'])) ? $post['hid_thumbnail_en'] : null) ; 
         $c['name_th'] = isset($post['name_th']) ? $post['name_th'] : null ;
         $c['name_en'] = isset($post['name_en']) ? $post['name_en'] : null ;
         $c['status'] = 1 ;
@@ -177,36 +191,40 @@ class BeefController extends Controller
 
     private function fileUpload($request){
         $post = $request->all();
-        $upload = uploadfile($request,'thumbnail_th') ;
+
+        $upload = uploadfile($request,'thumbnail_th',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
             $post['thumbnail_th'] = $upload['imagePath'] ;
         }
-        $upload = uploadfile($request,'thumbnail_en') ;
+        $upload = uploadfile($request,'thumbnail_en',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
             $post['thumbnail_en'] = $upload['imagePath'] ;
         }
+
+        
+    
         for($th =1 ; $th<= $this->cntImg ;$th++){
-            $upload = uploadfile($request,'img_th_'.$th) ;
+            $upload = uploadfile($request,'img_th_'.$th,$this->resize[$th]) ;
             if(!$upload['result']){
                return $upload ;
             }
             if(isset($upload['imagePath'])){
-                $post['img_th_'.$i] = $upload['imagePath'] ;
+                $post['img_th_'.$th] = $upload['imagePath'] ;
             }
         }
         for($en =1 ; $en<= $this->cntImg ;$en++){
-            $upload = uploadfile($request,'img_en_'.$en) ;
+            $upload = uploadfile($request,'img_en_'.$en,$this->resize[$en]) ;
             if(!$upload['result']){
                return $upload ;
             }
             if(isset($upload['imagePath'])){
-                $post['img_en_'.$i] = $upload['imagePath'] ;
+                $post['img_en_'.$en] = $upload['imagePath'] ;
             }
         }
         $post['result'] = true ;

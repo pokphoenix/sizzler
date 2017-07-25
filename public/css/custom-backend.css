@@ -62,3 +62,7 @@ a.no-line { text-decoration: none; color:#636B6F;  }
 .column-view {
         padding:0 10px; border-bottom: 1px dotted #000;
     }
+
+div.tooltip-inner {
+    max-width: 900px;
+}

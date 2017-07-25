@@ -25,7 +25,7 @@
                 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  {{ Auth::user()->name.' '.Auth::user()->lastname }} <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>{{ Auth::user()->name.' '.Auth::user()->lastname }} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
@@ -67,7 +67,7 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
+                        <li class="{{ set_active('admin/home') }}">
                             <a href="{{ url ('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
@@ -75,38 +75,47 @@
                                 <i class="fa fa-bars fa-fw"></i> Ourmenu<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*category') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/category') }}">
                                     <a href="{{ url ('admin/category') }}">หมวดหมู่เมนู</a>
                                 </li>
-                               <!--   <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                               <!--   <li class="{{ set_active('admin/banner') }}">
                                     <a href="{{ url ('admin/menu') }}">เมนูอาหาร</a>
                                 </li> -->
-                                <li {{ (Request::is('*beef') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/beef') }}">
                                     <a href="{{ url ('admin/beef') }}">beef (เนื้อ)</a>
                                 </li>
-                                <li {{ (Request::is('*pork') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/pork') }}">
                                     <a href="{{ url ('admin/pork') }}">pork (หมู)</a>
                                 </li>
-                                <li {{ (Request::is('*seafood') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/seafood') }}">
                                     <a href="{{ url ('admin/seafood') }}">seafood (อาหารทะเล)</a>
                                 </li>
-                                <li {{ (Request::is('*chicken') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/chicken') }}">
                                     <a href="{{ url ('admin/chicken') }}">chicken (ไก่)</a>
                                 </li>
-                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/burger') }}">
                                     <a href="{{ url ('admin/burger') }}">burger (เบอเกอร์)</a>
                                 </li>
-                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/kid') }}">
                                     <a href="{{ url ('admin/kid') }}">kid-menu (เมนูสำหรับเด็ก)</a>
                                 </li>
-                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('admin/com-beef') }}">com-beef (เมนูผสมเนื้อ)</a>
+                                <li class="{{ set_active('admin/com-beef') }}">
+                                    <a href="{{ url ('admin/com-beef') }}">com-beef (639)</a>
                                 </li>
-                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('admin/com-suprem') }}">com-suprem (เมนูผสม)</a>
+                                <li class="{{ set_active('admin/com-suprem') }}">
+                                    <a href="{{ url ('admin/com-suprem') }}">com-suprem (499)</a>
                                 </li>
-                                <li {{ (Request::is('*menu') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('admin/com-platter') }}">com-platter (เมนูจานใหญ่)</a>
+                                <li class="{{ set_active('admin/com-platter') }}">
+                                    <a href="{{ url ('admin/com-platter') }}">com-platter (399)</a>
+                                </li>
+                                <li class="{{ set_active('admin/wednesday') }}">
+                                    <a href="{{ url ('admin/wednesday') }}">wednesday </a>
+                                </li>
+                                <li class="{{ set_active('admin/everyday') }}">
+                                    <a href="{{ url ('admin/everyday') }}">everyday </a>
+                                </li>
+                                <li class="{{ set_active('admin/lunch') }}">
+                                    <a href="{{ url ('admin/lunch') }}">lunch </a>
                                 </li>
                             </ul>
                         </li>
@@ -115,16 +124,16 @@
                                 <i class="fa fa-money fa-fw"></i> Promotion<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*promotion-banner') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/promotion-banner') }}">
                                     <a href="{{ url ('admin/promotion-banner') }}">โปรโมชั่น แบนเนอร์ (ส่วนต่อจาก Header)</a>
                                 </li>
-                                <li {{ (Request::is('*promotion') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/promotion') }}">
                                     <a href="{{ url ('admin/promotion') }}">โปรโมชั่น</a>
                                 </li>
-                                <li {{ (Request::is('*promotion-slider') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/promotion-slider') }}">
                                     <a href="{{ url ('admin/promotion-slider') }}">โปรโมชั่น สไลด์เดอร์</a>
                                 </li>
-                                <li {{ (Request::is('*promotion-slider-sub') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/promotion-slider-sub') }}">
                                     <a href="{{ url ('admin/promotion-slider-sub') }}">โปรโมชั่น สไลด์เดอร์ (บล็อคล่าง)</a>
                                 </li>
                                 
@@ -135,22 +144,22 @@
                                 <i class="fa fa-home fa-fw"></i> Home<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*slider') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/slider') }}">
                                     <a href="{{ url ('admin/slider') }}">Slider Main</a>
                                 </li>
-                                <li {{ (Request::is('*slider-sub') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/slider-sub') }}">
                                     <a href="{{ url ('admin/slider-sub') }}">Slider Sub</a>
                                 </li>
                            
-                                <li {{ (Request::is('*banner') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/banner') }}">
                                     <a href="{{ url ('admin/banner') }}">banner</a>
                                 </li>
                             </ul>
                         </li>
-                        <li {{ (Request::is('*location') ? 'class="active"' : '') }}>
+                        <li class="{{ set_active('admin/location') }}">
                             <a href="{{ url ('admin/location') }}"><i class="fa fa-map-o fa-fw"></i> Location</a>
                         </li>
-                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
+                         <li class="{{ set_active('admin/healthtip') }}">
                             <a href="{{ url ('admin/healthtip') }}"><i class="fa fa-picture-o fa-fw"></i> Health Tip</a>
                         </li>
                         <li>
@@ -158,13 +167,13 @@
                                 <i class="fa fa-caret-square-o-right fa-fw"></i> Media<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/media-category') }}">
                                     <a href="{{ url ('admin/media-category') }}">หมวดหมู่ มีเดีย</a>
                                 </li>
-                                <li {{ (Request::is('*media') ? 'class="active"' : '') }}>
+                                <li  class="{{ set_active('admin/media') }}" >
                                     <a href="{{ url ('admin/media') }}">มีเดีย</a>
                                 </li>
-                                <li {{ (Request::is('*release') ? 'class="active"' : '') }}>
+                                <li class="{{ set_active('admin/release') }}" >
                                     <a href="{{ url ('admin/release') }}">release</a>
                                 </li>
                                 <!-- <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
@@ -198,7 +207,7 @@
             <!-- /#page-wrapper -->
         </div>
     </div>
-
+<script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('plugin/fancybox/jquery.fancybox.min.js') }}"></script>
 <script src="{{ asset('plugin/jquery-validation/jquery.validate.min.js') }}"></script>
 @endsection

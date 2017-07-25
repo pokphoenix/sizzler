@@ -69,7 +69,6 @@ class HomeController extends Controller
         dd($data);
         return view('front.category',$data);
     }
-
     public function promotion()
     {   
         $promotionBanner = promotionBanner::limit(1)->where('status',1)->get();
@@ -200,8 +199,10 @@ class HomeController extends Controller
     {   
         return view('front.story');
     }
-
-
+    public function policy()
+    {   
+        return view('front.policy');
+    }
 
     public function mainMenu()
     {   
@@ -307,20 +308,20 @@ class HomeController extends Controller
     }
     public function wednesday()
     {   
-        // $query = category::find(3)->menu()->get();
-        // $data['data'] = $query  ;
-        return view('menu.wednesday');
+        $query = category::find(11)->menu()->get();
+        $data['data'] = $query  ;
+        return view('menu.wednesday',$data);
     }
     public function everyday()
     {   
-        // $query = category::find(3)->menu()->get();
-        // $data['data'] = $query  ;
-        return view('menu.everyday');
+         $query = category::find(12)->menu()->get();
+        $data['data'] = $query  ;
+        return view('menu.everyday',$data);
     }
     public function lunch()
     {   
-        // $query = category::find(3)->menu()->get();
-        // $data['data'] = $query  ;
+        $query = category::find(13)->menu()->get();
+        $data['data'] = $query  ;
         return view('menu.lunch');
     }
     public function releaseView($id)

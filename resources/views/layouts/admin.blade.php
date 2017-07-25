@@ -56,8 +56,8 @@
                     </ul>
 
 @yield('body')
-<script src="{{ url('plugin/bootstrap/bootstrap.min.js') }}"></script>
+<script src="{{ asset('plugin/bootstrap/bootstrap.min.js') }}"></script>
 <!-- <script src="{{ asset("js/app.js") }}"></script> -->
 <!-- <script src="{{ asset("js/Chart.js") }}"></script> -->
-<script src="{{ url('js/admin.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
 </body>

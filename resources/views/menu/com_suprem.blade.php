@@ -5,33 +5,62 @@
  	<main class="phoinikas--body-main phoinikas--page-menu -combination">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
 			<header class="phoinikas--header-com-supreme">
-				<h2><img src="{{ asset('/img/menu/txt-com-supreme-h2.png')}}" alt="Combination Supreme 499.-"></h2>
+				<h2><img src=" {{ asset('/img/menu/txt-com-supreme-h2.png')}}" alt="Combination Supreme 499.-"></h2>
 			</header>
+			@if (App::getLocale()=='th') 
 			<section class="phoinikas--content-com-supreme">
-				<img src="{{ asset('/img/menu/img-com-supreme-1.jpg')}}" alt="">
+				<img src="{{ isset($data[0]->img_th) ? asset('storage/upload/'.$data[0]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[0]->name_th }}">
 				<div class="phoinikas--flex-row">
 					<figure>
-						<img src="{{ asset('/img/menu/img-com-supreme-2.jpg')}}" alt="">
+						<img src="{{ isset($data[1]->img_th) ? asset('storage/upload/'.$data[1]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_th }}">
 						<figcaption>
-							ซี่โครงหมูบาร์บิคิว <br> และไก่ย่างสไปซี่ <br> Barbecue Pork Spare Ribs <br> &amp; Spicy Grilled Chicken
+							{!! $data[1]->name_th !!}
 						</figcaption>
 					</figure>
 
 					<figure>
-						<img src="{{ asset('/img/menu/img-com-supreme-3.jpg')}}" alt="">
+						<img src="{{ isset($data[2]->img_th) ? asset('storage/upload/'.$data[2]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_th }}">
 						<figcaption>
-							ปลาบาชาย่าง <br> และพอร์คลอยน์ <br> Grilled Basa <br> &amp; Pork Loin
+							{!! $data[2]->name_th !!}
 						</figcaption>
 					</figure>
 
 					<figure class="phoinikas--badge-new">
-						<img src="{{ asset('/img/menu/img-com-supreme-4.jpg')}}" alt="">
+						<img src="{{ isset($data[3]->img_th) ? asset('storage/upload/'.$data[3]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[3]->name_th }}">
 						<figcaption>
-							ไก่ย่างเซาท์เวสต์ <br> และซี่โครงหมูบาร์บิคิว <br> Southwest Grilled Chicken <br> &amp; Barbecue Pork Spare Ribs
+							{!! $data[3]->name_th !!}
 						</figcaption>
 					</figure>
 				</div>
 			</section>
+			@else
+			<section class="phoinikas--content-com-supreme">
+				<img src="{{ isset($data[0]->img_en) ? asset('storage/upload/'.$data[0]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[0]->name_en }}">
+				<div class="phoinikas--flex-row">
+					<figure>
+						<img src="{{ isset($data[1]->img_en) ? asset('storage/upload/'.$data[1]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_en }}">
+						<figcaption>
+							{!! $data[1]->name_en !!}
+						</figcaption>
+					</figure>
+
+					<figure>
+						<img src="{{ isset($data[2]->img_en) ? asset('storage/upload/'.$data[2]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_en }}">
+						<figcaption>
+							{!! $data[2]->name_en !!}
+						</figcaption>
+					</figure>
+
+					<figure class="phoinikas--badge-new">
+						<img src="{{ isset($data[3]->img_en) ? asset('storage/upload/'.$data[3]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[3]->name_en }}">
+						<figcaption>
+							{!! $data[3]->name_en !!}
+						</figcaption>
+					</figure>
+				</div>
+			</section>
+			@endif
+			
 		</div>
 
 	</main>

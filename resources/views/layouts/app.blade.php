@@ -179,7 +179,7 @@
       <section>
         <p>
           &copy; 2017 THE MINOR FOOD GROUP PUBLIC COMPANY LIMITED. ALL RIGHT RESERVED. <br>
-          <a href="privacy_policy.html" class="phoinikas--btn-policy">นโยบายข้อมูลส่วนตัว</a>
+          <a href="{{ url('policy') }}" class="phoinikas--btn-policy"> {{ trans('home.policy')  }} </a>
         </p>
 
       </section>
@@ -195,6 +195,10 @@
     <script src="{{ url('/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ url('/bower_components/swiper/dist/js/swiper.jquery.min.js') }}"></script>
     <script src="{{ url('/js/main.js') }}"></script>
+    <!--[if lt IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.0.8/es5-shim.min.js"></script><![endif]-->
+    <!--[if lte IE8]>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <![endif]-->
     <script type="text/javascript">
    
     $(function() {

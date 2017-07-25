@@ -150,6 +150,7 @@
 								<div class="col-sm-2">
 									<a href="{{ asset('healthtip-preview/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
+								@if ($auth)
 								<div class="col-sm-2">
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
 											 {{ csrf_field() }}
@@ -159,6 +160,7 @@
 											</button>
 									</form> 
 								</div>
+								@endif
 								<div class="col-sm-2">
 									
 								</div>
