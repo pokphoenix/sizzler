@@ -125,6 +125,14 @@ class PromotionBannerController extends Controller
                     ->withInput($request->input())
                     ->withErrors($post['error'], $this->errorBag() );
         }
+        if(!$post['status']){
+            $cntStatus = promotionBanner::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ', $this->errorBag() );
+            }
+        }
         $db = promotionBanner::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -138,11 +146,32 @@ class PromotionBannerController extends Controller
      */
     public function destroy($id)
     {
+        $cntStatus = promotionBanner::where('status',1)->count() ;
+        if ($cntStatus<=1){
+            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
+            return redirect($this->route);
+        }
         promotionBanner::find($id)->delete();
         session()->flash('message','Delete Successfully');
         return redirect($this->route);
     }
-
+    
+    public function publicStore($id,Request $request)
+    {   
+        $post = $request->all();
+        $status = ($post['status']) ? 0 : 1  ;
+        $statusTxt = ($post['status']) ? 'Offline' : 'Online'  ;
+        if(!$status){
+            $cntStatus = promotionBanner::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
+                return redirect($this->route);
+            }
+        }
+        $db = promotionBanner::find($id)->update(['status'=>$status ]) ;
+        session()->flash('message', $statusTxt.' Successfully');
+        return redirect($this->route);
+    }
 
     public function position(Request $request)
     {   

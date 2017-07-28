@@ -83,23 +83,6 @@
 Auth::routes();
 
 
-// Route::get('storage/upload/{folder}/{filename}', function ($folder,$filename)
-// {
-//     echo "$folder,$filename" ; die();
-//     $path = storage_path('public/' . $filename);
-//     dd($path);
-//     if (!File::exists($path)) {
-//         abort(404);
-//     }
-
-//     $file = File::get($path);
-//     $type = File::mimeType($path);
-
-//     $response = Response::make($file, 200);
-//     $response->header("Content-Type", $type);
-
-//     return $response;
-// });
 
  Route::get('/policy/', 'HomeController@policy');
 
@@ -107,57 +90,70 @@ Auth::routes();
 Route::get('storage', 'HomeController@storage');
 Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/', 'HomeController@index');
-    Route::get('/menu/{id}', 'HomeController@menu');
+  
     // Route::get('/language/{type}', 'HomeController@language');
     Route::get('/category/{id}', 'HomeController@category');
 
-    Route::get('/career', 'HomeController@career');
+
     Route::get('/location', 'HomeController@location');
-    Route::get('/promotion', 'HomeController@promotion');
-    Route::get('/promotion/{id}', 'HomeController@promotionView');
-    Route::get('/media', 'HomeController@media');
-    Route::get('/media/{id}', 'HomeController@mediaView') ;
+    Route::get('/career', 'HomeController@career');
     Route::get('/story', 'HomeController@story');
     Route::get('/about', 'HomeController@about');
     Route::get('/career', 'HomeController@career');
     Route::get('/contact', 'HomeController@contact');
     Route::get('/international', 'HomeController@international');
+    Route::get('/home-slider-preview/{id}', 'HomeController@sliderPreview');
+    Route::get('/home-slider-sub-preview/{id}', 'HomeController@sliderSubPreview');
 
 
-    Route::get('/menu', 'HomeController@mainMenu');
-    Route::get('/beef', 'HomeController@beef');
-    Route::get('/burger', 'HomeController@burger');
-    Route::get('/chicken', 'HomeController@chicken');
-    Route::get('/com-beef', 'HomeController@comBeef');
-    Route::get('/com-platter', 'HomeController@comPlatter');
-    Route::get('/com-suprem', 'HomeController@comSuprem');
-    Route::get('/kidmenu', 'HomeController@kidmenu');
-    Route::get('/pork', 'HomeController@pork');
-    Route::get('/seafood', 'HomeController@seafood');
-    Route::get('/combination', 'HomeController@combination');
-    Route::get('/wednesday', 'HomeController@wednesday');
-    Route::get('/everyday', 'HomeController@everyday');
-    Route::get('/lunch', 'HomeController@lunch');
+   
 
 
-    Route::get('/healthtip/', 'HomeController@healthtip');
-    Route::get('/healthtip/{id}', 'HomeController@healthtipView');
-    Route::get('/healthtip-preview/{id}', 'HomeController@healthtipPreview');
+});
 
-    Route::get('/release/', 'HomeController@release');
-    Route::get('/release/{id}', 'HomeController@releaseView');
-    Route::get('/release-preview/{id}', 'HomeController@releasePreview');
+Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ], function () {
+    Route::get('/promotion', 'PromotionController@promotion');
+    Route::get('/promotion/{id}', 'PromotionController@promotionView');
+    Route::get('/promotion-preview/{id}', 'PromotionController@promotionPreview');
+    Route::get('/pro-slider-preview/{id}', 'PromotionController@proSliderPreview');
+    Route::get('/pro-slider-width-preview/{id}', 'PromotionController@proSliderWidthPreview');
+    Route::get('/pro-banner-preview/{id}', 'PromotionController@proBannerPreview');
 
+    Route::get('/media', 'MediaController@index');
+    Route::get('/media/{id}', 'MediaController@view') ;
+    Route::get('/media-preview/{id}', 'MediaController@preview') ;
+
+    Route::get('/release/', 'ReleaseController@release');
+    Route::get('/release/{id}', 'ReleaseController@releaseView');
+    Route::get('/release-preview/{id}', 'ReleaseController@releasePreview');
+
+    Route::get('/healthtip/', 'HealthtipController@healthtip');
+    Route::get('/healthtip/{id}', 'HealthtipController@healthtipView');
+    Route::get('/healthtip-preview/{id}', 'HealthtipController@healthtipPreview');
+
+    Route::get('/menu', 'MenuController@mainMenu');
+    Route::get('/menu/{id}', 'MenuController@menu');
+    Route::get('/beef', 'MenuController@beef');
+    Route::get('/burger', 'MenuController@burger');
+    Route::get('/chicken', 'MenuController@chicken');
+    Route::get('/com-beef', 'MenuController@comBeef');
+    Route::get('/com-platter', 'MenuController@comPlatter');
+    Route::get('/com-suprem', 'MenuController@comSuprem');
+    Route::get('/kidmenu', 'MenuController@kidmenu');
+    Route::get('/pork', 'MenuController@pork');
+    Route::get('/seafood', 'MenuController@seafood');
+    Route::get('/combination', 'MenuController@combination');
+    Route::get('/wednesday', 'MenuController@wednesday');
+    Route::get('/everyday', 'MenuController@everyday');
+    Route::get('/lunch', 'MenuController@lunch');
 
 });
 
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'HomeController@switchLang']);
 
-
-
-
 Route::get('/location-data', 'HomeController@locationData');
 
+Route::get('/notfound', 'HomeController@notfound');
 
 // Route::get('/career', 'HomeController@career');
 // Route::get('/career', 'HomeController@career');
@@ -180,6 +176,7 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
     Route::post('category/position', 'CategoryController@positionStore');
     Route::resource('category', 'CategoryController');
 
+    Route::put('location/public/{id}', 'LocationController@publicStore');
     Route::resource('location', 'LocationController');
 
     Route::get('menu/position', 'MenusController@position')->name('menu-position');
@@ -192,43 +189,57 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
 
     Route::get('media/position', 'MediaController@position')->name('media-position');
     Route::post('media/position', 'MediaController@positionStore');
+    Route::put('media/public/{id}', 'MediaController@publicStore');
     Route::resource('media', 'MediaController');
 
     Route::get('slider/position', 'SliderController@position')->name('slider-position');
     Route::post('slider/position', 'SliderController@positionStore');
+    Route::put('slider/public/{id}', 'SliderController@publicStore');
     Route::resource('slider', 'SliderController'); 
 
     Route::get('slider-sub/position', 'SliderSubController@position')->name('slider-sub-position');
     Route::post('slider-sub/position', 'SliderSubController@positionStore');
+    Route::put('slider-sub/public/{id}', 'SliderSubController@publicStore');
     Route::resource('slider-sub', 'SliderSubController'); 
+
+    Route::get('banner/position', 'BannerController@position')->name('banner-position');
+    Route::post('banner/position', 'BannerController@positionStore');
+     Route::put('banner/public/{id}', 'BannerController@publicStore');
+    Route::resource('banner', 'BannerController'); 
+
 
     Route::get('promotion-slider/position', 'PromotionSliderController@position')->name('promotion-slider-position');
     Route::post('promotion-slider/position', 'PromotionSliderController@positionStore');
+     Route::put('promotion-slider/public/{id}', 'PromotionSliderController@publicStore');
     Route::resource('promotion-slider', 'PromotionSliderController'); 
 
     Route::get('promotion-slider-sub/position', 'PromotionSliderSubController@position')->name('promotion-slider-position');
     Route::post('promotion-slider-sub/position', 'PromotionSliderSubController@positionStore');
+    Route::put('promotion-slider-sub/public/{id}', 'PromotionSliderSubController@publicStore');
     Route::resource('promotion-slider-sub', 'PromotionSliderSubController');
+
 
     Route::get('promotion/position', 'PromotionController@position')->name('promotion-position');
     Route::post('promotion/position', 'PromotionController@positionStore');
+    Route::put('promotion/public/{id}', 'PromotionController@publicStore');
     Route::resource('promotion', 'PromotionController');
 
-    Route::get('banner/position', 'BannerController@position')->name('banner-position');
-    Route::post('banner/position', 'BannerController@positionStore');
-    Route::resource('banner', 'BannerController'); 
+
 
     Route::get('promotion-banner/position', 'PromotionBannerController@position')->name('promotion-banner-position');
     Route::post('promotion-banner/position', 'PromotionBannerController@positionStore');
+     Route::put('promotion-banner/public/{id}', 'PromotionBannerController@publicStore');
     Route::resource('promotion-banner', 'PromotionBannerController');
 
     Route::get('healthtip/position', 'HealthTipController@position')->name('healthtip-position');
     Route::post('healthtip/position', 'HealthTipController@positionStore');
+    Route::put('healthtip/public/{id}', 'HealthTipController@publicStore');
     Route::delete('healthtip/image/{id}', 'HealthTipController@deleteimage');
     Route::resource('healthtip', 'HealthTipController');   
 
     Route::get('release/position', 'ReleaseController@position')->name('release-position');
     Route::post('release/position', 'ReleaseController@positionStore');
+    Route::put('release/public/{id}', 'ReleaseController@publicStore');
     Route::delete('release/image/{id}', 'ReleaseController@deleteimage');
     Route::resource('release', 'ReleaseController');
 

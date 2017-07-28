@@ -10,12 +10,12 @@
 
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Title TH</label>
+                <label for="ex">หัวข้อ (ภาษาไทย)</label>
                 <input id="title_th" name="title_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->title_th) ? $data->title_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
-                <label for="ex">Short Description TH</label>
+                <label for="ex">คำอธิบายสั้นๆ (ภาษาไทย)</label>
                 <input id="short_description_th" name="short_description_th" placeholder="รายละเอียดย่อ ภาษาไทย" class="form-control require-field" value="{{ isset($data->short_description_th) ? $data->short_description_th : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -28,13 +28,14 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
+                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
             </div>  
 
             <div class="form-group">
-                <label for="ex">เนื้อหา TH</label>
+                <label for="ex">เนื้อหา (ภาษาไทย)</label>
                 <textarea id="text_th" name="text_th" placeholder="รายละเอียดย่อ ภาษาไทย" class="form-control require-field">{{ isset($data->text_th) ? $data->text_th : '' }}</textarea>
                 <p class="help-block"></p>
             </div>
@@ -42,12 +43,12 @@
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
+                <label for="ex">หัวข้อ (ภาษาอังกฤษ)</label>
                 <input id="title_en" name="title_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->title_en) ? $data->title_en : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
-                <label for="ex">Short Description EN</label>
+                <label for="ex">คำอธิบายสั้นๆ (ภาษาอังกฤษ)</label>
                 <input id="short_description_en" name="short_description_en" placeholder="รายละเอียดย่อ ภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->short_description_en) ? $data->short_description_en : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -60,12 +61,13 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
+                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
             </div>  
              <div class="form-group">
-                <label for="ex">เนื้อหา EN</label>
+                <label for="ex">เนื้อหา (ภาษาอังกฤษ)</label>
                 <textarea id="text_en" name="text_en" placeholder="รายละเอียดย่อ ภาษาอังกฤษ" class="form-control require-field">{{ isset($data->text_en) ? $data->text_en : '' }}</textarea>
                 <p class="help-block"></p>
             </div>

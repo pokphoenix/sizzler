@@ -10,4 +10,16 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    // try{
+           
+    //     }catch (Illuminate\Database\QueryException $e){
+    // $e->getMessage()
+    //         $error_code = $e->errorInfo[1];
+    //         if($error_code == 1062){
+    //             self::delete($lid);
+    //             return 'houston, we have a duplicate entry problem';
+    //         }
+    //     }
+
 }

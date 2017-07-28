@@ -17,7 +17,17 @@ class LunchController extends Controller
     public $controllerName = 'เมนู lunch ' ;
     public $categoryId = 13  ;
     public $cntImg = 4 ;
+    public $resize ;
 
+    public function __construct(){
+        $resize[0] = ['w'=>260,'h'=>266]; 
+        $resize[1] = ['w'=>980,'h'=>640]; 
+        $resize[2] = ['w'=>316,'h'=>405]; 
+        $resize[3] = ['w'=>316,'h'=>405]; 
+        $resize[4] = ['w'=>316,'h'=>405]; 
+
+        $this->resize = $resize ;
+    }
    
     public function index(Request $request)
     {
@@ -60,6 +70,7 @@ class LunchController extends Controller
         $data['route'] = $this->route ;
         $data['data'] = category::find($this->categoryId) ;
         $data['cntImg'] = $this->cntImg ;
+        $data['resize'] = $this->resize ;
         return view($this->view.'.create',$data);
     }
 
@@ -125,6 +136,7 @@ class LunchController extends Controller
         $data['subdata'] = category::find($this->categoryId)->menu()->orderBy('id','asc')->get() ;
         $data['edit'] = true ;
         $data['cntImg'] = $this->cntImg ;
+          $data['resize'] = $this->resize ;
         return view($this->view.'.create',$data);
     }
 
@@ -178,14 +190,14 @@ class LunchController extends Controller
 
     private function fileUpload($request){
         $post = $request->all();
-        $upload = uploadfile($request,'thumbnail_th') ;
+        $upload = uploadfile($request,'thumbnail_th',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
             $post['thumbnail_th'] = $upload['imagePath'] ;
         }
-        $upload = uploadfile($request,'thumbnail_en') ;
+        $upload = uploadfile($request,'thumbnail_en',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
@@ -193,7 +205,7 @@ class LunchController extends Controller
             $post['thumbnail_en'] = $upload['imagePath'] ;
         }
         for($th =1 ; $th<= $this->cntImg ;$th++){
-            $upload = uploadfile($request,'img_th_'.$th) ;
+            $upload = uploadfile($request,'img_th_'.$th,$this->resize[$th]) ;
             if(!$upload['result']){
                return $upload ;
             }
@@ -202,7 +214,7 @@ class LunchController extends Controller
             }
         }
         for($en =1 ; $en<= $this->cntImg ;$en++){
-            $upload = uploadfile($request,'img_en_'.$en) ;
+            $upload = uploadfile($request,'img_en_'.$en,$this->resize[$en]) ;
             if(!$upload['result']){
                return $upload ;
             }

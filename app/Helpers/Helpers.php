@@ -69,8 +69,11 @@ if (! function_exists('uploadfile')) {
                             $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
                             $result['imagePath'][$key] = $imageName ;
                         }else{
-                            $path = $file->storeAs($folderName,$fileName);
-                            $imageName = str_replace(UPLOAD_PATH,'',$path) ;
+                            $image_resize = Image::make($file->getRealPath());            
+                            $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                            $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
+                            // $path = $file->storeAs($folderName,$fileName);
+                            // $imageName = str_replace(UPLOAD_PATH,'',$path) ;
                             $result['imagePath'][$key] = $imageName ;
                         }
 
@@ -82,7 +85,6 @@ if (! function_exists('uploadfile')) {
                 $rules = array(
                   'image' => 'mimes:jpeg,jpg,png|max:2048' // max 10000kb
                 );
-               
                 $validator = Validator::make($fileArray, $rules);
                 if ($validator->fails())
                 {
@@ -91,7 +93,6 @@ if (! function_exists('uploadfile')) {
                 }else{
                     $folderName = UPLOAD_PATH.date('Ym') ;
                     $fileName = time().'_'.$request->$name->getClientOriginalName();
-
                     if(isset($resize)){
                         if (!is_dir(public_path('/storage/'.$folderName))) {
                             File::makeDirectory(public_path('/storage/'.$folderName),0777,true);  
@@ -103,8 +104,14 @@ if (! function_exists('uploadfile')) {
                         $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
                         $result['imagePath'] = $imageName ;
                     }else{
-                        $path = $file->storeAs($folderName,$fileName);
-                        $imageName = str_replace(UPLOAD_PATH,'',$path) ;
+                        $image_resize = Image::make($file->getRealPath());            
+                        $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                        $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
+
+                        // var_dump($folderName);
+                        // $path = $file->storeAs($folderName,$fileName);
+                        // dd($path);
+                        // $imageName = str_replace(UPLOAD_PATH,'',$path) ;
                         $result['imagePath'] = $imageName ;
                     }
                 }

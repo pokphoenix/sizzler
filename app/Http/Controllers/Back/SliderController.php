@@ -12,9 +12,14 @@ use Auth;
 class SliderController extends Controller
 {
     public $route = 'admin/slider' ;
-    public $controllerName = 'slider home (ส่วนต่อจาก header)' ;
+    public $controllerName = 'สไลด์หลัก (ส่วนต่อจาก header)' ;
     public $view = "admin.slider";
+    public $resize ;
 
+    public function __construct(){
+        $resize[0] = ['w'=>980,'h'=>457];
+        $this->resize = $resize ;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -125,9 +130,14 @@ class SliderController extends Controller
                     ->withInput($request->input())
                     ->withErrors($post['error'], $this->errorBag() );
         }
-        // if ($post['position']==1){
-        //     // $post['position'] = 999;
-        // }
+        if(!$post['status']){
+            $cntStatus = slider::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ', $this->errorBag()  );
+            }
+        }
         $db = slider::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -141,6 +151,11 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
+        $cntStatus = slider::where('status',1)->count() ;
+        if ($cntStatus<=1){
+            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
+            return redirect($this->route);
+        }
         slider::find($id)->delete();
         session()->flash('message','Delete Successfully');
         return redirect($this->route);
@@ -168,9 +183,26 @@ class SliderController extends Controller
         return $result ;
     }
 
+    public function publicStore($id,Request $request)
+    {   
+        $post = $request->all();
+        $status = ($post['status']) ? 0 : 1  ;
+        $statusTxt = ($post['status']) ? 'Offline' : 'Online'  ;
+        if(!$status){
+            $cntStatus = slider::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ');
+                return redirect($this->route);
+            }
+        }
+        $db = slider::find($id)->update(['status'=>$status ]) ;
+        session()->flash('message', $statusTxt.' Successfully');
+        return redirect($this->route);
+    }
+
     private function fileUpload($request){
         $post = $request->all();
-        $upload = uploadfile($request,'img_th') ;
+        $upload = uploadfile($request,'img_th',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
@@ -178,7 +210,7 @@ class SliderController extends Controller
             $post['img_th'] = $upload['imagePath'] ;
         }
       
-        $upload = uploadfile($request,'img_en') ;
+        $upload = uploadfile($request,'img_en',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }

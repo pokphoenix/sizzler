@@ -27,19 +27,27 @@ class LocationController extends Controller
         $data['title'] = $this->controllerName ;
         $data['route'] = $this->route ;
         // $url = $request->fullUrl();
-        $sortBy = $request->input('sortby', 'created_at');
+        $sortBy = 'location.'.$request->input('sortby', 'created_at');
         $sortType = $request->input('type', 'desc'); 
         $search = $request->input('search');
         $sortNextType = ($sortType=='desc') ? 'asc' : 'desc' ;
         if(isset($search)){
-            $tables = location::where('name_th', 'like', '%'.$search.'%')
-                ->orWhere('name_en', 'like', '%'.$search.'%')
+            $tables = location::where('location.name_th', 'like', '%'.$search.'%')
+                ->orWhere('location.name_en', 'like', '%'.$search.'%')
+                ->join('provinces', 'provinces.id', '=', 'location.province_id')
+                ->select('location.*', 'provinces.province_name_th')
                 ->orderBy($sortBy,$sortType)
                 ->paginate(PAGINATE);
         }else{
-            $tables =  location::join('provinces', 'provinces.id', '=','location.province_id')->orderBy($sortBy,$sortType)->paginate(PAGINATE) ;
-        }
+            // $tables =  location::join('provinces', 'provinces.id', '=','location.province_id')->orderBy($sortBy,$sortType)->paginate(PAGINATE) ;
+            // $tables = location::join('provinces', 'provinces.id', '=','location.province_id')->orderBy($sortBy,$sortType)->paginate(PAGINATE);
+            $tables =  location::join('provinces', 'provinces.id', '=', 'location.province_id')
+            ->select('location.*', 'provinces.province_name_th')
+            ->orderBy($sortBy,$sortType)->paginate(PAGINATE);
+            
+                          // $tables =  DB::table('location')->join('provinces', 'provinces.id', '=','location.province_id')->select('location.*,provinces.province_name_th')->orderBy($sortBy,$sortType)->paginate(PAGINATE) ;
 
+        }
         // $query = DB::table('location')
         //         ->join('provinces', 'provinces.id', '=','location.province_id')
         //         ->get();
@@ -94,7 +102,7 @@ class LocationController extends Controller
         $data['title'] = $this->controllerName.' : '.$location->name_th ;
         $data['route'] = $this->route ;
         $data['data'] = $location;
-        
+       
        return view($this->view.'.show',$data);
     }
 
@@ -125,6 +133,14 @@ class LocationController extends Controller
     public function update(LocationValidate $request, $id)
     {
         $post = $request->all();
+        if(!$post['status']){
+            $cntStatus = location::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ', $this->errorBag()  );
+            }
+        }
         $db = location::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -138,8 +154,30 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
+        $cntStatus = location::where('status',1)->count() ;
+        if ($cntStatus<=1){
+            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
+            return redirect($this->route);
+        }
         location::find($id)->delete();
         session()->flash('message','Delete Successfully');
+        return redirect($this->route);
+    }
+
+    public function publicStore($id,Request $request)
+    {   
+        $post = $request->all();
+        $status = ($post['status']) ? 0 : 1  ;
+        $statusTxt = ($post['status']) ? 'Offline' : 'Online'  ;
+        if(!$status){
+            $cntStatus = location::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ');
+                return redirect($this->route);
+            }
+        }
+        $db = location::find($id)->update(['status'=>$status ]) ;
+        session()->flash('message', $statusTxt.' Successfully');
         return redirect($this->route);
     }
 }

@@ -22,6 +22,7 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th" name="img_th" class="form-control" >
+                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
@@ -43,6 +44,7 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en" name="img_en" class="form-control" >
+                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>

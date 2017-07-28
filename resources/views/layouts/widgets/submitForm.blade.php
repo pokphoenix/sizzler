@@ -38,7 +38,7 @@ img {
 			</div>
 			<div class="col-sm-4">
 				@component('admin.widgets.collapse')
-		            @slot('header', 'Language')
+		            @slot('header', 'ส่วนสลับภาษา')
 		            @slot('class', 'info')
 		            @slot('id', '1')
 		            @slot('collapseIn', true)
@@ -52,7 +52,7 @@ img {
 				
 				@if (isset($editStatus))
 					@component('admin.widgets.collapse')
-			            @slot('header', 'Status')
+			            @slot('header', 'แสดงผลหน้าเว็บ')
 			            @slot('id', '2')
 			            @slot('collapseIn', true)
 			            @slot('body')
@@ -63,7 +63,7 @@ img {
 
 				@if (isset($editPosition))
 					@component('admin.widgets.collapse')
-			            @slot('header', 'Show Position')
+			            @slot('header', 'อนญาติจัดเรียงลำดับ')
 			            @slot('id', '3')
 			            @slot('collapseIn', true)
 			            @slot('body')

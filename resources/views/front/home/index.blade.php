@@ -63,11 +63,11 @@
                         <!-- Slides -->
                         @foreach ($sliderSub as $sub)
                          <div class="" style="width: 100%;">
-                            <a href="{{ url('/'.$sub->url) }}" class="phoinikas--img-link">
+                            <a href="{{ url('/'.$sub['url']) }}" class="phoinikas--img-link">
                             @if (App::getLocale()=='th')
-                                <img src="{{ isset($sub->img_th) ? asset('storage/upload/'.$sub->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub->name_th }}" style="width: 100%;">
+                                <img src="{{ isset($sub['img_th']) ? asset('storage/upload/'.$sub['img_th']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_th'] }}" style="width: 100%;">
                             @else
-                                <img src="{{ isset($sub->name_en) ? asset('storage/upload/'.$sub->name_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub->name_en }}" style="width: 100%;">
+                                <img src="{{ isset($sub['name_en']) ? asset('storage/upload/'.$sub['name_en']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_en'] }}" style="width: 100%;">
                             @endif
                             </a>
                         </div>

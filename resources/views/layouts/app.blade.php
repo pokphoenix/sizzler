@@ -29,7 +29,7 @@
           </h1>
 
           <nav role="language" class="phoinikas--mobile-nav-language">
-            <a href="#">TH</a> &nbsp;|&nbsp; <a href="#">EN</a>
+            <a href="{{ url('lang/th') }}">TH</a> &nbsp;|&nbsp; <a href="{{ url('lang/en') }}">EN</a>
           </nav>
 
           <div class="phoinikas--hamburger-menu">

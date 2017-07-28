@@ -125,18 +125,17 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li class="{{ set_active('admin/promotion-banner') }}">
-                                    <a href="{{ url ('admin/promotion-banner') }}">โปรโมชั่น แบนเนอร์ (ส่วนต่อจาก Header)</a>
+                                    <a href="{{ url ('admin/promotion-banner') }}"> แบนเนอร์ (ส่วนต่อจาก Header)</a>
+                                </li>
+                                <li class="{{ set_active('admin/promotion-slider') }}">
+                                    <a href="{{ url ('admin/promotion-slider') }}"> สไลด์เล็ก</a>
+                                </li>
+                                <li class="{{ set_active('admin/promotion-slider-sub') }}">
+                                    <a href="{{ url ('admin/promotion-slider-sub') }}"> สไลด์กว้าง(บล็อคล่าง)</a>
                                 </li>
                                 <li class="{{ set_active('admin/promotion') }}">
                                     <a href="{{ url ('admin/promotion') }}">โปรโมชั่น</a>
                                 </li>
-                                <li class="{{ set_active('admin/promotion-slider') }}">
-                                    <a href="{{ url ('admin/promotion-slider') }}">โปรโมชั่น สไลด์เดอร์</a>
-                                </li>
-                                <li class="{{ set_active('admin/promotion-slider-sub') }}">
-                                    <a href="{{ url ('admin/promotion-slider-sub') }}">โปรโมชั่น สไลด์เดอร์ (บล็อคล่าง)</a>
-                                </li>
-                                
                             </ul>
                         </li>
                          <li>
@@ -145,14 +144,14 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li class="{{ set_active('admin/slider') }}">
-                                    <a href="{{ url ('admin/slider') }}">Slider Main</a>
+                                    <a href="{{ url ('admin/slider') }}">สไลด์หลัก</a>
                                 </li>
                                 <li class="{{ set_active('admin/slider-sub') }}">
-                                    <a href="{{ url ('admin/slider-sub') }}">Slider Sub</a>
+                                    <a href="{{ url ('admin/slider-sub') }}">สไลด์เล็ก</a>
                                 </li>
                            
                                 <li class="{{ set_active('admin/banner') }}">
-                                    <a href="{{ url ('admin/banner') }}">banner</a>
+                                    <a href="{{ url ('admin/banner') }}">แบนเนอร์</a>
                                 </li>
                             </ul>
                         </li>

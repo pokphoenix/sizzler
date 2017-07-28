@@ -7,29 +7,29 @@
         @slot('panelTitle', 'Regular Table')
             @slot('panelHeadBody')
             <div class="form-group">
-                <label for="ex">Latitude</label>
+                <label for="ex">ละติจูด</label>
                 <input id="lat" name="lat" placeholder="ละติจูด" class="form-control require-field" value="{{ isset($data->lat) ? $data->lat : '' }}">
                 <p class="help-block"></p>
             </div>
              <div class="form-group">
-                <label for="ex">Longtitude</label>
+                <label for="ex">ลองจิจูด</label>
                 <input id="lng" name="lng" placeholder="ลองจิจูด" class="form-control require-field" value="{{ isset($data->lng) ? $data->lng : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
-                <label for="ex">Telephone</label>
+                <label for="ex">เบอโทร</label>
                 <input id="tel" name="tel" placeholder="เบอร์โทรศัพท์" class="form-control require-field" value="{{ isset($data->tel) ? $data->tel : '' }}">
                 <p class="help-block"></p>
             </div>
             @endslot
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Name TH</label>
+                <label for="ex">ชื่อ (ภาษาไทย)</label>
                 <input id="name_th" name="name_th" placeholder="ชื่อภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
              <div class="form-group">
-                <label for="ex">Address TH</label>
+                <label for="ex">ที่อยู่ (ภาษาไทย)</label>
                 <textarea rows="5" id="address_th"  name="address_th" class="form-control require-field" placeholder="Address TH">{{ isset($data->address_th) ? $data->address_th : '' }}</textarea>
             </div>
           
@@ -39,25 +39,25 @@
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
+                <label for="ex">ชื่อ (ภาษาอังกฤษ)</label>
                 <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
-                <label for="ex">Address EN</label>
+                <label for="ex">ที่อยู่ (ภาษาอังกฤษ)</label>
                  <textarea id="address_en" rows="5"  name="address_en" class="form-control require-field" placeholder="Address EN">{{ isset($data->address_en) ? $data->address_en : '' }}</textarea>
             </div>
             @endslot
 
             @slot('panelSubBody')  
                 @component('admin.widgets.collapse')
-                    @slot('header', 'Show Position')
+                    @slot('header', 'จังหวัด')
                     @slot('id', '3')
                     @slot('collapseIn', true)
                     @slot('body')
                           
                         <div class="form-group">
-                            <label for="sel">Selects</label>
+                            <label for="sel">กรุณาเลือกจังหวัด</label>
                             <select id="province_id" name="province_id"  class="form-control">
                                  <option value="">กรุณาเลือกจังหวัด</option>
                                 @foreach ($categorys  as $category ) 
@@ -99,7 +99,11 @@
                 },
                 address_en:{
                     required: true,
-                }
+                },
+                province_id:{
+                    required: true,
+                },
+
             },
             invalidHandler: function(form, validator) {
                 var errors = validator.numberOfInvalids();
@@ -117,24 +121,6 @@
                     return false;
                 }
             },
-            // errorPlacement: function(error, element) {
-            //     if (element.context.id=='name_th'){
-            //         $('.layout-en').hide();
-            //         $('.layout-th').show().focus();
-            //         $('.btn-th').click();
-            //     }else{
-            //         $('.layout-th').hide();
-            //         $('.layout-en').show().focus();
-            //         $('.btn-en').click();
-            //     }
-            //     // if ( element.is(":radio") )
-            //     //     error.appendTo( element.parent().next().next() );
-            //     // else if ( element.is(":checkbox") )
-            //     //     error.appendTo ( element.next() );
-            //     // else
-            //     // error.appendTo( element.parent().next() );
-                   
-            // }
         });
     });
     </script>

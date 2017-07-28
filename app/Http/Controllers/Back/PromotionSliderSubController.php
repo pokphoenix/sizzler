@@ -12,9 +12,14 @@ use Auth;
 class PromotionSliderSubController extends Controller
 {
     public $route = 'admin/promotion-slider-sub' ;
-    public $controllerName = 'Promotion Slider Sub' ;
+    public $controllerName = 'โปรโมชั่น สไลด์ กว้าง (บล็อคล่าง)' ;
     public $view = "admin.promotion-slider-sub";
+    public $resize ;
 
+    public function __construct(){
+        $resize[0] = ['w'=>948,'h'=>380];
+        $this->resize = $resize ;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,6 +64,7 @@ class PromotionSliderSubController extends Controller
         $o = new stdClass();
         $o->position =  999 ;
         $data['data'] =  $o ;
+        $data['resize'] = $this->resize ;
         return view($this->view.'.create',$data);
     }
 
@@ -106,6 +112,7 @@ class PromotionSliderSubController extends Controller
         $data['route'] = $this->route ;
         $data['data'] = promotionSliderSub::find($id) ;
         $data['edit'] = true ;
+        $data['resize'] = $this->resize ;
         return view($this->view.'.create',$data);
     }
 
@@ -124,6 +131,14 @@ class PromotionSliderSubController extends Controller
                     ->withInput($request->input())
                     ->withErrors($post['error'], $this->errorBag() );
         }
+        if(!$post['status']){
+            $cntStatus = promotionSliderSub::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ', $this->errorBag() );
+            }
+        }
         $db = promotionSliderSub::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -137,6 +152,11 @@ class PromotionSliderSubController extends Controller
      */
     public function destroy($id)
     {
+        $cntStatus = promotionSliderSub::where('status',1)->count() ;
+        if ($cntStatus<=1){
+            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
+            return redirect($this->route);
+        }
         promotionSliderSub::find($id)->delete();
         session()->flash('message','Delete Successfully');
         return redirect($this->route);
@@ -163,23 +183,40 @@ class PromotionSliderSubController extends Controller
         session()->flash('message','Updated Successfully');
         return $result ;
     }
+    public function publicStore($id,Request $request)
+    {   
+        $post = $request->all();
+        $status = ($post['status']) ? 0 : 1  ;
+        $statusTxt = ($post['status']) ? 'Offline' : 'Online'  ;
+        if(!$status){
+            $cntStatus = promotionSliderSub::where('status',1)->count() ;
+            if ($cntStatus<=1){
+                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
+                return redirect($this->route);
+            }
+        }
+        $db = promotionSliderSub::find($id)->update(['status'=>$status ]) ;
+        session()->flash('message', $statusTxt.' Successfully');
+        return redirect($this->route);
+    }
 
     private function fileUpload($request){
         $post = $request->all();
-        $upload = uploadfile($request,'img_th') ;
+        $upload = uploadfile($request,'img_th',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
             $post['img_th'] = $upload['imagePath'] ;
         }
-        $upload = uploadfile($request,'img_en') ;
+        $upload = uploadfile($request,'img_en',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
             $post['img_en'] = $upload['imagePath'] ;
         }
+        $post['result'] = true ;
         return $post ;
     } 
     

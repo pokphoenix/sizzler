@@ -12,9 +12,14 @@ use Auth;
 class slidersubController extends Controller
 {
     public $route = 'admin/slider-sub' ;
-    public $controllerName = 'slider sub (ส่วนต่อจาก healthtip)' ;
+    public $controllerName = 'สไลด์เล็ก (ส่วนต่อจาก healthtip)' ;
     public $view = "admin.slidersub";
+    public $resize ;
 
+    public function __construct(){
+        $resize[0] = ['w'=>490,'h'=>332];
+        $this->resize = $resize ;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -124,6 +129,16 @@ class slidersubController extends Controller
                     ->withInput($request->input())
                     ->withErrors($post['error'], $this->errorBag() );
         }
+
+        if(!$post['status']){
+            $cntStatus = slidersub::where('status',1)->count() ;
+            if ($cntStatus<=2){
+                return redirect()->to($this->getRedirectUrl())
+                    ->withInput($request->input())
+                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 2 รูปค่ะ', $this->errorBag()  );
+            }
+        }
+
         $db = slidersub::find($id)->update($post) ;
         session()->flash('message','Updated Successfully');
         return redirect($this->route);
@@ -137,6 +152,11 @@ class slidersubController extends Controller
      */
     public function destroy($id)
     {
+        $cntStatus = slidersub::where('status',1)->count() ;
+        if ($cntStatus<=2){
+            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ');
+            return redirect($this->route);
+        }
         slidersub::find($id)->delete();
         session()->flash('message','Delete Successfully');
         return redirect($this->route);
@@ -164,16 +184,34 @@ class slidersubController extends Controller
         return $result ;
     }
 
+    public function publicStore($id,Request $request)
+    {   
+        $post = $request->all();
+        $status = ($post['status']) ? 0 : 1  ;
+        $statusTxt = ($post['status']) ? 'Offline' : 'Online'  ;
+        if(!$status){
+            $cntStatus = slidersub::where('status',1)->count() ;
+            if ($cntStatus<=2){
+                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 2 รูปค่ะ');
+                return redirect($this->route);
+            }
+        }
+
+        $db = slidersub::find($id)->update(['status'=>$status ]) ;
+        session()->flash('message', $statusTxt.' Successfully');
+        return redirect($this->route);
+    }
+
     private function fileUpload($request){
         $post = $request->all();
-        $upload = uploadfile($request,'img_th') ;
+        $upload = uploadfile($request,'img_th',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }
         if(isset($upload['imagePath'])){
             $post['img_th'] = $upload['imagePath'] ;
         }
-        $upload = uploadfile($request,'img_en') ;
+        $upload = uploadfile($request,'img_en',$this->resize[0]) ;
         if(!$upload['result']){
            return $upload ;
         }

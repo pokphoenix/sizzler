@@ -134,9 +134,14 @@
 								
 								
 								<div class="col-sm-2">
-									<button class="pull-right  btn btn-circle {{ $t->status==1 ? 'btn-success':'offline' }}" title="status {{ $t->status==1 ? 'online':'offline' }}">
-										<i class="fa fa-{{ $t->status==1 ? 'eye':'eye-slash' }} "></i>
-									</button>
+									<form class="form-group" method="post" action="{{ asset($route.'/public/'.$t->id) }}">
+											{{ csrf_field() }}
+											{{ method_field('PUT') }}
+											<input type="hidden" name="status" value="{{ $t->status }}" >
+											<button type="button" onclick="if (confirm('คุณต้องการ {{ $t->status==1 ? 'offline':'online' }} ใช่หรือไม่?')) { $(this).closest('form').submit(); }"  class="pull-right  btn btn-circle {{ $t->status==1 ? 'btn-success':'offline' }}"" title="status {{ $t->status==1 ? 'online':'offline' }}">
+											 	<i class="fa fa-{{ $t->status==1 ? 'eye':'eye-slash' }} "></i>
+											</button>
+									</form> 
 								</div>
 								<div class="col-sm-2">
 									<button class="pull-right btn btn-circle {{ $t->position!=0 ? 'btn-info':'offline' }}" title="show in slide {{ $t->position!=0 ? 'true':'false' }}">
@@ -148,7 +153,7 @@
 									<a href="{{ asset($route.'/'.$t->id.'/edit') }}" class="btn btn-warning btn-circle" title="edit item"><i class="fa fa-edit"></i></a>
 								</div>
 								<div class="col-sm-2">
-									<a href="{{ asset('media/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
+									<a href="{{ asset('media-preview/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
 								<div class="col-sm-2">
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">

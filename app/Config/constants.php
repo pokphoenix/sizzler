@@ -1,6 +1,6 @@
 <?php
 
-define('UPLOAD_PATH',  'public/upload/');
+define('UPLOAD_PATH',  'upload/');
 define('ADMIN_DASHBOARD',  'admin/home');
 define('GUEST_DASHBOARD',  '/home');
 define('PAGINATE',  20);

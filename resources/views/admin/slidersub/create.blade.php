@@ -9,8 +9,8 @@
            
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Name TH</label>
-                <input id="name_th" name="name_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาไทย)</label>
+                <input id="name_th" name="name_th" placeholder="ชื่อรูป (ภาษาไทย)" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
@@ -29,8 +29,8 @@
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
-                <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาอังกฤษ)</label>
+                <input id="name_en" name="name_en" placeholder="ชื่อรูป (ภาษาอังกฤษ)" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
            
