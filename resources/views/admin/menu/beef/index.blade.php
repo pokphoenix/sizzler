@@ -37,7 +37,7 @@
             	@include('layouts.partials.message')
             	<table class="table table-striped">
 				    <thead>
-				        <tr style="vertical-align:middle;">
+				        <tr class="v-mid">
 				        	<th class="col-sm-1 text-center" >#</th>
 				            <th class="col-sm-7">  
 				            	<div class="col-sm-6">
@@ -85,8 +85,8 @@
 				    <tbody>
 				        @foreach ($tables as $t)
 				        <tr >
-				        	<td  class="text-center" style="vertical-align:middle;">{{$loop->index+1}}</td>
-				            <td style="vertical-align:middle;">
+				        	<td  class="text-center v-mid">{{$loop->index+1}}</td>
+				            <td class="v-mid">
 				            	<div class="col-sm-6" >
 				            		<div class="media">
 					                  <div class="media-left">
@@ -113,9 +113,9 @@
 				            	</div>
 				            	
 				            </td>
-				            <td style="vertical-align:middle;">{{$t->created_at->diffForHumans()}}</td>
+				            <td class="v-mid">{{$t->created_at->diffForHumans()}}</td>
 				           
-				            <td style="vertical-align:middle;"></td>
+				            <td class="v-mid"></td>
 				        </tr>
 				        @endforeach
 

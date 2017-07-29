@@ -83,3 +83,6 @@ div.tooltip-inner {
 .bs-callout-info {
     border-left-color: #1b809e;
 }
+.v-mid{
+    vertical-align:middle !important;
+}

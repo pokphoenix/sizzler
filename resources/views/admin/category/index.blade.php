@@ -34,7 +34,7 @@
             	@include('layouts.partials.message')
             	<table class="table table-striped">
 				    <thead>
-				        <tr style="vertical-align:middle;">
+				        <tr class="v-mid">
 				        	<th class="col-sm-1 text-center" >#</th>
 				            <th class="col-sm-4">  
 				            	<div class="col-sm-4" >
@@ -116,8 +116,8 @@
 				    <tbody>
 				        @foreach ($tables as $t)
 				        <tr >
-				        	<td  class="text-center" style="vertical-align:middle;">{{$loop->index+1}}</td>
-				            <td style="vertical-align:middle;">
+				        	<td  class="text-center v-mid">{{$loop->index+1}}</td>
+				            <td class="v-mid">
 				            	<div class="media">
 				                  <div class="media-left">
 				                    <a data-fancybox="gallery" href="{{ (isset($t->thumbnail_th)) ? asset('storage/upload/'.$t->thumbnail_th)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
@@ -131,9 +131,9 @@
 				                  </div>
 				                </div>
 				            </td>
-				            <td style="vertical-align:middle;">{{$t->created_at->diffForHumans()}}</td>
+				            <td class="v-mid">{{$t->created_at->diffForHumans()}}</td>
 				           
-				            <td style="vertical-align:middle;">
+				            <td class="v-mid">
 								
 								
 								<div class="col-sm-2">
