@@ -80,7 +80,7 @@
                             <label for="password-confirm" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
-                                 <select id="role_id" name="role_id"  @if(isset($show)|| Auth::user()->id==1 || isset($profile) ) disabled  @endif  class="form-control">
+                                 <select id="role_id" name="role_id"  @if(((isset($show)||isset($edit))&& $data->id==1) || isset($profile) ) disabled  @endif  class="form-control">
                                     <option value="">กรุณาเลือกประเภทแอดมิน</option>
                                     @foreach ($roles  as $role ) 
                                         <option value="{{ $role->id }}"  @if(isset($data)&&$data->role_id==$role->id ) selected @endif >{{$role->name}}</option>
@@ -91,7 +91,7 @@
   
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                 <a href="{{ url($route) }}" class="btn btn-danger">Back</a>
+                                 <a href="{{  isset($backUrl) ? url($backUrl) : url($route) }}" class="btn btn-danger">Back</a>
                                 @if(!isset($show))
                                 <button type="submit" class="btn btn-primary">
                                     {{  (isset($edit)) ? 'Save' : 'Register' }}

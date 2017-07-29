@@ -156,8 +156,11 @@ class AdminController extends Controller
         $data['data'] = $admin ;
         $data['edit'] = true ;
         $data['show'] = true ;
+        $data['profile'] = true ;
+        // $data['']
         $role = role::all();
         $data['roles'] = $role ;
+        $data['backUrl'] = 'admin/home';
         return view($this->view.'.register',$data);
     }
 
@@ -172,6 +175,7 @@ class AdminController extends Controller
         $data['data'] = $admin ;
         $data['edit'] = true ;
         $data['profile'] = true ;
+         $data['backUrl'] = 'admin/home';
         $role = role::all();
         $data['roles'] = $role ;
         return view($this->view.'.register',$data);
@@ -181,6 +185,7 @@ class AdminController extends Controller
        
         $data['title'] = 'ยินดีต้อนรับ ' ;
         $data['route'] = 'admin/changepass' ;
+        $data['backUrl'] = 'admin/home';
         $data['data']['id'] = $id ;
         return view($this->view.'.changepass',$data);
     }

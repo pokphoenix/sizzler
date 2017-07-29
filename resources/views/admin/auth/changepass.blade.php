@@ -49,7 +49,7 @@
   
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                 <a href="{{ url($route) }}" class="btn btn-danger">Back</a>
+                                 <a href="{{  isset($backUrl) ? url($backUrl) : url($route) }}" class="btn btn-danger">Back</a>
                                 <button type="submit" class="btn btn-primary">
                                    Save
                                 </button>
