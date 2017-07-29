@@ -159,6 +159,7 @@
 									<a href="{{ asset('/home-slider-preview/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
 								<div class="col-sm-2">
+									@if ($auth)
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
 											 {{ csrf_field() }}
 											{{ method_field('DELETE') }}
@@ -166,6 +167,7 @@
 											 	<i class="fa fa-trash-o"></i>
 											</button>
 									</form> 
+									@endif
 								</div>
 								<div class="col-sm-2">
 									

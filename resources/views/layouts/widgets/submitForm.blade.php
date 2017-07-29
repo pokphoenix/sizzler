@@ -25,13 +25,18 @@ img {
                 @endif
 	
 				{{ isset($panelHeadBody)? $panelHeadBody : '' }}
-
-				 <div class="layout-th">
-				 	 {{ $panelBodyTH }}	
-				 </div>
-				 <div class="layout-en">
-				 	 {{ $panelBodyEN }}	
-				 </div>
+				
+				@if (isset($editStatus))
+					<div class="layout-th">
+					 	 {{ $panelBodyTH }}	
+					</div>
+				@endif
+				@if (isset($editStatus))
+					<div class="layout-en">
+					 	 {{ $panelBodyEN }}	
+					</div>
+				@endif
+				
 				
 				{{ isset($panelBodyMain)? $panelBodyMain : '' }}
 

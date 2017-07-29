@@ -16,12 +16,15 @@
                 </div>
 			</div>
 			<div class="col-sm-6">
+				@if ($auth)
 				<a href="{{ asset($route.'/create') }}" class="btn btn-success" type="button" title="เพิ่มข้อมูล">
 	                <i class="fa fa-plus"></i>
 	            </a>
+
 	            <a href="{{ asset($route.'/position') }}" class="btn btn-primary" type="button" title="จัดเรียงการแสดงผล">
 	                <i class="fa fa-gear"></i>
 	            </a>
+	            @endif
 			</div>
 			
 		</div>

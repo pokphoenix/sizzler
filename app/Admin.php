@@ -18,7 +18,7 @@ class Admin extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','lastname'
     ];
-
+     protected $dates = ['created_at', 'updated_at'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -34,7 +34,12 @@ class Admin extends Authenticatable
     }
 
     public function role(){
-        return $this->belongsToMany(role::class,'role_admins');
+        return $this->belongsToMany(role::class,'role_admins')->withTimestamps();
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(role::class, 'role_admins', 'role_id', 'admin_id')->withPivot('role_id');
     }
 
 

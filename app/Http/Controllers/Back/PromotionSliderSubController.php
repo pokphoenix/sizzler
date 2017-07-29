@@ -12,7 +12,7 @@ use Auth;
 class PromotionSliderSubController extends Controller
 {
     public $route = 'admin/promotion-slider-sub' ;
-    public $controllerName = 'โปรโมชั่น สไลด์ กว้าง (บล็อคล่าง)' ;
+    public $controllerName = 'โปรโมชั่น สไลด์กว้าง(บล็อคล่าง)' ;
     public $view = "admin.promotion-slider-sub";
     public $resize ;
 

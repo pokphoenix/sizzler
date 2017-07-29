@@ -29,10 +29,13 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <a href="{{ url('admin/profile/'.Auth::user()->id) }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            <a href="{{ url('admin/edit/'.Auth::user()->id) }}"><i class="fa fa-gear fa-fw"></i> Edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/changepass/'.Auth::user()->id) }}"><i class="fa fa-gear fa-fw"></i> change pass</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -186,6 +189,22 @@
                                 </li> -->
                             </ul>
                         </li>
+                        @if (Auth::user()->id==1 )
+                         <li>
+                            <a href="#">
+                                <i class="fa fa-user-circle-o fa-fw"></i> Admin management<span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li class="{{ set_active('admin/list') }}">
+                                    <a href="{{ url ('admin/management') }}"><i class="fa fa-reorder fa-fw"></i>รายชื่อ แอดมิน</a>
+                                </li>
+                                <li class="{{ set_active('admin/management/create') }}">
+                                    <a href="{{ url('admin/management/create') }}"><i class="fa fa-plus-square fa-fw"></i>add new admin</a>
+                                </li>
+                            </ul>
+                        </li>
+                       
+                        @endif
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -165,16 +165,37 @@ Route::get('/notfound', 'HomeController@notfound');
 Route::get('admin/home', 'AdminController@index');
 Route::get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
 Route::post('admin', 'Admin\LoginController@login')->name('admin.login');
+
 Route::post('admin-logout', 'Admin\LoginController@logout')->name('logout');
 Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
+// Route::group([  'middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
+//     Route::get('newadmin', 'Admin\RegisterController@showRegistrationForm')->name('admin.register');
+//     Route::post('register', 'Admin\RegisterController@create')->name('admin.register');
+  
+// });
+
 Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
+    // Route::get('list', 'AdminController@index')->name('admin-list');
     Route::get('category/position', 'CategoryController@position')->name('category-position');
     Route::post('category/position', 'CategoryController@positionStore');
     Route::resource('category', 'CategoryController');
+
+    Route::get('nopermission', 'AdminController@noPermission');
+
+
+    Route::get('profile/{id}', 'AdminController@profile');
+    Route::get('edit/{id}', 'AdminController@editProfile');
+    Route::get('changepass/{id}', 'AdminController@changepass');
+    Route::put('changepass/{id}', 'AdminController@storeChangepass');
+    
+    
+    Route::resource('management', 'AdminController');
+
+
 
     Route::put('location/public/{id}', 'LocationController@publicStore');
     Route::resource('location', 'LocationController');
@@ -260,4 +281,7 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
     Route::resource('wednesday', 'WednesdayController');
     Route::resource('everyday', 'EverydayController');
     Route::resource('lunch', 'LunchController');
+
+
+
 });

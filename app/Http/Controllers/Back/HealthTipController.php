@@ -15,7 +15,7 @@ class HealthTipController extends Controller
     public $route = 'admin/healthtip' ;
     public $controllerName = 'Health Tip' ;
     public $view = 'admin.healthtip' ;
-     public $resize ;
+    public $resize ;
 
     public function __construct(){
         $resize[0] = ['w'=>174,'h'=>174];

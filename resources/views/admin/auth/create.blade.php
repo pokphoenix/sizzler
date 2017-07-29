@@ -3,12 +3,11 @@
 @section('page_heading',$title)
 
 @section('section')
-    @component('layouts.widgets.submitForm', ['id'=>'createForm','method'=> isset($edit) ? 'PUT' : 'POST' ,'action'=> isset($data->id) ? asset($route.'/'.$data->id) : asset($route),'backUrl'=>asset($route),'errors'=> isset($errors) ? $errors : '', 'editStatus'=>isset($data->status) ? $data->status : 1   ] )
+	@component('layouts.widgets.submitForm', ['id'=>'createForm','method'=> isset($edit) ? 'PUT' : 'POST' ,'action'=> isset($data->id) ? asset($route.'/'.$data->id) : asset($route),'backUrl'=>asset($route),'errors'=> isset($errors) ? $errors : '', 'editStatus'=>isset($data->status) ? $data->status : 1 , 'editPosition'=> isset($data->position) ? $data->position : 0    ] )
         @slot('panelTitle', 'Regular Table')
-           
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">ชื่อ (ภาษาไทย)</label>
+                <label for="ex">Name TH</label>
                 <input id="name_th" name="name_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -28,7 +27,7 @@
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">ชื่อ (ภาษาอังกฤษ)</label>
+                <label for="ex">Name EN</label>
                 <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
@@ -48,10 +47,32 @@
             </div>  
             @endslot
 
+            @slot('panelSubBody')  
+                @component('admin.widgets.collapse')
+                    @slot('header', 'Show Position')
+                    @slot('id', '3')
+                    @slot('collapseIn', true)
+                    @slot('body')
+                           
+                        <div class="form-group">
+                            <label for="sel">Selects</label>
+                            <select id="category_id" name="category_id"  class="form-control">
+                                 <option value="">กรุณาเลือกหมวดหมู่</option>
+                                @foreach ($categorys  as $category ) 
+                                    <option value="{{ $category->id }}" {{ (isset($data->category_id)&&($data->category_id ==  $category->id)) ? 'selected' : '' }}  >{{$category->name_th}}</option>
+                               @endforeach
+                            </select>
+                        </div>
+
+                    @endslot
+                @endcomponent
+            @endslot
+
     @endcomponent
 
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
+ 
     $(function() {
         $.validator.setDefaults({
             ignore: []
@@ -70,20 +91,11 @@
                     required: true,
                     minlength: 2,
                     maxlength: 200
+                },
+                category_id:{
+                    required: true,
                 }
             },
-            // messages: {
-            //     name_th: {
-            //         required: "Please enter a Name TH",
-            //         minlength: "Your Name TH must consist of at least 2 characters",
-            //         maxlength: "Your Name TH must consist of at least 200 characters"
-            //     },
-            //     name_en: {
-            //         required: "Please enter a Name EN",
-            //         minlength: "Your Name EN must consist of at least 2 characters",
-            //         maxlength: "Your Name EN must consist of at least 200 characters"
-            //     }
-            // },
             invalidHandler: function(form, validator) {
                 var errors = validator.numberOfInvalids();
                 if (validator.errorList[0].element.id=='name_th'){

@@ -143,6 +143,7 @@
 
 								
 								<div class="col-sm-2">
+									@if ($auth)
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
 											 {{ csrf_field() }}
 											{{ method_field('DELETE') }}
@@ -150,6 +151,7 @@
 											 	<i class="fa fa-trash-o"></i>
 											</button>
 									</form> 
+									@endif
 								</div>
 								<div class="col-sm-2">
 									

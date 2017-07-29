@@ -138,12 +138,7 @@
 										<i class="fa fa-{{ $t->status==1 ? 'eye':'eye-slash' }} "></i>
 									</button>
 								</div>
-								<div class="col-sm-2">
-									<button class="pull-right btn btn-circle {{ $t->position!=0 ? 'btn-info':'offline' }}" title="show in slide {{ $t->position!=0 ? 'true':'false' }}">
-										<i class="fa fa-{{ $t->position!=0 ? 'check':'close' }} "></i>
-									</button>
-									
-								</div>
+								
 								<div class="col-sm-2">
 									<a href="{{ asset($route.'/'.$t->id.'/edit') }}" class="btn btn-warning btn-circle" title="edit item"><i class="fa fa-edit"></i></a>
 								</div>
