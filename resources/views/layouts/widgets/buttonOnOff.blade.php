@@ -1,7 +1,5 @@
 
 <div class="btn-on-off-widget" style="margin:0;padding:0">
-{{ $editStatus.' is '.gettype($editStatus) }}
-{{ ($editStatus==0) ? 0 : $editStatus   }}
 	<input type="hidden" class="btn-value" name="{{ $nameItem }}" value="{{ ($editStatus==0) ? 0 : $editStatus  }}" >
 <div class="btn-group" role="group" aria-label="...">
 
