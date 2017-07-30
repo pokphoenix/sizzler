@@ -9,8 +9,8 @@
            
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Name TH</label>
-                <input id="name_th" name="name_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาไทย)</label>
+                <input id="name_th" name="name_th" placeholder="ชื่อรูป (ภาษาไทย)" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
@@ -22,16 +22,16 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_th" name="img_th" class="form-control" >
-                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
+                     <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
-                <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาอังกฤษ)</label>
+                <input id="name_en" name="name_en" placeholder="ชื่อรูป (ภาษาอังกฤษ)" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
            
@@ -44,10 +44,10 @@
                   </div>
                   <div class="media-body">
                     <input type="file" id="img_en" name="img_en" class="form-control" >
-                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
+                     <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
             @endslot
              @slot('panelBodyMain')
@@ -63,15 +63,14 @@
 
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
             rules: {
+                url: {
+                    required: true
+                },
                 name_th: {
                     required: true,
                     minlength: 2,
@@ -82,53 +81,7 @@
                     minlength: 2,
                     maxlength: 200
                 }
-            },
-            // messages: {
-            //     name_th: {
-            //         required: "Please enter a Name TH",
-            //         minlength: "Your Name TH must consist of at least 2 characters",
-            //         maxlength: "Your Name TH must consist of at least 200 characters"
-            //     },
-            //     name_en: {
-            //         required: "Please enter a Name EN",
-            //         minlength: "Your Name EN must consist of at least 2 characters",
-            //         maxlength: "Your Name EN must consist of at least 200 characters"
-            //     }
-            // },
-            invalidHandler: function(form, validator) {
-                var errors = validator.numberOfInvalids();
-                if (validator.errorList[0].element.id=='name_th'){
-                    $('.layout-en').hide();
-                    $('.layout-th').show().focus();
-                    $('.btn-th').click();
-                }else if (validator.errorList[0].element.id=='name_en'){
-                    $('.layout-th').hide();
-                    $('.layout-en').show().focus();
-                    $('.btn-en').click();
-                }
-                if (errors) {
-                    validator.errorList[0].element.focus(); //Set Focus
-                    return false;
-                }
-            },
-            // errorPlacement: function(error, element) {
-            //     if (element.context.id=='name_th'){
-            //         $('.layout-en').hide();
-            //         $('.layout-th').show().focus();
-            //         $('.btn-th').click();
-            //     }else{
-            //         $('.layout-th').hide();
-            //         $('.layout-en').show().focus();
-            //         $('.btn-en').click();
-            //     }
-            //     // if ( element.is(":radio") )
-            //     //     error.appendTo( element.parent().next().next() );
-            //     // else if ( element.is(":checkbox") )
-            //     //     error.appendTo ( element.next() );
-            //     // else
-            //     // error.appendTo( element.parent().next() );
-                   
-            // }
+            }
         });
     });
     </script>

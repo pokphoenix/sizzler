@@ -18,12 +18,64 @@ class MenuController extends Controller
         // $this->middleware('auth');
     }
 
-    public function menu($id)
+    public function menu($url)
     {   
-        $data = menu::find($id);
-        $data['data'] = $data  ;
-        dd($data);
-        return view('front.category',$data);
+
+
+        $category = category::where('slug',$url)->first();
+        if (is_null($category)){
+            return redirect('notfound');
+        }
+        $data['data'] = $category->menu()->get() ;
+        switch ($category->id) {
+            case 1:
+                $data['porkCate'] = $category ; 
+                $view = 'front.menu.pork' ;
+                break;
+            case 2:
+                $data['chickenCate'] = $category ; 
+                $view = 'front.menu.chicken' ;
+                break;
+            case 3:
+                $data['seafoodCate'] = $category ; 
+                $view = 'front.menu.seafood' ;
+                break;
+            case 4:
+                $data['beefCate'] =  $category  ;
+                $view = 'front.menu.beef' ;
+                break;
+            case 5:
+                $view = 'front.menu.burger' ;
+                break;
+            case 6:
+                $data['kidmenuCate'] = $category ; 
+                $view = 'front.menu.kidmenu' ;
+                break;
+            case 7:
+                $view = 'front.menu.com_beef' ;
+                break;
+            case 8:
+                $view = 'front.menu.com_suprem' ;
+                break;
+            case 9:
+                $view = 'front.menu.com_platter' ;
+                break;
+            case 10:
+                $data['porkCate'] = $category ; 
+                $view = 'front.menu.pork' ;
+                break;
+            case 11:
+                $view = 'front.menu.wednesday' ;
+                break;
+            case 12:
+                $view = 'front.menu.everyday' ;
+                break;
+            case 13:
+                $view = 'front.menu.lunch' ;
+                break;
+
+        }
+        return view($view,$data);
     }
 
     public function mainMenu()
@@ -57,6 +109,12 @@ class MenuController extends Controller
         $data['seafood'] = $seafood  ;
         return view('front.menu.index',$data);
     } 
+    public function combination()
+    {   
+        // $query = category::find(3)->menu()->get();
+        // $data['data'] = $query  ;
+        return view('front.menu.combination');
+    }
     public function beef()
     {   
         $beefCate = category::find(4);
@@ -122,12 +180,7 @@ class MenuController extends Controller
         $data['data'] = $query  ;
         return view('front.menu.com_suprem',$data);
     }
-    public function combination()
-    {   
-        // $query = category::find(3)->menu()->get();
-        // $data['data'] = $query  ;
-        return view('front.menu.combination');
-    }
+  
     public function wednesday()
     {   
         $query = category::find(11)->menu()->get();

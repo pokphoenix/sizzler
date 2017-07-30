@@ -17,7 +17,30 @@
      <script src="{{ url('/js/jquery-1.12.4.min.js')}}"></script>
     <script src=" {{ url('js/min/vendor/modernizr.js')  }}"></script>
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    
+    <style type="text/css" media="screen">
+    .swiper-pagination-bullet {
+        opacity: 0.9;
+        background-color: #ffffff;
+    }
+
+    .swiper-pagination-bullet-active{
+      background-color: #3498db;
+
+    </style>
+    <style type="text/css" media="screen">
+      @media only screen and (min-width: 768px){
+        .phoinikas--home-h2 {
+          font-family: db_ozone;
+        }
+      }
+      .phoinikas--home-h2 {
+        font-family: db_ozone;
+      }
+
+      .phoinikas--header-row-2{
+        opacity: 0.8;
+      }
+    </style>
     
 </head>
 <body>
@@ -47,7 +70,7 @@
             <li><a href="{{ url('menu') }}" class="phoinikas--menu-1">Menu</a></li>
             <li><a href="{{ url('promotion') }}">Promotion</a></li>
             <li><a href="{{ url('location') }}">Location</a></li>
-            <li><a href="member.html">Sizzler Member</a></li>
+            <li><a href="{{ url('member') }}">Sizzler Member</a></li>
             <li><a href="{{ url('healthtip') }}">Health Tips</a></li>
             <li><a href="{{ url('media') }}">Media</a></li>
           </ul>
@@ -95,7 +118,7 @@
                 <img src="{{ asset('img/global/header/icon-fb.png')}}" alt=""></a>
               <a href="https://www.youtube.com/channel/UClsXxgLIRIG1mYhP5MKIOkw" target="_blank">
                 <img src="{{ asset('img/global/header/icon-youtube.png')}}" alt=""></a>
-              <a href="member.html" class="phoinikas--link-member">
+              <a href="{{ url('member') }}" class="phoinikas--link-member">
                 <img src="{{ asset('img/global/header/icon-member.png')}}" alt=""></a>
             </div>
           </section>
@@ -107,7 +130,7 @@
                 <li><a href="{{ url('menu') }}" class="phoinikas--menu-1">{{ trans('home.menu') }}</a></li>
                 <li><a href="{{ url('promotion') }}">{{ trans('home.promotion') }}</a></li>
                 <li><a href="{{ url('location') }}">{{ trans('home.location') }}</a></li>
-                <li><a href="member.html">{{ trans('home.member') }}</a></li>
+                <li><a href="{{ url('member') }}">{{ trans('home.member') }}</a></li>
                 <li><a href="{{ url('healthtip') }}">{{ trans('home.healthtip') }}</a></li>
                 <li><a href="{{ url('media') }}">{{ trans('home.media') }}</a></li>
               </ul>

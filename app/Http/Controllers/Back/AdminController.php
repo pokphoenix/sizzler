@@ -198,33 +198,19 @@ class AdminController extends Controller
         ]);
         if ($validator->fails())
         {
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($validator->errors()->getMessages(), $this->errorBag() );
+            return redirectBack($validator->errors()->getMessages(),$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
 
         if (Auth::attempt(['email' => Auth::user()->email, 'password' =>$post['password'] ])) {
             $post['password'] = bcrypt($post['new_password']);
             unset($post['new_password']);
             Admin::find($id)->update($post);
-            session()->flash('message','changepass Successfully');
-            return redirect('admin/home');
+            return redirectFlash('changepass Successfully','admin/home');
         }else{
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('wrong old password', $this->errorBag() );
+             return redirectBack('wrong old password',$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         
-
-
-       
     }
-
-
-
-
-
-    
 
     /**
      * Show the form for editing the specified resource.
@@ -266,9 +252,7 @@ class AdminController extends Controller
         ]);
         if ($validator->fails())
         {
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($validator->errors()->getMessages(), $this->errorBag() );
+            return redirectBack($validator->errors()->getMessages(),$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
 
         Admin::find($id)->update($post);
@@ -279,18 +263,15 @@ class AdminController extends Controller
             ]);
             if ($validator->fails())
             {
-                return redirect()->to($this->getRedirectUrl())
-                        ->withInput($request->input())
-                        ->withErrors($validator->errors()->getMessages(), $this->errorBag() );
+                return redirectBack($validator->errors()->getMessages(),$this->errorBag(),$this->getRedirectUrl(),$request->input());
             }
             role_admin::where('admin_id','=',$id)->update(['role_id'=>$post['role_id']]);
         }elseif($id==1){
-            session()->flash('message','Updated Successfully');
-            return redirect($this->route);
-        }
+           return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
 
-        session()->flash('message','Updated Successfully');
-        return redirect('admin/home');
+        }
+        return redirectFlash('อัพเดทรายการ สำเร็จ','admin/home');
+      
 
     }
 
@@ -300,15 +281,13 @@ class AdminController extends Controller
             return redirect('admin/nopermission');
         }
         if($id==1){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก เป็น super admin ค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก เป็น super admin ค่ะ',$this->route);
         }
         $admin = Admin::find($id);
         $admin->delete();
         $admin->role()->detach();
 
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     } 
 
 }

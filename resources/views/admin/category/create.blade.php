@@ -23,7 +23,7 @@
                     <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
              @endslot
             @slot('panelBodyEN')  
@@ -44,7 +44,7 @@
                     <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
             @endslot
 
@@ -52,11 +52,7 @@
 
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
@@ -71,53 +67,7 @@
                     minlength: 2,
                     maxlength: 200
                 }
-            },
-            // messages: {
-            //     name_th: {
-            //         required: "Please enter a Name TH",
-            //         minlength: "Your Name TH must consist of at least 2 characters",
-            //         maxlength: "Your Name TH must consist of at least 200 characters"
-            //     },
-            //     name_en: {
-            //         required: "Please enter a Name EN",
-            //         minlength: "Your Name EN must consist of at least 2 characters",
-            //         maxlength: "Your Name EN must consist of at least 200 characters"
-            //     }
-            // },
-            invalidHandler: function(form, validator) {
-                var errors = validator.numberOfInvalids();
-                if (validator.errorList[0].element.id=='name_th'){
-                    $('.layout-en').hide();
-                    $('.layout-th').show().focus();
-                    $('.btn-th').click();
-                }else if (validator.errorList[0].element.id=='name_en'){
-                    $('.layout-th').hide();
-                    $('.layout-en').show().focus();
-                    $('.btn-en').click();
-                }
-                if (errors) {
-                    validator.errorList[0].element.focus(); //Set Focus
-                    return false;
-                }
-            },
-            // errorPlacement: function(error, element) {
-            //     if (element.context.id=='name_th'){
-            //         $('.layout-en').hide();
-            //         $('.layout-th').show().focus();
-            //         $('.btn-th').click();
-            //     }else{
-            //         $('.layout-th').hide();
-            //         $('.layout-en').show().focus();
-            //         $('.btn-en').click();
-            //     }
-            //     // if ( element.is(":radio") )
-            //     //     error.appendTo( element.parent().next().next() );
-            //     // else if ( element.is(":checkbox") )
-            //     //     error.appendTo ( element.next() );
-            //     // else
-            //     // error.appendTo( element.parent().next() );
-                   
-            // }
+            }
         });
     });
     </script>

@@ -87,39 +87,45 @@
                                 <li class="{{ set_active('admin/beef') }}">
                                     <a href="{{ url ('admin/beef') }}">beef (เนื้อ)</a>
                                 </li>
+                                <li class="{{ set_active('admin/burger') }}">
+                                    <a href="{{ url ('admin/burger') }}">burger (เบอเกอร์)</a>
+                                </li>
+                                <li class="{{ set_active('admin/chicken') }}">
+                                    <a href="{{ url ('admin/chicken') }}">chicken (ไก่)</a>
+                                </li>
+                                <li class="{{ set_active('admin/com-beef') }}">
+                                    <a href="{{ url ('admin/com-beef') }}">com-beef (639)</a>
+                                </li>
+                                <li class="{{ set_active('admin/com-platter') }}">
+                                    <a href="{{ url ('admin/com-platter') }}">com-platter (399)</a>
+                                </li>
+                                <li class="{{ set_active('admin/com-suprem') }}">
+                                    <a href="{{ url ('admin/com-suprem') }}">com-suprem (499)</a>
+                                </li>
+                                <li class="{{ set_active('admin/everyday') }}">
+                                    <a href="{{ url ('admin/everyday') }}">everyday </a>
+                                </li>
+                                <li class="{{ set_active('admin/kid') }}">
+                                    <a href="{{ url ('admin/kid') }}">kid-menu (เมนูสำหรับเด็ก)</a>
+                                </li>
+                                <li class="{{ set_active('admin/lunch') }}">
+                                    <a href="{{ url ('admin/lunch') }}">lunch </a>
+                                </li>
                                 <li class="{{ set_active('admin/pork') }}">
                                     <a href="{{ url ('admin/pork') }}">pork (หมู)</a>
                                 </li>
                                 <li class="{{ set_active('admin/seafood') }}">
                                     <a href="{{ url ('admin/seafood') }}">seafood (อาหารทะเล)</a>
                                 </li>
-                                <li class="{{ set_active('admin/chicken') }}">
-                                    <a href="{{ url ('admin/chicken') }}">chicken (ไก่)</a>
-                                </li>
-                                <li class="{{ set_active('admin/burger') }}">
-                                    <a href="{{ url ('admin/burger') }}">burger (เบอเกอร์)</a>
-                                </li>
-                                <li class="{{ set_active('admin/kid') }}">
-                                    <a href="{{ url ('admin/kid') }}">kid-menu (เมนูสำหรับเด็ก)</a>
-                                </li>
-                                <li class="{{ set_active('admin/com-beef') }}">
-                                    <a href="{{ url ('admin/com-beef') }}">com-beef (639)</a>
-                                </li>
-                                <li class="{{ set_active('admin/com-suprem') }}">
-                                    <a href="{{ url ('admin/com-suprem') }}">com-suprem (499)</a>
-                                </li>
-                                <li class="{{ set_active('admin/com-platter') }}">
-                                    <a href="{{ url ('admin/com-platter') }}">com-platter (399)</a>
-                                </li>
+                                
+                               
+                              
+                                
                                 <li class="{{ set_active('admin/wednesday') }}">
                                     <a href="{{ url ('admin/wednesday') }}">wednesday </a>
                                 </li>
-                                <li class="{{ set_active('admin/everyday') }}">
-                                    <a href="{{ url ('admin/everyday') }}">everyday </a>
-                                </li>
-                                <li class="{{ set_active('admin/lunch') }}">
-                                    <a href="{{ url ('admin/lunch') }}">lunch </a>
-                                </li>
+                               
+                                
                             </ul>
                         </li>
                         <li>
@@ -127,18 +133,20 @@
                                 <i class="fa fa-money fa-fw"></i> Promotion<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
+                                <li class="{{ set_active('admin/promotion') }}">
+                                    <a href="{{ url ('admin/promotion') }}">โปรโมชั่น</a>
+                                </li>
+
                                 <li class="{{ set_active('admin/promotion-banner') }}">
                                     <a href="{{ url ('admin/promotion-banner') }}"> แบนเนอร์ (ส่วนต่อจาก Header)</a>
                                 </li>
                                 <li class="{{ set_active('admin/promotion-slider') }}">
                                     <a href="{{ url ('admin/promotion-slider') }}"> สไลด์เล็ก</a>
                                 </li>
-                                <li class="{{ set_active('admin/promotion-slider-sub') }}">
+                               <!--  <li class="{{ set_active('admin/promotion-slider-sub') }}">
                                     <a href="{{ url ('admin/promotion-slider-sub') }}"> สไลด์กว้าง(บล็อคล่าง)</a>
-                                </li>
-                                <li class="{{ set_active('admin/promotion') }}">
-                                    <a href="{{ url ('admin/promotion') }}">โปรโมชั่น</a>
-                                </li>
+                                </li> -->
+                                
                             </ul>
                         </li>
                          <li>
@@ -147,7 +155,7 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li class="{{ set_active('admin/slider') }}">
-                                    <a href="{{ url ('admin/slider') }}">สไลด์หลัก</a>
+                                    <a href="{{ url ('admin/slider') }}">สไลด์กว้าง</a>
                                 </li>
                                 <li class="{{ set_active('admin/slider-sub') }}">
                                     <a href="{{ url ('admin/slider-sub') }}">สไลด์เล็ก</a>

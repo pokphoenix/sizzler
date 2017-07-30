@@ -85,9 +85,7 @@ class BeefController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         menu::where('category_id',$this->categoryId)->delete();
         for ($i=1 ; $i<= $this->cntImg ; $i++){
@@ -104,7 +102,8 @@ class BeefController extends Controller
         $c['name_en'] = isset($post['name_en']) ? $post['name_en'] : null ;
         $c['status'] = 1 ;
         $db = category::find($this->categoryId)->update($c) ;
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
+
     }
 
     /**
@@ -152,9 +151,7 @@ class BeefController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         menu::where('category_id',$this->categoryId)->delete();
         for ($i=1 ; $i<= $this->cntImg ; $i++){
@@ -172,8 +169,7 @@ class BeefController extends Controller
         $c['status'] = 1 ;
         $db = category::find($this->categoryId)->update($c) ;
 
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+       return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -185,8 +181,7 @@ class BeefController extends Controller
     public function destroy($id)
     {
         category::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     }
 
     private function fileUpload($request){

@@ -72,12 +72,11 @@ class PromotionSliderController extends Controller
     {
          $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         promotionSlider::create($post);
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
+
     }
 
     /**
@@ -120,21 +119,16 @@ class PromotionSliderController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         if(!$post['status']){
             $cntStatus = promotionSlider::where('status',1)->count() ;
             if ($cntStatus<=2){
-                return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ', $this->errorBag() );
+                return redirectBack('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ',$this->errorBag(),$this->getRedirectUrl(),$request->input());
             }
         }
         $db = promotionSlider::find($id)->update($post) ;
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+       return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -147,12 +141,10 @@ class PromotionSliderController extends Controller
     {
         $cntStatus = promotionSlider::where('status',1)->count() ;
         if ($cntStatus<=2){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ',$this->route,'error');
         }
         promotionSlider::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     }
 
 
@@ -184,13 +176,11 @@ class PromotionSliderController extends Controller
         if(!$status){
             $cntStatus = promotionSlider::where('status',1)->count() ;
             if ($cntStatus<=2){
-                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ');
-                return redirect($this->route);
+                return redirectFlash('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 2 รูปค่ะ',$this->route,'error');
             }
         }
         $db = promotionSlider::find($id)->update(['status'=>$status ]) ;
-        session()->flash('message', $statusTxt.' Successfully');
-        return redirect($this->route);
+       return redirectFlash($statusTxt.' Successfully',$this->route);
     }
 
     private function fileUpload($request){

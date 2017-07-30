@@ -82,19 +82,21 @@
 
 Auth::routes();
 
-
-
- Route::get('/policy/', 'HomeController@policy');
-
-
+//--- Back End
 Route::get('storage', 'HomeController@storage');
+Route::get('/policy/', 'HomeController@policy');
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'HomeController@switchLang']);
+Route::get('/location-data', 'HomeController@locationData');
+Route::get('/notfound', 'HomeController@notfound');
+Route::get('member', function () {
+    return redirect('http://www.sizzler.co.th/e-member/');
+});
+
+
 Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/', 'HomeController@index');
-  
     // Route::get('/language/{type}', 'HomeController@language');
     Route::get('/category/{id}', 'HomeController@category');
-
-
     Route::get('/location', 'HomeController@location');
     Route::get('/career', 'HomeController@career');
     Route::get('/story', 'HomeController@story');
@@ -106,14 +108,11 @@ Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/home-slider-sub-preview/{id}', 'HomeController@sliderSubPreview');
 
 
-   
-
-
 });
 
 Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ], function () {
     Route::get('/promotion', 'PromotionController@promotion');
-    Route::get('/promotion/{id}', 'PromotionController@promotionView');
+    Route::get('/promotion/view', 'PromotionController@promotionView');
     Route::get('/promotion-preview/{id}', 'PromotionController@promotionPreview');
     Route::get('/pro-slider-preview/{id}', 'PromotionController@proSliderPreview');
     Route::get('/pro-slider-width-preview/{id}', 'PromotionController@proSliderWidthPreview');
@@ -132,7 +131,7 @@ Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ], func
     Route::get('/healthtip-preview/{id}', 'HealthtipController@healthtipPreview');
 
     Route::get('/menu', 'MenuController@mainMenu');
-    Route::get('/menu/{id}', 'MenuController@menu');
+    Route::get('/menu/{url}', 'MenuController@menu');
     Route::get('/beef', 'MenuController@beef');
     Route::get('/burger', 'MenuController@burger');
     Route::get('/chicken', 'MenuController@chicken');
@@ -149,34 +148,16 @@ Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ], func
 
 });
 
-Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'HomeController@switchLang']);
 
-Route::get('/location-data', 'HomeController@locationData');
-
-Route::get('/notfound', 'HomeController@notfound');
-
-// Route::get('/career', 'HomeController@career');
-// Route::get('/career', 'HomeController@career');
-// Route::get('/category/{id}', 'HomeController@category');
-// Route::get('/category/{id}', 'HomeController@category');
-// Route::get('/category/{id}', 'HomeController@category');
-
-
+//--- Back End
 Route::get('admin/home', 'AdminController@index');
 Route::get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
 Route::post('admin', 'Admin\LoginController@login')->name('admin.login');
-
 Route::post('admin-logout', 'Admin\LoginController@logout')->name('logout');
 Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::get('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
-
-// Route::group([  'middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
-//     Route::get('newadmin', 'Admin\RegisterController@showRegistrationForm')->name('admin.register');
-//     Route::post('register', 'Admin\RegisterController@create')->name('admin.register');
-  
-// });
 
 Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
     // Route::get('list', 'AdminController@index')->name('admin-list');

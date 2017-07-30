@@ -3,16 +3,17 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <!-- Slides -->
-                    @foreach ($promotionSliderSub as $sub)
+                    @foreach ($promotion as $sub)
                         <div class="swiper-slide phoinikas--swiper-slide">
                         @if (App::getLocale()=='th') 
-                            <a href="{{ url('promotion/'.$sub->id) }}" class="phoinikas--banner"><img src="{{ isset($sub->img_th) ? asset('storage/upload/'.$sub->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub->name_th }}"></a>
+                            <a href="{{ url('promotion/view') }}" class="phoinikas--banner"><img src="{{ isset($sub->thumbnail_th) ? asset('storage/upload/'.$sub->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub->name_th }}"></a>
                         @else
-                            <a href="{{ url('promotion/'.$sub->id) }}" class="phoinikas--banner"><img src="{{   isset($sub->img_en) ? asset('storage/upload/'.$sub->img_en) : asset('/img/resource/thumbnail-default.jpg')}}" alt="{{ $sub->name_en }}"></a>
+                            <a href="{{ url('promotion/view') }}" class="phoinikas--banner"><img src="{{ isset($sub->thumbnail_en) ? asset('storage/upload/'.$sub->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg')}}" alt="{{ $sub->name_en }}"></a>
                         @endif
                             
                         </div>
                     @endforeach 
                     </div>
+                     <div class="swiper-pagination"></div>
                 </div>
             </section>

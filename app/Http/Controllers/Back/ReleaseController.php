@@ -80,9 +80,7 @@ class ReleaseController extends Controller
     {
          $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         $h = release::create($post);
         if(is_array($post['img_aside'])){
@@ -96,7 +94,7 @@ class ReleaseController extends Controller
             $img['image'] = $post['img_aside'] ;
             releaseimages::create($img);
         }
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการสำเร็จ',$this->route);
     }
 
     /**
@@ -142,16 +140,12 @@ class ReleaseController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         if(!$post['status']){
             $cntStatus = release::where('status',1)->count() ;
             if ($cntStatus<=4){
-                return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ', $this->errorBag() );
+                return redirectBack('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ',$this->errorBag(),$this->getRedirectUrl(),$request->input());
             }
         }
         $db = release::find($id)->update($post) ;
@@ -169,8 +163,7 @@ class ReleaseController extends Controller
             }
         }
         
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+       return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -183,12 +176,10 @@ class ReleaseController extends Controller
     {
         $cntStatus = release::where('status',1)->count() ;
         if ($cntStatus<=4){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ',$this->route,'error');
         }
         release::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     } 
     public function deleteimage($id)
     {
@@ -225,13 +216,11 @@ class ReleaseController extends Controller
         if(!$status){
             $cntStatus = release::where('status',1)->count() ;
             if ($cntStatus<=4){
-                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ');
-                return redirect($this->route);
+                return redirectFlash('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ',$this->route,'error');
             }
         }
         $db = release::find($id)->update(['status'=>$status ]) ;
-        session()->flash('message', $statusTxt.' Successfully');
-        return redirect($this->route);
+       return redirectFlash($statusTxt.' Successfully',$this->route);
     }
 
     private function fileUpload($request){

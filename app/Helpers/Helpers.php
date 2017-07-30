@@ -36,6 +36,31 @@ if (! function_exists('urlSortBy')) {
     	return route(Route::currentRouteName(), ['page'=> $page ,'search'=>$search,'sortby' => $by, 'type' => $type]) ;
     }
 }
+
+if (! function_exists('redirectBack')) {
+    function redirectBack($message,$error,$url,$request=null)
+    {
+        $redirect = redirect()->to($url);
+        if(isset($request)){
+            $redirect->withInput($request);
+        }
+        $redirect->withErrors($message, $error );
+        return  $redirect ;
+    }
+}
+if (! function_exists('redirectFlash')) {
+    function redirectFlash($message,$url,$type=null)
+    {
+        if (isset($type)){
+            session()->flash($type,$message);
+        }else{
+            session()->flash('message',$message);
+        }
+        
+        return redirect($url);
+    }
+}
+
 if (! function_exists('uploadfile')) {
     function uploadfile($request,$name,$resize=null)
     {

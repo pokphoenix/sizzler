@@ -75,11 +75,7 @@
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
 // $('textarea').val('');
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
@@ -103,24 +99,18 @@
                 province_id:{
                     required: true,
                 },
+                lat:{
+                    required: true,
+                },
+                lng:{
+                    required: true,
+                },
+                tel:{
+                    required: true,
+                }
 
-            },
-            invalidHandler: function(form, validator) {
-                var errors = validator.numberOfInvalids();
-                if (validator.errorList[0].element.id=='name_th'){
-                    $('.layout-en').hide();
-                    $('.layout-th').show().focus();
-                    $('.btn-th').click();
-                }else if (validator.errorList[0].element.id=='name_en'){
-                    $('.layout-th').hide();
-                    $('.layout-en').show().focus();
-                    $('.btn-en').click();
-                }
-                if (errors) {
-                    validator.errorList[0].element.focus(); //Set Focus
-                    return false;
-                }
-            },
+            }
+            
         });
     });
     </script>

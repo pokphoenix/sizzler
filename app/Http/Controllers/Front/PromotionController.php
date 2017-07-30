@@ -25,25 +25,28 @@ class PromotionController extends Controller
         $promotionBanner = promotionBanner::limit(1)->where('status',1)->get();
 
         $promotionSlider = promotionSlider::where('position','<',3)->where('status',1)->get();
-        $promotionSliderSub = promotionSliderSub::where('position','<',3)->where('status',1)->get();
-        $promotion = promotion::limit(2)->where('position','<=',2)->where('status',1)->get();
-
+        // $promotionSliderSub = promotionSliderSub::where('position','<',3)->where('status',1)->get();
+        $promotion = promotion::where('status',1)->orderby('position','asc')->get();
         // $banner = banner::limit(1)->where('status',1)->get();
         $data['promotionSlider'] = $promotionSlider;
-        $data['promotionSliderSub'] = $promotionSliderSub;
+        // $data['promotionSliderSub'] = $promotionSliderSub;
         $data['banners'] = $promotionBanner;
         $data['promotion'] = $promotion;
         
         return view('front.promotion.index',$data);
     }
-    public function promotionView($id)
+    public function promotionView()
     {   
-        $promotion = promotion::find($id)->where('status',1)->get();
+        $promotion = promotion::where('status',1)->orderby('position','asc')->get();
         $data['data'] = $promotion;
         return view('front.promotion.view',$data);
     }
     public function proSliderWidthPreview($id)
     {   
+        // $promotion = promotion::where('status',1)->orderby('position','asc')->get();
+        // $data['data'] = $promotion;
+        // return view('front.promotion.view',$data);
+
         $promotionSliderSub = promotionSliderSub::where('position','<',3)->get();
         $data['promotionSliderSub'] = $promotionSliderSub;
         return view('front.promotion.slider-width-preview',$data);

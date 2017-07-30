@@ -75,12 +75,11 @@ class HomeViewController extends Controller
     {
          $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         category::create($post);
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
+
     }
 
     /**
@@ -124,16 +123,13 @@ class HomeViewController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         // if ($post['position']==1){
         //     // $post['position'] = 999;
         // }
         $db = banner::find($id)->update($post) ;
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+       return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -145,8 +141,7 @@ class HomeViewController extends Controller
     public function destroy($id)
     {
         banner::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     }
 
 

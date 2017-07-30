@@ -88,7 +88,7 @@ class LocationController extends Controller
     {
         $post = $request->all();
         location::create($post);
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -136,14 +136,12 @@ class LocationController extends Controller
         if(!$post['status']){
             $cntStatus = location::where('status',1)->count() ;
             if ($cntStatus<=1){
-                return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ', $this->errorBag()  );
+                return redirectBack('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ',$this->errorBag(),$this->getRedirectUrl(),$request->input());
+
             }
         }
         $db = location::find($id)->update($post) ;
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+       return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -156,12 +154,10 @@ class LocationController extends Controller
     {
         $cntStatus = location::where('status',1)->count() ;
         if ($cntStatus<=1){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ',$this->route,'error');
         }
         location::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     }
 
     public function publicStore($id,Request $request)
@@ -172,12 +168,10 @@ class LocationController extends Controller
         if(!$status){
             $cntStatus = location::where('status',1)->count() ;
             if ($cntStatus<=1){
-                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ');
-                return redirect($this->route);
+                return redirectFlash('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ',$this->route,'error');
             }
         }
         $db = location::find($id)->update(['status'=>$status ]) ;
-        session()->flash('message', $statusTxt.' Successfully');
-        return redirect($this->route);
+       return redirectFlash($statusTxt.' Successfully',$this->route);
     }
 }

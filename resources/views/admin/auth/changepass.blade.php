@@ -63,11 +63,7 @@
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
@@ -86,7 +82,6 @@
                 new_password_confirm: {
                   equalTo: "#new_password"
                 }
-             
             }
         });
     });

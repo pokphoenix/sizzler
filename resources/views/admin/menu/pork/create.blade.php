@@ -21,9 +21,9 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
+                    <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control require-field" >
                      <input type="hidden" id="hid_thumbnail_th" name="hid_thumbnail_th"  value="{{ isset($data->thumbnail_th) ?  $data->thumbnail_th  : '' }}" class="form-control" >
-                     <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
+                     <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</div>
                     <br>
                      <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/m_2_6.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/m_2_6.jpg') }}" target="_blank" >
                         <i class="fa fa-info-circle"></i>
@@ -31,13 +31,13 @@
                   </div>
                 </div>
                 
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
             
             @for ($i = 0; $i <  $cntImg ; $i++)
             <div class="form-group">
                 <label for="ex">ชื่อรูป {{$i+1}} (ไทย)</label>
-                <input id="name_img_th_{{$i+1}}" name="name_img_th_{{$i+1}}" placeholder="ชื่อรูป {{$i+1}} (ไทย)" class="form-control require-field" value="{{ isset($subdata[$i]) ? $subdata[$i]->name_th : '' }}">
+                <input id="name_img_th_{{$i+1}}" name="name_img_th_{{$i+1}}" placeholder="ชื่อรูป {{$i+1}} (ไทย)" class="form-control" value="{{ isset($subdata[$i]) ? $subdata[$i]->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
@@ -48,9 +48,9 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="img_th_{{$i+1}}" name="img_th_{{$i+1}}" class="form-control" >
+                    <input type="file" id="img_th_{{$i+1}}" name="img_th_{{$i+1}}" class="form-control require-field" >
                     <input type="hidden" id="hid_img_th_{{$i+1}}" name="hid_img_th_{{$i+1}}"  value="{{ isset($subdata[$i]->img_th) ?  $subdata[$i]->img_th  : '' }}" class="form-control" >
-                    <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[$i+1]['w'].' x '.$resize[$i+1]['h'] }} px)</span>
+                    <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[$i+1]['w'].' x '.$resize[$i+1]['h'] }} px)</div>
                     <br>
                      <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/m_2_'.($i+1).'.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/m_2_'.($i+1).'.jpg') }}" target="_blank" >
                         <i class="fa fa-info-circle"></i>
@@ -58,7 +58,7 @@
                   </div>
                 </div>
                 
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
 
             @endfor
@@ -79,9 +79,9 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
+                    <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control require-field" >
                     <input type="hidden" id="hid_thumbnail_en" name="hid_thumbnail_en"  value="{{ isset($data->thumbnail_en) ?  $data->thumbnail_en  : '' }}" class="form-control" >
-                    <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
+                    <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</div>
                     <br>
                      <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/m_2_6.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/m_2_6.jpg') }}" target="_blank" >
                         <i class="fa fa-info-circle"></i>
@@ -89,12 +89,12 @@
                   </div>
                 </div>
                 
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div> 
             @for ($i = 0; $i < $cntImg ; $i++)
             <div class="form-group">
                 <label for="ex">ชื่อรูป {{$i+1}} (อังกฤษ)</label>
-                <input id="name_img_en_{{$i+1}}" name="name_img_en_{{$i+1}}" placeholder="ชื่อรูป {{$i+1}} (อังกฤษ)" class="form-control require-field" value="{{ isset($subdata[$i]) ? $subdata[$i]->name_en : '' }}">
+                <input id="name_img_en_{{$i+1}}" name="name_img_en_{{$i+1}}" placeholder="ชื่อรูป {{$i+1}} (อังกฤษ)" class="form-control" value="{{ isset($subdata[$i]) ? $subdata[$i]->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group" >
@@ -105,16 +105,16 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="img_en_{{$i+1}}" name="img_en_{{$i+1}}" class="form-control" >
+                    <input type="file" id="img_en_{{$i+1}}" name="img_en_{{$i+1}}" class="form-control require-field" >
                     <input type="hidden" id="hid_img_en_{{$i+1}}" name="hid_img_en_{{$i+1}}"  value="{{ isset($subdata[$i]->img_en) ?  $subdata[$i]->img_en  : '' }}" class="form-control" >
-                    <span class="span-field">(ขนาดที่เหมาะสม {{ $resize[$i+1]['w'].' x '.$resize[$i+1]['h'] }} px)</span>
+                    <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[$i+1]['w'].' x '.$resize[$i+1]['h'] }} px)</div>
                     <br>
                      <a data-toggle="tooltip" data-placement="right" class="btn btn-info" title="<img src='{{ asset('/img/backend/m_2_'.($i+1).'.jpg') }}'  />"  data-fancybox="gallery" href="{{ asset('/img/backend/m_2_'.($i+1).'.jpg') }}" target="_blank" >
                         <i class="fa fa-info-circle"></i>
                     </a>
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
 
             @endfor
@@ -128,15 +128,18 @@
 
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
             rules: {
+               @for ($i = 0; $i < $cntImg ; $i++)
+                img_th_{{$i+1}} : { hasOneElement : ['img_th_{{$i+1}}','hid_img_th_{{$i+1}}'] },
+                img_en_{{$i+1}} : { hasOneElement : ['img_en_{{$i+1}}','hid_img_en_{{$i+1}}'] },
+                @endfor
+
+                thumbnail_th : { hasOneElement : ['thumbnail_th','hid_thumbnail_th'] },
+                thumbnail_en : { hasOneElement : ['thumbnail_en','hid_thumbnail_en'] },
                 name_th: {
                     required: true,
                     minlength: 2,
@@ -147,53 +150,7 @@
                     minlength: 2,
                     maxlength: 200
                 }
-            },
-            // messages: {
-            //     name_th: {
-            //         required: "Please enter a Name TH",
-            //         minlength: "Your Name TH must consist of at least 2 characters",
-            //         maxlength: "Your Name TH must consist of at least 200 characters"
-            //     },
-            //     name_en: {
-            //         required: "Please enter a Name EN",
-            //         minlength: "Your Name EN must consist of at least 2 characters",
-            //         maxlength: "Your Name EN must consist of at least 200 characters"
-            //     }
-            // },
-            invalidHandler: function(form, validator) {
-                var errors = validator.numberOfInvalids();
-                if (validator.errorList[0].element.id=='name_th'){
-                    $('.layout-en').hide();
-                    $('.layout-th').show().focus();
-                    $('.btn-th').click();
-                }else if (validator.errorList[0].element.id=='name_en'){
-                    $('.layout-th').hide();
-                    $('.layout-en').show().focus();
-                    $('.btn-en').click();
-                }
-                if (errors) {
-                    validator.errorList[0].element.focus(); //Set Focus
-                    return false;
-                }
-            },
-            // errorPlacement: function(error, element) {
-            //     if (element.context.id=='name_th'){
-            //         $('.layout-en').hide();
-            //         $('.layout-th').show().focus();
-            //         $('.btn-th').click();
-            //     }else{
-            //         $('.layout-th').hide();
-            //         $('.layout-en').show().focus();
-            //         $('.btn-en').click();
-            //     }
-            //     // if ( element.is(":radio") )
-            //     //     error.appendTo( element.parent().next().next() );
-            //     // else if ( element.is(":checkbox") )
-            //     //     error.appendTo ( element.next() );
-            //     // else
-            //     // error.appendTo( element.parent().next() );
-                   
-            // }
+            }
         });
     });
     </script>

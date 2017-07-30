@@ -7,8 +7,8 @@
         @slot('panelTitle', 'Regular Table')
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Name TH</label>
-                <input id="name_th" name="name_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาไทย)</label>
+                <input id="name_th" name="name_th" placeholder="ชื่อรูป (ภาษาไทย)" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
@@ -22,13 +22,13 @@
                     <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
-                <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาอังกฤษ)</label>
+                <input id="name_en" name="name_en" placeholder="ชื่อรูป (ภาษาอังกฤษ)" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
            
@@ -43,7 +43,7 @@
                     <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
             @endslot
 
@@ -54,11 +54,7 @@
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
  
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
@@ -72,45 +68,9 @@
                     required: true,
                     minlength: 2,
                     maxlength: 200
-                },
-                category_id:{
-                    required: true,
                 }
-            },
-            invalidHandler: function(form, validator) {
-                var errors = validator.numberOfInvalids();
-                if (validator.errorList[0].element.id=='name_th'){
-                    $('.layout-en').hide();
-                    $('.layout-th').show().focus();
-                    $('.btn-th').click();
-                }else if (validator.errorList[0].element.id=='name_en'){
-                    $('.layout-th').hide();
-                    $('.layout-en').show().focus();
-                    $('.btn-en').click();
-                }
-                if (errors) {
-                    validator.errorList[0].element.focus(); //Set Focus
-                    return false;
-                }
-            },
-            // errorPlacement: function(error, element) {
-            //     if (element.context.id=='name_th'){
-            //         $('.layout-en').hide();
-            //         $('.layout-th').show().focus();
-            //         $('.btn-th').click();
-            //     }else{
-            //         $('.layout-th').hide();
-            //         $('.layout-en').show().focus();
-            //         $('.btn-en').click();
-            //     }
-            //     // if ( element.is(":radio") )
-            //     //     error.appendTo( element.parent().next().next() );
-            //     // else if ( element.is(":checkbox") )
-            //     //     error.appendTo ( element.next() );
-            //     // else
-            //     // error.appendTo( element.parent().next() );
-                   
-            // }
+            }
+            
         });
     });
     </script>

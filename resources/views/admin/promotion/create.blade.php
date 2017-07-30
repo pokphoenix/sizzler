@@ -7,8 +7,8 @@
         @slot('panelTitle', 'Regular Table')
             @slot('panelBodyTH')   
             <div class="form-group">
-                <label for="ex">Name TH</label>
-                <input id="name_th" name="name_th" placeholder="ชื่อหมวดหมูภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาไทย)</label>
+                <input id="name_th" name="name_th" placeholder="ชื่อรูปภาษาไทย" class="form-control require-field" value="{{ isset($data->name_th) ? $data->name_th : '' }}">
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
@@ -19,12 +19,14 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
+                    <h5>รูป thumbnail</h5>
+                    <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control require-field" >
+                     <input type="hidden" id="hid_thumbnail_th" name="hid_thumbnail_th"  value="{{ isset($data->thumbnail_th) ?  $data->thumbnail_th  : '' }}" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <div class="media">
                   <div class="media-left">
                     <a class="showImage" data-fancybox="gallery" href="{{ isset($data->img_th) ? asset('storage/upload/'.$data->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
@@ -32,16 +34,17 @@
                     </a>
                   </div>
                   <div class="media-body">
+                    <h5>รูป เนื้อหา</h5>
                     <input type="file" id="img_th" name="img_th" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
-            </div>  
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
+            </div>   -->
              @endslot
             @slot('panelBodyEN')  
             <div class="form-group">
-                <label for="ex">Name EN</label>
-                <input id="name_en" name="name_en" placeholder="ชื่อหมวดหมูภาษาอังกฤษ" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
+                <label for="ex">ชื่อรูป (ภาษาอังกฤษ)</label>
+                <input id="name_en" name="name_en" placeholder="ชื่อรูป (ภาษาอังกฤษ)" class="form-control require-field" value="{{ isset($data->name_en) ? $data->name_en : '' }}">
                 <p class="help-block"></p>
             </div>
            <div class="form-group">
@@ -52,12 +55,15 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
+                   <h5>รูป thumbnail</h5>
+                    <input type="file" id="thumbnail_en" name="thumbnail_en" class="require-field form-control" >
+                     <input type="hidden" id="hid_thumbnail_en" name="hid_thumbnail_en"  value="{{ isset($data->thumbnail_en) ?  $data->thumbnail_en  : '' }}" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
             </div>  
-            <div class="form-group">
+            <!-- <div class="form-group">
+              
                 <div class="media">
                   <div class="media-left">
                     <a class="showImage" data-fancybox="gallery" href="{{ isset($data->img_en) ? asset('storage/upload/'.$data->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
@@ -65,11 +71,12 @@
                     </a>
                   </div>
                   <div class="media-body">
+                     <h5>รูป เนื้อหา</h5>
                     <input type="file" id="img_en" name="img_en" class="form-control" >
                   </div>
                 </div>
-                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 1MB</p>
-            </div>  
+                <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
+            </div>  --> 
             @endslot
 
           
@@ -79,15 +86,13 @@
 <script src="{{ asset('js/validate.js') }}"></script>
 <script>
  
-    $(function() {
-        $.validator.setDefaults({
-            ignore: []
-        });
-    });
+  
     $(function() {
         // validate signup form on keyup and submit
         $("#submitform").validate({
             rules: {
+                thumbnail_th : { hasOneElement : ['thumbnail_th','hid_thumbnail_th'] },
+                thumbnail_en : { hasOneElement : ['thumbnail_en','hid_thumbnail_en'] },
                 name_th: {
                     required: true,
                     minlength: 2,
@@ -97,45 +102,9 @@
                     required: true,
                     minlength: 2,
                     maxlength: 200
-                },
-                category_id:{
-                    required: true,
                 }
-            },
-            invalidHandler: function(form, validator) {
-                var errors = validator.numberOfInvalids();
-                if (validator.errorList[0].element.id=='name_th'){
-                    $('.layout-en').hide();
-                    $('.layout-th').show().focus();
-                    $('.btn-th').click();
-                }else if (validator.errorList[0].element.id=='name_en'){
-                    $('.layout-th').hide();
-                    $('.layout-en').show().focus();
-                    $('.btn-en').click();
-                }
-                if (errors) {
-                    validator.errorList[0].element.focus(); //Set Focus
-                    return false;
-                }
-            },
-            // errorPlacement: function(error, element) {
-            //     if (element.context.id=='name_th'){
-            //         $('.layout-en').hide();
-            //         $('.layout-th').show().focus();
-            //         $('.btn-th').click();
-            //     }else{
-            //         $('.layout-th').hide();
-            //         $('.layout-en').show().focus();
-            //         $('.btn-en').click();
-            //     }
-            //     // if ( element.is(":radio") )
-            //     //     error.appendTo( element.parent().next().next() );
-            //     // else if ( element.is(":checkbox") )
-            //     //     error.appendTo ( element.next() );
-            //     // else
-            //     // error.appendTo( element.parent().next() );
-                   
-            // }
+            }
+            
         });
     });
     </script>

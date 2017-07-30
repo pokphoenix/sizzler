@@ -12,7 +12,7 @@ use Auth;
 class SliderController extends Controller
 {
     public $route = 'admin/slider' ;
-    public $controllerName = 'สไลด์หลัก (ส่วนต่อจาก header)' ;
+    public $controllerName = 'สไลด์กว้าง (ส่วนต่อจาก header)' ;
     public $view = "admin.slider";
     public $resize ;
 
@@ -77,12 +77,11 @@ class SliderController extends Controller
     {
          $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         slider::create($post);
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
+
     }
 
     /**
@@ -126,21 +125,16 @@ class SliderController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         if(!$post['status']){
             $cntStatus = slider::where('status',1)->count() ;
             if ($cntStatus<=1){
-                return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ', $this->errorBag()  );
+                return redirectBack('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ',$this->errorBag(),$this->getRedirectUrl(),$request->input());
             }
         }
         $db = slider::find($id)->update($post) ;
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+       return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -153,12 +147,10 @@ class SliderController extends Controller
     {
         $cntStatus = slider::where('status',1)->count() ;
         if ($cntStatus<=1){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ',$this->route,'error');
         }
         slider::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     }
 
 
@@ -191,13 +183,11 @@ class SliderController extends Controller
         if(!$status){
             $cntStatus = slider::where('status',1)->count() ;
             if ($cntStatus<=1){
-                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ');
-                return redirect($this->route);
+                return redirectFlash('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บน้อยกว่า 1 รูปค่ะ',$this->route,'error');
             }
         }
         $db = slider::find($id)->update(['status'=>$status ]) ;
-        session()->flash('message', $statusTxt.' Successfully');
-        return redirect($this->route);
+        return redirectFlash($statusTxt.' Successfully',$this->route);
     }
 
     private function fileUpload($request){

@@ -80,9 +80,7 @@ class HealthTipController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
 
         $h = healthtip::create($post);
@@ -99,7 +97,7 @@ class HealthTipController extends Controller
                 images::create($img);
             }
         }
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -145,16 +143,12 @@ class HealthTipController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         if(!$post['status']){
             $cntStatus = healthtip::where('status',1)->count() ;
             if ($cntStatus<=4){
-                 return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ', $this->errorBag() );
+                return redirectBack('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ',$this->errorBag(),$this->getRedirectUrl(),$request->input());
             }
         }
 
@@ -173,8 +167,7 @@ class HealthTipController extends Controller
                 images::create($img);
             }
         }
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+        return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -187,12 +180,10 @@ class HealthTipController extends Controller
     {
         $cntStatus = healthtip::where('status',1)->count() ;
         if ($cntStatus<=4){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ',$this->route,'error');
         }
         healthtip::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     } 
     public function deleteimage($id)
     {
@@ -229,14 +220,12 @@ class HealthTipController extends Controller
         if(!$status){
             $cntStatus = healthtip::where('status',1)->count() ;
             if ($cntStatus<=4){
-                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ');
-                return redirect($this->route);
+                return redirectFlash('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 4 รูปค่ะ',$this->route,'error');
             }
         }
 
         $db = healthtip::find($id)->update(['status'=>$status ]) ;
-        session()->flash('message', $statusTxt.' Successfully');
-        return redirect($this->route);
+        return redirectFlash($statusTxt.' Successfully',$this->route);
     }
 
 

@@ -25,17 +25,13 @@ img {
                 @endif
 	
 				{{ isset($panelHeadBody)? $panelHeadBody : '' }}
+				<div class="layout-th">
+					{{ $panelBodyTH }}	
+				</div>
+				<div class="layout-en">
+					{{ $panelBodyEN }}	
+				</div>
 				
-				@if (isset($editStatus))
-					<div class="layout-th">
-					 	 {{ $panelBodyTH }}	
-					</div>
-				@endif
-				@if (isset($editStatus))
-					<div class="layout-en">
-					 	 {{ $panelBodyEN }}	
-					</div>
-				@endif
 				
 				
 				{{ isset($panelBodyMain)? $panelBodyMain : '' }}
@@ -72,7 +68,7 @@ img {
 			            @slot('id', '3')
 			            @slot('collapseIn', true)
 			            @slot('body')
-			            		@include('layouts.widgets.buttonOnOff',['editStatus'=> $editPosition,'nameItem'=>'position'])
+			            		@include('layouts.widgets.buttonOnOff',['editStatus'=> $editPosition,'nameItem'=>'position' ,'initVal'=>999 ])
 			            @endslot
 			        @endcomponent
 				@endif

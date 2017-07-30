@@ -13,7 +13,7 @@ use Auth;
 class PromotionController extends Controller
 {
     public $route = 'admin/promotion' ;
-    public $controllerName = 'รายการเมนูอาหาร' ;
+    public $controllerName = 'หน้าโปรโมชั่น' ;
     public $view = 'admin.promotion' ;
     /**
      * Display a listing of the resource.
@@ -75,12 +75,10 @@ class PromotionController extends Controller
     {
          $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         promotion::create($post);
-        return redirect($this->route);
+        return redirectFlash('เพิ่มรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -124,21 +122,17 @@ class PromotionController extends Controller
     {
         $post = self::fileUpload($request);
         if(!$post['result']){
-            return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors($post['error'], $this->errorBag() );
+            return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
         if(!$post['status']){
             $cntStatus = promotion::where('status',1)->count() ;
-            if ($cntStatus<=1){
-                return redirect()->to($this->getRedirectUrl())
-                    ->withInput($request->input())
-                    ->withErrors('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ', $this->errorBag() );
+            if ($cntStatus<1){
+                return redirectBack('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ',$this->errorBag(),$this->getRedirectUrl(),$request->input());
+
             }
         }
         $db = promotion::find($id)->update($post) ;
-        session()->flash('message','Updated Successfully');
-        return redirect($this->route);
+        return redirectFlash('อัพเดทรายการ สำเร็จ',$this->route);
     }
 
     /**
@@ -151,12 +145,10 @@ class PromotionController extends Controller
     {
         $cntStatus = promotion::where('status',1)->count() ;
         if ($cntStatus<=1){
-            session()->flash('error','ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
-            return redirect($this->route);
+            return redirectFlash('ไม่สามารถลบรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ',$this->route,'error');
         }
         promotion::find($id)->delete();
-        session()->flash('message','Delete Successfully');
-        return redirect($this->route);
+        return redirectFlash('ลบรายการ สำเร็จ',$this->route);
     }
 
     public function publicStore($id,Request $request)
@@ -167,13 +159,11 @@ class PromotionController extends Controller
         if(!$status){
             $cntStatus = promotion::where('status',1)->count() ;
             if ($cntStatus<=1){
-                session()->flash('error','ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ');
-                return redirect($this->route);
+                return redirectFlash('ไม่สามารถปิดรายการนี้ได้ เนื่องจาก จำนวนการแสดงผลหน้าเว็บต้องไม่น้อยกว่า 1 รูปค่ะ',$this->route,'error');
             }
         }
         $db = promotion::find($id)->update(['status'=>$status ]) ;
-        session()->flash('message', $statusTxt.' Successfully');
-        return redirect($this->route);
+       return redirectFlash($statusTxt.' Successfully',$this->route);
     }
     public function position(Request $request)
     {   
@@ -181,7 +171,7 @@ class PromotionController extends Controller
         $tables = promotion::where('position','<>',0)->orderBy('position','asc')->paginate(20) ;
         $data['tables'] = $tables;
         $data['baseRoute'] = $this->route;
-        return view('admin.slider.position',$data);
+        return view('admin.category.position',$data);
     }
 
     public function positionStore(Request $request)
