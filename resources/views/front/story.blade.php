@@ -1,6 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style type="text/css" media="screen">
+      @media only screen and (min-width: 768px){
+      .phoinikas--page-about .phoinikas--content {
+      background: url('{{ asset('/img/story_sizzler/bg-ss-story.jpg')}}') no-repeat;
+      background-position: center top;
+      background-size: cover;
+      }
+     }
+     table{
+      margin: 0 auto;
+     }
+
+
+
+    </style>
+
 <main class="phoinikas--body-main phoinikas--page-about">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
 			<article class="phoinikas--content">

@@ -4,6 +4,8 @@ jQuery(document).ready(function($) {
   	autoplay: 3000,
   	parallax: true,
   	speed: 800,
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
   	fade: {
 			crossFade: true
 		}
