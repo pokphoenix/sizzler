@@ -13,23 +13,23 @@
 				<div class="phoinikas--flex-row">
 					<figure>
 						<img src="{{ isset($data[1]->img_th) ? asset('storage/upload/'.$data[1]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_th }}">
-						<figcaption>
+						{{-- <figcaption>
 							{!! $data[1]->name_th !!}
-						</figcaption>
+						</figcaption> --}}
 					</figure>
 
 					<figure>
 						<img src="{{ isset($data[2]->img_th) ? asset('storage/upload/'.$data[2]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_th }}">
-						<figcaption>
+						{{-- <figcaption>
 							{!! $data[2]->name_th !!}
-						</figcaption>
+						</figcaption> --}}
 					</figure>
 
 					<figure class="phoinikas--badge-new">
 						<img src="{{ isset($data[3]->img_th) ? asset('storage/upload/'.$data[3]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[3]->name_th }}">
-						<figcaption>
+						{{-- <figcaption>
 							{!! $data[3]->name_th !!}
-						</figcaption>
+						</figcaption> --}}
 					</figure>
 				</div>
 			</section>

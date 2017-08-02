@@ -14,6 +14,7 @@ return [
     'tel' => 'Tel',
     'province' => 'Province',
     'branch' => 'Branch',
-    'policy' => 'Private Policy'
+    'policy' => 'Private Policy',
+    'header_media' => 'TVC'
 ];
 ?>

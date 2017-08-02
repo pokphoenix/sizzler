@@ -48,7 +48,7 @@
 
             <p><b>
                 ขอต้อนรับคุณสู่ซิซซ์เล่อร์<br>
-                ที่ที่คุณจะได้สัมผัสกับทุกรสชาติของชีวิต ในบรรยากาศที่อบอวลไปด้วยความสุข
+                ที่ที่คุณจะได้สัมผัสกับทุกรสชาติของชีวิต ในบรรยากาศที่อบอวลไปด้วยความสุข</b>
             </p>
             <p><b>
                 สำหรับซิซซ์เล่อร์สาขาต่างประเทศ <br>
@@ -56,6 +56,7 @@
                 </b>
             </p>
             <p>
+                <b>
                   สหรัฐอเมริกา  &nbsp;&nbsp; <a href="www.sizzler.com" style="color: black;">www.sizzler.com</a><br>
                   ออสเตรเลีย   &nbsp;&nbsp; <a href="www.sizzler.com.au" style="color: black;">www.sizzler.com.au</a><br>
                   จีน         &nbsp;&nbsp; <a href="www.sizzler.com.cn" style="color: black;">www.sizzler.com.cn</a><br>
@@ -76,4 +77,7 @@
 		</div>
 
 	</main>
+
+
 @endsection
+

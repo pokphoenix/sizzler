@@ -7,6 +7,3 @@
 	<button type="button" id="statusOn" class="btn btn-{{ (isset($editStatus)&&!empty($editStatus)) ? 'primary' : 'default'  }} btn-on-off btn-circle" value="{{ (isset($editStatus)&&!empty($editStatus)) ? $editStatus : ( isset($initVal) ? $initVal : 1 )  }}">Yes</button>
 </div>
 </div>
-
-
-

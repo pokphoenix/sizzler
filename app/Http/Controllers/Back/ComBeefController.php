@@ -22,8 +22,8 @@ class ComBeefController extends Controller
     public function __construct(){
         $resize[0] = ['w'=>260,'h'=>260]; 
         $resize[1] = ['w'=>976,'h'=>702]; 
-        $resize[2] = ['w'=>478,'h'=>344]; 
-        $resize[3] = ['w'=>476,'h'=>344]; 
+        $resize[2] = ['w'=>478,'h'=>547]; 
+        $resize[3] = ['w'=>476,'h'=>547]; 
 
         $this->resize = $resize ;
     }

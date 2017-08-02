@@ -22,9 +22,9 @@ class ComSupremController extends Controller
     public function __construct(){
         $resize[0] = ['w'=>260,'h'=>260]; 
         $resize[1] = ['w'=>964,'h'=>706]; 
-        $resize[2] = ['w'=>314,'h'=>312]; 
-        $resize[3] = ['w'=>314,'h'=>312]; 
-        $resize[4] = ['w'=>314,'h'=>312];
+        $resize[2] = ['w'=>314,'h'=>469]; 
+        $resize[3] = ['w'=>314,'h'=>469]; 
+        $resize[4] = ['w'=>314,'h'=>469];
         $this->resize = $resize ;
     }
     /**
