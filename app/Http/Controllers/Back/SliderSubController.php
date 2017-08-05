@@ -17,7 +17,7 @@ class slidersubController extends Controller
     public $resize ;
 
     public function __construct(){
-        $resize[0] = ['w'=>490,'h'=>332];
+        $resize[0] = ['w'=>490,'h'=>476];
         $this->resize = $resize ;
     }
     /**

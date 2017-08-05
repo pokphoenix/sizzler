@@ -81,21 +81,20 @@ if (! function_exists('uploadfile')) {
                     }else{
                         $folderName = UPLOAD_PATH.date('Ym') ;
                         $fileName = time().'_'.$file->getClientOriginalName();
+                        if (!is_dir(public_path('storage/'.$folderName))) {
+                            File::makeDirectory(public_path('storage/'.$folderName),0777,true);  
+                        }
 
                         if(isset($resize)){
-
-                            if (!is_dir(public_path('/storage/'.$folderName))) {
-                                File::makeDirectory(public_path('/storage/'.$folderName),0777,true);  
-                            }
                             // Storage::disk('local')->makeDirectory($folderName);
                             $image_resize = Image::make($file->getRealPath());            
                             $image_resize->resize($resize['w'], $resize['h']);
-                            $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                            $image_resize->save(public_path('storage/'.$folderName.'/'.$fileName));
                             $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
                             $result['imagePath'][$key] = $imageName ;
                         }else{
                             $image_resize = Image::make($file->getRealPath());            
-                            $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                            $image_resize->save(public_path('storage/'.$folderName.'/'.$fileName));
                             $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
                             // $path = $file->storeAs($folderName,$fileName);
                             // $imageName = str_replace(UPLOAD_PATH,'',$path) ;
@@ -118,19 +117,19 @@ if (! function_exists('uploadfile')) {
                 }else{
                     $folderName = UPLOAD_PATH.date('Ym') ;
                     $fileName = time().'_'.$request->$name->getClientOriginalName();
+                    if (!is_dir(public_path('storage/'.$folderName))) {
+                        File::makeDirectory(public_path('storage/'.$folderName),0777,true);  
+                    }
                     if(isset($resize)){
-                        if (!is_dir(public_path('/storage/'.$folderName))) {
-                            File::makeDirectory(public_path('/storage/'.$folderName),0777,true);  
-                        }
                         // Storage::disk('local')->makeDirectory($folderName);
                         $image_resize = Image::make($file->getRealPath());            
                         $image_resize->resize($resize['w'], $resize['h']);
-                        $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                        $image_resize->save(public_path('storage/'.$folderName.'/'.$fileName));
                         $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
                         $result['imagePath'] = $imageName ;
                     }else{
                         $image_resize = Image::make($file->getRealPath());            
-                        $image_resize->save(public_path('/storage/'.$folderName.'/'.$fileName));
+                        $image_resize->save(public_path('storage/'.$folderName.'/'.$fileName));
                         $imageName = str_replace(UPLOAD_PATH,'',$folderName.'/'.$fileName) ;
 
                         // var_dump($folderName);

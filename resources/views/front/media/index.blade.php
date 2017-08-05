@@ -3,11 +3,14 @@
 @section('content')
 <main class="phoinikas--body-main phoinikas--page-media">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
-			<h2 class="phoinikas--txt-h2">TVC</h2>
+			<h2 class="phoinikas--txt-h2"> {{ trans('home.header_media') }} </h2>
 			<section class="phoinikas--media-tvc phoinikas--swiper-content">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						@foreach ( $tvcs as $tvc )
+						<figure class="-slide">
+							<a href="{{ url('media/'.$tvcs[1]->id ) }}"><img src="{{ isset($tvcs[1]->thumbnail_th) ? asset('storage/upload/'.$tvcs[1]->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
+						</figure>
+						{{-- @foreach ( $tvcs as $tvc )
 						<figure class="swiper-slide">
 							@if (App::getLocale()=='th') 
 							<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_th) ? asset('storage/upload/'.$tvc->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
@@ -15,7 +18,7 @@
 							<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_en) ? asset('storage/upload/'.$tvc->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
 							@endif
 						</figure>
-						@endforeach
+						@endforeach --}}
 					</div>
 				</div>
 
@@ -25,7 +28,7 @@
 			    <button class="swiper-button-next"></button>
 			</section>
 
-			<h2 class="phoinikas--txt-h2">Press Release</h2>
+			{{-- <h2 class="phoinikas--txt-h2">Press Release</h2>
 			<section class="phoinikas--media-press phoinikas--swiper-content">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
@@ -57,7 +60,7 @@
 
 			    <button class="swiper-button-prev"></button>
 			    <button class="swiper-button-next"></button>
-			</section>
+			</section> --}}
 		</div>
 
 	</main>

@@ -38,7 +38,6 @@ class HomeController extends Controller
         $sliderSub = slidersub::where('position','<',3)->where('status',1)->get();
         $banner = banner::limit(1)->where('status',1)->get();
         $healthtip = healthtip::where('position','<=',4)->get();
-
         if (count($sliderSub)<2){
             
             
