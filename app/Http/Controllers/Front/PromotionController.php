@@ -7,7 +7,7 @@ use App\Models\promotionSlider;
 use App\Models\promotionSliderSub;
 use App\Models\promotionBanner;
 use App\Models\promotion;
-
+use Illuminate\Support\Facades\Log;
 class PromotionController extends Controller
 {
     /**
@@ -22,11 +22,14 @@ class PromotionController extends Controller
 
     public function promotion()
     {   
-        $promotionBanner = promotionBanner::limit(1)->where('status',1)->get();
-
-        $promotionSlider = promotionSlider::where('position','<',3)->where('status',1)->get();
-        // $promotionSliderSub = promotionSliderSub::where('position','<',3)->where('status',1)->get();
-        $promotion = promotion::where('status',1)->orderby('position','asc')->get();
+        try {
+            $promotionBanner = promotionBanner::limit(1)->where('status',1)->get();
+            $promotionSlider = promotionSlider::where('position','<',3)->where('status',1)->get();
+            $promotion = promotion::where('status',1)->orderby('position','asc')->get();
+        } catch (\Exception $e) {
+            Log::error("[Front] PromotionController@promotion : ".$e->getMessage());
+            return redirect('notfound');
+        } 
         // $banner = banner::limit(1)->where('status',1)->get();
         $data['promotionSlider'] = $promotionSlider;
         // $data['promotionSliderSub'] = $promotionSliderSub;
@@ -37,24 +40,35 @@ class PromotionController extends Controller
     }
     public function promotionView()
     {   
-        $promotion = promotion::where('status',1)->orderby('position','asc')->get();
+        try {
+            $promotion = promotion::where('status',1)->orderby('position','asc')->get();
+        } catch (\Exception $e) {
+            Log::error("[Front] PromotionController@promotionView : ".$e->getMessage());
+            return redirect('notfound');
+        }
         $data['data'] = $promotion;
         return view('front.promotion.view',$data);
     }
     public function proSliderWidthPreview($id)
     {   
-        // $promotion = promotion::where('status',1)->orderby('position','asc')->get();
-        // $data['data'] = $promotion;
-        // return view('front.promotion.view',$data);
-
-        $promotionSliderSub = promotionSliderSub::where('position','<',3)->get();
+        try {
+            $promotionSliderSub = promotionSliderSub::where('position','<',3)->get();
+        } catch (\Exception $e) {
+            Log::error("[Front] PromotionController@proSliderWidthPreview : ".$e->getMessage());
+            return redirect('notfound');
+        }
         $data['promotionSliderSub'] = $promotionSliderSub;
         return view('front.promotion.slider-width-preview',$data);
     }
     public function proSliderPreview($id)
     {   
+        try {
+             $slider = promotionSlider::find($id);
+        } catch (\Exception $e) {
+            Log::error("[Front] PromotionController@proSliderPreview : ".$e->getMessage());
+            return redirect('notfound');
+        }
        
-        $slider = promotionSlider::find($id);
 
         $result[0]['url'] = $slider->url ;
         $result[0]['img_th'] = $slider->img_th ;
@@ -73,7 +87,13 @@ class PromotionController extends Controller
 
     public function proBannerPreview($id)
     {   
-        $promotionBanner = promotionBanner::limit(1)->get();
+        try {
+            $promotionBanner = promotionBanner::limit(1)->get();
+        } catch (\Exception $e) {
+            Log::error("[Front] PromotionController@proBannerPreview : ".$e->getMessage());
+            return redirect('notfound');
+        }
+      
         $data['banners'] = $promotionBanner;
         return view('front.promotion.banner-preview',$data);
     }

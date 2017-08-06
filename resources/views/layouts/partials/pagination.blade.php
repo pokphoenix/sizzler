@@ -6,7 +6,7 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
 @if ($paginator->lastPage() > 1)
     <ul class="pagination">
         <li class="{{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
-            <a href="{{ urlSortBy(1,$sortBy,$sortType,$search) }}">First</a>
+            <a href="{{ urlSortBy(1,$sortBy,$sortType,$search, isset($route) ? $route : null) }}">First</a>
         </li>
          @if ($paginator->total()>5)
 		<li class="disabled">
@@ -28,7 +28,7 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
             @if ($from < $i && $i < $to)
 
                 <li class="{{ ($paginator->currentPage() == $i) ? ' active' : '' }}">
-                    <a href="{{ urlSortBy($i,$sortBy,$sortType,$search) }}">{{ $i }}</a>
+                    <a href="{{ urlSortBy($i,$sortBy,$sortType,$search, isset($route) ? $route : null) }}">{{ $i }}</a>
                 </li>
             @endif
         @endfor
@@ -38,7 +38,7 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
         </li>
 		@endif
         <li class="{{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
-            <a href="{{ urlSortBy($paginator->lastPage(),$sortBy,$sortType,$search)  }}">Last</a>
+            <a href="{{ urlSortBy($paginator->lastPage(),$sortBy,$sortType,$search, isset($route) ? $route : null)  }}">Last</a>
         </li>
     </ul>
 @endif

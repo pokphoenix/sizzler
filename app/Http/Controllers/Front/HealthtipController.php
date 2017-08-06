@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller ;
 use Illuminate\Http\Request;
 use App\Models\healthtip;
-
+use Illuminate\Support\Facades\Log;
 class HealthtipController extends Controller
 {
     /**
@@ -25,16 +25,25 @@ class HealthtipController extends Controller
    
     public function healthtip()
     {   
-        $healthtip = healthtip::where('status',1)->get();
+
+        try {
+            $healthtip = healthtip::where('status',1)->get();
+        } catch (\Exception $e) {
+               Log::error("[Front] HealthtipController@healthtip : ".$e->getMessage());
+               return redirect('notfound');
+        }   
+        
         $data['healthtip'] = $healthtip;
         return view('front.healthtip.index',$data);
     }
     public function healthtipView($id)
     {   
-        $query = healthtip::find($id);
-        if(is_null($query)){
-            return redirect()->to('notfound');
-        }
+        try {
+            $query = healthtip::find($id);
+        } catch (\Exception $e) {
+           Log::error("[Front] HealthtipController@healthtipView : ".$e->getMessage());
+           return redirect('notfound');
+        }   
         $aside = $query->images;
         $data['data'] = $query;
         $data['aside'] = $aside;
@@ -46,9 +55,11 @@ class HealthtipController extends Controller
     }
     public function healthtipPreview($id)
     {   
-        $query = healthtip::find($id);
-        if(is_null($query)){
-            return redirect()->to('notfound');
+        try {
+            $query = healthtip::find($id);
+        } catch (\Exception $e) {
+           dd($e->getMessage());
+           Log::error("[Front] HealthtipController@healthtipPreview : ".$e->getMessage());
         }
         $aside = $query->images;
         $data['data'] = $query;

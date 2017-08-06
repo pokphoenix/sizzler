@@ -84,45 +84,45 @@
                                <!--   <li class="{{ set_active('admin/banner') }}">
                                     <a href="{{ url ('admin/menu') }}">เมนูอาหาร</a>
                                 </li> -->
-                                <li class="{{ set_active('admin/beef') }}">
-                                    <a href="{{ url ('admin/beef') }}">beef (เนื้อ)</a>
+                                <li class="{{ set_active('admin/menu/4') }}">
+                                    <a href="{{ url ('admin/menu/4') }}">beef (เนื้อ)</a>
                                 </li>
-                                <li class="{{ set_active('admin/burger') }}">
-                                    <a href="{{ url ('admin/burger') }}">burger (เบอเกอร์)</a>
+                                <li class="{{ set_active('admin/menu/5') }}">
+                                    <a href="{{ url ('admin/menu/5') }}">burger (เบอเกอร์)</a>
                                 </li>
-                                <li class="{{ set_active('admin/chicken') }}">
-                                    <a href="{{ url ('admin/chicken') }}">chicken (ไก่)</a>
+                                <li class="{{ set_active('admin/menu/2') }}">
+                                    <a href="{{ url ('admin/menu/2') }}">chicken (ไก่)</a>
                                 </li>
-                                <li class="{{ set_active('admin/com-beef') }}">
-                                    <a href="{{ url ('admin/com-beef') }}">com-beef (639)</a>
+                                <li class="{{ set_active('admin/menu/7') }}">
+                                    <a href="{{ url ('admin/menu/7') }}">com-beef (639)</a>
                                 </li>
-                                <li class="{{ set_active('admin/com-platter') }}">
-                                    <a href="{{ url ('admin/com-platter') }}">com-platter (399)</a>
+                                <li class="{{ set_active('admin/menu/9') }}">
+                                    <a href="{{ url ('admin/menu/9') }}">com-platter (399)</a>
                                 </li>
-                                <li class="{{ set_active('admin/com-suprem') }}">
-                                    <a href="{{ url ('admin/com-suprem') }}">com-suprem (499)</a>
+                                <li class="{{ set_active('admin/menu/8') }}">
+                                    <a href="{{ url ('admin/menu/8') }}">com-suprem (499)</a>
                                 </li>
-                                <li class="{{ set_active('admin/everyday') }}">
-                                    <a href="{{ url ('admin/everyday') }}">everyday </a>
+                                <li class="{{ set_active('admin/menu/12') }}">
+                                    <a href="{{ url ('admin/menu/12') }}">everyday </a>
                                 </li>
-                                <li class="{{ set_active('admin/kid') }}">
-                                    <a href="{{ url ('admin/kid') }}">kid-menu (เมนูสำหรับเด็ก)</a>
+                                <li class="{{ set_active('admin/menu/6') }}">
+                                    <a href="{{ url ('admin/menu/6') }}">kid-menu (เมนูสำหรับเด็ก)</a>
                                 </li>
-                                <li class="{{ set_active('admin/lunch') }}">
-                                    <a href="{{ url ('admin/lunch') }}">lunch </a>
+                                <li class="{{ set_active('admin/menu/13') }}">
+                                    <a href="{{ url ('admin/menu/13') }}">lunch </a>
                                 </li>
-                                <li class="{{ set_active('admin/pork') }}">
-                                    <a href="{{ url ('admin/pork') }}">pork (หมู)</a>
+                                <li class="{{ set_active('admin/menu/1') }}">
+                                    <a href="{{ url ('admin/menu/1') }}">pork (หมู)</a>
                                 </li>
-                                <li class="{{ set_active('admin/seafood') }}">
-                                    <a href="{{ url ('admin/seafood') }}">seafood (อาหารทะเล)</a>
+                                <li class="{{ set_active('admin/menu/3') }}">
+                                    <a href="{{ url ('admin/menu/3') }}">seafood (อาหารทะเล)</a>
                                 </li>
                                 
                                
                               
                                 
-                                <li class="{{ set_active('admin/wednesday') }}">
-                                    <a href="{{ url ('admin/wednesday') }}">wednesday </a>
+                                <li class="{{ set_active('admin/menu/11') }}">
+                                    <a href="{{ url ('admin/menu/11') }}">wednesday </a>
                                 </li>
                                
                                 

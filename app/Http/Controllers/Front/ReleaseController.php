@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller ;
 use Illuminate\Http\Request;
 use App\Models\release;
+use Illuminate\Support\Facades\Log;
 class ReleaseController extends Controller
 {
     /**
@@ -23,10 +24,12 @@ class ReleaseController extends Controller
      */
     public function releaseView($id)
     {   
-        $query = release::find($id)->where('status',1)->first();
-        if(is_null($query)){
-            return redirect()->to('notfound');
-        }
+        try {
+            $query = release::find($id)->where('status',1)->first();
+        } catch (\Exception $e) {
+               Log::error("[Front] ReleaseController@releaseView : ".$e->getMessage());
+               return redirect('notfound');
+        }  
         $aside = $query->releaseimages;
         $data['data'] = $query;
         $data['aside'] = $aside;

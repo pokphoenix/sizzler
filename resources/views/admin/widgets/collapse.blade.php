@@ -4,7 +4,7 @@
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion"
                    href="#collapse{{ $id }}">
-                    {{ $header }}
+                    {!! $header !!}
                 </a>
             </h4>
         </div>

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller ;
 use Illuminate\Http\Request;
 use App\Models\media;
-use App\Models\release;
+// use App\Models\release;
+use Illuminate\Support\Facades\Log;
 class MediaController extends Controller
 {
     /**
@@ -24,33 +25,44 @@ class MediaController extends Controller
      */
     public function index()
     {   
-        $tvc = media::where('media_category_id',1)->where('status',1)->orderBy('position','asc')->get();
+        try {
+            $tvc = media::where('media_category_id',1)->where('status',1)->orderBy('position','asc')->get();
+        } catch (\Exception $e) {
+               Log::error("[Front] MediaController@index : ".$e->getMessage());
+               return redirect('notfound');
+        } 
+
+        // $tvc = media::where('media_category_id',1)->where('status',1)->orderBy('position','asc')->get();
         $data['tvcs'] = $tvc;
 
-        $release = release::where('status',1)->get();
-        $data['tvcs'] = $tvc;
-        $data['release'] = $release;
+        // $release = release::where('status',1)->get();
+        // $data['tvcs'] = $tvc;
+        // $data['release'] = $release;
 
         return view('front.media.index',$data);
     } 
     public function view($id)
     {   
-        $query = media::where('id',$id)->where('status',1)->first();
-        if(is_null($query)){
-            return redirect()->to('notfound');
-        }
-        $other = media::where('status',1)->where('position','<',4)->get();
+        try {
+            $query = media::where('id',$id)->where('status',1)->first();
+            $other = media::where('status',1)->where('position','<',4)->get();
+        } catch (\Exception $e) {
+               Log::error("[Front] MediaController@view : ".$e->getMessage());
+               return redirect('notfound');
+        } 
         $data['data'] = $query;
         $data['others'] = $other;
         return view('front.media.view',$data);
     }  
     public function preview($id)
     {   
-        $query = media::where('id',$id)->first();
-        if(is_null($query)){
-            return redirect()->to('notfound');
-        }
-        $other = media::where('status',1)->where('position','<',4)->get();
+        try {
+            $query = media::where('id',$id)->first();
+            $other = media::where('status',1)->where('position','<',4)->get();
+        } catch (\Exception $e) {
+               Log::error("[Front] MediaController@preview : ".$e->getMessage());
+               dd($e->getMessage());
+        } 
         $data['data'] = $query;
         $data['others'] = $other;
         return view('front.media.view',$data);

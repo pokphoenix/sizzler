@@ -1,5 +1,5 @@
 
-<a class="btn btn-xs {{  ($sortBy==$sortKey) ? 'btn-success' : 'btn-default'  }} " href="{{ urlSortBy(  ($sortBy != $sortKey ) ? 1 : $page,$sortKey,$sortNextType,$search) }}">  
+<a class="btn btn-xs {{  ($sortBy==$sortKey) ? 'btn-success' : 'btn-default'  }} " href="{{ urlSortBy(  ($sortBy != $sortKey ) ? 1 : $page,$sortKey,$sortNextType,$search, isset($route) ? $route : null  ) }}">  
     @if ($sortKeyType=='txt')
     <i class="fa  fa-{{  ($sortKey==$sortBy  && $sortType=='asc') ? 'sort-alpha-asc' : 'sort-alpha-desc'  }} "></i>
     @elseif ($sortKeyType=='num')

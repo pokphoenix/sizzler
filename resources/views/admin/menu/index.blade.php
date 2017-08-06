@@ -16,12 +16,14 @@
                 </div>
 			</div>
 			<div class="col-sm-6">
+				@if ($auth)
 				<a href="{{ asset($route.'/create') }}" class="btn btn-success" type="button" title="เพิ่มข้อมูล">
 	                <i class="fa fa-plus"></i>
 	            </a>
-	            <a href="{{ asset($route.'/position') }}" class="btn btn-primary" type="button" title="จัดเรียงการแสดงผล">
-	                <i class="fa fa-gear"></i>
-	            </a>
+	            @endif
+	            <a data-toggle="tooltip" data-placement="bottom" class="btn btn-info" title="<img src='{{ asset($navigateImg) }}' class='img-responsive' />"  data-fancybox="gallery" href="{{ asset($navigateImg) }}" target="_blank" >
+			        <i class="fa fa-info-circle"></i>
+			    </a>
 			</div>
 			
 		</div>
@@ -40,25 +42,27 @@
 				            	<div class="col-sm-4">
 								@include('layouts.widgets.tablesort',
 								[ 'title' => 'TH' 
-									,'sortKey' => 'name_th'
+									,'sortKey' => 'title_th'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()   
 									,'sortType' => $sortType
 									,'sortNextType' =>$sortNextType
 									,'sortKeyType' => 'txt' 
 									,'search' => $search
+									,'route'=> $category_id
 								])
 				            	</div>
 				            	<div class="col-sm-4">
 				            	@include('layouts.widgets.tablesort',
 								[ 'title' => 'EN' 
-								    ,'sortKey' => 'name_en'
+								    ,'sortKey' => 'title_en'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()  
 									,'sortType' => $sortType
 									,'sortNextType' =>$sortNextType
 									,'sortKeyType' => 'txt'
 									,'search' => $search
+									,'route'=> $category_id
 								])	
 				            	</div>
 				            	
@@ -72,6 +76,7 @@
 									,'sortNextType' =>$sortNextType
 									,'sortKeyType' => 'num'
 									,'search' => $search
+									,'route'=> $category_id
 								])	
 							</th>
 							
@@ -86,22 +91,13 @@
 										,'sortNextType' =>$sortNextType
 										,'sortKeyType' => 'onOff' 
 										,'search' => $search
+										,'route'=> $category_id
 									])
 				             
 				            	</div>
-				            	<div class="col-sm-2">
-				            		@include('layouts.widgets.tablesort',
-									[ 'title' => '' 
-									    ,'sortKey' => 'position'
-										,'sortBy' => $sortBy 
-										,'page' => $tables->currentPage()  
-										,'sortType' => $sortType
-										,'sortNextType' =>$sortNextType
-										,'sortKeyType' => 'check'
-										,'search' => $search
-									])	
-				            	</div>
+				            	
 				            	<div class="col-sm-2 ">Tool</div>
+				            	<div class="col-sm-2 "></div>
 				            	<div class="col-sm-2 "></div>
 				            	<div class="col-sm-2 "></div>
 				            	<div class="col-sm-2 "></div>
@@ -115,18 +111,17 @@
 				        <tr >
 				        	<td  class="text-center v-mid">{{$loop->index+1}}</td>
 				            <td class="v-mid">
-				            	<div class="media">
-				                  <div class="media-left">
-				                    <a data-fancybox="gallery" href="{{ (isset($t->thumbnail_th)) ? asset('storage/upload/'.$t->thumbnail_th)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
-				                      <img class="media-object" src="{{ (isset($t->thumbnail_th)) ? asset('storage/upload/'.$t->thumbnail_th)  : asset('/img/resource/thumbnail-default.jpg') }}" width="50" height="50" alt="...">
+								<label>TH :</label> {!! $t->title_th !!}<BR>
+				                <label>EN :</label>{!! $t->title_en !!}
+				                <div class="row">
+								@foreach ($t->images as $i)
+									<div style="float: left;margin:0 0 10px 10px;">
+										<a data-fancybox="gallery" href="{{ (isset($i->img_th)) ? asset('storage/upload/'.$i->img_th)  : asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
+				                      <img class="media-object" src="{{ (isset($i->img_th)) ? asset('storage/upload/'.$i->img_th)  : asset('/img/resource/thumbnail-default.jpg') }}" width="50" height="50" alt="...">
 				                    </a>
-				                  </div>
-				                  <div class="media-body">
-				                    <h4 class="media-heading"></h4>
-				                    <label>TH :</label> {!! $t->name_th !!}<BR>
-				                    <label>EN :</label>{!! $t->name_en !!}
-				                  </div>
-				                </div>
+									</div>
+								 @endforeach
+								</div>
 				            </td>
 				            <td class="v-mid">{{$t->created_at->diffForHumans()}}</td>
 				           
@@ -134,16 +129,22 @@
 								
 								
 								<div class="col-sm-2">
-									<button class="pull-right  btn btn-circle {{ $t->status==1 ? 'btn-success':'offline' }}" title="status {{ $t->status==1 ? 'online':'offline' }}">
-										<i class="fa fa-{{ $t->status==1 ? 'eye':'eye-slash' }} "></i>
-									</button>
+									<form class="form-group" method="post" action="{{ asset($route.'/public/'.$t->id) }}">
+											{{ csrf_field() }}
+											{{ method_field('PUT') }}
+											<input type="hidden" name="status" value="{{ $t->status }}" >
+											<button type="button" onclick="if (confirm('คุณต้องการ {{ $t->status==1 ? 'offline' : 'online'}} ใช่หรือไม่?')) { $(this).closest('form').submit(); }"  class="pull-right  btn btn-circle {{ $t->status==1 ? 'btn-success':'offline' }}"" title="status {{ $t->status==1 ? 'online':'offline' }}">
+											 	<i class="fa fa-{{ $t->status==1 ? 'eye':'eye-slash' }} "></i>
+											</button>
+									</form> 
+									
 								</div>
 								
 								<div class="col-sm-2">
 									<a href="{{ asset($route.'/'.$t->id.'/edit') }}" class="btn btn-warning btn-circle" title="edit item"><i class="fa fa-edit"></i></a>
 								</div>
 								<div class="col-sm-2">
-									<a href="{{ asset($route.'/'.$t->id) }}" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
+									<a href="{{ url('/menu/'.$t->id.'/preview') }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
 								<div class="col-sm-2">
 									<form class="form-group" method="post" action="{{ asset($route.'/'.$t->id) }}">
@@ -170,7 +171,7 @@
 
 				
             </div>
-           	<div class="col-sm-12  col-center"> @include('layouts.partials.pagination', ['paginator' => $tables,'sortBy'=>$sortBy ,'sortType'=>$sortType,'sortNextType'=>$sortNextType,'search'=>$search])</div>
+           	<div class="col-sm-12  col-center"> @include('layouts.partials.pagination', ['paginator' => $tables,'sortBy'=>$sortBy ,'sortType'=>$sortType,'sortNextType'=>$sortNextType,'search'=>$search,'route'=> $category_id])</div>
         </div>
        
     </div>

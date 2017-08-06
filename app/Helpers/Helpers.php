@@ -4,11 +4,22 @@
 if (! function_exists('set_active')) {
     function set_active ($route)
     {
+       
         if(is_array($route))
         {
             return in_array(Request::path(), $route) ? 'active' : '';
         }
-        return Request::path() == $route ? 'active' : '';
+        $url = Request::path() ;
+        $url = str_replace('/create' ,'' , $url);
+        // 
+
+        if (strstr($url,'/edit')){
+            $url = str_replace('/edit' ,'' , $url);
+            $ep =  explode('/', $url);
+            $last = last($ep);
+            $url = str_replace('/'.$last, '' ,  $url);
+        }
+        return $active = ($url==$route) ? 'active' : ''; ;
     }
 }
 
@@ -31,9 +42,14 @@ if (! function_exists('sortBy')) {
     }
 }
 if (! function_exists('urlSortBy')) {
-    function urlSortBy($page,$by,$type,$search)
+    function urlSortBy($page,$by,$type,$search,$route=null)
     {
-    	return route(Route::currentRouteName(), ['page'=> $page ,'search'=>$search,'sortby' => $by, 'type' => $type]) ;
+        if (isset($route)){
+            $url = route( Route::currentRouteName(), [ $route, 'page'=> $page ,'search'=>$search,'sortby' => $by, 'type' => $type]) ;
+        }else{
+            $url = route( Route::currentRouteName(), ['page'=> $page ,'search'=>$search,'sortby' => $by, 'type' => $type]) ;
+        }
+    	return $url;
     }
 }
 

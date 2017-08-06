@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller ;
 use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\menu;
-
+use App\Models\menuDetail;
+use Illuminate\Support\Facades\Log;
+use App;
 class MenuController extends Controller
 {
     /**
@@ -18,16 +20,32 @@ class MenuController extends Controller
         // $this->middleware('auth');
     }
 
-    public function menu($url)
+    public function menu($url,$preview=null)
     {   
 
+        // echo " local [ ".App::getLocale()." ]<BR>";
 
-        $category = category::where('slug',$url)->first();
-        if (is_null($category)){
+        try {
+            $category = (isset($preview)) ?  menu::where('menus.id',$url)->join('categorys','categorys.id','=','menus.category_id')->select('categorys.thumbnail_th','categorys.thumbnail_en','menus.id','menus.category_id')->first()
+             : category::where('slug',$url)->first();
+
+
+
+            if (is_null($category)){
+                Log::error("[Front] MenuController@menu : notfound public category ");
+                return redirect('notfound');
+            }
+            $menu = (isset($preview)) ? $category->images : menu::where('category_id',$category->id)->where('status',1)->first()->images  ;
+        } catch (\Exception $e) {
+            Log::error("[Front] MenuController@menu : ".$e->getMessage());
             return redirect('notfound');
-        }
-        $data['data'] = $category->menu()->get() ;
-        switch ($category->id) {
+        }   
+        $data['data'] = $menu ;
+
+
+        $categoryId =  (isset($preview)) ? $category->category_id : $category->id ;
+
+        switch ($categoryId) {
             case 1:
                 $data['porkCate'] = $category ; 
                 $view = 'front.menu.pork' ;
@@ -77,36 +95,42 @@ class MenuController extends Controller
         }
         return view($view,$data);
     }
-
+    
     public function mainMenu()
     {   
-        $beefCate = category::find(4);
-        $data['beefCate'] = $beefCate  ;
-        $beef = $beefCate->menu()->get();
-        $data['beef'] = $beef  ;
+        try {
 
-        $burger = category::find(5)->menu()->get();
-        $data['burger'] = $burger  ;
+            $beefCate = category::find(4);
+            $data['beefCate'] = $beefCate  ;
+            $beef = menu::where('category_id',$beefCate->id)->where('status',1)->first()->images ;
+            $data['beef'] = $beef  ;
 
-        $chickenCate = category::find(2);
-        $data['chickenCate'] = $chickenCate ; 
-        $chicken = $chickenCate->menu()->get();
-        $data['chicken'] = $chicken ;
+            $burger = menu::where('category_id',5)->where('status',1)->first()->images;
+            $data['burger'] = $burger  ;
 
-        $kidmenuCate = category::find(6);
-        $data['kidmenuCate'] = $kidmenuCate  ; 
-        $kidmenu = $kidmenuCate->menu()->get();
-        $data['kidmenu'] = $kidmenu  ;
+            $chickenCate = category::find(2);
+            $data['chickenCate'] = $chickenCate ; 
+            $chicken = menu::where('category_id',$chickenCate->id)->where('status',1)->first()->images;
+            $data['chicken'] = $chicken ;
 
-        $porkCate = category::find(1);
-        $data['porkCate'] = $porkCate  ;
-        $pork = $porkCate->menu()->get();
-        $data['pork'] = $pork  ;
+            $kidmenuCate = category::find(6);
+            $data['kidmenuCate'] = $kidmenuCate  ; 
+            $kidmenu =  menu::where('category_id',$kidmenuCate->id)->where('status',1)->first()->images;
+            $data['kidmenu'] = $kidmenu  ;
 
-        $seafoodCate = category::find(3);
-        $data['seafoodCate'] = $seafoodCate  ;     
-        $seafood = $seafoodCate->menu()->get();
-        $data['seafood'] = $seafood  ;
+            $porkCate = category::find(1);
+            $data['porkCate'] = $porkCate  ;
+            $pork =  menu::where('category_id',$porkCate->id)->where('status',1)->first()->images;
+            $data['pork'] = $pork  ;
+
+            $seafoodCate = category::find(3);
+            $data['seafoodCate'] = $seafoodCate  ;     
+            $seafood =  menu::where('category_id',$seafoodCate->id)->where('status',1)->first()->images;
+            $data['seafood'] = $seafood  ;
+        } catch (\Exception $e) {
+            Log::error("[Front] MenuController@menu : ".$e->getMessage());
+            return redirect('notfound');
+        }
         return view('front.menu.index',$data);
     } 
     public function combination()
@@ -115,88 +139,5 @@ class MenuController extends Controller
         // $data['data'] = $query  ;
         return view('front.menu.combination');
     }
-    public function beef()
-    {   
-        $beefCate = category::find(4);
-        $data['beefCate'] = $beefCate  ;
-        $beef = $beefCate->menu()->get();
-        $data['data'] = $beef  ;
-        return view('front.menu.beef',$data);
-    }
-     public function burger()
-    {   
-        $query = category::find(5)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.burger',$data);
-    }
-     public function chicken()
-    {   
-        $chickenCate = category::find(2);
-        $data['chickenCate'] = $chickenCate ; 
-        $chicken = $chickenCate->menu()->get();
-        $data['data'] = $chicken ;
-        return view('front.menu.chicken',$data);
-    }
-    
-     public function kidmenu()
-    {   
-        $kidmenuCate = category::find(6);
-        $data['kidmenuCate'] = $kidmenuCate  ; 
-        $kidmenu = $kidmenuCate->menu()->get();
-        $data['data'] = $kidmenu  ;
-        return view('front.menu.kidmenu',$data);
-    }
-     public function pork()
-    {   
-        $porkCate = category::find(1);
-        $data['porkCate'] = $porkCate  ;
-        $pork = $porkCate->menu()->get();
-        $data['data'] = $pork  ;
-        return view('front.menu.pork',$data);
-    }
-     public function seafood()
-    {   
-        $seafoodCate = category::find(3);
-        $data['seafoodCate'] = $seafoodCate  ;     
-        $seafood = $seafoodCate->menu()->get();
-        $data['data'] = $seafood  ;
-        return view('front.menu.seafood',$data);
-    } 
-    public function comBeef()
-    {   
-        $query = category::find(7)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.com_beef',$data);
-    }
-    public function comPlatter()
-    {   
-        $query = category::find(9)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.com_platter',$data);
-    }
-     public function comSuprem()
-    {   
-        $query = category::find(8)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.com_suprem',$data);
-    }
-  
-    public function wednesday()
-    {   
-        $query = category::find(11)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.wednesday',$data);
-    }
-    public function everyday()
-    {   
-        $query = category::find(12)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.everyday',$data);
-    }
-    public function lunch()
-    {   
-        $query = category::find(13)->menu()->get();
-        $data['data'] = $query  ;
-        return view('front.menu.lunch',$data);
-    }
+   
 }

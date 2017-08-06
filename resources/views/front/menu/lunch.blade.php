@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
  	<main class="phoinikas--body-main phoinikas--page-menu -lunch">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
 			@if (App::getLocale()=='th') 
@@ -23,42 +22,21 @@
 			</section>
 
 			<section class="phoinikas--section-lunch-3 phoinikas--flex-row">
+				@for($i=1;$i<=3;$i++)
 				<figure>
-					<img src="{{ isset($data[1]->img_th) ? asset('storage/upload/'.$data[1]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_th }}">
+					<img src="{{ isset($data[$i]->img_th) ? asset('storage/upload/'.$data[$i]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[$i]->name_th }}">
 
-					<!-- <img src="{{ asset('/img/menu/img-lunch-2.jpg')}}" alt="">
+		
 					<figcaption class="phoinikas--caption-price">
 						<em class="phoinikas--remark">
-							ปลาชุบเกล็ดขนมปังทอด
-							<span>Crumbed Fish</span>
+							{!! isset($data[$i]->title_th) ? $data[$i]->title_th : '' !!}
+							<span>{!! isset($data[$i]->title_en) ? $data[$i]->title_en : '' !!}</span>
 						</em>
-						<strong>179.-</strong>
-					</figcaption> -->
+						<strong>{!! isset($data[$i]->price_th) ? $data[$i]->price_th : '' !!} .-</strong>
+					</figcaption>
 				</figure>
-
-				<figure>
-					<img src="{{ isset($data[2]->img_th) ? asset('storage/upload/'.$data[2]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_th }}">
-					<!-- <img src="{{ asset('/img/menu/img-lunch-3.jpg')}}" alt="">
-					<figcaption class="phoinikas--caption-price">
-						<em class="phoinikas--remark">
-							สเต็กเนื้อออสเตรเลียจานร้อน
-							<span>Sizzling Australian Beef</span>
-						</em>
-						<strong>399.-</strong>
-					</figcaption> -->
-				</figure>
-
-				<figure>
-					<img src="{{ isset($data[3]->img_th) ? asset('storage/upload/'.$data[3]->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[3]->name_th }}">
-					<!-- <img src="{{ asset('/img/menu/img-lunch-4.jpg')}}" alt="">
-					<figcaption class="phoinikas--caption-price">
-						<em class="phoinikas--remark">
-							สเต็กเนื้อบดเทอริยากิ
-							<span>Teriyaki &amp; Mushroom Australian Chopped Steak</span>
-						</em>
-						<strong>229.-</strong>
-					</figcaption> -->
-				</figure>
+				@endfor
+			
 			</section>
 			@else
 			<section class="phoinikas--section-lunch-1 phoinikas--txt-header">
@@ -79,42 +57,20 @@
 			</section>
 
 			<section class="phoinikas--section-lunch-3 phoinikas--flex-row">
+				@for($i=1;$i<=3;$i++)
 				<figure>
-					<img src="{{ isset($data[1]->img_en) ? asset('storage/upload/'.$data[1]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_en }}">
+					<img src="{{ isset($data[$i]->img_en) ? asset('storage/upload/'.$data[$i]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[$i]->name_en }}">
 
-					<!-- <img src="{{ asset('/img/menu/img-lunch-2.jpg')}}" alt="">
 					<figcaption class="phoinikas--caption-price">
 						<em class="phoinikas--remark">
-							ปลาชุบเกล็ดขนมปังทอด
-							<span>Crumbed Fish</span>
+							{!! isset($data[$i]->title_en)  ? $data[$i]->title_en : '' !!}
+							<span>{!! isset($data[$i]->title_th)  ? $data[$i]->title_th : '' !!}</span>
 						</em>
-						<strong>179.-</strong>
-					</figcaption> -->
+						<strong>{!! isset($data[$i]->price_en)  ? $data[$i]->price_en : '' !!} .-</strong>
+					</figcaption>
 				</figure>
-
-				<figure>
-					<img src="{{ isset($data[2]->img_en) ? asset('storage/upload/'.$data[2]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_en }}">
-					<!-- <img src="{{ asset('/img/menu/img-lunch-3.jpg')}}" alt="">
-					<figcaption class="phoinikas--caption-price">
-						<em class="phoinikas--remark">
-							สเต็กเนื้อออสเตรเลียจานร้อน
-							<span>Sizzling Australian Beef</span>
-						</em>
-						<strong>399.-</strong>
-					</figcaption> -->
-				</figure>
-
-				<figure>
-					<img src="{{ isset($data[3]->img_en) ? asset('storage/upload/'.$data[3]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[3]->name_en }}">
-					<!-- <img src="{{ asset('/img/menu/img-lunch-4.jpg')}}" alt="">
-					<figcaption class="phoinikas--caption-price">
-						<em class="phoinikas--remark">
-							สเต็กเนื้อบดเทอริยากิ
-							<span>Teriyaki &amp; Mushroom Australian Chopped Steak</span>
-						</em>
-						<strong>229.-</strong>
-					</figcaption> -->
-				</figure>
+				@endfor
+				
 			</section>
 			@endif
 			
@@ -125,5 +81,4 @@
 		</div>
 
 	</main>
-
 @endsection
