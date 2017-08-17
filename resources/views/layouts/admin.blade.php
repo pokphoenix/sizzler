@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
     <link rel="stylesheet" href="{{ url('css/admin.css') }}">
     <link rel="stylesheet" href="{{ url('css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url('css/custom_new.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
     
  
@@ -33,7 +34,8 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                             @endif
                         @else
-                            <li class="dropdown">
+
+                           {{--  <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name.' '.Auth::user()->lastname }} <span class="caret"></span>
                                 </a>
@@ -51,11 +53,12 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         @endif
                     </ul>
 
 @yield('body')
+
 <script src="{{ asset('plugin/bootstrap/bootstrap.min.js') }}"></script>
 <!-- <script src="{{ asset("js/app.js") }}"></script> -->
 <!-- <script src="{{ asset("js/Chart.js") }}"></script> -->

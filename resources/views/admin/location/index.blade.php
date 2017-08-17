@@ -37,7 +37,7 @@
 				            	<div class="col-sm-4">
 								@include('layouts.widgets.tablesort',
 								[ 'title' => 'TH' 
-									,'sortKey' => 'name_th'
+									,'sortKey' => 'location.name_th'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()   
 									,'sortType' => $sortType
@@ -49,7 +49,7 @@
 				            	<div class="col-sm-4">
 				            	@include('layouts.widgets.tablesort',
 								[ 'title' => 'EN' 
-								    ,'sortKey' => 'name_en'
+								    ,'sortKey' => 'location.name_en'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()  
 									,'sortType' => $sortType
@@ -60,10 +60,21 @@
 				            	</div>
 				          
 				            </th>
-				            <th class="col-sm-2" >จังหวัด</th>
+				            <th class="col-sm-2" >
+							@include('layouts.widgets.tablesort',
+								[ 'title' => 'จังหวัด' 
+								    ,'sortKey' => 'provinces.province_name_th'
+									,'sortBy' => $sortBy 
+									,'page' => $tables->currentPage()  
+									,'sortType' => $sortType
+									,'sortNextType' =>$sortNextType
+									,'sortKeyType' => 'txt'
+									,'search' => $search
+								])	
+				            </th>
 				            <th class="col-sm-2"> @include('layouts.widgets.tablesort',
 								[ 'title' => 'created' 
-								    ,'sortKey' => 'created_at'
+								    ,'sortKey' => 'location.created_at'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()  
 									,'sortType' => $sortType
@@ -77,7 +88,7 @@
 				            	<div class="col-sm-2" >
 				            		@include('layouts.widgets.tablesort',
 									[ 'title' => '' 
-										,'sortKey' => 'status'
+										,'sortKey' => 'location.status'
 										,'sortBy' => $sortBy 
 										,'page' => $tables->currentPage()   
 										,'sortType' => $sortType

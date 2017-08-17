@@ -40,7 +40,7 @@
 				            	<div class="col-sm-4">
 								@include('layouts.widgets.tablesort',
 								[ 'title' => 'TH' 
-									,'sortKey' => 'name_th'
+									,'sortKey' => 'name_img_th_1'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()   
 									,'sortType' => $sortType
@@ -52,7 +52,7 @@
 				            	<div class="col-sm-4">
 				            	@include('layouts.widgets.tablesort',
 								[ 'title' => 'EN' 
-								    ,'sortKey' => 'name_en'
+								    ,'sortKey' => 'name_img_en_1'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()  
 									,'sortType' => $sortType

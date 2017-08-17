@@ -27,10 +27,13 @@ class LocationController extends Controller
         $data['title'] = $this->controllerName ;
         $data['route'] = $this->route ;
         // $url = $request->fullUrl();
-        $sortBy = 'location.'.$request->input('sortby', 'created_at');
+        $sortBy = $request->input('sortby', 'created_at');
         $sortType = $request->input('type', 'desc'); 
         $search = $request->input('search');
         $sortNextType = ($sortType=='desc') ? 'asc' : 'desc' ;
+
+     
+
         if(isset($search)){
             $tables = location::where('location.name_th', 'like', '%'.$search.'%')
                 ->orWhere('location.name_en', 'like', '%'.$search.'%')
@@ -53,6 +56,7 @@ class LocationController extends Controller
         //         ->get();
         //         dd($query);
 
+       
         $data['tables'] = $tables;
         $data['search'] = $search;
         $data['sortBy'] = $sortBy;

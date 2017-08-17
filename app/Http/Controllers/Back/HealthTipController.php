@@ -37,8 +37,8 @@ class HealthTipController extends Controller
         $search = $request->input('search');
         $sortNextType = ($sortType=='desc') ? 'asc' : 'desc' ;
         if(isset($search)){
-            $tables = healthtip::where('name_th', 'like', '%'.$search.'%')
-                ->orWhere('name_en', 'like', '%'.$search.'%')
+            $tables = healthtip::where('title_th', 'like', '%'.$search.'%')
+                ->orWhere('title_en', 'like', '%'.$search.'%')
                 ->orderBy($sortBy,$sortType)
                 ->paginate(PAGINATE);
         }else{

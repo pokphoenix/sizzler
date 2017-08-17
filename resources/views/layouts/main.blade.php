@@ -8,21 +8,10 @@
 
     <div id="wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url ('/admin') }}"><img  style="height:100%;" src="{{ asset('/img/global/logo-sizzler-footer.png') }}" alt="Sizzler Logo"></a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" >
+             <ul class="nav navbar-top-links navbar-right">
                 
-                
+            
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>{{ Auth::user()->name.' '.Auth::user()->lastname }} <i class="fa fa-caret-down"></i>
@@ -55,11 +44,23 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url ('/admin') }}" style="padding:0px; padding-top: 5px;padding-left: 12px;"><img src="{{ asset('/img/global/logo-sizzler-footer.png') }}" alt="Sizzler Logo"></a>
+            </div>
+            <!-- /.navbar-header -->
 
-            <div class="navbar-default sidebar" role="navigation">
+           
+
+            <div class="navbar-default sidebar" role="navigation" style="margin-top: 54px;">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
+                       {{--  <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -69,7 +70,7 @@
                             </span>
                             </div>
                             <!-- /input-group -->
-                        </li>
+                        </li> --}}
                         <li class="{{ set_active('admin/home') }}">
                             <a href="{{ url ('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -85,44 +86,44 @@
                                     <a href="{{ url ('admin/menu') }}">เมนูอาหาร</a>
                                 </li> -->
                                 <li class="{{ set_active('admin/menu/4') }}">
-                                    <a href="{{ url ('admin/menu/4') }}">beef (เนื้อ)</a>
+                                    <a href="{{ url ('admin/menu/4') }}">Beef (เนื้อ)</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/5') }}">
-                                    <a href="{{ url ('admin/menu/5') }}">burger (เบอเกอร์)</a>
+                                    <a href="{{ url ('admin/menu/5') }}">Burger (เบอเกอร์)</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/2') }}">
-                                    <a href="{{ url ('admin/menu/2') }}">chicken (ไก่)</a>
+                                    <a href="{{ url ('admin/menu/2') }}">Chicken (ไก่)</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/7') }}">
-                                    <a href="{{ url ('admin/menu/7') }}">com-beef (639)</a>
+                                    <a href="{{ url ('admin/menu/7') }}">Combination Beef</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/9') }}">
-                                    <a href="{{ url ('admin/menu/9') }}">com-platter (399)</a>
+                                    <a href="{{ url ('admin/menu/9') }}">Combination Platter</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/8') }}">
-                                    <a href="{{ url ('admin/menu/8') }}">com-suprem (499)</a>
+                                    <a href="{{ url ('admin/menu/8') }}">Combination Suprem</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/12') }}">
-                                    <a href="{{ url ('admin/menu/12') }}">everyday </a>
+                                    <a href="{{ url ('admin/menu/12') }}">Everyday </a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/6') }}">
-                                    <a href="{{ url ('admin/menu/6') }}">kid-menu (เมนูสำหรับเด็ก)</a>
+                                    <a href="{{ url ('admin/menu/6') }}">Kids Menu (เมนูสำหรับเด็ก)</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/13') }}">
-                                    <a href="{{ url ('admin/menu/13') }}">lunch </a>
+                                    <a href="{{ url ('admin/menu/13') }}">Lunch </a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/1') }}">
-                                    <a href="{{ url ('admin/menu/1') }}">pork (หมู)</a>
+                                    <a href="{{ url ('admin/menu/1') }}">Pork (หมู)</a>
                                 </li>
                                 <li class="{{ set_active('admin/menu/3') }}">
-                                    <a href="{{ url ('admin/menu/3') }}">seafood (อาหารทะเล)</a>
+                                    <a href="{{ url ('admin/menu/3') }}">Seafood (อาหารทะเล)</a>
                                 </li>
                                 
                                
                               
                                 
                                 <li class="{{ set_active('admin/menu/11') }}">
-                                    <a href="{{ url ('admin/menu/11') }}">wednesday </a>
+                                    <a href="{{ url ('admin/menu/11') }}">Wednesday </a>
                                 </li>
                                
                                 
@@ -184,7 +185,7 @@
                                     <a href="{{ url ('admin/media') }}">มีเดีย</a>
                                 </li>
                                 <li class="{{ set_active('admin/release') }}" >
-                                    <a href="{{ url ('admin/release') }}">release</a>
+                                    <a href="{{ url ('admin/release') }}">Release</a>
                                 </li>
                                 <!-- <li {{ (Request::is('*ads') ? 'class="active"' : '') }}>
                                     <a href="{{ url ('ads') }}">print ads</a>
@@ -207,7 +208,7 @@
                                     <a href="{{ url ('admin/management') }}"><i class="fa fa-reorder fa-fw"></i>รายชื่อ แอดมิน</a>
                                 </li>
                                 <li class="{{ set_active('admin/management/create') }}">
-                                    <a href="{{ url('admin/management/create') }}"><i class="fa fa-plus-square fa-fw"></i>add new admin</a>
+                                    <a href="{{ url('admin/management/create') }}"><i class="fa fa-plus-square fa-fw"></i>Add new admin</a>
                                 </li>
                             </ul>
                         </li>
@@ -229,10 +230,19 @@
             </div>
             <div class="row">
                 @yield('section')
+
             </div>
             <!-- /#page-wrapper -->
         </div>
     </div>
+    <footer>
+        <div class="container" id="footer">
+            <div class="copyright text-center">
+                © 2017 THE MINOR FOOD GROUP PUBLIC COMPANY LIMITED. ALL RIGHT RESERVED. 
+            </div>
+        </div>
+    </footer>
+
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('plugin/fancybox/jquery.fancybox.min.js') }}"></script>
 <script src="{{ asset('plugin/jquery-validation/jquery.validate.min.js') }}"></script>

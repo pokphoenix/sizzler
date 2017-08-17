@@ -46,12 +46,16 @@ class MenusController extends Controller
         $search = $request->input('search');
         $sortNextType = ($sortType=='desc') ? 'asc' : 'desc' ;
         if(isset($search)){
-            $tables = menu::where('category_id',$categoryId)
-                ->where('title_th', 'like', '%'.$search.'%')
-                ->orWhere('title_en', 'like', '%'.$search.'%')
-                ->orderBy($sortBy,$sortType)
-                ->paginate(PAGINATE);
-
+          
+            
+            $tables =   menu::where('category_id',$categoryId)
+                        ->where(function ($query) use ($search) {
+                            $query->where('title_th', 'like', '%'.$search.'%')
+                                  ->orWhere('title_en', 'like', '%'.$search.'%');
+                        })
+                        ->orderBy($sortBy,$sortType)
+                        ->paginate(PAGINATE);
+          
             foreach ($tables as $key => $m) {
                 $tables[$key]['images'] = menuDetail::where('menu_id',$m['id'])->get();
             }
@@ -373,11 +377,11 @@ class MenusController extends Controller
         $resize[2][3] = ['w'=>526,'h'=>526]; 
         $resize[2][4] = ['w'=>454,'h'=>184];
 
-        $resize[3][0] = ['w'=>224,'h'=>226]; 
-        $resize[3][1] = ['w'=>528,'h'=>528]; 
-        $resize[3][2] = ['w'=>228,'h'=>226]; 
-        $resize[3][3] = ['w'=>224,'h'=>302]; 
-        $resize[3][4] = ['w'=>228,'h'=>302];
+        $resize[3][0] = ['w'=>224,'h'=>224]; 
+        $resize[3][1] = ['w'=>528,'h'=>532]; 
+        $resize[3][2] = ['w'=>228,'h'=>225]; 
+        $resize[3][3] = ['w'=>224,'h'=>306]; 
+        $resize[3][4] = ['w'=>228,'h'=>306];
 
         $resize[4][0] = ['w'=>260,'h'=>266]; 
         $resize[4][1] = ['w'=>460,'h'=>314]; 

@@ -13,7 +13,7 @@ img {
 				{{ method_field('PUT') }}
 			@endif
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-sm-10">
 			 	@include('layouts.partials.error')
 	
 				@if (isset($url))
@@ -37,7 +37,7 @@ img {
 				{{ isset($panelBodyMain)? $panelBodyMain : '' }}
 
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-2" style="text-align: center;">
 				@component('admin.widgets.collapse')
 		            @slot('header', 'ส่วนสลับภาษา')
 		            @slot('class', 'info')

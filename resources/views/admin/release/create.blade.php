@@ -4,10 +4,7 @@
 
 @section('section')
     @component('layouts.widgets.submitForm', ['id'=>'createForm','method'=> isset($edit) ? 'PUT' : 'POST' ,'action'=> isset($data->id) ? asset($route.'/'.$data->id) : asset($route),'backUrl'=>asset($route),'errors'=> isset($errors) ? $errors : '', 'editStatus'=>isset($data->status) ? $data->status : 1 , 'editPosition'=> isset($data->position) ? $data->position : 0    ] )
-        @slot('panelTitle', 'Regular Table')
-           
-
-
+         @slot('panelTitle', 'Regular Table')
             @slot('panelBodyTH')   
             <div class="form-group">
                 <label for="ex">หัวข้อ (ภาษาไทย)</label>
@@ -27,10 +24,13 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" ><div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
+                    <h5>รูป thumbnail</h5>
+                    <input type="file" id="thumbnail_th" name="thumbnail_th" class="form-control" >
+                     <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
+            </div>
             </div>  
 
             <div class="form-group">
@@ -38,8 +38,8 @@
                 <textarea id="text_th" name="text_th" placeholder="รายละเอียดย่อ ภาษาไทย" class="form-control require-field">{{ isset($data->text_th) ? $data->text_th : '' }}</textarea>
                 <p class="help-block"></p>
             </div>
-
              @endslot
+
             @slot('panelBodyEN')  
             <div class="form-group">
                 <label for="ex">หัวข้อ (ภาษาอังกฤษ)</label>
@@ -59,12 +59,15 @@
                     </a>
                   </div>
                   <div class="media-body">
-                    <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" ><div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
+                  <h5>รูป thumbnail</h5>
+                    <input type="file" id="thumbnail_en" name="thumbnail_en" class="form-control" >
+                     <div class="span-field fl">(ขนาดที่เหมาะสม {{ $resize[0]['w'].' x '.$resize[0]['h'] }} px)</span>
                   </div>
                 </div>
                 <p class="help-block">รูปภาพเป็น jpg หรือ png และมีขนาดไม่เกิน 2MB</p>
+            </div>
             </div>  
-             <div class="form-group">
+            <div class="form-group">
                 <label for="ex">เนื้อหา (ภาษาอังกฤษ)</label>
                 <textarea id="text_en" name="text_en" placeholder="รายละเอียดย่อ ภาษาอังกฤษ" class="form-control require-field">{{ isset($data->text_en) ? $data->text_en : '' }}</textarea>
                 <p class="help-block"></p>
@@ -79,7 +82,6 @@
                     @slot('id', '4')
                     @slot('collapseIn', true)
                     @slot('body')
-                    
                     @if (isset($aside))
 
                         @foreach ( $aside as $a )
@@ -93,7 +95,7 @@
                               </div>
 
                               <div class="media-body">
-                                 <button  class="del-img btn btn-danger" data-href="{{ asset($route.'/image/'.$a->id) }}"  type="button" ><i class="fa fa-minus"></i></button>
+                                 <button  class="del-img btn btn-danger" data-href="{{ asset('admin/healthtip/image/'.$a->id) }}"  type="button" ><i class="fa fa-minus"></i></button>
                               </div>
                             </div>
                         </div>
@@ -101,12 +103,12 @@
                     @endif
                         <div class="form-group">
                             <div class="media">
-                              <div class="media-left">
+                              <div class="media-left" style="padding: 0;">
                                 <a class="showImage" data-fancybox="gallery" href="{{ asset('/img/resource/thumbnail-default.jpg') }}" target="_blank">
-                                  <img class="media-object displayImage"  src="{{ asset('/img/resource/thumbnail-default.jpg') }}"  alt="...">
+                                  <img class="media-object displayImage"  src="{{ asset('/img/resource/thumbnail-default.jpg') }}"  alt="..." style="width: 100%;">
                                 </a>
                               </div>
-                              <div class="media-body">
+                              <div class="media-body" style="display: initial;">
                                 <input type="file" id="img-aside" name="img_aside[]" class="form-control" >
                               </div>
                             </div>
@@ -191,8 +193,8 @@
                     minlength: 2
                 }
                
-            },
-            ,
+            }
+            
         });
     });
     </script>

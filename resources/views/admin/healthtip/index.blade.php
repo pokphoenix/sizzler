@@ -52,7 +52,7 @@
 				            	<div class="col-sm-4">
 				            	@include('layouts.widgets.tablesort',
 								[ 'title' => 'EN' 
-								    ,'sortKey' => 'name_en'
+								    ,'sortKey' => 'title_en'
 									,'sortBy' => $sortBy 
 									,'page' => $tables->currentPage()  
 									,'sortType' => $sortType
