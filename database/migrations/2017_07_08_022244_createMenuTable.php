@@ -15,12 +15,18 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_th')->nullable();
-            $table->string('name_en')->nullable();
-            $table->string('img_th')->nullable();
-            $table->string('img_en')->nullable();
+            $table->string('title_th')->nullable();
+            $table->string('title_en')->nullable();
+            $table->string('short_desc_th')->nullable();
+            $table->string('short_desc_en')->nullable();
+            $table->integer('price_th')->unsigned();
+            $table->integer('price_en')->unsigned();
+            $table->string('img_name_th')->nullable();
+            $table->string('img_name_en')->nullable();
+            $table->string('thumbnail_th')->nullable();
+            $table->string('thumbnail_en')->nullable();
             $table->integer('category_id');
-            // $table->integer('status')->unsigned();
+            $table->integer('status')->unsigned();
             // $table->integer('position')->unsigned()->default(0);
             $table->timestamps();
         });

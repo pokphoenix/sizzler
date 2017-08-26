@@ -47,26 +47,6 @@
                 @component('admin.widgets.panel')
                     @slot('panelTitle', 'Status')
                     @slot('panelBody')
-<style type="text/css">
- .bs-callout-info h4 {
-    color: #1b809e;
-}.bs-callout h4 {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.bs-callout {
-    padding: 20px;
-    margin: 20px 0;
-    border: 1px solid #eee;
-    border-left-width: 5px;
-    border-radius: 3px;
-}
-.bs-callout-info {
-    border-left-color: #1b809e;
-}
-
-                    </style>
 
                     <div class="form-group input-group">
                         <span class="input-group-addon {{ $data->position!=0 ? 'btn-info active':'' }} " title="status" ><i class="fa fa-{{ $data->status==1 ? 'eye':'eye-slash' }} "></i></span>

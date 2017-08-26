@@ -185,8 +185,18 @@
                     required: true,
                     minlength: 2,
                     maxlength: 200
+                },
+                text_th: {
+                    required: true,
+                    minlength: 2
+                }, 
+                text_en: {
+                    required: true,
+                    minlength: 2
                 }
+               
             }
+            
         });
     });
     </script>

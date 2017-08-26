@@ -27,7 +27,7 @@
 			</section>
 
 			<section class="phoinikas--section-everyday-2 phoinikas--txt-header">
-				<img src="{{asset('/img/menu/txt-everyday.png')}}" alt="">
+				<img src="{{asset('/img/menu/txt-everyday-en.png')}}" alt="">
 			</section>
 
 			<section class="phoinikas--section-everyday-3">

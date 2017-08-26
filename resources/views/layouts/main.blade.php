@@ -198,6 +198,9 @@
                                 </li> -->
                             </ul>
                         </li>
+                        <li class="{{ set_active('admin/contact') }}">
+                            <a href="{{ url ('admin/contact') }}"><i class="fa fa-address-card-o  fa-fw"></i> Contact</a>
+                        </li>
                         @if (Auth::user()->id==1 )
                          <li>
                             <a href="#">

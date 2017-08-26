@@ -10,10 +10,7 @@
 
 			<section class="phoinikas--section-com-beef-2 phoinikas--flex-row">
 				<div>
-					<img src="{{ asset('/img/menu/txt-combination-beef.png')}}" alt="">
-				</div>
-				<div>
-					<img src="{{ asset('/img/menu/badge-com-beef.png')}}" alt="">
+					<img src="img/menu/txt-combination-beef.png" alt="">
 				</div>
 			</section>
 
@@ -42,10 +39,7 @@
 
 			<section class="phoinikas--section-com-beef-2 phoinikas--flex-row">
 				<div>
-					<img src="{{ asset('/img/menu/txt-combination-beef.png')}}" alt="">
-				</div>
-				<div>
-					<img src="{{ asset('/img/menu/badge-com-beef.png')}}" alt="">
+					<img src="img/menu/txt-combination-beef.png" alt="">
 				</div>
 			</section>
 
@@ -53,16 +47,14 @@
 				<figure>
 					<img src="{{ isset($data[1]->img_en) ? asset('storage/upload/'.$data[1]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_en }}">
 					<figcaption style="font-size: 30px;">
-						{!! $data[1]->title_en !!} <br>
-						{!! $data[1]->title_th !!}
+						{!! $data[1]->title_en !!}
 					</figcaption>
 				</figure>
 
 				<figure>
 					<img src="{{ isset($data[2]->img_en) ? asset('storage/upload/'.$data[2]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_en }}">
 					<figcaption style="font-size: 30px;">
-						{!! $data[2]->title_en !!} <br>
-						{!! $data[2]->title_th !!}
+						{!! $data[2]->title_en !!}
 					</figcaption>
 				</figure>
 			</section>

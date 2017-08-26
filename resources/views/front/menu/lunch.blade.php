@@ -40,11 +40,11 @@
 			</section>
 			@else
 			<section class="phoinikas--section-lunch-1 phoinikas--txt-header">
-				<img src="{{ asset('/img/menu/txt-lunch-header.png')}}" alt="">
+				<img src="{{ asset('/img/menu/txt-lunch-header-en.png')}}" alt="">
 			</section>
 
 			<div class="phoinikas--lunch-condition">
-				เมนูราคาพิเศษสำหรับมื้อกลางวัน <span>11:00 น. - 15:00 น.</span> <br> Monday - Friday Opening - 3 pm <span>*Except Public Holiday</span>
+				Monday - Friday Opening - 3 pm <span>*Except Public Holiday</span>
 			</div>
 
 			<section class="phoinikas--section-lunch-2">
@@ -63,8 +63,7 @@
 
 					<figcaption class="phoinikas--caption-price">
 						<em class="phoinikas--remark">
-							{!! isset($data[$i]->title_en)  ? $data[$i]->title_en : '' !!}
-							<span>{!! isset($data[$i]->title_th)  ? $data[$i]->title_th : '' !!}</span>
+							<span>{!! isset($data[$i]->title_en)  ? $data[$i]->title_en : '' !!}</span>
 						</em>
 						<strong>{!! isset($data[$i]->price_en)  ? $data[$i]->price_en : '' !!} .-</strong>
 					</figcaption>
@@ -76,7 +75,11 @@
 			
 
 			<section class="phoinikas--section-lunch-4">
+				@if (App::getLocale()=='th') 
 				<img src="{{ asset('/img/menu/img-lunch-5.jpg')}}" alt="">
+				@else
+				<img src="{{ asset('/img/menu/img-lunch-5-en.jpg')}}" alt="">
+				@endif
 			</section>
 		</div>
 

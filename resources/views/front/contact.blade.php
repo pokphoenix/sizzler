@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
 <main class="phoinikas--body-main phoinikas--page-contact">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
+		<form id="submitform" action="{{ $action }}" method="POST" >
+		 {{ csrf_field() }}	
+			@if (App::getLocale()=='th') 
 			<h2>ติดต่อเรา</h2>
 			<div class="phoinikas--flex-row">
 				<article class="phoinikas--contact-address">
@@ -21,21 +25,125 @@
 				</article>
 				<aside class="phoinikas--contact-form">
 					<div class="phoinikas--form-row">
-						<input type="text" name="contact-name" id="" placeholder="ชื่อ/นามสกุล">
+						<input type="text" name="contact-name" id="" value="{{ old('contact-name') }}" placeholder="ชื่อ/นามสกุล">
+                        @if ($errors->has('contact-name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-name') }}</strong>
+                            </span>
+                        @endif
 					</div>
 					<div class="phoinikas--form-row">
-						<input type="tel" name="contact-tel" id="" placeholder="เบอร์โทรศัพท์">
+						<input type="tel" name="contact-tel require-field" id="" placeholder="เบอร์โทรศัพท์" value="{{ old('contact-tel') }}">
+						@if ($errors->has('contact-tel'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-tel') }}</strong>
+                            </span>
+                        @endif
 					</div>
 					<div class="phoinikas--form-row">
-						<input type="email" name="contact-email" id="" placeholder="Your Email">
+						<input type="email" name="contact-email require-field" id="" placeholder="Your Email" value="{{ old('contact-email') }}">
+						@if ($errors->has('contact-email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-email') }}</strong>
+                            </span>
+                        @endif
 					</div>
 					<div class="phoinikas--form-row">
-						<textarea name="contact-message" rows="8" cols="80" placeholder="Your Message"></textarea>
+						<textarea name="contact-message" rows="8" cols="80" placeholder="Your Message">{{ old('contact-message') }}</textarea>
+						@if ($errors->has('contact-message'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-message') }}</strong>
+                            </span>
+                        @endif
 					</div>
-					<button type="submit" name="button" class="phoinikas--btn-design-2">SEND</button>
+					<button type="submit"  class="phoinikas--btn-design-2">SEND</button>
 				</aside>
 			</div>
-		</div>
-	</main>
+			@else
+			<h2>Contact Sizzler</h2>
+			<div class="phoinikas--flex-row">
+				<article class="phoinikas--contact-address">
+					<p class="phoinikas--bold">
+						SLRT Limited <br>15th Floor Berli Jucker House <br>99 Soi Rubia, Sukhumvit 42 Rd., <br> Bangkok 10110 Thailand <br><br>
+						Tel: +66 2 365 6999 <br>
+						Fax: +66 2 365 6960 <br>
+						E-mail: SizzlerGM@minornet.com
+					</p>
 
+					<p>
+						Please fill in the form below. <br>
+            Our representative will get back to you ASAP.  <br>
+					</p>
+				</article>
+				<aside class="phoinikas--contact-form">
+					<div class="phoinikas--form-row">
+						<input type="text" name="contact-name" id="" placeholder="Name/Surname" value="{{ old('contact-name') }}" >
+                        @if ($errors->has('contact-name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-name') }}</strong>
+                            </span>
+                        @endif
+					</div>
+					<div class="phoinikas--form-row require-field">
+						<input type="tel" name="contact-tel" id="" placeholder="Mobile" value="{{ old('contact-tel') }}">
+                        @if ($errors->has('contact-tel'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-tel') }}</strong>
+                            </span>
+                        @endif
+					</div>
+					<div class="phoinikas--form-row require-field">
+						<input type="email" name="contact-email" id="" placeholder="E-mail" value="{{ old('contact-email') }}" >
+                        @if ($errors->has('contact-email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-email') }}</strong>
+                            </span>
+                        @endif
+					</div>
+					<div class="phoinikas--form-row">
+						<textarea name="contact-message" rows="8" cols="80" placeholder="Message">{{ old('contact-message') }}</textarea>
+						 @if ($errors->has('contact-message'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('contact-message') }}</strong>
+                            </span>
+                        @endif
+					</div>
+					<button type="submit" class="phoinikas--btn-design-2">Send</button>
+				</aside>
+			</div>
+			@endif
+		</div>
+		</form>
+	</main>
+<style type="text/css">
+.require-field { border-left: 5px solid #bf5329; }
+#submitform label.error,#submitform div.validate_error {
+  color:#bf5329;
+  font-weight: bold;
+}
+</style>
+<script src="{{ asset('plugin/jquery-validation/jquery.validate.min.js') }}"></script>
+<script>
+    $(function() {
+        // validate signup form on keyup and submit
+        $("#submitform").validate({
+            rules: {
+                'contact-name': {
+                    maxlength: 200
+                },
+                'contact-tel': {
+                    required: true,
+                    maxlength: 200
+                },
+                'contact-email': {
+                    required: true,
+                    email: true
+                },
+                'contact-text': {
+                    maxlength: 1000
+                }
+            }
+        });
+    });
+    </script>
 @endsection

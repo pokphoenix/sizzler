@@ -50,7 +50,7 @@
           return txt.value;
       }
       var map;
-      var image = 'http://sizzler.phoinikasdigital.com/img/global/logo-sizzler-map.png';
+      var image = '{{ asset("/img/global/logo-sizzler-map.png") }}';
 
       var json = decodeHtml('{{ $json }}') ;
       var locations = $.parseJSON(json);

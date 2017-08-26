@@ -44,7 +44,6 @@
 						<img src="{{ isset($data[1]->img_en) ? asset('storage/upload/'.$data[1]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[1]->name_en }}">
 						<figcaption style="font-size: 26px;">
 							{!! $data[1]->title_en !!}<BR>
-							{!! $data[1]->title_th !!}<BR>
 						</figcaption>
 					</figure>
 
@@ -52,7 +51,6 @@
 						<img src="{{ isset($data[2]->img_en) ? asset('storage/upload/'.$data[2]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[2]->name_en }}">
 						<figcaption style="font-size: 26px;">
 							{!! $data[2]->title_en !!}<BR>
-							{!! $data[2]->title_th !!}<BR>
 						</figcaption>
 					</figure>
 
@@ -60,7 +58,6 @@
 						<img src="{{ isset($data[3]->img_en) ? asset('storage/upload/'.$data[3]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[3]->name_en }}">
 						<figcaption style="font-size: 26px;">
 							{!! $data[3]->title_en !!}<BR>
-							{!! $data[3]->title_th !!}<BR>
 						</figcaption>
 					</figure>
 				</div>

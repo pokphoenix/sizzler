@@ -28,7 +28,7 @@
 				<img src="{{ isset($data[4]->img_en) ? asset('storage/upload/'.$data[4]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[4]->name_en }}">
 			</section>
 			<section class="phoinikas--section-wed-2 phoinikas--txt-header">
-				<img src="{{ asset('/img/menu/txt-wed_night.png')}}" alt="">
+				<img src="{{ asset('/img/menu/txt-wed_night-en.png')}}" alt="">
 			</section>
 			<section class="phoinikas--section-wed-3">
 				<img src="{{ isset($data[5]->img_en) ? asset('storage/upload/'.$data[5]->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $data[5]->name_en }}">

@@ -76,7 +76,7 @@
           </ul>
           <ul class="phoinikas--mobile-nav-sub">
             <li>
-              <a href="{{ url('about') }}">About Sizzler</a>
+              <a href="{{ url('about') }}">History</a>
             </li>
             <li>
               <a href="{{ url('career') }}">Career</a>
@@ -239,21 +239,6 @@
 
       function set_languege(languege){
         window.top.location.href= ' {{ url("lang") }}'+'/'+languege ;
-        // $.ajax({
-        //     url: ' {{ url("language") }}'+'/'+languege ,
-        //     type: 'GET',
-        //     dataType: 'JSON',
-        //   })
-        //   .done(function(html) {
-        //     if (html.result){
-        //       var ele = '.layout-'+html.data.language ;
-        //       $('.layout-th,.layout-en').hide();
-        //       $(ele).show();
-        //     }
-        //   })
-        //   .fail(function() {
-        //     console.log("error");
-        //   })
       }
 
     });

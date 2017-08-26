@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\slider;
-
-use App\Models\location;
-use App\Models\banner;
-use App\Models\slidersub;
-use App\Models\healthtip;
-
-use DB;
-use Session;
 use App;
+use App\Http\Requests\ContactValidate;
+use App\Models\banner;
+use App\Models\contact;
+use App\Models\healthtip;
+use App\Models\location;
+use App\Models\slider;
+use App\Models\slidersub;
 use Config;
+use DB;
+use Illuminate\Http\Request;
 use Redirect;
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -110,8 +110,23 @@ class HomeController extends Controller
     }
     public function contact()
     {   
-        return view('front.contact');
+
+        $data['action'] = 'home/contact';
+
+        return view('front.contact',$data);
     }
+
+    public function sendmail(ContactValidate $request)
+    {   
+        $post = $request->all();
+        $contact['name'] = $post['contact-name'] ; 
+        $contact['tel'] = $post['contact-tel'] ; 
+        $contact['email'] = $post['contact-email'] ; 
+        $contact['message'] = $post['contact-message'] ; 
+        // contact::create($contact);
+        return view('front.thank_contact');
+    }
+
     public function international()
     {   
         return view('front.international');

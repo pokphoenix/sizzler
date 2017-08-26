@@ -50,16 +50,14 @@
 				<img src="{{ asset('/img/menu/txt-com-platter-header.png')}}" alt="" class="phoinikas--platter-header">
 
 				<div class="phoinikas--platter-figcaption">
-					{!! $data[0]->title_en !!}
 					<em>
-						{!! $data[0]->title_th !!}
+						{!! $data[0]->title_en !!}
 					</em>
 				</div>
 				<img src="{{ isset($data[1]->img_en) ? asset('storage/upload/'.$data[1]->img_en) : asset('/img/resource/thumbnail-default.jpg')  }}" alt="{{ $data[1]->name_en }}" class="phoinikas--platter-img-small">
 				<div class="phoinikas--platter-figcaption -bottom">
-					{!! $data[1]->title_en !!}
 					<em>
-						{!! $data[1]->title_th !!}
+						{!! $data[1]->title_en !!}
 					</em>
 				</div>
 			</section>
@@ -69,16 +67,14 @@
 
 				<img src="{{ isset($data[2]->img_en) ? asset('storage/upload/'.$data[2]->img_en) : asset('/img/resource/thumbnail-default.jpg')  }}" alt="{{ $data[2]->name_en }}" class="phoinikas--platter-img-small">
 				<div class="phoinikas--platter-figcaption">
-         			{!! $data[3]->title_en !!}
          			<em>
-						{!! $data[3]->title_th !!}
+						{!! $data[3]->title_en !!}
 					</em>
 				</div>
 
 				<div class="phoinikas--platter-figcaption -bottom">
-					{!! $data[2]->title_en !!}
 					<em>
-						{!! $data[2]->title_th !!}
+						{!! $data[2]->title_en !!}
 					</em>
 				</div>
 			</section>

@@ -26,7 +26,11 @@
 
             <section class="phoinikas--banner-2 phoinikas--section-space">
                 <a href="http://www.sizzler.co.th/e-member/" class="phoinikas--img-link">
+                    @if (App::getLocale()=='th') 
                     <img src="{{ asset('img/home/banner-member.jpg') }}" alt="ชวนคุณสมัครสมาชิก รับสิทธิพิเศษมากมาย">
+                    @else
+                    <img src="{{ asset('img/home/banner-member-en.jpg') }}" alt="ชวนคุณสมัครสมาชิก รับสิทธิพิเศษมากมาย">
+                    @endif
                 </a>
             </section>
             <!-- .phoinikas--banner-salad -->
@@ -68,7 +72,7 @@
                             @if (App::getLocale()=='th')
                                 <img src="{{ isset($sub['img_th']) ? asset('storage/upload/'.$sub['img_th']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_th'] }}" style="width: 100%;">
                             @else
-                                <img src="{{ isset($sub['name_en']) ? asset('storage/upload/'.$sub['name_en']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_en'] }}" style="width: 100%;">
+                                <img src="{{ isset($sub['img_en']) ? asset('storage/upload/'.$sub['img_en']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_en'] }}" style="width: 100%;">
                             @endif
                             </a>
                         </div>
@@ -94,12 +98,16 @@
                 </a>
             </section>
       
-
+<!-- 
             <section class="phoinikas--banner-location">
                 <a href="#" class="phoinikas--banner">
+                    @if (App::getLocale()=='th') 
                     <img src="{{asset('img/menu/img-lunch-5.jpg')}}" alt="#">
+                    @else
+                    <img src="{{asset('img/menu/img-lunch-5.jpg')}}" alt="#">
+                    @endif
                 </a>
-            </section>
+            </section> -->
             
 
             @include('layouts.widgets.map')

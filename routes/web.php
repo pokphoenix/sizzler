@@ -15,6 +15,8 @@ Route::get('member', function () {
 });
 
 
+
+
 Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/', 'HomeController@index');
     // Route::get('/language/{type}', 'HomeController@language');
@@ -28,6 +30,7 @@ Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/international', 'HomeController@international');
     Route::get('/home-slider-preview/{id}', 'HomeController@sliderPreview');
     Route::get('/home-slider-sub-preview/{id}', 'HomeController@sliderSubPreview');
+    Route::post('/home/contact', 'HomeController@sendmail');
 
 
 });
@@ -46,6 +49,10 @@ Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset');
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
 Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'prefix' => 'admin' ], function () {
+    
+    Route::put('contact/public/{id}', 'ContactController@publicStore');
+    Route::resource('contact', 'ContactController'); 
+
     // Route::get('list', 'AdminController@index')->name('admin-list');
     Route::get('category/position', 'CategoryController@position')->name('category-position');
     Route::post('category/position', 'CategoryController@positionStore');

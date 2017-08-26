@@ -4,6 +4,7 @@
 <main class="phoinikas--body-main phoinikas--page-about">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
 			<article class="phoinikas--content">
+				@if (App::getLocale()=='th') 
 				<div class="phoinikas--content-wrapper">
 					<h2>เกี่ยวกับซิซซ์เล่อร์</h2>
 					<p>
@@ -25,6 +26,41 @@
 						<button type="button" name="button" class="phoinikas--btn-design-1">สาขาทั้งหมด</button>
 					</a>
 				</div>
+
+
+				@else
+				<div class="phoinikas--content-wrapper">
+					<h2>History of Sizzler</h2>
+					<p>
+            Sizzler, the global franchise, western - style restaurant was first opened in Culver City, California on January 27,
+            1958 by pioneering restaurateurs Del and Helen Johnson, The name 'Sizzler' comes from 'sizzle' sound of steak on the hot plate.
+					</p>
+					<p>
+            In late 1966, Del and Helen decided to retire and sold their Sizzler business to Jim Collins,
+            who later became the largest fast food franchiser on the US's West Coast.
+					</p>
+					<p>
+            In 1985, Collins Foods International, controlling the Sizzler franchise, moved <br>
+            the brand into the Australian market with its first location in Annerley, a suburb <br>
+            of Brisbane, before expanding throughout Queensland, New South Wales,<br>
+             and North and West Australia.
+          			</p>
+					<p>
+            In Thailand, the Sizzler franchise is handled by SLRT Limited, a subsidiary <br>
+            of <b><a href="http://career.minorfood.com/" target="" style="color:#004e2a;">The Minor Food Group</a></b> Plc, one of Thailand's most successful restaurant operators.
+					</p>
+					<p>
+            The first location opened on January 9, 1992 on the 2nd floor of the Fifty Fifth Plaza, Sukhumvit 55, Bangkok (Closed store).Later, Sizzler Thailand expanded into <br>
+            48 restaurants with 29 in Bangkok Metropolitan Region and 19 in major provinces. <b><a href="http://sizzler.phoinikasdigital.com/en/location.html" target="_blank" style="color:#004e2a;">Click here</a></b> for Sizzler locations.
+					</p>
+          			<p>
+            SLRT Limited follows the successful recipes of Sizzler worldwide. The Sizzler menu features, not only a healthy variety of freshly prepared steaks and seafood but also delicious chicken dishes, combination meals, burgers and the famous unlimited soup, salad, pasta, fruit and dessert bars.
+          			</p>
+					<a href=" {{ url('location') }} ">
+						<button type="button" name="button" class="phoinikas--btn-design-1">All Branches</button>
+					</a>
+				</div>
+				@endif
 			</article>
 
 			@include('layouts.widgets.map')
