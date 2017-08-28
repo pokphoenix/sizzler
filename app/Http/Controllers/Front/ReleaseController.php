@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller ;
 use Illuminate\Http\Request;
 use App\Models\release;
 use Illuminate\Support\Facades\Log;
+use App;
 class ReleaseController extends Controller
 {
     /**
@@ -36,7 +37,7 @@ class ReleaseController extends Controller
 
         $other = release::where('position','<>',0)->inRandomOrder()->limit(4)->get();
         $data['other'] = $other;
-
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.release.view',$data);
     }
     public function releasePreview($id)
@@ -51,7 +52,7 @@ class ReleaseController extends Controller
 
         $other = release::where('position','<>',0)->inRandomOrder()->limit(4)->get();
         $data['other'] = $other;
-
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.release.view',$data);
     } 
 }

@@ -10,11 +10,11 @@
                         @foreach ($sliderMains as $s)
                             @if (App::getLocale()=='th') 
                                 <div class="swiper-slide phoinikas--swiper-slide">
-                                    <a href="{{ url($s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_th) ? asset('storage/upload/'.$s->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_th  }}"></a>
+                                    <a href="{{ url($lang.$s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_th) ? asset('storage/upload/'.$s->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_th  }}"></a>
                                 </div>
                             @else
                                 <div class="swiper-slide phoinikas--swiper-slide">
-                                    <a href="{{ url($s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_en) ? asset('storage/upload/'.$s->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_en  }}"></a>
+                                    <a href="{{ url($lang.$s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_en) ? asset('storage/upload/'.$s->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_en  }}"></a>
                                 </div>
                             @endif
                         @endforeach
@@ -41,14 +41,14 @@
                     @foreach ($healthtip as $h )
                     <figure>
                         @if (App::getLocale()=='th')
-                            <a href="{{  url('healthtip/'.$h->id) }}">
+                            <a href="{{  url($lang.'healthtip/'.$h->id) }}">
                                 <img src="{{ isset($h->thumbnail_th) ? asset('storage/upload/'.$h->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $h->title_th }}">
                             </a>
                             <figcaption>
                                 {{ $h->title_th }}
                             </figcaption>
                         @else
-                            <a href="{{  url('healthtip/'.$h->id) }}">
+                            <a href="{{  url($lang.'healthtip/'.$h->id) }}">
                                 <img src="{{ isset($h->thumbnail_en) ? asset('storage/upload/'.$h->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $h->title_en }}">
                             </a>
                             <figcaption>
@@ -68,7 +68,7 @@
                         <!-- Slides -->
                         @foreach ($sliderSub as $sub)
                          <div class="" style="width: 100%;">
-                            <a href="{{ url('/'.$sub['url']) }}" class="phoinikas--img-link">
+                            <a href="{{ url($lang.$sub['url']) }}" class="phoinikas--img-link">
                             @if (App::getLocale()=='th')
                                 <img src="{{ isset($sub['img_th']) ? asset('storage/upload/'.$sub['img_th']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_th'] }}" style="width: 100%;">
                             @else
@@ -87,7 +87,7 @@
             <!-- .phoinikas--home-foodmenu-slider -->
 
             <section class="phoinikas--banner-wednesday">
-                <a href="{{ url('/'.$banners[0]->url) }}" class="phoinikas--img-link">
+                <a href="{{ url($lang.$banners[0]->url) }}" class="phoinikas--img-link">
                 @if (App::getLocale()=='th') 
                     <img src="{{ isset($banners[0]->img_th_1) ? asset('storage/upload/'.$banners[0]->img_th_1) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_th_1 }}">
                     <img src="{{ isset($banners[0]->img_th_2) ? asset('storage/upload/'.$banners[0]->img_th_2) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_th_2 }}">

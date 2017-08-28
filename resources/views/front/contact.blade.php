@@ -33,7 +33,7 @@
                         @endif
 					</div>
 					<div class="phoinikas--form-row">
-						<input type="tel" name="contact-tel require-field" id="" placeholder="เบอร์โทรศัพท์" value="{{ old('contact-tel') }}">
+						<input type="tel" class="require-field" name="contact-tel" id="" placeholder="เบอร์โทรศัพท์" value="{{ old('contact-tel') }}">
 						@if ($errors->has('contact-tel'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('contact-tel') }}</strong>
@@ -41,7 +41,7 @@
                         @endif
 					</div>
 					<div class="phoinikas--form-row">
-						<input type="email" name="contact-email require-field" id="" placeholder="Your Email" value="{{ old('contact-email') }}">
+						<input type="email" name="contact-email" id="" placeholder="Your Email" value="{{ old('contact-email') }}">
 						@if ($errors->has('contact-email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('contact-email') }}</strong>
@@ -85,7 +85,7 @@
                         @endif
 					</div>
 					<div class="phoinikas--form-row require-field">
-						<input type="tel" name="contact-tel" id="" placeholder="Mobile" value="{{ old('contact-tel') }}">
+						<input type="tel" class="require-field" name="contact-tel" id="" placeholder="Mobile" value="{{ old('contact-tel') }}">
                         @if ($errors->has('contact-tel'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('contact-tel') }}</strong>
@@ -93,7 +93,7 @@
                         @endif
 					</div>
 					<div class="phoinikas--form-row require-field">
-						<input type="email" name="contact-email" id="" placeholder="E-mail" value="{{ old('contact-email') }}" >
+						<input type="email" class="require-field" name="contact-email" id="" placeholder="E-mail" value="{{ old('contact-email') }}" >
                         @if ($errors->has('contact-email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('contact-email') }}</strong>

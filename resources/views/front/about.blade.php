@@ -22,7 +22,7 @@
 					<p>
 						โดยทุกสาขาของซิซซ์เล่อร์ในประเทศไทย ดำเนินงานตามหลักการของซิซซ์เลอร์ทั่วโลกที่มีมาตราฐานเดียวกัน โดยมีอาหารหลายชนิดให้เลือกทั้งสเต็กเนื้อ ไก่ หมู อาหารทะเลทั้งทอดและย่าง รวมทั้งสลัดบาร์ที่ใหญ่ที่สุด ซึ่งมีทั้งผักสดๆ ซุป และพาสต้า ให้เลือกมากมาย และสามารถเติมได้ไม่จำกัด พร้อมทั้งของหวานและผลไม้ครบครัน
 					</p>
-					<a href=" {{ url('location') }} ">
+					<a href=" {{ url($lang.'location') }} ">
 						<button type="button" name="button" class="phoinikas--btn-design-1">สาขาทั้งหมด</button>
 					</a>
 				</div>
@@ -56,7 +56,7 @@
           			<p>
             SLRT Limited follows the successful recipes of Sizzler worldwide. The Sizzler menu features, not only a healthy variety of freshly prepared steaks and seafood but also delicious chicken dishes, combination meals, burgers and the famous unlimited soup, salad, pasta, fruit and dessert bars.
           			</p>
-					<a href=" {{ url('location') }} ">
+					<a href=" {{ url($lang.'location') }} ">
 						<button type="button" name="button" class="phoinikas--btn-design-1">All Branches</button>
 					</a>
 				</div>

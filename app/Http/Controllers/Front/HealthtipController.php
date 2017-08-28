@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller ;
 use Illuminate\Http\Request;
 use App\Models\healthtip;
 use Illuminate\Support\Facades\Log;
+use App;
 class HealthtipController extends Controller
 {
     /**
@@ -34,6 +35,7 @@ class HealthtipController extends Controller
         }   
         
         $data['healthtip'] = $healthtip;
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.healthtip.index',$data);
     }
     public function healthtipView($id)
@@ -50,7 +52,7 @@ class HealthtipController extends Controller
 
         $other = healthtip::where('position','<>',0)->inRandomOrder()->limit(4)->get();
         $data['other'] = $other;
-
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.healthtip.view',$data);
     }
     public function healthtipPreview($id)
@@ -67,7 +69,7 @@ class HealthtipController extends Controller
 
         $other = healthtip::where('position','<>',0)->inRandomOrder()->limit(4)->get();
         $data['other'] = $other;
-
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.healthtip.view',$data);
     }
     

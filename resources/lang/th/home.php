@@ -16,5 +16,6 @@ return [
     'branch' => 'สาขา',
     'policy' => 'นโยบายข้อมูลส่วนตัว',
     'header_media' => 'ภาพยนตร์โฆษณา',
+    'header_healthtip' => 'เคล็ดลับสุขภาพ',
 ];
 ?>

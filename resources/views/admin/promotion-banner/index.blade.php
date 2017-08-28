@@ -138,7 +138,7 @@
 								</div>
 								
 								<div class="col-sm-2">
-									<a href="{{ asset('/pro-banner-preview/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
+									<a href="{{ asset('/th/pro-banner-preview/'.$t->id) }}" target="_blank" class="btn btn-default btn-circle"><i class="fa fa-file-text-o" title="read item"></i></a> 
 								</div>
 
 								

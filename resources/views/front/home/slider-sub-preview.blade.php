@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <main class="phoinikas--body-main phoinikas--page-home">
         <div class="phoinikas--wrapper phoinikas--wrapper-global">
         
@@ -12,7 +11,7 @@
                         <!-- Slides -->
                         @foreach ($sliderSub as $sub)
                          <div class="" style="width: 100%;">
-                            <a href="{{ url('/'.$sub['url'] ) }}" class="phoinikas--img-link">
+                            <a href="{{ url($lang.$sub['url'] ) }}" class="phoinikas--img-link">
                             @if (App::getLocale()=='th')
                                 <img src="{{ isset($sub['img_th']) ? asset('storage/upload/'.$sub['img_th']) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $sub['name_th'] }}" style="width: 100%;">
                             @else

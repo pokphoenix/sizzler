@@ -44,11 +44,12 @@
     
 </head>
 <body>
+<?php   $lang =  (App::getLocale()=='th') ? '/th/' : '/en/' ?>
     <header class="phoinikas--body-header-global">
       <div class="phoinikas--header-mobile">
         <div class="phoinikas--wrapper">
           <h1 class="phoinikas--header-logo">
-            <a href="{{ url('/') }}">Sizzler</a>
+            <a href="{{ url($lang) }}">Sizzler</a>
           </h1>
 
           <nav role="language" class="phoinikas--mobile-nav-language">
@@ -67,25 +68,25 @@
 
         <nav role="navigation" class="phoinikas--mobile-nav-main">
           <ul class="phoinikas--mobile-nav-sub">
-            <li><a href="{{ url('menu') }}" class="phoinikas--menu-1">Menu</a></li>
-            <li><a href="{{ url('promotion') }}">Promotion</a></li>
-            <li><a href="{{ url('location') }}">Location</a></li>
+            <li><a href="{{ url($lang.'menu') }}" class="phoinikas--menu-1">Menu</a></li>
+            <li><a href="{{ url($lang.'promotion') }}">Promotion</a></li>
+            <li><a href="{{ url($lang.'location') }}">Location</a></li>
             <li><a href="{{ url('member') }}">Sizzler Member</a></li>
-            <li><a href="{{ url('healthtip') }}">Health Tips</a></li>
-            <li><a href="{{ url('media') }}">Media</a></li>
+            <li><a href="{{ url($lang.'healthtip') }}">Health Tips</a></li>
+            <li><a href="{{ url($lang.'media') }}">Media</a></li>
           </ul>
           <ul class="phoinikas--mobile-nav-sub">
             <li>
-              <a href="{{ url('about') }}">History</a>
+              <a href="{{ url($lang.'about') }}">History</a>
             </li>
             <li>
-              <a href="{{ url('career') }}">Career</a>
+              <a href="{{ url($lang.'career') }}">Career</a>
             </li>
             <li>
-              <a href="{{ url('contact') }}">Contact Us</a>
+              <a href="{{ url($lang.'contact') }}">Contact Us</a>
             </li>
             <li>
-              <a href="{{ url('international') }}">International</a>
+              <a href="{{ url($lang.'international') }}">International</a>
             </li>
           </ul>
         </nav>
@@ -94,17 +95,17 @@
       <div class="phoinikas--header-tablet">
         <div class="phoinikas--wrapper">
           <section class="phoinikas--header-row-1">
-            <a href="{{ url('/') }}" style="margin-right:10px;padding-top:2px;"><img src="{{ asset('img/global/header/icon-home.png')}}" alt="" style="padding-top: 3px; padding-right: 9px;"></a>
+            <a href="{{ url($lang.'/') }}" style="margin-right:10px;padding-top:2px;"><img src="{{ asset('img/global/header/icon-home.png')}}" alt="" style="padding-top: 3px; padding-right: 9px;"></a>
             <nav role="language" class="phoinikas--row-checkbox phoinikas--nav-language">
               <input type="radio" name="language" id="language-thai"  @if (App::getLocale()=='th') checked @endif ><label for="language-thai" class="phoinikas--label-radio" style="font-size: 1em;">Thai</label>
               <input type="radio" name="language" id="language-eng"  @if (App::getLocale()=='en') checked @endif ><label for="language-eng" class="phoinikas--label-radio" style="font-size: 1em;">Eng</label>
             </nav>
 
             <div class="phoinikas--nav-bar">
-              <a href="{{ url('story') }}">{{ trans('home.story') }}</a>  
-              <a href="{{ url('about') }}">{{ trans('home.about') }}</a>
-              <a href="{{ url('career') }}">{{ trans('home.career') }}</a>
-              <a href="{{ url('contact') }}">{{ trans('home.contact') }}</a>
+              <a href="{{ url($lang.'story') }}">{{ trans('home.story') }}</a>  
+              <a href="{{ url($lang.'about') }}">{{ trans('home.about') }}</a>
+              <a href="{{ url($lang.'career') }}">{{ trans('home.career') }}</a>
+              <a href="{{ url($lang.'contact') }}">{{ trans('home.contact') }}</a>
               <a href="#" id="international-link">{{ trans('home.international') }}
                 <div id="div-international-link">
                   <span onclick="JavaScript:window.open('http://www.sizzler.com.au/')">Australia</span> |
@@ -124,15 +125,15 @@
           </section>
 
           <section class="phoinikas--header-row-2">
-            <h1 class="phoinikas--header-logo"><a href="{{ url('/') }}">Sizzler</a></h1>
+            <h1 class="phoinikas--header-logo"><a href="{{ url($lang.'/') }}">Sizzler</a></h1>
             <nav role="navigation" class="phoinikas--nav-main-global">
               <ul class="phoinikas--main-global-list">
-                <li><a href="{{ url('menu') }}" class="phoinikas--menu-1">{{ trans('home.menu') }}</a></li>
-                <li><a href="{{ url('promotion') }}">{{ trans('home.promotion') }}</a></li>
-                <li><a href="{{ url('location') }}">{{ trans('home.location') }}</a></li>
+                <li><a href="{{ url($lang.'menu') }}" class="phoinikas--menu-1">{{ trans('home.menu') }}</a></li>
+                <li><a href="{{ url($lang.'promotion') }}">{{ trans('home.promotion') }}</a></li>
+                <li><a href="{{ url($lang.'location') }}">{{ trans('home.location') }}</a></li>
                 <li><a href="{{ url('member') }}">{{ trans('home.member') }}</a></li>
-                <li><a href="{{ url('healthtip') }}">{{ trans('home.healthtip') }}</a></li>
-                <li><a href="{{ url('media') }}">{{ trans('home.media') }}</a></li>
+                <li><a href="{{ url($lang.'healthtip') }}">{{ trans('home.healthtip') }}</a></li>
+                <li><a href="{{ url($lang.'media') }}">{{ trans('home.media') }}</a></li>
               </ul>
             </nav>
           </section>
@@ -148,29 +149,29 @@
         </header>
         <nav>
           <ul class="phoinikas--row-1">
-            <li><a href="{{ url('beef') }}">Beef</a></li>
-            <li><a href="{{ url('pork') }}">Pork</a></li>
-            <li><a href="{{ url('seafood') }}">Seafood</a></li>
-            <li><a href="{{ url('chicken') }}">Chicken</a></li>
-            <li><a href="{{ url('burger') }}">Burgers</a></li>
-            <li><a href="{{ url('kidmenu') }}">Kids Menu</a></li>
+            <li><a href="{{ url($lang.'beef') }}">Beef</a></li>
+            <li><a href="{{ url($lang.'pork') }}">Pork</a></li>
+            <li><a href="{{ url($lang.'seafood') }}">Seafood</a></li>
+            <li><a href="{{ url($lang.'chicken') }}">Chicken</a></li>
+            <li><a href="{{ url($lang.'burger') }}">Burgers</a></li>
+            <li><a href="{{ url($lang.'kidmenu') }}">Kids Menu</a></li>
           </ul>
 
           <dl class="phoinikas--row-2">
-            <dt><a href="{{ url('combination') }}">Combination</a></dt>
+            <dt><a href="{{ url($lang.'combination') }}">Combination</a></dt>
             <dd>
               <ul>
-                <li><a href="{{ url('com-beef') }}">- With Beef</a></li>
-                <li><a href="{{ url('com-suprem') }}">- Supreme</a></li>
-                <li><a href="{{ url('com-platter') }}">- Platter</a></li>
+                <li><a href="{{ url($lang.'com-beef') }}">- With Beef</a></li>
+                <li><a href="{{ url($lang.'com-suprem') }}">- Supreme</a></li>
+                <li><a href="{{ url($lang.'com-platter') }}">- Platter</a></li>
               </ul>
             </dd>
           </dl>
 
           <div class="phoinikas--row-3 phoinikas--banner_type-1">
-            <a href="{{ url('wednesday') }}"><img src="{{asset('img/global/subnav/banner-subnav-1.png')}}" alt="Wednesday Night Special"></a>
-            <a href="{{ url('everyday') }}"><img src="{{asset('img/global/subnav/banner-subnav-2.png')}}" alt="Everyday Great Value"></a>
-            <a href="{{ url('lunch') }}"><img src="{{asset('img/global/subnav/banner-subnav-3.png')}}" alt="Lunch Special"></a>
+            <a href="{{ url($lang.'wednesday') }}"><img src="{{asset('img/global/subnav/banner-subnav-1.png')}}" alt="Wednesday Night Special"></a>
+            <a href="{{ url($lang.'everyday') }}"><img src="{{asset('img/global/subnav/banner-subnav-2.png')}}" alt="Everyday Great Value"></a>
+            <a href="{{ url($lang.'lunch') }}"><img src="{{asset('img/global/subnav/banner-subnav-3.png')}}" alt="Lunch Special"></a>
             <a href="javascript:void(0);" class="phoinikas--row-4 phoinikas--banner_type-2"><img src="{{ asset('img/global/subnav/banner-sizzler_bar.png')}}" alt="ฟรี Sizzler Bar ไม่อั้น 60+ กว่าชนิด"></a>
           </div>
 
@@ -185,7 +186,7 @@
     <div class="phoinikas--wrapper">
       <section>
         <div>
-          <a href="{{ url('/') }}">
+          <a href="{{ url($lang) }}">
             <img src="{{ asset('img/global/logo-sizzler-footer_2x.png')}}" alt="Sizzler Logo">
           </a>
         </div>
@@ -195,14 +196,14 @@
             <a href="https://www.facebook.com/SizzlerThai/" target="_blank">facebook</a>
           </li>
           <li class="phoinikas--social-icon phoinikas--social-email">
-            <a href="{{ url('contact') }}" target="_blank">email</a>
+            <a href="{{ url($lang.'contact') }}" target="_blank">email</a>
           </li>
         </ul>
       </section>
       <section>
         <p>
           &copy; 2017 THE MINOR FOOD GROUP PUBLIC COMPANY LIMITED. ALL RIGHT RESERVED. <br>
-          <a href="{{ url('policy') }}" class="phoinikas--btn-policy"> {{ trans('home.policy')  }} </a>
+          <a href="{{ url($lang.'policy') }}" class="phoinikas--btn-policy"> {{ trans('home.policy')  }} </a>
         </p>
 
       </section>

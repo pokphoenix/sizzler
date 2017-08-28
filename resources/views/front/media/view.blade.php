@@ -25,9 +25,9 @@
 							@foreach ($others as $tvc )
 							<figure class="swiper-slide">
 								@if (App::getLocale()=='th') 
-								<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_th) ? asset('storage/upload/'.$tvc->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
+								<a href="{{ url($lang.'media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_th) ? asset('storage/upload/'.$tvc->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
 								@else
-								<a href="{{ url('media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_en) ? asset('storage/upload/'.$tvc->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
+								<a href="{{ url($lang.'media/'.$tvc->id ) }}"><img src="{{ isset($tvc->thumbnail_en) ? asset('storage/upload/'.$tvc->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt=""></a>
 								@endif
 							</figure>
 							@endforeach

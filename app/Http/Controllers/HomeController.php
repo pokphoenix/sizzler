@@ -17,14 +17,21 @@ use Redirect;
 use Session;
 class HomeController extends Controller
 {
+    private $lang ;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         // $this->middleware('auth');
+        // $lang = substr($request->route()->getPrefix(), 1) ;
+        // if (array_key_exists($lang, Config::get('languages'))) {
+        //     Session::put('applocale', $lang);
+        // }
+        // $this->lang
     }
 
     /**
@@ -56,6 +63,7 @@ class HomeController extends Controller
         $data['sliderSub'] = $sliderSub  ;
         $data['banners'] = $banner  ;
         $data['healthtip'] = $healthtip  ;
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.home.index',$data);
     } 
 
@@ -69,10 +77,30 @@ class HomeController extends Controller
 
     public function switchLang($lang)
     {
+
         if (array_key_exists($lang, Config::get('languages'))) {
             Session::put('applocale', $lang);
         }
-        return Redirect::back();
+
+        if (!isset($_SERVER['HTTP_REFERER'])){
+            return redirect('/th/');
+        }
+
+        $redirectUrl = $_SERVER['HTTP_REFERER'] ;
+        if ($lang=='en') {
+            if(strpos($redirectUrl,"/th/")){
+                 $url = str_replace("/th/","/en/",$redirectUrl) ;
+            }else{
+                 $url = str_replace("/th","/en",$redirectUrl) ;
+            }
+        }else{
+            if(strpos($redirectUrl,"/th/")){
+                 $url = str_replace("/en/","/th/",$redirectUrl) ;
+            }else{
+                 $url = str_replace("/en","/th",$redirectUrl) ;
+            }
+        }
+        return Redirect::to($url);
     }
     public function location()
     {   
@@ -102,7 +130,8 @@ class HomeController extends Controller
     
     public function about()
     {   
-        return view('front.about');
+         $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
+        return view('front.about',$data);
     }
     public function career()
     {   
@@ -123,8 +152,9 @@ class HomeController extends Controller
         $contact['tel'] = $post['contact-tel'] ; 
         $contact['email'] = $post['contact-email'] ; 
         $contact['message'] = $post['contact-message'] ; 
-        // contact::create($contact);
-        return view('front.thank_contact');
+        contact::create($contact);
+           $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
+        return view('front.thank_contact',$data);
     }
 
     public function international()
@@ -149,6 +179,7 @@ class HomeController extends Controller
     {   
         $slider= slider::find($id);
         $data['data'] =  $slider;
+         $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.home.slider-preview',$data);
     }  
 
@@ -167,7 +198,7 @@ class HomeController extends Controller
         $result[1]['img_en'] = null ;
         $result[1]['name_en'] = $slider->name_en ;
         $data['sliderSub'] = $result;
- 
+         $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.home.slider-sub-preview',$data);
     }
 

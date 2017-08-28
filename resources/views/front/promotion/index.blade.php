@@ -4,7 +4,7 @@
 <main class="phoinikas--body-main phoinikas--page-promotion">
 		<div class="phoinikas--wrapper phoinikas--wrapper-global">
 			<section class="phoinikas--banner-wednesday phoinikas--section-space">
-				<a href="{{ url('/'.$banners[0]->url) }}" class="phoinikas--img-link">
+				<a href="{{ url($lang.$banners[0]->url) }}" class="phoinikas--img-link">
 				@if (App::getLocale()=='th') 
 					<img src="{{ isset($banners[0]->img_th_1) ? asset('storage/upload/'.$banners[0]->img_th_1) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_th_1 }}">
                     <img src="{{ isset($banners[0]->img_th_2) ? asset('storage/upload/'.$banners[0]->img_th_2) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $banners[0]->name_img_th_2 }}">
@@ -24,7 +24,7 @@
 						@foreach ($promotionSlider as $slider)
 						
                         <div class="" style="width: 100%;">
-                            <a href="{{ url('/'.$slider->url) }}" class="phoinikas--img-link">
+                            <a href="{{ url($lang.$slider->url) }}" class="phoinikas--img-link">
                             	@if (App::getLocale()=='th') 
                             		<img src="{{ isset($slider->img_th) ? asset('storage/upload/'.$slider->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $slider->name_th }}" style="width: 100%;">
 								@else
@@ -40,10 +40,7 @@
 					<button class="swiper-button-next phoinikas--button-next"></button> -->
 				</div>
 			</section>
-
-			
-			@include('front.promotion.slider-width')
-
+			@include('front.promotion.slider-width',['lang'=>$lang])
 			@include('layouts.widgets.map')
 		</div>
 

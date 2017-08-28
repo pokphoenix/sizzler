@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3 text-right" >ข้อความ :</label>
                     <div class="col-sm-9 form-control-static">
-                       <span class="column-view">{{$data->text}}</span>
+                       <span class="column-view">{{$data->message}}</span>
                     </div>
                 </div>
             </div>

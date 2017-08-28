@@ -4,7 +4,7 @@
 <main class="phoinikas--body-main phoinikas--page-tips">
 	<div class="phoinikas--wrapper phoinikas--wrapper-global">
 		<header class="phoinikas--tips-header">
-			<h2>Health &nbsp;Tips</h2>
+			<h2 style="font-family: db_ozone;font-weight: 400;font-style: initial;">{{ trans('home.header_healthtip') }}</h2>
 		</header>
 		<section class="phoinikas--flex-row phoinikas--detail-row">
 			<aside class="phoinikas--detail-aside">
@@ -30,20 +30,20 @@
 					@foreach ( $other as $o )
 					<figure class="phoinikas--tips-item swiper-slide">
 						@if (App::getLocale()=='th') 
-							<a href="{{ url('healthtip/'.$o->id) }}">
+							<a href="{{ url($lang.'healthtip/'.$o->id) }}">
 								<img src="{{  isset($o->thumbnail_th) ? asset('storage/upload/'.$o->thumbnail_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $o->title_th }}">
 							</a>
 							<figcaption>
 								<p>{!! $o->short_description_th !!}</p>
-								<a href="{{ url('healthtip/'.$o->id) }}">More detail</a>
+								<a href="{{ url($lang.'healthtip/'.$o->id) }}">More detail</a>
 							</figcaption>
 						@else
-							<a href="{{ url('healthtip/'.$o->id) }}">
+							<a href="{{ url($lang.'healthtip/'.$o->id) }}">
 								<img src="{{ isset($o->thumbnail_en) ? asset('storage/upload/'.$o->thumbnail_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $o->title_en }}">
 							</a>
 							<figcaption>
 								<p>{!! $o->short_description_en !!}</p>
-								<a href="{{ url('healthtip/'.$o->id) }}">More detail</a>
+								<a href="{{ url($lang.'healthtip/'.$o->id) }}">More detail</a>
 							</figcaption>
 						@endif
 					</figure>

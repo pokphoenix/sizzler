@@ -1,5 +1,5 @@
 <section class="phoinikas--banner-location">
-	<a href="{{ url('location') }}" class="phoinikas--banner">
+	<a href="{{ (App::getLocale()=='th')  ? url('/th/location') : url('/en/location') }}" class="phoinikas--banner">
 		@if (App::getLocale()=='th') 
 		<img src="{{ asset('/img/promotion/banner-map-big.jpg') }}" alt="ค้นหา Sizzler ใกล้คุณ">
 		@else

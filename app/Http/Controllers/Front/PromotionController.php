@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller ;
-use Illuminate\Http\Request;
+use App\Models\promotion;
+use App\Models\promotionBanner;
 use App\Models\promotionSlider;
 use App\Models\promotionSliderSub;
-use App\Models\promotionBanner;
-use App\Models\promotion;
+use Illuminate\Http\Request;
+use App;
 use Illuminate\Support\Facades\Log;
 class PromotionController extends Controller
 {
@@ -35,7 +36,7 @@ class PromotionController extends Controller
         // $data['promotionSliderSub'] = $promotionSliderSub;
         $data['banners'] = $promotionBanner;
         $data['promotion'] = $promotion;
-        
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.promotion.index',$data);
     }
     public function promotionView()
@@ -47,6 +48,7 @@ class PromotionController extends Controller
             return redirect('notfound');
         }
         $data['data'] = $promotion;
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.promotion.view',$data);
     }
     public function proSliderWidthPreview($id)
@@ -58,6 +60,7 @@ class PromotionController extends Controller
             return redirect('notfound');
         }
         $data['promotionSliderSub'] = $promotionSliderSub;
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.promotion.slider-width-preview',$data);
     }
     public function proSliderPreview($id)
@@ -81,7 +84,7 @@ class PromotionController extends Controller
         $result[1]['img_en'] = null ;
         $result[1]['name_en'] = $slider->name_en ;
         $data['sliderSub'] = $result;
- 
+        $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.home.slider-sub-preview',$data);
     }
 
@@ -95,6 +98,7 @@ class PromotionController extends Controller
         }
       
         $data['banners'] = $promotionBanner;
+          $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.promotion.banner-preview',$data);
     }
 }

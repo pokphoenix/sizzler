@@ -4,6 +4,10 @@
 
 Auth::routes();
 
+Route::get('/', function () {
+    return redirect('lang/th');
+});
+
 //--- Back End
 Route::get('storage', 'HomeController@storage');
 Route::get('/policy/', 'HomeController@policy');
@@ -13,13 +17,8 @@ Route::get('/notfound', 'HomeController@notfound');
 Route::get('member', function () {
     return redirect('http://www.sizzler.co.th/e-member/');
 });
-
-
-
-
-Route::group(['middleware' => ['web','language'] ], function () {
+Route::group(['middleware' => ['web','language']  ,'prefix' => 'en' ], function () {
     Route::get('/', 'HomeController@index');
-    // Route::get('/language/{type}', 'HomeController@language');
     Route::get('/category/{id}', 'HomeController@category');
     Route::get('/location', 'HomeController@location');
     Route::get('/career', 'HomeController@career');
@@ -31,9 +30,41 @@ Route::group(['middleware' => ['web','language'] ], function () {
     Route::get('/home-slider-preview/{id}', 'HomeController@sliderPreview');
     Route::get('/home-slider-sub-preview/{id}', 'HomeController@sliderSubPreview');
     Route::post('/home/contact', 'HomeController@sendmail');
-
-
 });
+
+Route::group(['middleware' => ['web','language']  ,'prefix' => 'th' ], function () {
+    Route::get('/', 'HomeController@index');
+    Route::get('/category/{id}', 'HomeController@category');
+    Route::get('/location', 'HomeController@location');
+    Route::get('/career', 'HomeController@career');
+    Route::get('/story', 'HomeController@story');
+    Route::get('/about', 'HomeController@about');
+    Route::get('/career', 'HomeController@career');
+    Route::get('/contact', 'HomeController@contact');
+    Route::get('/international', 'HomeController@international');
+    Route::get('/home-slider-preview/{id}', 'HomeController@sliderPreview');
+    Route::get('/home-slider-sub-preview/{id}', 'HomeController@sliderSubPreview');
+    Route::post('/home/contact', 'HomeController@sendmail');
+});
+
+
+// Route::group(['middleware' => ['web','language'] ], function () {
+//     Route::get('/', 'HomeController@index');
+//     // Route::get('/language/{type}', 'HomeController@language');
+//     Route::get('/category/{id}', 'HomeController@category');
+//     Route::get('/location', 'HomeController@location');
+//     Route::get('/career', 'HomeController@career');
+//     Route::get('/story', 'HomeController@story');
+//     Route::get('/about', 'HomeController@about');
+//     Route::get('/career', 'HomeController@career');
+//     Route::get('/contact', 'HomeController@contact');
+//     Route::get('/international', 'HomeController@international');
+//     Route::get('/home-slider-preview/{id}', 'HomeController@sliderPreview');
+//     Route::get('/home-slider-sub-preview/{id}', 'HomeController@sliderSubPreview');
+//     Route::post('/home/contact', 'HomeController@sendmail');
+
+
+// });
 
 
 
@@ -171,7 +202,94 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
 
 });
 
-Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ], function () {
+// Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ], function () {
+  
+   
+
+//     Route::get('/promotion', 'PromotionController@promotion');
+//     Route::get('/promotion/view', 'PromotionController@promotionView');
+//     Route::get('/promotion-preview/{id}', 'PromotionController@promotionPreview');
+//     Route::get('/pro-slider-preview/{id}', 'PromotionController@proSliderPreview');
+//     Route::get('/pro-slider-width-preview/{id}', 'PromotionController@proSliderWidthPreview');
+//     Route::get('/pro-banner-preview/{id}', 'PromotionController@proBannerPreview');
+
+//     Route::get('/media', 'MediaController@index');
+//     Route::get('/media/{id}', 'MediaController@view') ;
+//     Route::get('/media-preview/{id}', 'MediaController@preview') ;
+
+//     Route::get('/release/', 'ReleaseController@release');
+//     Route::get('/release/{id}', 'ReleaseController@releaseView');
+//     Route::get('/release-preview/{id}', 'ReleaseController@releasePreview');
+
+//     Route::get('/healthtip/', 'HealthtipController@healthtip');
+//     Route::get('/healthtip/{id}', 'HealthtipController@healthtipView');
+//     Route::get('/healthtip-preview/{id}', 'HealthtipController@healthtipPreview');
+
+//     Route::get('/menu', 'MenuController@mainMenu');
+//     Route::get('/menu/{id}/{preview}', 'MenuController@menu');
+//     Route::get('/combination', 'MenuController@combination');
+
+//     Route::get('/{url}', 'MenuController@menu');
+//     // Route::get('/beef', 'MenuController@beef');
+//     // Route::get('/burger', 'MenuController@burger');
+//     // Route::get('/chicken', 'MenuController@chicken');
+//     // Route::get('/com-beef', 'MenuController@comBeef');
+//     // Route::get('/com-platter', 'MenuController@comPlatter');
+//     // Route::get('/com-suprem', 'MenuController@comSuprem');
+//     // Route::get('/kidmenu', 'MenuController@kidmenu');
+//     // Route::get('/pork', 'MenuController@pork');
+//     // Route::get('/seafood', 'MenuController@seafood');
+   
+//     // Route::get('/wednesday', 'MenuController@wednesday');
+//     // Route::get('/everyday', 'MenuController@everyday');
+//     // Route::get('/lunch', 'MenuController@lunch');
+
+// });
+Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ,'prefix' => 'th' ], function () {
+  
+   
+
+    Route::get('/promotion', 'PromotionController@promotion');
+    Route::get('/promotion/view', 'PromotionController@promotionView');
+    Route::get('/promotion-preview/{id}', 'PromotionController@promotionPreview');
+    Route::get('/pro-slider-preview/{id}', 'PromotionController@proSliderPreview');
+    Route::get('/pro-slider-width-preview/{id}', 'PromotionController@proSliderWidthPreview');
+    Route::get('/pro-banner-preview/{id}', 'PromotionController@proBannerPreview');
+
+    Route::get('/media', 'MediaController@index');
+    Route::get('/media/{id}', 'MediaController@view') ;
+    Route::get('/media-preview/{id}', 'MediaController@preview') ;
+
+    Route::get('/release/', 'ReleaseController@release');
+    Route::get('/release/{id}', 'ReleaseController@releaseView');
+    Route::get('/release-preview/{id}', 'ReleaseController@releasePreview');
+
+    Route::get('/healthtip/', 'HealthtipController@healthtip');
+    Route::get('/healthtip/{id}', 'HealthtipController@healthtipView');
+    Route::get('/healthtip-preview/{id}', 'HealthtipController@healthtipPreview');
+
+    Route::get('/menu', 'MenuController@mainMenu');
+    Route::get('/menu/{id}/{preview}', 'MenuController@menu');
+    Route::get('/combination', 'MenuController@combination');
+
+    Route::get('/{url}', 'MenuController@menu');
+    // Route::get('/beef', 'MenuController@beef');
+    // Route::get('/burger', 'MenuController@burger');
+    // Route::get('/chicken', 'MenuController@chicken');
+    // Route::get('/com-beef', 'MenuController@comBeef');
+    // Route::get('/com-platter', 'MenuController@comPlatter');
+    // Route::get('/com-suprem', 'MenuController@comSuprem');
+    // Route::get('/kidmenu', 'MenuController@kidmenu');
+    // Route::get('/pork', 'MenuController@pork');
+    // Route::get('/seafood', 'MenuController@seafood');
+   
+    // Route::get('/wednesday', 'MenuController@wednesday');
+    // Route::get('/everyday', 'MenuController@everyday');
+    // Route::get('/lunch', 'MenuController@lunch');
+
+});
+
+Route::group(['namespace'=>'Front'  , 'middleware' => ['web','language'] ,'prefix' => 'en' ], function () {
   
    
 

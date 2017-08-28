@@ -15,7 +15,7 @@
 				@endif
                 </p>
 				<BR><BR>
-                	<button type="button" onclick="window.location=' {{ url("/")  }} ';" class="phoinikas--btn-design-3" style="display: block ;margin:0 auto;" >Home</button>
+                	<button type="button" onclick="window.location=' {{ url($lang)  }} ';" class="phoinikas--btn-design-3" style="display: block ;margin:0 auto;" >Home</button>
             </section>
 			
 	

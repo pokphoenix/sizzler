@@ -24,13 +24,9 @@ class MenuController extends Controller
     {   
 
         // echo " local [ ".App::getLocale()." ]<BR>";
-
         try {
             $category = (isset($preview)) ?  menu::where('menus.id',$url)->join('categorys','categorys.id','=','menus.category_id')->select('categorys.thumbnail_th','categorys.thumbnail_en','menus.id','menus.category_id')->first()
              : category::where('slug',$url)->first();
-
-
-
             if (is_null($category)){
                 Log::error("[Front] MenuController@menu : notfound public category ");
                 return redirect('notfound');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\media;
 // use App\Models\release;
 use Illuminate\Support\Facades\Log;
+use App;
 class MediaController extends Controller
 {
     /**
@@ -34,7 +35,7 @@ class MediaController extends Controller
 
         // $tvc = media::where('media_category_id',1)->where('status',1)->orderBy('position','asc')->get();
         $data['tvcs'] = $tvc;
-
+         $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         // $release = release::where('status',1)->get();
         // $data['tvcs'] = $tvc;
         // $data['release'] = $release;
@@ -52,6 +53,7 @@ class MediaController extends Controller
         } 
         $data['data'] = $query;
         $data['others'] = $other;
+         $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.media.view',$data);
     }  
     public function preview($id)
@@ -65,6 +67,7 @@ class MediaController extends Controller
         } 
         $data['data'] = $query;
         $data['others'] = $other;
+         $data['lang'] = (App::getLocale()=='th') ? '/th/' : '/en/' ;
         return view('front.media.view',$data);
     } 
 }

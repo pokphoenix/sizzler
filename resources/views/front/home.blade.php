@@ -2,19 +2,22 @@
 
 @section('content')
 
+<?php $lang = (App::getLocale()=='th') ? '/th/' : '/en/' ; ?>
+
 <main class="phoinikas--body-main phoinikas--page-home">
         <div class="phoinikas--wrapper phoinikas--wrapper-global">
             <section class="phoinikas--home-banner phoinikas--section-space">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
+
                         @foreach ($sliderMains as $s)
                             @if (App::getLocale()=='th') 
                                 <div class="swiper-slide phoinikas--swiper-slide">
-                                    <a href="{{ url($s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_th) ? asset('storage/upload/'.$s->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_th  }}"></a>
+                                    <a href="{{ url($lang.$s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_th) ? asset('storage/upload/'.$s->img_th) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_th  }}"></a>
                                 </div>
                             @else
                                 <div class="swiper-slide phoinikas--swiper-slide">
-                                    <a href="{{ url($s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_en) ? asset('storage/upload/'.$s->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_en  }}"></a>
+                                    <a href="{{ url($lang.$s->url) }}" class="phoinikas--img-link"><img src="{{ isset($s->img_en) ? asset('storage/upload/'.$s->img_en) : asset('/img/resource/thumbnail-default.jpg') }}" alt="{{ $s->name_en  }}"></a>
                                 </div>
                             @endif
                         @endforeach
