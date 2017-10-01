@@ -1,0 +1,2 @@
+jQuery(document).ready(function($){$(".phoinikas--home-banner .swiper-container").swiper({effect:"fade",autoplay:3e3,parallax:!0,speed:800,fade:{crossFade:!0}}),$(".phoinikas--home-foodmenu-slider .swiper-container").swiper({slidesPerView:3,nextButton:".phoinikas--home-foodmenu-slider .swiper-button-next",prevButton:".phoinikas--home-foodmenu-slider .swiper-button-prev",breakpoints:{767:{slidesPerView:2},479:{slidesPerView:1}}})});
+//# sourceMappingURL=./home.js.map

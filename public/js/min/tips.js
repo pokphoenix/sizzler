@@ -1,0 +1,2 @@
+jQuery(document).ready(function($){$(".phoinikas--detail-swiper .swiper-container").swiper({slidesPerView:4,spaceBetween:16,nextButton:".phoinikas--detail-swiper .swiper-button-next",prevButton:".phoinikas--detail-swiper .swiper-button-prev",breakpoints:{767:{slidesPerView:2},399:{slidesPerView:1}}})});
+//# sourceMappingURL=./tips.js.map

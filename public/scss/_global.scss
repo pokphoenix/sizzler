@@ -1,0 +1,1158 @@
+body {
+	font-family: sans-serif;
+	color: $text-read;
+	background-color: $green01;
+}
+
+a {
+	color: $text-link;
+	text-decoration: none;
+
+	&.active,
+	&:hover,
+	.no-touchevents &:hover,
+	.touchevents &:active {
+		color: $text-link-hover;
+	}
+}
+
+strong {
+	color: $red01;
+}
+
+.phoinikas--clean {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+// Politespace CSS
+.politespace-proxy {
+	max-width: $register-max-width;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.politespace-proxy-val {
+	color: #103130;
+	position: absolute;
+	line-height: 46px!important;
+}
+
+.politespace-proxy-val {
+	display: none;
+}
+
+.politespace-proxy.active.notempty > .politespace-proxy-val {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	z-index: 1;
+}
+/* Safari 9 has a weird top/bottom margin on form elements inside of politespace proxies */
+/* This caused issues with proxy positioning.
+.politespace-proxy > input {
+	margin-top: 0;
+	margin-bottom: 0;
+}*/
+.politespace-proxy.active.notempty input {
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+}
+// Content
+.phoinikas-- {
+	/*==============================
+	=            Header            =
+	==============================*/
+	&body-header {
+		background: url('../img/global/bg-header.png') no-repeat;
+		background-size: auto 100%;
+		background-position: 50% 0;
+		width: 100%;
+		padding-top: 62%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		@include mq($rwd-desktop) {
+			background-size: auto 640px;
+			padding-top: 0;
+			height: 640px;
+		}
+	}
+
+	&header-logo,
+	&header-promotion {
+		visibility: hidden;
+		position: absolute;
+	}
+	/*=====  End of Header  ======*/
+	/*==============================
+	=            Footer            =
+	==============================*/
+	&body-footer {
+		text-align: center;
+		background-color: $cardinGreen;
+		font-size: em(14);
+		padding-top: 24px;
+		padding-bottom: 24px;
+
+		img {
+			display: none;
+		}
+		@include mq($rwd-tablet) {
+			padding-top: 80px;
+			padding-bottom: 80px;
+
+			img {
+				display: block;
+			}
+		}
+
+		span {
+			display: inline-block;
+		}
+
+		img {
+			width: auto;
+			height: 72px;
+			margin-bottom: 4%;
+		}
+
+		a {
+			display: block;
+			color: #3b81c4;
+			text-decoration: underline;
+			font-size: em(12);
+			font-weight: 700;
+			@include mq($rwd-tablet) {
+				font-size: em(20);
+				font-weight: 400;
+			}
+		}
+
+		p {
+			margin-top: 3%;
+			font-size: 7px;
+			font-weight: 700;
+			@include mq($rwd-tablet) {
+				font-weight: 400;
+				font-size: em(15);
+			}
+		}
+
+		section:first-child {
+			@include mq($rwd-tablet) {
+				 @include col(2);
+				max-width: 640px;
+			}
+		}
+	}
+	&btn-policy {
+		padding: 1.2em;
+	}
+	&footer-social {
+		list-style: none;
+		margin: 0 0 24px;
+		padding: 0;
+		font-size: 0;
+
+		> li {
+			display: inline-block;
+			width: 13.16%;
+			max-width: 64px;
+			margin-right: 5%;
+			margin-top: 4px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			> a {
+				display: block;
+				width: 100%;
+				padding-top: calc(100% - 2px);
+				height: 0;
+				border-radius: 50%;
+				border: solid 1px #fff;
+				background-size: auto 100%;
+				background-repeat: no-repeat;
+				background-position: 50% 50%;
+			}
+		}
+		@include mq($rwd-tablet) {
+			text-align: right;
+
+			> li {
+				width: 25%;
+			}
+		}
+	}
+
+	&social-fb > a {
+		@include retina-image( '../img/global/social-fb', auto 100%);
+	}
+
+	&social-email > a {
+		@include retina-image( '../img/global/social-email', auto 100%);
+	}
+
+	&privacy_policy {
+		font-family: $f-header;
+		color: #000;
+
+		h2 {
+			text-align: center;
+			text-transform: uppercase;
+			font-size: em(60);
+			margin-bottom: 24px;
+		}
+
+		dl {
+			font-size: em(20);
+		}
+
+		dt {
+			font-weight: 700;
+		}
+
+		p {
+			margin-bottom: 20px;
+			line-height: 1.2;
+		}
+	}
+	/*=====  End of Footer  ======*/
+	&wrapper {
+		padding-left: 8px;
+		padding-right: 8px;
+		margin-left: auto;
+		margin-right: auto;
+		@include mq($rwd-tablet) {
+			padding-left: 22px;
+			padding-right: 22px;
+		}
+		@include mq($rwd-widescreen) {
+			max-width: 1170px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	&wrapper-global {
+		@include mq($rwd-widescreen) {
+			max-width: 980px;
+		}
+	}
+
+	&body-main {
+		.phoinikas--wrapper {
+			padding-top: 50%;
+			@include mq($rwd-desktop) {
+				padding-top: 580px;
+			}
+		}
+
+		hr {
+			border: none;
+			border-top: solid 1px $green04;
+			max-width: $register-max-width;
+			margin-left: auto;
+			margin-right: auto;
+
+			&.phoinikas--w100 {
+				max-width: 100%;
+			}
+		}
+	}
+
+	&bg-register {
+		background-color: $green02;
+		padding-bottom: 6.8%;
+		max-width: 970px;
+
+		hr {
+			margin-bottom: 24px;
+		}
+	}
+
+	&text-intro {
+		text-align: center;
+		color: $cream;
+		padding-bottom: 24px;
+		padding-top: 16%;
+		@include mq($rwd-desktop) {
+			padding-top: 64px;
+		}
+
+		h3 {
+			font-size: em(32);
+			line-height: 0.9;
+			margin-bottom: 32px;
+		}
+
+		p {
+			font-size: em(20);
+			font-weight: 500;
+			line-height: 1.1;
+		}
+		@include mq($rwd-tablet) {
+			h3 {
+				font-size: em(50);
+			}
+
+			p {
+				font-size: em(40);
+			}
+		}
+	}
+
+	&btn-submit {
+		background-color: $red02;
+		color: #fff;
+		width: 100%;
+		max-width: $register-max-width;
+		height: 52px;
+		font-size: em(30);
+		font-weight: 700;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+
+		&.phoinikas--btn-round {
+			height: 52px;
+			font-size: em(40);
+		}
+	}
+
+	&label-highlight {
+		display: block;
+		text-align: center;
+		font-weight: 700;
+		font-size: em(30);
+		margin-bottom: 4px;
+
+		em {
+			display: block;
+			margin-top: 8px;
+			font-style: normal;
+			font-size: em(10);
+			color: $white02;
+			margin-bottom: em(16);
+		}
+
+		&.phoinikas--for-ecoupon {
+			padding: 9.5% 0 3%;
+			font-weight: 500;
+			font-size: em(35);
+
+			strong {
+				color: #fff;
+			}
+		}
+	}
+
+	&register-input {
+		display: block;
+		border: 2px solid #63786d;
+		background-color: #909c87;
+		width: 100%;
+		height: 52px;
+		padding-left: 8px;
+		padding-right: 8px;
+		max-width: $register-max-width;
+		margin-left: auto;
+		margin-right: auto;
+		color: #103130;
+		margin-bottom: em(20);
+		font-size: em(20);
+		font-weight: 500;
+
+		&.phoinikas--share {
+			background-color: #c9d0c4;
+			width: 100%;
+			text-align: center;
+			font-weight: 700;
+			font-size: em(25);
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 0;
+			position: relative;
+			z-index: 2;
+			@include mq($rwd-tablet) {
+				max-width: 95%;
+			}
+		}
+	}
+
+	&section-register-1 {
+		padding: em(8) 0 em(5);
+	}
+
+	&section-register-2 {}
+
+	&row-checkbox,
+	&row-dropdown {
+		max-width: $register-max-width;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+		margin-bottom: em(24);
+
+		input {
+			visibility: hidden;
+			position: absolute;
+		}
+	}
+
+	&row-dob {
+		@include col((2), $margin: 8px);
+		max-width: $register-max-width;
+
+		select {
+			width: 100%;
+		}
+	}
+
+	&select-custom {
+		position: relative;
+		display: inline-block;
+
+		.customSelect {
+			border: 2px solid #63786d;
+			background-color: #909c87;
+			color: #103130;
+			font-size: em(20);
+			font-weight: 500;
+			padding-top: 0;
+			padding-bottom: 0;
+
+			.customSelectInner {
+				line-height: 48px;
+				text-align: left;
+
+				.chrome & {
+					line-height: 41px;
+					position: relative;
+					top: 5px;
+				}
+			}
+
+			&:before {
+				text-indent: -1000em;
+				@include size(18px 30px);
+				background: url('../img/global/icon-dropdown.png') no-repeat;
+				background-size: auto 15px;
+				background-position: 100% 50%;
+				display: block;
+				margin-top: -15px;
+				right: 8px;
+				@include mq($rwd-desktop) {
+					background-size: auto 30px;
+				}
+			}
+		}
+	}
+
+	&select-branch {
+		width: 100%;
+
+		select {
+			width: 100%;
+		}
+	}
+
+	&row-checkbox {
+		margin-bottom: em(58);
+	}
+
+	&label-checkbox,
+	&label-radio {
+		font-weight: 700;
+		font-size: em(25);
+		cursor: pointer;
+
+		&:before {
+			display: inline-block;
+			content: '';
+			border-radius: 50%;
+			border: solid 1px #fff;
+			@include size(20px);
+			position: relative;
+			top: 6px;
+			margin-right: 12px;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			left: 4px;
+			top: 50%;
+			margin-top: -9px;
+			@include size(20px 16px);
+			@include retina-image( '../img/global/icon-checkbox', 20px auto);
+			opacity: 0;
+			@include transition(opacity 0.25s ease-out);
+		}
+	}
+
+	input:checked + &label-checkbox,
+	input:checked + &label-radio {
+		&:after {
+			opacity: 1;
+		}
+	}
+	/*====================================
+	=            eCoupon Page            =
+	====================================*/
+	&select-custom {
+		width: 100%;
+
+		select {
+			width: 100%;
+		}
+	}
+
+	&section-profile {
+		text-align: center;
+		line-height: 1;
+		background-color: $green03;
+		padding: 25% 5% 10%;
+		margin: -10% -8px 24px;
+
+		.phoinikas--btn-round {
+			max-width: 270px;
+		}
+		@include mq($rwd-tablet) {
+			margin-top: -5%;
+			padding: 17% 5% 5%;
+			@include col((7,5));
+			max-width: 1170px;
+
+			> div:nth-child(1) {
+				text-align: left;
+			}
+
+			> div:nth-child(2) {
+				float: right;
+				max-width: 270px;
+			}
+		}
+		@include mq($rwd-desktop) {
+			padding: 8.5% 5% 4.5%;
+		}
+	}
+
+	&profile-avatar {
+		@include size(132px);
+		border-radius: 50%;
+		margin: em(8) auto;
+		display: block;
+		border: solid 5px #fff;
+		box-shadow: 0 1px 3px rgba(8, 8, 8, 0.28);
+		@include mq($rwd-tablet) {
+			float: left;
+			margin-right: 20px;
+		}
+	}
+
+	&profile-fullname {
+		color: #fff;
+		font-weight: 700;
+		font-size: em(35);
+		text-transform: uppercase;
+
+		& + a {
+			font-size: em(30);
+			color: #fff;
+			margin-bottom: em(16);
+			display: block;
+		}
+		@include mq($rwd-tablet) {
+			margin-top: em(18);
+		}
+	}
+
+	&profile-point {
+		font-size: em(30);
+		font-weight: 700;
+		text-align: right;
+		padding-left: 4px;
+		padding-right: 4px;
+		max-width: 270px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: em(8);
+		@include mq($rwd-tablet) {
+			margin-top: em(16);
+		}
+
+		label {
+			float: left;
+			line-height: 56px;
+		}
+
+		em {
+			font-size: 50px;
+			font-style: normal;
+		}
+	}
+
+	&btn-round {
+		@extend .phoinikas--btn-submit;
+		font-size: em(30);
+		border-radius: 5px;
+		height: 44px;
+	}
+
+	&text-h4 {
+		text-align: center;
+		font-size: em(28);
+		line-height: 1;
+		margin-bottom: 24px;
+		@include mq($rwd-tablet) {
+			font-size: em(45);
+		}
+	}
+
+	&text-h3 {
+		font-size: em(50);
+		line-height: 0.8;
+		margin-top: em(8);
+		margin-bottom: em(4);
+		text-align: center;
+		@include mq($rwd-tablet) {
+			font-size: em(72);
+		}
+	}
+
+	&table-caption {
+		font-size: em(18);
+		font-weight: 700;
+		text-align: center;
+		line-height: 1.2;
+		margin-bottom: 16px;
+
+		strong {
+			color: $red03;
+			font-size: em(28);
+		}
+		@include mq($rwd-tablet) {
+			font-size: em(35);
+		}
+	}
+
+	&table-ecoupon {
+		width: 100%;
+		border-collapse: collapse;
+		margin-bottom: 5%;
+
+		td,
+		th {
+			font-size: em(24);
+			border-bottom: solid 2px $green01;
+			text-align: center;
+			@include mq($rwd-desktop) {
+				font-size: em(30);
+			}
+		}
+
+		th {
+			padding: em(4);
+			font-size: em(28);
+			font-weight: 500;
+			background-color: $red01;
+
+			&:first-child {
+				border-top-left-radius: 8px;
+			}
+
+			&:last-child {
+				border-top-right-radius: 8px;
+			}
+			@include mq($rwd-desktop) {
+				font-size: em(36);
+			}
+		}
+
+		td {
+			padding: em(6) em(4);
+			background-color: $green08;
+
+			&:nth-child(2) {
+				text-align: left;
+			}
+		}
+	}
+
+	&ecoupon-used {
+		td {
+			color: $green06;
+			background-color: $green09;
+		}
+	}
+
+	&section-ecoupon {
+		margin: 2% auto em(32);
+		text-align: center;
+
+		hr {
+			margin-top: 54px;
+		}
+	}
+
+	&text-h5 {
+		font-size: em(42);
+		line-height: 1;
+		color: $red01;
+		@include mq($rwd-tablet) {
+			font-size: em(54);
+		}
+		@include mq($rwd-desktop) {
+			font-size: em(60);
+		}
+	}
+
+	&text-intro_ecoupon {
+		font-size: em(28);
+		line-height: 1.1;
+		font-weight: 700;
+		margin-bottom: 3%;
+		@include mq($rwd-tablet) {
+			font-size: em(30);
+		}
+		@include mq($rwd-desktop) {
+			font-size: em(40);
+		}
+	}
+
+	&ecoupon-img {
+		display: block;
+		width: 100%;
+		max-width: 970px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&ecoupon-select_branch {
+		max-width: $register-max-width;
+		// display: none;
+		.phoinikas--select-custom {
+			margin-bottom: 24px;
+
+			.customSelectInner {
+				font-size: em(20);
+				font-weight: 500;
+			}
+		}
+	}
+
+	&ecoupon-barcode {
+		background-color: #fff;
+		border-radius: 20px;
+		overflow: hidden;
+		text-align: center;
+		@extend .phoinikas--ecoupon-img;
+		@include mq($rwd-tablet) {
+			border-radius: 44px;
+		}
+	}
+
+	&barcode {
+		padding: 16px 8px 8px;
+	}
+
+	&ecoupon-condition {
+		background-color: $green05;
+		padding: 8px 8px 16px;
+		font-size: 8px;
+		line-height: 1;
+		@include mq($rwd-tablet) {
+			font-size: 12px;
+			padding-top: 24px;
+		}
+		@include mq($rwd-desktop) {
+			font-style: 16px;
+		}
+
+		em {
+			font-style: normal;
+			font-size: em(52);
+			color: $green06;
+			display: block;
+		}
+
+		strong {
+			font-size: em(52);
+		}
+	}
+
+	&condition-global {
+		padding: 5% 8px 2%;
+		color: $green07;
+		margin-left: auto;
+		margin-right: auto;
+		@include mq($rwd-tablet) {
+			padding-left: 16px;
+			padding-right: 16px;
+		}
+		@include mq($rwd-desktop) {
+			max-width: 970px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		dt {
+			font-size: em(50);
+			font-weight: 700;
+			margin-bottom: 8px;
+		}
+
+		dd {
+			font-size: em(20);
+			font-weight: 500;
+
+			ol {
+				padding-left: 20px;
+				margin-top: 6px;
+				line-height: 1.45;
+				@include mq($rwd-tablet) {
+					padding-left: 35px;
+				}
+			}
+		}
+	}
+	/*=====  End of eCoupon Page  ======*/
+	/*==================================
+	=            Login Page            =
+	==================================*/
+	&page-member > .phoinikas--wrapper {
+		@include mq($rwd-desktop) {
+			 @include col((5.6,6.4));
+			max-width: 970px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	&section-login {
+		background-color: $green02;
+		padding-top: 16%;
+		padding-bottom: 72px;
+		max-width: 570px;
+		padding-left: 8px;
+		padding-right: 8px;
+		margin-left: auto;
+		margin-right: auto;
+		@include mq($rwd-desktop) {
+			padding-left: 32px;
+			padding-right: 32px;
+		}
+
+		hr {
+			margin-bottom: 32px;
+		}
+
+		.phoinikas--row-checkbox {
+			float: left;
+		}
+
+		.phoinikas--label-checkbox {
+			font-size: em(20);
+		}
+	}
+
+	&header-login {
+		font-size: em(36);
+		text-align: center;
+		margin-bottom: 24px;
+		@include mq($rwd-desktop) {
+			font-size: em(45);
+		}
+	}
+
+	&btn-forgot_password {
+		display: inline-block;
+		position: relative;
+		text-align: right;
+		font-size: em(20);
+		font-weight: 700;
+		color: #fff;
+		display: block;
+		float: right;
+		text-align: right;
+		line-height: 36px;
+		padding-left: 2px;
+		padding-right: 2px;
+
+		&:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			background-color: #fff;
+			bottom: 4px;
+			left: 0;
+			right: 0;
+			@include transition(opacity .25s ease-in-out);
+		}
+
+		&:hover {
+			&:after {
+				opacity: 0;
+			}
+		}
+	}
+
+	&btn-submit {
+		&.phoinikas--cream {
+			background-color: $cream;
+			color: $green06;
+			font-weight: 500;
+			margin-bottom: 24px;
+		}
+	}
+
+	&row-float {
+		@include clear-fix;
+		max-width: $register-max-width;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&btn-facebook {
+		@extend .phoinikas--btn-submit;
+		background-color: #1e455e;
+		text-indent: -1000em;
+		@include retina-image( '../img/login/bg-fb', auto 24px);
+		background-size: auto 24px;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		@include mq($rwd-tablet) {
+			background-size: auto 34px;
+		}
+	}
+
+	&section-register {
+		text-align: center;
+		@extend .phoinikas--section-login;
+		background-color: transparent;
+		color: $cream;
+		@include mq($rwd-desktop) {
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+
+		h2 {
+			margin-top: 6px;
+			line-height: 0.85;
+			margin-bottom: 25px;
+		}
+
+		h3 {
+			font-size: em(24);
+			@include mq($rwd-desktop) {
+				font-size: em(30);
+			}
+		}
+
+		button {
+			@extend .phoinikas--btn-submit;
+			margin-top: 16%;
+			@include mq($rwd-desktop) {
+				margin-top: 182px;
+			}
+		}
+	}
+
+	&popup-inline {
+		font-family: $f-header;
+		position: relative;
+		background: #fff;
+		color: #000;
+		padding: 48px 16px;
+		width: auto;
+		max-width: 970px;
+		margin: 16px auto;
+		text-align: center;
+
+		h2 {
+			font-size: em(60);
+			margin-bottom: 24px;
+		}
+
+		p {
+			font-size: em(30);
+			margin-bottom: 24px;
+		}
+		@include mq($rwd-desktop) {
+			padding: 64px 16px 120px;
+		}
+
+		.phoinikas--label-highlight {
+			font-weight: 500;
+		}
+
+		.phoinikas--register-input {
+			background-color: rgb(254, 247, 236);
+			border-color: rgba(163, 162, 162, 0.5);
+		}
+	}
+	/*=====  End of Login Page  ======*/
+	/*==================================
+	=            My Profile            =
+	==================================*/
+	&text-h6 {
+		font-size: em(34);
+		color: $red01;
+		font-weight: 700;
+	}
+
+	&text-profile_intro {
+		font-size: em(22);
+		line-height: 1.5;
+		margin-bottom: 3%;
+		font-weight: 500;
+		@include mq($rwd-desktop) {
+			font-size: em(25);
+		}
+	}
+
+	&profile-share {
+		background-color: $green10;
+		padding: em(32) em(16);
+
+		label {
+			font-size: em(22);
+			font-weight: 500;
+			display: block;
+			text-align: center;
+			margin: 5% auto em(4);
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			@include col((2), $margin: 8px);
+			text-align: center;
+			@include mq($rwd-tablet) {
+				 @include col((5), $margin: 8px);
+			}
+
+			li {
+				display: inline-block;
+				text-transform: uppercase;
+				font-weight: 700;
+
+				img {
+					display: block;
+					max-width: 142px;
+					width: 100%;
+					margin: 0 auto em(8);
+				}
+
+				a {
+					color: #fff;
+					text-align: center;
+					font-size: em(20);
+				}
+			}
+		}
+	}
+
+	&button-copy_url {
+		position: absolute;
+		z-index: 1;
+		bottom: 0;
+		left: 50%;
+		@include transform(translateX(-50%));
+	}
+
+	&copy-url {
+		position: relative;
+	}
+
+	&table-coupon {
+		td {
+			vertical-align: middle;
+			font-size: em(24);
+			font-weight: 500;
+			@include mq($rwd-widescreen) {
+				font-size: em(28);
+			}
+
+			&:nth-child(2) {
+				text-align: right;
+			}
+
+			&:nth-child(3) {
+				text-align: left;
+			}
+		}
+
+		span {
+			@include mq($rwd-tablet) {
+				white-space: nowrap;
+			}
+		}
+
+		img {
+			max-height: 92px;
+			display: none;
+			float: right;
+			@include mq($rwd-tablet) {
+				display: block;
+			}
+		}
+
+		button {
+			@extend .phoinikas--btn-submit;
+			font-size: em(20);
+			height: 44px;
+			border-radius: 6px;
+			width: auto;
+			padding-left: 16px;
+			padding-right: 16px;
+		}
+
+		.phoinikas--ecoupon-used {
+			td {
+				color: #fff;
+			}
+
+			button {
+				background-color: rgb(6, 52, 31);
+			}
+		}
+	}
+	/*=====  End of My Profile  ======*/
+}
+//end of prefix
+
+.mfp-close-btn-in .mfp-close {
+	@include size(44px 48px);
+	text-indent: -1000em;
+	@include retina-image( '/img/global/btn-close', 100% auto);
+	background-size: 100% auto;
+	opacity: 1;
+	top: 10px;
+	right: 10px;
+}
+
+.mfp-ajax-holder .mfp-content {
+	background-color: #fff;
+	max-width: 970px;
+	padding: 80px 16px 32px;
+	@include mq($rwd-desktop) {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+}
+@import "_global-phase2";

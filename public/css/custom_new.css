@@ -1,0 +1,29 @@
+/*account seeting topmenu*/
+.nav.navbar-top-links.navbar-right>.dropdown{
+	float: right;
+	margin: 0;
+}
+
+/*footer*/
+#footer{
+	width: 100%;
+	height: 80px;
+	border-top: 1px solid #e7e7e7; 
+	background-color:#f9f9f9;
+}
+/*footer center*/
+.copyright.text-center{
+	margin-top: 30px;
+}
+
+/*border bottom logo*/
+.navbar.navbar-default.navbar-static-top{
+	margin-bottom: 0;
+	box-shadow: 0 1px 4px -2px grey;
+}
+
+/*logo*/
+.navbar-brand>img{
+	height: 100%;
+}
+

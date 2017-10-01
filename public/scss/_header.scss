@@ -1,0 +1,530 @@
+/*==============================
+=            Header            =
+==============================*/
+&header-mobile {
+	@include mq($rwd-tablet) {
+		display: none;
+	}
+
+	> .phoinikas--wrapper {
+		font-family: $f-header;
+		background-color: $kaitokeGreen;
+		height: 44px;
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+		padding-left: 8px;
+		padding-right: 8px;
+		position: relative;
+		z-index: 100;
+	}
+
+	.phoinikas--header-logo {
+		order: 2;
+	}
+}
+
+&mobile-nav-language {
+	display: flex;
+	align-items: center;
+	order: 1;
+	font-weight: 500;
+	font-size: em(18);
+
+	a {
+		font-weight: 700;
+		color: #fff;
+	}
+}
+
+&hamburger-menu {
+	display: flex;
+	align-items: center;
+	order: 3;
+	margin-left: 12px;
+	width: 60px;
+	height: 45px;
+	position: relative;
+	margin-right: -14px;
+	margin-left: -5px;
+	transform: rotate(0deg);
+	transition: 0.5s ease-in-out;
+	cursor: pointer;
+	@include transform(scale(0.5));
+
+	&:active {
+		@extend .clear-highlight;
+	}
+
+	span {
+		display: block;
+		position: absolute;
+		height: 9px;
+		width: 50%;
+		background: $cream;
+		opacity: 1;
+		transform: rotate(0deg);
+		transition: 0.25s ease-in-out;
+
+		&:nth-child(even) {
+			left: 50%;
+		}
+
+		&:nth-child(odd) {
+			left: 0;
+		}
+
+		&:nth-child(1),
+		&:nth-child(2) {
+			top: 0;
+		}
+
+		&:nth-child(3),
+		&:nth-child(4) {
+			top: 18px;
+		}
+
+		&:nth-child(5),
+		&:nth-child(6) {
+			top: 36px;
+		}
+	}
+
+	&.open {
+		span {
+			&:nth-child(1),
+			&:nth-child(6) {
+				transform: rotate(45deg);
+			}
+
+			&:nth-child(2),
+			&:nth-child(5) {
+				transform: rotate(-45deg);
+			}
+
+			&:nth-child(1) {
+				left: 5px;
+				top: 7px;
+			}
+
+			&:nth-child(2) {
+				left: calc(50% - 5px);
+				top: 7px;
+			}
+
+			&:nth-child(3) {
+				left: -50%;
+				opacity: 0;
+			}
+
+			&:nth-child(4) {
+				left: 100%;
+				opacity: 0;
+			}
+
+			&:nth-child(5) {
+				left: 5px;
+				top: 29px;
+			}
+
+			&:nth-child(6) {
+				left: calc(50% - 5px);
+				top: 29px;
+			}
+		}
+	}
+}
+
+&mobile-nav-main {
+	position: absolute;
+	z-index: 99;
+	top: 44px;
+	left: 0;
+	right: 0;
+	padding-bottom: 2px;
+	@include transition(transform 0.25s ease-out);
+	@include transform(translateY(-100%));
+
+	&.show {
+		@include transform(translateY(0%));
+	}
+
+	> ul {
+		li {
+			display: block;
+
+			> a {
+				float: none;
+				text-align: center;
+				color: $sherwoodGreen;
+				font-weight: 500;
+				font-family: db_ozone;
+				line-height: 44px;
+				font-size: em(21);
+
+				&:active {
+					color: $sherwoodGreen;
+					background-color: $caleste;
+				}
+			}
+		}
+	}
+
+	> .phoinikas--mobile-nav-sub:nth-child(1) {
+		background-color: $narvik;
+	}
+
+	> .phoinikas--mobile-nav-sub:nth-child(2) {
+		background-color: $sherwoodGreen;
+
+		li {
+			> a {
+				color: #fff;
+				font-size: em(14);
+				line-height: 30px;
+				padding-bottom: 0;
+				font-weight: 700;
+
+				&:active {
+					background-color: $britishRacingGreen;
+				}
+			}
+		}
+	}
+}
+@include mq($rwd-tablet-max, max) {
+	&menu-1 {
+		&.active {
+			background-color: $sherwoodGreen;
+			color: #fff;
+			font-weight: 700;
+			font-size: em(24);
+		}
+	}
+}
+// End of Header Mobile
+&header-tablet {
+	display: none;
+	position: relative;
+	z-index: 2;
+	@include mq($rwd-tablet) {
+		display: block;
+	}
+}
+
+&body-header-global .phoinikas--header-logo {
+	visibility: visible;
+	position: relative;
+	text-indent: -1000em;
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	a {
+		@include size(64px 0);
+		@include retina-image( '/img/global/logo-sizzler-footer', 100% auto);
+		background-repeat: no-repeat;
+		background-size: 100% auto;
+		background-position: 0 50%;
+		padding-top: 44%;
+	}
+	@include mq($rwd-tablet) {
+		a {
+			@include size(160px 0);
+		}
+	}
+}
+
+&body-header-global {
+	font-family: $f-header;
+}
+
+&header-row-1 {
+	height: 32px;
+	font-size: em(12);
+	padding: 0 5.65%;
+	@include clear-fix;
+	background-color: $green01;
+	position: relative;
+	z-index: 2;
+	display: flex;
+	justify-content: space-between;
+}
+
+&nav-language {
+	margin: 0 !important;
+	flex: 1;
+
+	label {
+		font-size: em(22);
+		font-weight: 500;
+	}
+
+	ul {
+		display: flex;
+		align-items: center;
+	}
+
+	li {
+		float: left;
+	}
+}
+
+&label-radio {
+	font-size: em(16);
+	font-weight: 400;
+	color: $cream;
+	margin-right: em(32);
+	position: relative;
+
+	&:before {
+		@include size(18px);
+		border-color: $cream;
+		top: 5px;
+	}
+
+	&:after {
+		background: none;
+		background-color: $cream;
+		@include size(10px);
+		border-radius: 50%;
+		position: absolute;
+		left: 5px;
+		margin-top: -6px;
+	}
+}
+
+&nav-bar {
+	display: flex;
+
+	a {
+		display: flex;
+		align-self: center;
+		padding: 0 em(8);
+		position: relative;
+		font-size: em(22);
+		font-weight: 500;
+
+		&:hover {
+			// color: $crimsonRed;
+		}
+	}
+}
+
+&link-member {
+	padding-left: 8px;
+
+	&:before {
+		content: '';
+		width: 1px;
+		height: 18px;
+		background-color: #60896b;
+		display: block;
+		position: absolute;
+		top: 50%;
+		margin-top: -9px;
+		left: 0;
+	}
+}
+
+&header-row-2 {
+	position: relative;
+	display: flex;
+	z-index: 2;
+	background-color: rgba($narvik, .97);
+	border-radius: 0 0 16px 16px;
+	height: 120px;
+	padding: 0 em(48);
+	box-shadow: 0 10px 24px 4px rgba(0, 0, 0, 0.32);
+}
+
+&nav-main-global {
+	@include size(100%);
+	padding-left: 40px;
+	display: flex;
+	align-items: center;
+	@include mq($rwd-desktop) {
+		padding-left: 80px;
+		margin-right: 48px;
+	}
+}
+
+&main-global-list {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+	a {
+		float: none;
+		font-weight: 700;
+		color: $sherwoodGreen;
+		font-size: em(19);
+		padding: 8px 0;
+
+		&.active,
+		&:hover {
+			color: $crimsonRed;
+		}
+	}
+}
+
+&subnav-1 {
+	font-family: 'db_ozone';
+	position: absolute;
+	z-index: 99;
+	left: 0;
+	width: 100%;
+	@include transform(translateX(100%));
+	@include transition(all .3s ease-out);
+
+	&.show-subnav {
+		@include transform(translateX(0%));
+		@include transform(translateX(0%));
+	}
+
+	a,
+	img,
+	li {
+		display: block;
+		float: none;
+
+		&:active {
+			@extend .clear-highlight;
+		}
+	}
+	@include mq($rwd-tablet-max, max) {
+		header {
+			height: 44px;
+			padding: 0 16px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			// background-color: $kaitokeGreen;
+			// visibility: hidden;
+			strong {
+				order: 2;
+				color: #fff;
+				font-size: em(24);
+				line-height: 1;
+				font-weight: 700;
+				visibility: hidden;
+			}
+
+			.fa-times {
+				order: 3;
+				visibility: hidden;
+			}
+		}
+
+		a {
+			text-align: center;
+			color: $sherwoodGreen;
+			font-size: em(22);
+			font-weight: 500;
+			line-height: 40px;
+
+			&:active {
+				background-color: $caleste;
+			}
+		}
+
+		dt {
+			background-color: $kaitokeGreen;
+			color: #fff;
+
+			a {
+				color: #fff;
+				font-weight: 700;
+			}
+		}
+
+		.phoinikas--row-1 {
+			background-color: $narvik;
+		}
+
+		.phoinikas--row-2 {
+			background-color: $kangaroo;
+		}
+
+		.phoinikas--row-3 {
+			background-color: #000;
+			padding: 4px 0;
+
+			img {
+				border: solid 2px #fff;
+				border-radius: 12px;
+				margin: 10px auto;
+			}
+		}
+
+		.phoinikas--row-4 {
+			padding: 0 4px 8px;
+			background-color: #000;
+
+			img {
+				margin: 0 auto;
+			}
+		}
+	}
+	@include mq($rwd-tablet) {
+		 @include transform(translateY(-150%));
+		background-color: $narvik;
+		top: 152px;
+		left: 50%;
+		margin-left: -310px;
+		z-index: 1;
+		padding: 8px 24px 16px;
+		border-radius: 0 0 16px 16px;
+		width: 620px;
+		box-shadow: 12px 12px 16px rgba(32, 29, 17, .43);
+
+		header {
+			display: none;
+		}
+
+		&.show-subnav {
+			@include transform(translateY(0%));
+		}
+
+		a {
+			color: #808080;
+			padding: 8px 0;
+			line-height: 1;
+			font-size: em(26);
+			font-weight: 500;
+
+			&:hover {
+				color: $countryGreen;
+				font-weight: 700;
+			}
+		}
+
+		.phoinikas--row-1 {
+			width: 20%;
+			float: left;
+		}
+
+		.phoinikas--row-2 {
+			width: 25%;
+			float: left;
+		}
+
+		.phoinikas--row-3 {
+			width: 55%;
+			float: left;
+
+			a {
+				@include clearfix;
+			}
+
+			img {
+				float: right;
+			}
+		}
+
+		.phoinikas--row-4 {
+			float: right;
+		}
+	}
+}
+/*=====  End of Header  ======*/
