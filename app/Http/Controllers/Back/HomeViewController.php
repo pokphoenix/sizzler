@@ -125,6 +125,7 @@ class HomeViewController extends Controller
         if(!$post['result']){
             return redirectBack($post['error'],$this->errorBag(),$this->getRedirectUrl(),$request->input());
         }
+
         // if ($post['position']==1){
         //     // $post['position'] = 999;
         // }

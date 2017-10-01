@@ -185,18 +185,18 @@ Route::group(['namespace'=>'Back'  ,   'middleware' => ['web','auth:admin'] ,'pr
 
     Route::resource('homeview', 'HomeViewController');
 
-    Route::resource('beef', 'BeefController');
-    Route::resource('burger', 'BurgerController');
-    Route::resource('chicken', 'ChickenController');
-    Route::resource('com-beef', 'ComBeefController');
-    Route::resource('com-platter', 'ComPlatterController');
-    Route::resource('com-suprem', 'ComSupremController');
-    Route::resource('kid', 'KidMenuController');
-    Route::resource('pork', 'PorkController');
-    Route::resource('seafood', 'SeafoodController');
-    Route::resource('wednesday', 'WednesdayController');
-    Route::resource('everyday', 'EverydayController');
-    Route::resource('lunch', 'LunchController');
+    // Route::resource('beef', 'BeefController');
+    // Route::resource('burger', 'BurgerController');
+    // Route::resource('chicken', 'ChickenController');
+    // Route::resource('com-beef', 'ComBeefController');
+    // Route::resource('com-platter', 'ComPlatterController');
+    // Route::resource('com-suprem', 'ComSupremController');
+    // Route::resource('kid', 'KidMenuController');
+    // Route::resource('pork', 'PorkController');
+    // Route::resource('seafood', 'SeafoodController');
+    // Route::resource('wednesday', 'WednesdayController');
+    // Route::resource('everyday', 'EverydayController');
+    // Route::resource('lunch', 'LunchController');
 
 
 
